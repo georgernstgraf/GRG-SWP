@@ -1,0 +1,30 @@
+{
+    "tasks": {
+        "dev": "deno run --watch  main.ts",
+        "prisma:studio:question": "deno run -A npm:prisma@latest studio --schema=prisma/question/schema.prisma --hostname 0.0.0.0",
+        "prisma:seed:question": "deno run -A --env-file seed.ts",
+        "prisma:debug_seed:question": "deno run -A --env-file --inspect-wait seed.ts",
+        "prisma:migrate_dev:question": "deno run -A npm:prisma@latest migrate dev --schema=prisma/question/schema.prisma",
+        "prisma:db_push:question": "deno run -A npm:prisma@latest db push --schema=prisma/question/schema.prisma",
+        "prisma:generate:question": "deno run -A npm:prisma@latest generate --schema=prisma/question/schema.prisma",
+        "prisma:validate:question": "deno run -A npm:prisma@latest validate --schema=prisma/question/schema.prisma",
+        "prisma:studio:artist": "deno run -A npm:prisma@latest studio --schema=prisma/artist/schema.prisma --hostname 0.0.0.0",
+        "prisma:seed:artist": "deno run -A --env-file seed.ts",
+        "prisma:debug_seed:artist": "deno run -A --env-file --inspect-wait seed.ts",
+        "prisma:migrate_dev:artist": "deno run -A npm:prisma@latest migrate dev --schema=prisma/artist/schema.prisma",
+        "prisma:db_push:artist": "deno run -A npm:prisma@latest db push --schema=prisma/artist/schema.prisma",
+        "prisma:generate:artist": "deno run -A npm:prisma@latest generate --schema=prisma/artist/schema.prisma",
+        "prisma:validate:artist": "deno run -A npm:prisma@latest validate --schema=prisma/artist/schema.prisma"
+    },
+    "imports": {
+        "@prisma/client": "npm:@prisma/client@^6.16.2",
+        "@std/assert": "jsr:@std/assert@1",
+        "he": "npm:he@^1.2.0"
+    },
+    "fmt": {
+        "indentWidth": 4,
+        "lineWidth": 130,
+        "singleQuote": false,
+        "proseWrap": "never"
+    }
+}

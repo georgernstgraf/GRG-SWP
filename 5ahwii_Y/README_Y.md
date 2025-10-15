@@ -1,5 +1,9 @@
 # sj25-26-5ahwii-swp
 
+## 2025-10-15
+
+Lift Kata: <https://sammancoaching.org/kata_descriptions/lift.html>
+
 ## 2025-10-08
 
 nochmal prisma recap
