@@ -1,5 +1,18 @@
 # sj25-26-2ahwii-swp-grg-mja
 
+## 2025-10-20
+
+- testing von prim besprochen
+- html angefangen
+
+HÜ:
+
+- recherche html auf <https://developer.mozilla.org/en-US/docs/Web/HTML/Reference>
+- <selfhtml.org>
+- <w3schools.com>
+
+Erstelle eine HTML Seite, auf welcher Du die Erkenntnisse deiner Recherche zusammenfasst!
+
 ## 2025-10-13 DEbugger
 
 - HÜ: Debugger in VSCode einrichten
