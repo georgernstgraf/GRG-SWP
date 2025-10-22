@@ -10,7 +10,8 @@ generator client {
 }
 
 model Airport {
-    id   String @id @default(uuid())
-    name String
-    city String
+    id       String @id @default(uuid())
+    name     String
+    iataCode String @unique
+    city     String
 }

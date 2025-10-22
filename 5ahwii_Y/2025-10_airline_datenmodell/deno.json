@@ -2,14 +2,16 @@
     "tasks": {
         "pg": "deno run -A prisma generate",
         "pv": "deno run -A prisma validate",
-        "pmd": "deno run -A prisma migrate dev"
+        "pmd": "deno run -A prisma migrate dev",
+        "seed": "deno run -A --env-file seed.ts"
     },
     "imports": {
         "@faker-js/faker": "npm:@faker-js/faker@^10.1.0",
         "@prisma/client": "npm:@prisma/client@^6.18.0",
         "@std/assert": "jsr:@std/assert@1",
         "he": "npm:he@^1.2.0",
-        "prisma": "npm:prisma@^6.18.0"
+        "prisma": "npm:prisma@^6.18.0",
+        "model": "./prisma/client/client.ts"
     },
     "fmt": {
         "indentWidth": 4,
