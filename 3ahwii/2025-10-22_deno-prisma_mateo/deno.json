@@ -1,0 +1,17 @@
+{
+    "tasks": {
+        "dev": "deno -A --env-file=.env --watch=src src/server.ts",
+        "prisma:generate": "deno run -A prisma generate",
+        "pmd": "deno  -A prisma migrate dev",
+        "pds": "deno run -A --env-file prisma/seed.ts",
+        "pm": "deno  -A prisma migrate",
+        "prisma:studio": "deno run -A prisma studio"
+    },
+
+    "imports": {
+        "@faker-js/faker": "npm:@faker-js/faker@^10.1.0",
+        "@prisma/client": "npm:@prisma/client@^6.17.1",
+        "prisma": "npm:prisma@^6.17.1"
+    },
+    "fmt": { "indentWidth": 4 }
+}
