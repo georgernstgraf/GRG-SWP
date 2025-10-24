@@ -1,0 +1,40 @@
+datasource db {
+    provider = "sqlite"
+    url      = "file:./dev.sqlite3"
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model Airplane {
+    id      String   @id @default(cuid())
+    name    String
+    flights Flight[]
+}
+
+model Flight {
+    id            String      @id @default(cuid())
+    when          DateTime
+    passengers    Passenger[]
+    fromAirport   Airport     @relation("from", fields: [airportIdFrom], references: [id])
+    toAirport     Airport     @relation("to", fields: [airportIdTo], references: [id])
+    airplane      Airplane    @relation(fields: [airplaneId], references: [id])
+    airplaneId    String
+    airportIdFrom String
+    airportIdTo   String
+}
+
+model Airport {
+    id             String   @id @default(cuid())
+    name           String
+    flightIncoming Flight[] @relation("to")
+    flightOutgoing Flight[] @relation("from")
+}
+
+model Passenger {
+    id       String   @id @default(cuid())
+    email    String
+    fullname String
+    flights  Flight[]
+}
