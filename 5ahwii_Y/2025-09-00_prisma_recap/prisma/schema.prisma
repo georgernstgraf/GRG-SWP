@@ -1,0 +1,50 @@
+datasource db {
+    provider = "sqlite"
+    url      = "file:../dev.db"
+}
+
+generator client {
+    provider = "prisma-client"
+    output   = "client"
+    runtime  = "deno"
+}
+
+model Question {
+    id                String     @id @default(cuid())
+    difficulty        Difficulty @relation(fields: [difficultyId], references: [id])
+    category          Category   @relation(fields: [categoryId], references: [id])
+    question          String
+    incorrect_answers Answer[]   @relation(name: "IncorrectAnswers")
+    correct_answer    Answer     @relation(name: "CorrectAnswer", fields: [correct_answer_id], references: [id])
+    correct_answer_id String
+    difficultyId      String
+    categoryId        String
+    type              Type       @relation(fields: [typeId], references: [id])
+    typeId            String
+}
+
+model Type {
+    id       String     @id @default(cuid())
+    type     String     @unique
+    Question Question[]
+}
+
+model Category {
+    id         String     @id @default(cuid())
+    name       String     @unique
+    opentdb_id Int        @unique
+    question   Question[]
+}
+
+model Difficulty {
+    id       String     @id @default(cuid())
+    level    String     @unique
+    Question Question[]
+}
+
+model Answer {
+    id                     String     @id @default(cuid())
+    answer                 String
+    incorrect_in_questions Question[] @relation(name: "IncorrectAnswers")
+    correct_in_questions   Question[] @relation(name: "CorrectAnswer")
+}

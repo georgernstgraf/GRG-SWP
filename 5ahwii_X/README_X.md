@@ -1,5 +1,13 @@
 # sj25-26-5ahwii-swp
 
+## 2025-11-03
+
+- prisma studio
+- repo klassen
+- musik app / hono
+
+## Herbstferien
+
 ## 2025-10-08
 
 nochmal prisma recap
