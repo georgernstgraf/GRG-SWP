@@ -1,5 +1,17 @@
 # sj25-26-2ahwii-swp-grg-mja
 
+## 2025-11-03
+
+HÜ: Tags auch auf der schon erstellten oder einer neuen Website verwenden!!
+
+Wenn schon geschehen, neue TAGS verwenden und einbauen. Anregungen:
+
+- table (fancy wenn geht)
+- form / input
+- evtl. fontsy
+
+## Herbstferien
+
 ## 2025-10-20
 
 - testing von prim besprochen

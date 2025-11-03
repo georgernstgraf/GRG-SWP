@@ -7,6 +7,9 @@
 - musik app / hono
 
 ## Herbstferien
+## 2025-10-03 HÜ
+
+- deno task seed muss funktionieren und eine befüllte DB hinterlassen!!!
 
 ## 2025-10-08
 
