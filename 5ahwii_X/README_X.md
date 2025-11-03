@@ -1,15 +1,10 @@
 # sj25-26-5ahwii-swp
 
-## 2025-11-03
+## 2025-11-03 HÜ
 
-- prisma studio
-- repo klassen
-- musik app / hono
+- "deno task seed" soll jetzt funktionieren und eine befüllte DB hinterlassen!!!
 
 ## Herbstferien
-## 2025-10-03 HÜ
-
-- deno task seed muss funktionieren und eine befüllte DB hinterlassen!!!
 
 ## 2025-10-08
 

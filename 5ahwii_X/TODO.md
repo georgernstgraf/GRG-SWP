@@ -12,4 +12,8 @@
 
 ## Data Design
 
+- prisma studio
+- repo klassen
+- musik app / hono
+
 ## CSS
