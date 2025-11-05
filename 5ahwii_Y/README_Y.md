@@ -1,5 +1,14 @@
 # sj25-26-5ahwii-swp
 
+## 2025-11-05
+
+Prisma Airline mit seeding besprochen
+
+HÜ bis Mittwoch 12.11.
+
+seeding weiterbauen. "flight" ist die challenge, denn dieser erfordert
+beim insert vorhandene airports und planes. (evt. mit einem random-select aus **bereits vorhandenen** ids)
+
 ## 2025-10-15
 
 Lift Kata: <https://sammancoaching.org/kata_descriptions/lift.html>
