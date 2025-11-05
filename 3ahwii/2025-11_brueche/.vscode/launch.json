@@ -5,11 +5,17 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "C#: Brüche Debug",
-            "type": "dotnet",
-            "request": "launch",
-            "projectPath": "${workspaceFolder}/2025-11_brueche.csproj",
-            "args": ["3 1/2", "2/3"]
+      "name": ".NET Launch (console)",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/MyApp/MyApp.csproj",
+      "program": "${workspaceFolder}/MyApp/bin/Debug/net8.0/MyApp.dll",
+      "args": ["--mode", "test", "--count", "3"],
+      "cwd": "${workspaceFolder}/MyApp",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "console": "integratedTerminal"
         }
 
     ]
