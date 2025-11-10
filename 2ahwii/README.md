@@ -1,5 +1,11 @@
 # sj25-26-2ahwii-swp-grg-mja
 
+## GRG's WMC Repo
+
+(web & mobile computing)
+
+<https://github.com/georgernstgraf/GRG-WMC.git>
+
 ## 2025-11-03
 
 HÜ: Tags auch auf der schon erstellten oder einer neuen Website verwenden!!
