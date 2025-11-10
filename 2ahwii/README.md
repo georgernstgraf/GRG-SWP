@@ -1,10 +1,16 @@
 # sj25-26-2ahwii-swp-grg-mja
 
+## 2025-11-10 Heute CSS Boxmodel durchgemacht
+
+HÜ: Kreative Anwendung der Inhalte:
+
+- padding / margin / border
+- etc...
+
 ## GRG's WMC Repo
 
 (web & mobile computing)
-
-<https://github.com/georgernstgraf/GRG-WMC.git>
+Hier sind die html / css / javascript unterlagen drin: <https://github.com/georgernstgraf/GRG-WMC.git>
 
 ## 2025-11-03
 
