@@ -5,6 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "C#: Brüche Debug",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/3ahwii/2025-11_brueche/2025-11_brueche.csproj"
+        },
+        {
             "request": "launch",
             "name": "Debug my Deno",
             "type": "node",

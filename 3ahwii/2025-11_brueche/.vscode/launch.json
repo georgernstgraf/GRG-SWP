@@ -4,19 +4,12 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        {
-      "name": ".NET Launch (console)",
-      "type": "dotnet",
-      "request": "launch",
-      "projectPath": "${workspaceFolder}/MyApp/MyApp.csproj",
-      "program": "${workspaceFolder}/MyApp/bin/Debug/net8.0/MyApp.dll",
-      "args": ["--mode", "test", "--count", "3"],
-      "cwd": "${workspaceFolder}/MyApp",
-      "env": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "console": "integratedTerminal"
-        }
-
+      {
+        "name": "C#: Brüche Debug",
+        "type": "dotnet",
+        "request": "launch",
+        "projectPath": "${workspaceFolder}/2025-11_brueche.csproj"
+      }
+      
     ]
 }
