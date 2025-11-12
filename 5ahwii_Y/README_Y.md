@@ -1,5 +1,12 @@
 # sj25-26-5ahwii-swp
 
+Service Functions für Business Logik
+
+## 2025-11-12
+
+Repository Klassen
+HÜ wäre fein, wenn die Buchungen schon die Business-Logik unter service/ nutzen
+
 ## 2025-11-05
 
 Prisma Airline mit seeding besprochen
