@@ -1,5 +1,13 @@
 # 3AHWII SWP OOP (C#)
 
+## 2025-11-12
+
+HÜ: Debugger Config nachweislich (Screenshot) erstellen.
+
+- Commandline args verarbeiten, exception bzw. Hilfe anbieten
+- Brüche gekürzt ausgeben mit Hilfe der toString methode
+- Testmethoden implementieren
+
 ## 2025-11-05
 
 - wh: class / instance / constructor / attributes
@@ -10,7 +18,7 @@ HÜ: Neuauflage Brüche
 
 - toString() soll bitte immer ganzzahl und den Bruch gekürzt liefern, wie zB "3 7/11", aber auch "3/4"
 - alle exceptions bitte fangen und dem User sinnvolle Rückmeldung geben.
-  
+
 ## Notes für GRG
 
 - OO ist noch einiger Bedarf
