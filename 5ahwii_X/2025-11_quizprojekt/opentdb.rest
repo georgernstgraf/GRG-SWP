@@ -1,0 +1,14 @@
+### just get the categories:
+GET https://opentdb.com/api_category.php
+
+### id=13 has only 35 questions
+GET https://opentdb.com/api.php?amount=34&category=13&token=2d28625330e17266fb46ffc2b39ac681da6d10e99ebec296a24987fde0a7233d
+
+### get a token:
+GET https://opentdb.com/api_token.php?command=request
+
+### reset a token:
+GET https://opentdb.com/api_token.php?command=reset&token=2d28625330e17266fb46ffc2b39ac681da6d10e99ebec296a24987fde0a7233d
+
+###
+GET https://opentdb.com/api_count.php?category=16

@@ -1,0 +1,93 @@
+{
+  "response_code": 0,
+  "results": [
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "Entertainment: Video Games",
+      "question": "Which of the following created and directed the Katamari Damacy series?",
+      "correct_answer": "Keita Takahashi",
+      "incorrect_answers": ["Hideki Kamiya", "Shu Takumi", "Shinji Mikami"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "Entertainment: Cartoon &amp; Animations",
+      "question": "When did the last episode of &quot;Futurama&quot; air before returning in 2023?",
+      "correct_answer": "September 4, 2013",
+      "incorrect_answers": [
+        "December 25, 2010",
+        "March 28, 1999",
+        "November 4, 2021"
+      ]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "History",
+      "question": "Which country was Josef Stalin born in?",
+      "correct_answer": "Georgia",
+      "incorrect_answers": ["Russia", "Germany", "Poland"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "Science &amp; Nature",
+      "question": "Which Swiss psychologist is synonymous with the concepts of introvert and extrovert personalities?",
+      "correct_answer": "Carl Jung",
+      "incorrect_answers": ["Jean Piaget", "Alice Miller", "Hermann Rorschach"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "General Knowledge",
+      "question": "According to the BBPA, what is the most common pub name in the UK?",
+      "correct_answer": "Red Lion",
+      "incorrect_answers": ["Royal Oak", "White Hart", "King&#039;s Head"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "easy",
+      "category": "Entertainment: Japanese Anime &amp; Manga",
+      "question": "What is the last name of Edward and Alphonse in the Fullmetal Alchemist series.",
+      "correct_answer": "Elric",
+      "incorrect_answers": ["Ellis", "Eliek", "Elwood"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "General Knowledge",
+      "question": "Which item of clothing is usually worn by a Scotsman at a wedding?",
+      "correct_answer": "Kilt",
+      "incorrect_answers": ["Skirt", "Dress", "Rhobes"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "History",
+      "question": "What was Genghis Khan&#039;s real name?",
+      "correct_answer": "Tem&uuml;jin",
+      "incorrect_answers": ["M&ouml;ngke", "&Ouml;gedei", "Tem&uuml;r"]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "hard",
+      "category": "Entertainment: Music",
+      "question": "Panic! At the Disco&#039;s sixth album &quot;Pray For The Wicked&quot; was released on which date?",
+      "correct_answer": "June 22, 2018",
+      "incorrect_answers": [
+        "May 9, 2018",
+        "March 13, 2018",
+        "February 21, 2018"
+      ]
+    },
+    {
+      "type": "multiple",
+      "difficulty": "medium",
+      "category": "Entertainment: Music",
+      "question": "Which artist or group did John Lennon consider &quot;son(s) of the Beatles&quot;?",
+      "correct_answer": "Jeff Lynne&#039;s Electric Light Orchestra",
+      "incorrect_answers": ["The Rolling Stones", "Pink Floyd", "The Who"]
+    }
+  ]
+}
