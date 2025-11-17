@@ -1,5 +1,17 @@
 # sj25-26-2ahwii-swp-grg-mja
 
+## 2025-11-17
+
+gemacht: GRG-WMC/Unterlagen/CSS/CSS-Boxmodel.pdf (bis units)
+anschauen: whatunit.com
+
+HÜ: Website verbessern!
+Weniger CSS, aber dafür effizienter eingesetzt
+
+Samy: super var defs
+Roger bitte Dirnames mit Datum
+Mankah ditto
+
 ## 2025-11-10 Heute CSS Boxmodel durchgemacht
 
 HÜ: Kreative Anwendung der Inhalte:
