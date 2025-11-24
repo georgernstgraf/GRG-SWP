@@ -1,5 +1,15 @@
 # sj25-26-2ahwii-swp-grg-mja
 
+## 2025-11-24
+
+HÜ:
+
+- In einer Website Flexbox sinnvoll anwenden und
+- einen sehr speziellen Font verwenden
+
+Flexbox: <https://css-tricks.com/wp-content/uploads/2022/02/css-flexbox-poster.png>
+Fonts: Siehe Unterlagen-Ordner in diesem Repo
+
 ## 2025-11-17
 
 gemacht: GRG-WMC/Unterlagen/CSS/CSS-Boxmodel.pdf (bis units)
