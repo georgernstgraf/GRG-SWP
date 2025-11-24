@@ -1,0 +1,8 @@
+### just get the categories:
+# 
+# 
+GET http://localhost:5000/questions?amount=2
+###
+
+GET http://localhost:5000/questions?difficulty=easy&category=Sports&amount=2
+### just get the categories:

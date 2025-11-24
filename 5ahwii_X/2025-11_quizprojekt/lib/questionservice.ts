@@ -360,3 +360,19 @@ export async function getQuestionCountInCategory(categoryName: string): Promise<
 export async function disconnectDatabase() {
     await prisma.$disconnect();
 }
+
+export async function questionsDifficultyCategoryAmount(difficulty: string, category: string, amount: number) {
+    const allresults = await prisma.question.findMany({
+        where: {
+            difficulty: { level: difficulty },
+            category: { name: category },
+        },
+        select: {
+            question: true,
+            correct_answer: { select: { answer: true } },
+            incorrect_answers: { select: { answer: true } },
+        },
+    });
+    allresults.sort(() => Math.random() - 0.5);
+    return allresults.slice(0, amount);
+}

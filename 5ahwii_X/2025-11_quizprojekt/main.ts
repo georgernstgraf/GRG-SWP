@@ -1,5 +1,6 @@
 import { Hono } from "hono";
-import { prisma } from "./lib/questionservice.ts";
+import { prisma, questionsDifficultyCategoryAmount } from "./lib/questionservice.ts";
+import { lookupService } from "node:dns";
 const app = new Hono();
 
 const myquestion = await prisma.question.findFirst({
@@ -18,8 +19,14 @@ const myquestion = await prisma.question.findFirst({
 });
 
 app.get("/", (c) => c.text("Hono!"));
-app.get("/json", (c) => c.json({ message: "Hello, JSON!" }));
-app.get("/question", (c) => {
-    return c.json(myquestion);
+app.get("/questions", async (c) => {
+    // difficulty=easy&category=Sports&amount=3
+    const difficulty = c.req.query("difficulty");
+    const category = c.req.query("category");
+    if (!difficulty || !category) {
+        return c.json({ error: "Missing difficulty or category parameter" }, 400);
+    }
+    const amount = parseInt(c.req.query("amount") || "1");
+    return c.json(await questionsDifficultyCategoryAmount(difficulty, category, amount));
 });
 Deno.serve({ port: 5000 }, app.fetch);
