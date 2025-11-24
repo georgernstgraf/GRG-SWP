@@ -1,5 +1,11 @@
 # sj25-26-5ahwii-swp
 
+## 2025-11-24
+
+HÜ: Webfrontend für die Abfrage basteln. Vorlage:
+<https://github.com/Die-Spengergasse/quiz-2ahwii-sj2425.git>
+
+
 ## 2025-11-03 HÜ
 
 - "deno task seed" soll jetzt funktionieren und eine befüllte DB hinterlassen!!!
