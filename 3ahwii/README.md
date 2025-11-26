@@ -1,5 +1,10 @@
 # 3AHWII SWP OOP (C#)
 
+## 2025-11-26
+
+C-Sharp Repo: <https://github.com/georgernstgraf/GRG-CS.git>
+(und es geht auch dort weiter)
+
 ## 2025-11-12
 
 HÜ: Debugger Config nachweislich (Screenshot) erstellen.
