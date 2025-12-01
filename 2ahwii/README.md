@@ -2,6 +2,8 @@
 
 ## 2025-12-01_selectors
 
+HÜ: css diner 3 screenshots vom Ende
+
 ## 2025-11-24
 
 HÜ:
