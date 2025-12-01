@@ -1,5 +1,7 @@
 # sj25-26-2ahwii-swp-grg-mja
 
+## 2025-12-01_selectors
+
 ## 2025-11-24
 
 HÜ:

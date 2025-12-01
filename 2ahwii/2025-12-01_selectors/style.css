@@ -1,0 +1,26 @@
+h1,
+h2,
+h3,
+h4 {
+    margin: 0 auto
+}
+
+[checked] {
+    scale: 2;
+}
+
+.green:hover {
+    background-color: greenyellow;
+}
+
+.green:focus {
+    background-color: red;
+}
+
+ul>li:nth-child(2n) {
+    background-color: lightyellow;
+}
+
+ul>li:nth-child(1) {
+    background-color: lightsalmon;
+}
