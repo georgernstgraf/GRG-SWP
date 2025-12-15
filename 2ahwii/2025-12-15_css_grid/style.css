@@ -1,0 +1,16 @@
+div.container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    outline: 2px solid black;
+    gap: 10px;
+    padding: 10px;
+}
+
+div.container>* {
+    outline: 2px solid blue;
+}
+
+div.container>div:nth-last-child(2) {
+    outline: 2px solid red;
+    justify-self: center;
+}
