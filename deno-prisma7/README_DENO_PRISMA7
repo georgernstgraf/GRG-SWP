@@ -1,0 +1,24 @@
+# getting started deno / prisma7
+
+From <https://www.prisma.io/docs/getting-started/prisma-orm/quickstart/sqlite>:
+
+## wir starten mit node
+
+```sh
+npm init -y
+npm install typescript tsx @types/node --save-dev
+npx tsc --init
+```
+
+Folgende Files werden erzeugt: "package.json tsconfig.json (und: package-lock.json)"
+
+## weiter gehts mit den node-prisma packages
+
+```sh
+npm install prisma @types/node @types/better-sqlite3 --save-dev 
+npm install @prisma/client @prisma/adapter-better-sqlite3 dotenv
+```
+
+tsconfig.json (von hier nehmen!) sowie "type": "module" im `package.json`!
+
+## `npx prisma version` sollte jetzt klappen
