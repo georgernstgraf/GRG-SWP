@@ -1,5 +1,6 @@
 {
     "csharp.format.openBraceOnSameLine": true,
     "csharp.format.enable": true,
-    "FSharp.suggestGitignore": true
+    "FSharp.suggestGitignore": true,
+    "deno.enable": false
 }

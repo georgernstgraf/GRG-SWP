@@ -3,8 +3,7 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
-  runtime  = "deno"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
