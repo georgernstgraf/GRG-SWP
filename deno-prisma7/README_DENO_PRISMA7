@@ -38,3 +38,6 @@ npx prisma migrate dev
 ```
 
 (sollte alles gut klappen jetzt)
+
+## Den Krempel mit deno verwenden
+
