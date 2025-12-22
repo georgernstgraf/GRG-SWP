@@ -22,3 +22,19 @@ npm install @prisma/client @prisma/adapter-better-sqlite3 dotenv
 tsconfig.json (von hier nehmen!) sowie "type": "module" im `package.json`!
 
 ## `npx prisma version` sollte jetzt klappen
+
+## prisma init
+
+`npx prisma init --datasource-provider sqlite --output ../generated/prisma`
+
+(erzeugt: .gitignore, prisma.config.ts, schema.prisma, .env)
+
+## models anlegen, jetzt oder später
+
+```sh
+npx prisma validate
+npx prisma generate
+npx prisma migrate dev
+```
+
+(sollte alles gut klappen jetzt)
