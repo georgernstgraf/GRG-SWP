@@ -4,8 +4,8 @@
 
 - 1 Test
 - Hausübungen
-- Schulübungen / Stundenwiederholung
-- Projektmitarbeit
+- Schulübungen / Stundenwiederholung / Mitarbeit
+- Projekt
 
 Jeder Bereich zählt zu 1/4, 3 Bereiche müssen positiv sein.
 
