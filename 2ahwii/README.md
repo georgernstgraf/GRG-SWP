@@ -1,5 +1,16 @@
 # sj25-26-2ahwii-swp-grg-mja
 
+## 2026-01-19 (lambda)function mit arrays
+
+HÜ: Erstelle eine Liste mit 5 Personen, also zb liste = 
+
+```js
+const persons = [{name: "Hermine", age: 14, gender: "f"}, ... ]
+```
+
+1) Sortiere Deine Peronen nach Alter mithilfe persons.sort();
+2) Erstelle ein weiteres Array mit nur den männlichen/weiblichen Personen (filter)
+
 ## 2025-12-01_selectors
 
 HÜ: css diner 3 screenshots vom Ende
