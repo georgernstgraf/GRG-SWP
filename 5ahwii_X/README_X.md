@@ -5,7 +5,7 @@
 HÜ: Jede Schülerin und jeder Schüler arbeitet an einem Issue für das quiz Projekt,
 mit der Hilfe von Opencode.
 
-Nehmt euch ein Beispiel an issue #8.
+Nehmt euch ein Beispiel an issue #8. Es wird schon viel über AGENTS.md gesteuert!!
 
 Die Erledigung der HÜ ist Teil der Benotung!!
 
