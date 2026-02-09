@@ -32,8 +32,10 @@
                name="step"
                id="step"
                placeholder="enter step value">
-        <section>
-            <h2>Werte-Tabelle:</h2>
+        <button id="calculate">Berechnen</button>
+        <div class="content-row">
+            <section>
+                <h2>Werte-Tabelle:</h2>
             <table>
                 <thead>
                     <tr>
@@ -47,7 +49,12 @@
                 <tbody id="table-body">
                 </tbody>
             </table>
-        </section>
+            </section>
+            <section>
+                <h2>Grafik:</h2>
+                <canvas id="chart" width="600" height="400"></canvas>
+            </section>
+        </div>
     </main>
 </body>
 

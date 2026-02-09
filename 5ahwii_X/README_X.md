@@ -1,5 +1,14 @@
 # sj25-26-5ahwii-swp
 
+## 2026-02-09 ... opencode
+
+HÜ: Jede Schülerin und jeder Schüler arbeitet an einem Issue für das quiz Projekt,
+mit der Hilfe von Opencode.
+
+Nehmt euch ein Beispiel an issue #8.
+
+Die Erledigung der HÜ ist Teil der Benotung!!
+
 ## 2025-11-24
 
 HÜ: Webfrontend für die Abfrage basteln. Vorlage:
