@@ -1,3 +1,6 @@
 body {
     place-items: center;
 }
+input {
+ display: block;
+}
