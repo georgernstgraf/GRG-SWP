@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"
+          href="style.css">
+    <script src="script.js"
+            defer></script>
+</head>
+<!-- Es fehlt noch:
+1) Die Funktion, die die Werte berechnet und in die Tabelle einfügt
+2) Das CSS, um die Seite ansprechend zu gestalten
+3) Ein button, um die Berechnung zu starten 
+-->
+
+<body>
+    <main>
+        <h1>Funktionen</h1>
+        <input type="number"
+               name="start"
+               id="start"
+               placeholder="enter start value">
+        <input type="number"
+               name="end"
+               id="end"
+               placeholder="enter end value">
+        <input type="number"
+               name="step"
+               id="step"
+               placeholder="enter step value">
+        <section>
+            <h2>Werte-Tabelle:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <td>x</td>
+                        <td>f(x)</td>
+                        <td>g(x)</td>
+                        <td>h(x)</td>
+                        <td>i(x)</td>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                </tbody>
+            </table>
+        </section>
+    </main>
+</body>
+
+</html>
