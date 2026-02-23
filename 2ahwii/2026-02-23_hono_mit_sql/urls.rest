@@ -1,0 +1,11 @@
+GET http://localhost:8000/lieblinge
+
+###
+GET http://localhost:8000/index.html
+
+###
+GET http://localhost:8000/script.js
+
+###
+GET https://orf.at/
+

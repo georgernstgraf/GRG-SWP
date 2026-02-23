@@ -1,8 +1,19 @@
 # sj25-26-2ahwii-swp-grg-mja
 
+## 2026-02-23
+
+hono heute mit sqlite - rest - api
+http Folie letzte Woche besprochen ..
+HÜ:
+
+- button "hole essen" mit onclick(), welche
+  - den enpoint fetched
+  - json verwandeln in <tr><td>Name</td><td>Essen</td></tr>
+Also wird die ganze schöne Tabelle angezeigt.
+
 ## 2026-01-19 (lambda)function mit arrays
 
-HÜ: Erstelle eine Liste mit 5 Personen, also zb liste = 
+HÜ: Erstelle eine Liste mit 5 Personen, also zb liste =
 
 ```js
 const persons = [{name: "Hermine", age: 14, gender: "f"}, ... ]
