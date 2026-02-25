@@ -1,5 +1,19 @@
 # 3AHWII SWP OOP (C#)
 
+## 2026-02-25 opencode fortsetzung
+
+HÜ:
+
+- "ls", "touch", "grep", ... HABEN in "cmd" und "ps1" zu funktionieren (coreutils)
+- <https://github.com/georgernstgraf/aitranscribe.git> auf windows sollte funktionieren.
+
+- damit OC gut rennen kann braucht es gute CLI Tools
+- ls, grep, sed, awk, git und insbesondere "gh" für github interaktion
+- opencode commands erklärt.
+- %PATH% Bedeutung
+- coreutils "give me a command that runs "coreutils --list" and makes symlinks for ALL output items."
+- repo mit OC commands
+
 ## 2025-11-26
 
 C-Sharp Repo: <https://github.com/georgernstgraf/GRG-CS.git>
