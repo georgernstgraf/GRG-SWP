@@ -1,5 +1,9 @@
 # 3AHWII SWP OOP (C#)
 
+## 2026-03-04
+
+- Vorhaben: Skriptum ab kap 2.
+
 ## 2026-02-25 opencode fortsetzung
 
 HÜ:
