@@ -1,9 +1,12 @@
 # sj25-26-5ahwii-swp
 
+## 2026-02-25
+
+HÜ: cssgridgarden 3 shots ab lesson 15
+
 ## 2025-11-19
 
 HÜ: GET Endpoints mit Prisma Antwort aus den Flügen
-
 
 ## 2025-11-12
 
