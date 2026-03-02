@@ -1,5 +1,9 @@
 # sj25-26-2ahwii-swp-grg-mja
 
+## 2026-03-02_fetch
+
+**Response Object**
+
 ## Häufigste Fehler der Klasse
 
 ### 1. **REST API HTTP-Methoden (Frage 2)**
