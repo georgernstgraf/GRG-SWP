@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1" />
+    <title>Parkhaus-Reservierung</title>
+    <link rel="stylesheet"
+          href="style.css" />
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="header__left">
+                <h1 class="title">City Parkhaus</h1>
+                <p class="meta">Hauptstraße 42, 1010 Wien · 24/7 geöffnet</p>
+            </div>
+
+            <a class="link"
+               href="#">← Zurück</a>
+        </header>
+
+        <main class="layout">
+            <section class="card">
+                <div class="section-head">
+                    <h2>Parkplatzplan</h2>
+                    <p class="meta">
+                        TODO: 6 Reihen (A–F), 8 Stellplätze (1–8), Fahrweg nach Platz 4
+                    </p>
+                </div>
+
+                <div class="entry">EINFAHRT</div>
+
+                <div class="parking-map">
+                    <!--
+              TODO (HTML):
+              - Erstelle Reihen A..F, z.B. als:
+                <div class="parking-row">
+                  <div class="row-label">A</div>
+                  <div class="parking-group">... Plätze 1..4 ...</div>
+                  <div class="parking-group">... Plätze 5..8 ...</div>
+                </div>
+
+              - Jeder Stellplatz besteht aus input + label:
+                <div class="parking-cell">
+                  <input class="parking-input" type="checkbox" id="A1" ... />
+                  <label class="spot" for="A1" data-tooltip="Reihe A, Platz 1">
+                    A1
+                  </label>
+                </div>
+
+              - Einige Plätze müssen disabled sein (belegt).
+            -->
+                </div>
+            </section>
+
+            <aside class="card">
+                <div class="section-head">
+                    <h2>Buchungsübersicht</h2>
+                    <p class="meta">Ohne Javascript, statisch. (Javascript = Bonus).</p>
+                </div>
+
+                <div class="summary">
+                    <div class="summary-row">
+                        <span class="meta">Standort</span>
+                        <span>City Parkhaus</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span class="meta">Adresse</span>
+                        <span>Hauptstraße 42</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span class="meta">Ausgewählt</span>
+                        <span>—</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span class="meta">Preis</span>
+                        <span>3 € / Stunde</span>
+                    </div>
+
+                    <button class="btn"
+                            type="button">Reservieren</button>
+                </div>
+            </aside>
+        </main>
+
+        <footer class="footer">
+            <div class="legend">
+                <div class="legend-item">
+                    <span class="swatch swatch--free"></span>
+                    <span>frei</span>
+                </div>
+                <div class="legend-item">
+                    <span class="swatch swatch--selected"></span>
+                    <span>ausgewählt</span>
+                </div>
+                <div class="legend-item">
+                    <span class="swatch swatch--taken"></span>
+                    <span>belegt</span>
+                </div>
+            </div>
+
+            <div class="footer-meta">
+                <a class="link"
+                   href="#">AGB</a>
+                <span class="meta">© Parkhaus GmbH</span>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>
