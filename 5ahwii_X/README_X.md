@@ -1,5 +1,20 @@
 # sj25-26-5ahwii-swp
 
+## Wie komme ich zu einer Note?
+
+- 16.3. kurze Wissensüberprüfung (router, ca. 30min)
+- 13.4. kurze Wissensüberprüfung (router, ca. 30min)
+- code / issue contributions (als team) im quiz projekt
+- mitarbeit
+
+## 2026-03-09_exception et. al.
+
+für 16.3. themen
+
+- opencode / agentic coding
+- grid / flex / tooltips
+- vom 9.3. exceptions
+
 ## 2026-02-09 ... opencode
 
 HÜ: Jede Schülerin und jeder Schüler arbeitet an einem Issue für das quiz Projekt,
@@ -13,7 +28,6 @@ Die Erledigung der HÜ ist Teil der Benotung!!
 
 HÜ: Webfrontend für die Abfrage basteln. Vorlage:
 <https://github.com/Die-Spengergasse/quiz-2ahwii-sj2425.git>
-
 
 ## 2025-11-03 HÜ
 
