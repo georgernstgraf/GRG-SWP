@@ -15,6 +15,23 @@ für 16.3. themen
 - grid / flex / tooltips
 - vom 9.3. exceptions
 
+Exceptions - Erkenntnisse
+
+- Exceptions werden dann geworfen, wenn eine Funktion "nicht weiter weiß / kann".
+- der Aufrufer "muss nicht interpretieren" (ob der returnwert irgendwas anderes bedeutet, zB. "-1 => error")
+- Aufrufer weiß ganz klar, ob es gut gegangen ist oder nicht.
+- try / catch / finally (in der aufrufenden Funktion)
+- nicht abgehandelte exceptions werden "weiter nach oben" gereicht.
+- "finally" läuft immer egal ob exception war oder nicht, dient zum "Ordnung machen".
+
+chat protokoll: <https://t3.chat/share/ya1l9t1fp9>
+
+SÜ / HÜ
+
+- eine function im "exception stil" mit exceptions schreiben und mit try / catch aufrufen
+- eine alternative funktion im "result stil" schreiben, die einen return wert zurückgibt, der entweder "gut" oder "schlecht" ist (zB. true / false, oder ein objekt mit "status" und "data" feld)
+- Name '2026-03-09_exception' im eigen repo
+
 ## 2026-02-09 ... opencode
 
 HÜ: Jede Schülerin und jeder Schüler arbeitet an einem Issue für das quiz Projekt,
