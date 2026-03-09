@@ -26,6 +26,8 @@ Exceptions - Erkenntnisse
 
 chat protokoll: <https://t3.chat/share/ya1l9t1fp9>
 
+siehe dort auch recht weit unten die Erklärungen zu den typen.
+
 SÜ / HÜ
 
 - eine function im "exception stil" mit exceptions schreiben und mit try / catch aufrufen
