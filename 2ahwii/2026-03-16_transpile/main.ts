@@ -17,20 +17,23 @@ app.get("/:path{.+\\.ts$}", async (c) => {
             platform: "browser",
             minify: !isDev,
             write: false, // Don't write to disk, keep in memory
+            format: "esm",
         });
-        console.log(result);
         if (!result.success) throw new Error("Bundling failed");
 
-        // Extract the JS content from the result
-        const js = result.outputFiles?.find((f) => f.path.endsWith(".js"))
-            ?.text;
+        // Extract the bundled JS content from the in-memory result.
+        const jsFile = result.outputFiles?.find((f) => typeof f.text === "function");
+        const js = jsFile?.text();
+
+        if (!js) throw new Error("Bundling did not produce JavaScript output");
 
         return c.body(js, 200, {
             "Content-Type": "application/javascript; charset=utf-8",
             "Cache-Control": isDev ? "no-cache" : "public, max-age=31536000",
         });
     } catch (err) {
-        return c.text(`Transpilation Error: ${err.message}`, 500);
+        const message = err instanceof Error ? err.message : String(err);
+        return c.text(`Transpilation Error: ${message}`, 500);
     }
 });
 
@@ -38,9 +41,8 @@ app.use("/*", serveStatic({ root: "./static" }));
 
 app.get("/essen", (c: Context) => {
     const rows = db.prepare(`
-    SELECT person.name, essen.essen
-    FROM person
-    JOIN essen ON person.lieblingsessen = essen.id
+    SELECT name, essen
+    FROM dummy;
   `).all();
 
     return c.json(rows);

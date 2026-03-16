@@ -1,26 +1,17 @@
-function holeEssen() {
-  let daten;
+import { holeEssen, loescheEssen } from "./essen.ts";
 
-  // fetch("http://essensliste.essens/essen")
-  fetch("/essens")
-    .then((response) => response.json())
-    .then((data) => {
-      daten = data;
-      let html = "";
-      daten.forEach((eintrag) => {
-        html += `
-        <tr>
-          <td>${eintrag.name}</td>
-          <td>${eintrag.essen}</td>
-    </tr>
-    `;
-        document.getElementById("tabelle").innerHTML = html;
-      });
-    })
-    .catch((error) => {
-      console.info("Fehler beim ersten Catch", error);
-    });
-}
-function loescheEssen() {
-  document.getElementById("tabelle").innerHTML = "";
-}
+type EssenGlobals = typeof globalThis & {
+    holeEssen: typeof holeEssen;
+    loescheEssen: typeof loescheEssen;
+};
+
+const globals = globalThis as EssenGlobals;
+
+globals.holeEssen = holeEssen;
+globals.loescheEssen = loescheEssen;
+
+document.getElementById("hole-essen")?.addEventListener("click", holeEssen);
+document.getElementById("loesche-essen")?.addEventListener(
+    "click",
+    loescheEssen,
+);

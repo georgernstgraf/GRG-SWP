@@ -15,14 +15,15 @@
             "name": "Debug my Deno",
             "type": "node",
             //"program": "${workspaceFolder}/main.ts",
-            "cwd": "${workspaceFolder}/2ahwii/2025-10-13_debug",
+            "cwd": "${workspaceFolder}/2ahwii/2026-03-16_transpile",
             "env": {},
-            "runtimeExecutable": "/home/georg/.deno/bin/deno",
+            "runtimeExecutable": "deno",
             "runtimeArgs": [
                 "run",
                 "--unstable",
                 "--inspect-wait",
                 "--allow-all",
+                "--unstable-bundle",
                 "main.ts"
             ],
             "attachSimplePort": 9229
