@@ -5,6 +5,7 @@ export type EssenEintrag = {
     essen: string;
 };
 
+// Komplexität mit encoder/decoder ist nur zur Demo für die Imports
 function createTabellenMarkup(daten: EssenEintrag[]): string {
     const encoder = new TextEncoder();
     const bytes = daten.map((eintrag) =>
