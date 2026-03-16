@@ -1,6 +1,10 @@
 # sj25-26-2ahwii-swpx
 
-grg/mja
+## PLF 4.Mai
+
+## 2026-03-16 transpile / async / await
+
+HÜ: deno add npm:ms und in der Website verwenden.
 
 ## 2026-03-09_promise again
 
