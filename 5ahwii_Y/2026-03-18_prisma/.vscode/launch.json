@@ -1,0 +1,41 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "request": "launch",
+            "name": "main.ts",
+            "type": "node",
+            "cwd": "${workspaceFolder}",
+            "env": {},
+            "runtimeExecutable": "/home/georg/.deno/bin/deno",
+            "runtimeArgs": [
+                "run",
+                "--watch=templates/",
+                "--inspect-wait",
+                "--env-file",
+                "-A",
+                "main.ts"
+            ],
+            "attachSimplePort": 9229
+        },
+        {
+            "request": "launch",
+            "name": "TEST",
+            "type": "node",
+            "cwd": "${workspaceFolder}",
+            "env": {},
+            "runtimeExecutable": "/home/georg/.deno/bin/deno",
+            "runtimeArgs": [
+                "run",
+                "--inspect-wait",
+                "--env-file",
+                "-A",
+                "main_test.ts"
+            ],
+            "attachSimplePort": 9229
+        }
+    ]
+}

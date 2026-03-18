@@ -1,0 +1,48 @@
+{
+    "tasks": {
+        "dev": "deno run -A --env-file --watch=templates/,.env main.ts",
+        "start": "deno run -A --env-file main.ts",
+        "stop": "scripts/stop.sh",
+        "test": "scripts/test-with-server.sh",
+        "check": "deno check *ts lib/*ts routes/*ts ./middleware/*ts repo/*ts service/*ts",
+        "lint": "deno lint *.ts lib/ middleware/ repo/ routes/ service/ test/",
+        "fullcheck": "deno task check && deno task lint && deno task test",
+        "pv": "deno run -A prisma validate",
+        "pmD": "deno run -A --env-file prisma migrate deploy",
+        "pmd": "deno run -A --env-file prisma migrate dev",
+        "pms": "deno -A prisma migrate status",
+        "pmr": "deno -A prisma migrate reset",
+        "ps": "deno -A --env-file prisma studio"
+    },
+    "imports": {
+        "@db/sqlite": "jsr:@db/sqlite@0.12.0",
+        "@std/assert": "jsr:@std/assert@1",
+        "@std/media-types": "jsr:@std/media-types@1",
+        "@std/path": "jsr:@std/path@1",
+        "file-type": "npm:file-type@^16.5.4",
+        "handlebars": "npm:handlebars@^4.7.8",
+        "hono": "npm:hono@^4.10.6",
+        "htmx.org": "npm:htmx.org@^2.0.8",
+        "ldapts": "npm:ldapts@^8.1.3",
+        "zod": "npm:zod@^3.24.1",
+        "zod-form-data": "npm:zod-form-data@^2.0.2",
+        "@prisma/client": "npm:@prisma/client@^6.19.1",
+        "he": "npm:he@^1.2.0",
+        "prisma": "npm:prisma@^6.19.1",
+        "model": "./prisma/client/client.ts"
+    },
+    "fmt": {
+        "indentWidth": 4
+    },
+    "lint": {
+        "include": [
+            "*.ts",
+            "lib/",
+            "middleware/",
+            "repo/",
+            "routes/",
+            "service/",
+            "test/"
+        ]
+    }
+}

@@ -1,0 +1,10 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/prismaclient"
+  runtime  = "deno"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
