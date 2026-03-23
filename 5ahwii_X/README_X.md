@@ -24,7 +24,7 @@
 
 HÜ zum Thema Regex:
 
-Hier sind vier Übungsaufgaben, die auf deinen bevorzugten Technologien (TypeScript, C#, Python) basieren. Sie zielen darauf ab, dein Verständnis für `\w`, `\s` und die Struktur von Regex zu vertiefen.
+Übungsaufgaben zielen darauf ab, das Verständnis für `\w`, `\s` und die Struktur von Regex zu vertiefen.
 
 ### Aufgabe 1: Die "Ugly Variable" Suche (Grundlagen `\w` und `\W`)
 Du hast eine Legacy-Codebase geerbt, in der Variablen teilweise unsauber benannt wurden.
