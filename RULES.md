@@ -1,5 +1,9 @@
 # Wissenswert bei GRG
 
+## Rückmeldung für autmatisierte Emails und nachgereichte Arbeiten
+
+Bitte als "Antwort" auf das Roboter-Email.
+
 ## Beurteilung (Semester)
 
 - 1 Test
