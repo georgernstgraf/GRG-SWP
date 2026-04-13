@@ -5,17 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "C#: Brüche Debug",
-            "type": "dotnet",
-            "request": "launch",
-            "projectPath": "${workspaceFolder}/3ahwii/2025-11_brueche/2025-11_brueche.csproj"
-        },
-        {
             "request": "launch",
             "name": "Debug my Deno",
             "type": "node",
             //"program": "${workspaceFolder}/main.ts",
-            "cwd": "${workspaceFolder}/2ahwii/2026-03-16_transpile",
+            "cwd": "${workspaceFolder}/2ahwii/2026-04-13_await",
             "env": {},
             "runtimeExecutable": "deno",
             "runtimeArgs": [
@@ -24,7 +18,7 @@
                 "--inspect-wait",
                 "--allow-all",
                 "--unstable-bundle",
-                "main.ts"
+                "script.ts"
             ],
             "attachSimplePort": 9229
         }
