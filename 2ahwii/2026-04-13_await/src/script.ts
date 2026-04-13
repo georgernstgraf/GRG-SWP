@@ -1,3 +1,5 @@
+/// <reference lib="dom" />
+
 const url =
     "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/female/123.png";
 
@@ -8,16 +10,20 @@ async function holePokemon() {
     }
     const blob = await response.blob();
     const imgUrl = URL.createObjectURL(blob);
-    const img = globalThis.createElement("img");
+    const img = document.createElement("img");
     img.src = imgUrl;
     document.body.appendChild(img);
 }
 
 try {
-    holePokemon();
+    await holePokemon();
     console.log("wirft wurde aufgerufen");
 } catch (e) {
-    console.log("Fehler aufgetreten: ", e.message);
+    if (e instanceof Error) {
+        console.log("Fehler aufgetreten: ", e.message);
+    } else {
+        console.log("Fehler aufgetreten: ", e);
+    }
 } finally {
     // zusammenräum-code
     console.log("IMMER");
