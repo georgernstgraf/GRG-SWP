@@ -4,6 +4,12 @@
 
 ---
 
+## Hausübung vom 20. April 2026
+
+- 4 provider (github, opencode-[zen|go], nvidia, google) in opencode (terminal!) hinzufügen
+- gib die Ausgabe von `opencode providers list > providers.txt` in einer textdatei aus 
+- Welche Modelle antworten auf eine Anfrage? 
+
 ## Hausübung vom 16. März 2026
 
 ### Thema: Transpile / async / await
