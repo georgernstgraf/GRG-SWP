@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1" />
+    <title>Parkhaus-Reservierung</title>
+    <link rel="stylesheet"
+          href="style.css" />
+    <script src="script.js"
+        defer></script>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header">
+            <div class="header__left">
+                <h1 class="title">City Parkhaus</h1>
+                <p class="meta">Hauptstraße 42, 1010 Wien · 24/7 geöffnet</p>
+            </div>
+
+            <a class="link"
+               href="#">← Zurück</a>
+        </header>
+
+        <main class="layout">
+            <section class="card">
+                <div class="section-head">
+                    <h2>Parkplatzplan</h2>
+                    <p class="meta">6 Reihen (A–F), je 8 Stellplätze, Fahrweg nach Platz 4.</p>
+                </div>
+
+                <div class="entry">EINFAHRT</div>
+
+                <div class="parking-map">
+                    <div class="parking-row">
+                        <div class="row-label">A</div>
+                        <div class="parking-group">
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="A1" /><label class="spot"
+                                       for="A1"
+                                       data-tooltip="Reihe A, Platz 1">A1</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="A2" /><label class="spot"
+                                       for="A2"
+                                       data-tooltip="Reihe A, Platz 2">A2</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="A3"
+                                       disabled /><label class="spot"
+                                       for="A3"
+                                       data-tooltip="Reihe A, Platz 3">A3</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="A4" /><label class="spot"
+                                       for="A4"
+                                       data-tooltip="Reihe A, Platz 4">A4</label></div>
+                        </div>
+                        <div class="parking-group">
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="A5" /><label class="spot"
+                                       for="A5"
+                                       data-tooltip="Reihe A, Platz 5">A5</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="A6" /><label class="spot"
+                                       for="A6"
+                                       data-tooltip="Reihe A, Platz 6">A6</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="A7" /><label class="spot"
+                                       for="A7"
+                                       data-tooltip="Reihe A, Platz 7">A7</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="A8" /><label class="spot"
+                                       for="A8"
+                                       data-tooltip="Reihe A, Platz 8">A8</label></div>
+                        </div>
+                    </div>
+
+                    <div class="parking-row">
+                        <div class="row-label">B</div>
+                        <div class="parking-group">
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="B1" /><label class="spot"
+                                       for="B1"
+                                       data-tooltip="Reihe B, Platz 1">B1</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="B2" /><label class="spot"
+                                       for="B2"
+                                       data-tooltip="Reihe B, Platz 2">B2</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="B3" /><label class="spot"
+                                       for="B3"
+                                       data-tooltip="Reihe B, Platz 3">B3</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="B4" /><label class="spot"
+                                       for="B4"
+                                       data-tooltip="Reihe B, Platz 4">B4</label></div>
+                        </div>
+                        <div class="parking-group">
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="B5" /><label class="spot"
+                                       for="B5"
+                                       data-tooltip="Reihe B, Platz 5">B5</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="B6"
+                                       disabled /><label class="spot"
+                                       for="B6"
+                                       data-tooltip="Reihe B, Platz 6">B6</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="B7" /><label class="spot"
+                                       for="B7"
+                                       data-tooltip="Reihe B, Platz 7">B7</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="B8" /><label class="spot"
+                                       for="B8"
+                                       data-tooltip="Reihe B, Platz 8">B8</label></div>
+                        </div>
+                    </div>
+
+                    <div class="parking-row">
+                        <div class="row-label">C</div>
+                        <div class="parking-group">
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="C1" /><label class="spot"
+                                       for="C1"
+                                       data-tooltip="Reihe C, Platz 1">C1</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="C2" /><label class="spot"
+                                       for="C2"
+                                       data-tooltip="Reihe C, Platz 2">C2</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="C3" /><label class="spot"
+                                       for="C3"
+                                       data-tooltip="Reihe C, Platz 3">C3</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="C4" /><label class="spot"
+                                       for="C4"
+                                       data-tooltip="Reihe C, Platz 4">C4</label></div>
+                        </div>
+                        <div class="parking-group">
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="C5" /><label class="spot"
+                                       for="C5"
+                                       data-tooltip="Reihe C, Platz 5">C5</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="C6" /><label class="spot"
+                                       for="C6"
+                                       data-tooltip="Reihe C, Platz 6">C6</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="C7" /><label class="spot"
+                                       for="C7"
+                                       data-tooltip="Reihe C, Platz 7">C7</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="C8" /><label class="spot"
+                                       for="C8"
+                                       data-tooltip="Reihe C, Platz 8">C8</label></div>
+                        </div>
+                    </div>
+
+                    <div class="parking-row">
+                        <div class="row-label">D</div>
+                        <div class="parking-group">
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="D1" /><label class="spot"
+                                       for="D1"
+                                       data-tooltip="Reihe D, Platz 1">D1</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="D2"
+                                       disabled /><label class="spot"
+                                       for="D2"
+                                       data-tooltip="Reihe D, Platz 2">D2</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="D3" /><label class="spot"
+                                       for="D3"
+                                       data-tooltip="Reihe D, Platz 3">D3</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="D4" /><label class="spot"
+                                       for="D4"
+                                       data-tooltip="Reihe D, Platz 4">D4</label></div>
+                        </div>
+                        <div class="parking-group">
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="D5" /><label class="spot"
+                                       for="D5"
+                                       data-tooltip="Reihe D, Platz 5">D5</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="D6" /><label class="spot"
+                                       for="D6"
+                                       data-tooltip="Reihe D, Platz 6">D6</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="D7" /><label class="spot"
+                                       for="D7"
+                                       data-tooltip="Reihe D, Platz 7">D7</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="D8" /><label class="spot"
+                                       for="D8"
+                                       data-tooltip="Reihe D, Platz 8">D8</label></div>
+                        </div>
+                    </div>
+
+                    <div class="parking-row">
+                        <div class="row-label">E</div>
+                        <div class="parking-group">
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="E1" /><label class="spot"
+                                       for="E1"
+                                       data-tooltip="Reihe E, Platz 1">E1</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="E2" /><label class="spot"
+                                       for="E2"
+                                       data-tooltip="Reihe E, Platz 2">E2</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="E3" /><label class="spot"
+                                       for="E3"
+                                       data-tooltip="Reihe E, Platz 3">E3</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="E4" /><label class="spot"
+                                       for="E4"
+                                       data-tooltip="Reihe E, Platz 4">E4</label></div>
+                        </div>
+                        <div class="parking-group">
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="E5" /><label class="spot"
+                                       for="E5"
+                                       data-tooltip="Reihe E, Platz 5">E5</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="E6" /><label class="spot"
+                                       for="E6"
+                                       data-tooltip="Reihe E, Platz 6">E6</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="E7" /><label class="spot"
+                                       for="E7"
+                                       data-tooltip="Reihe E, Platz 7">E7</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="E8" /><label class="spot"
+                                       for="E8"
+                                       data-tooltip="Reihe E, Platz 8">E8</label></div>
+                        </div>
+                    </div>
+
+                    <div class="parking-row">
+                        <div class="row-label">F</div>
+                        <div class="parking-group">
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="F1" /><label class="spot"
+                                       for="F1"
+                                       data-tooltip="Reihe F, Platz 1">F1</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="F2" /><label class="spot"
+                                       for="F2"
+                                       data-tooltip="Reihe F, Platz 2">F2</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="F3" /><label class="spot"
+                                       for="F3"
+                                       data-tooltip="Reihe F, Platz 3">F3</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="F4" /><label class="spot"
+                                       for="F4"
+                                       data-tooltip="Reihe F, Platz 4">F4</label></div>
+                        </div>
+                        <div class="parking-group">
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="F5" /><label class="spot"
+                                       for="F5"
+                                       data-tooltip="Reihe F, Platz 5">F5</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="F6" /><label class="spot"
+                                       for="F6"
+                                       data-tooltip="Reihe F, Platz 6">F6</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="F7"
+                                       disabled /><label class="spot"
+                                       for="F7"
+                                       data-tooltip="Reihe F, Platz 7">F7</label></div>
+                            <div class="parking-cell"><input class="parking-input"
+                                       type="checkbox"
+                                       id="F8" /><label class="spot"
+                                       for="F8"
+                                       data-tooltip="Reihe F, Platz 8">F8</label></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="card">
+                <div class="section-head">
+                    <h2>Buchungsübersicht</h2>
+                    <p class="meta">Ohne Javascript, statisch. (Javascript = Bonus).</p>
+                </div>
+
+                <div class="summary">
+                    <div class="summary-row">
+                        <span class="meta">Standort</span>
+                        <span>City Parkhaus</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span class="meta">Adresse</span>
+                        <span>Hauptstraße 42</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span class="meta">Ausgewählt</span>
+                        <span id="selected-spots">—</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span class="meta">Anzahl</span>
+                        <span id="selected-count">0</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span class="meta">Gesamtpreis</span>
+                        <span id="total-price">0 € / Stunde</span>
+                    </div>
+
+                    <button class="btn"
+                            id="reserve-btn"
+                            disabled
+                            type="button">Reservieren</button>
+                </div>
+            </aside>
+        </main>
+
+        <footer class="footer">
+            <div class="legend">
+                <div class="legend-item">
+                    <span class="swatch swatch--free"></span>
+                    <span>frei</span>
+                </div>
+                <div class="legend-item">
+                    <span class="swatch swatch--selected"></span>
+                    <span>ausgewählt</span>
+                </div>
+                <div class="legend-item">
+                    <span class="swatch swatch--taken"></span>
+                    <span>belegt</span>
+                </div>
+            </div>
+
+            <div class="footer-meta">
+                <a class="link"
+                   href="#">AGB</a>
+                <span class="meta">© Parkhaus GmbH</span>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

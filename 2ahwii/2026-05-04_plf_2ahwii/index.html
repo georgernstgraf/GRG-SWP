@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>PLF Musikgeschäft</title>
+    <link rel="stylesheet"
+          href="styles.css">
+    <script src="solution.js"
+            defer></script>
+    <!-- <script src="script.js" defer></script> -->
+    <script src="tests.js"
+            defer></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <span class="navbar-brand">🎵 Musikgeschäft</span>
+        <div class="navbar-tabs">
+            <button class="navbar-tab active"
+                    data-view="angabe-view">Angabe</button>
+            <button class="navbar-tab"
+                    data-view="website-view">Website</button>
+            <button class="navbar-tab"
+                    data-view="tests-view">Tests</button>
+        </div>
+    </nav>
+    <section id="angabe-view"
+             class="view active">
+        <div class="angabe-page">
+            <h1>PLF &mdash; Musikgeschäft WebApp</h1>
+            <p class="angabe-subtitle">2AHWII &middot; 4. Mai 2026 &middot; 100 Punkte (+10 Bonus)</p>
+            <div class="angabe-intro">
+                <p> Du arbeitest an einer kleinen Webanwendung für ein Musikgeschäft. In der Datei <code>script.js</code> sind bereits die Klassen
+                    <code>Artikel</code> und <code>Bestellung</code>, ein <code>state</code>-Objekt mit Produkten, DOM-Referenzen und die Funktion
+                    <code>renderProducts</code> vorgegeben. </p>
+                <p> Wechsle über die Navbar zur Registerkarte <strong>Website</strong>, um das Ergebnis zu sehen. Sobald du <strong>Aufgabe 1</strong>
+                    gelöst hast, erscheinen die Produktkarten im Shop! </p>
+                <p> 💡 Tipp: Du kannst deine Funktionen jederzeit in der <strong>Browser-Konsole</strong> testen (F12 &rarr; Console). Alle Variablen
+                    und Funktionen sind dort verf&uuml;gbar. </p>
+            </div>
+            <article class="task-card">
+                <header class="task-header">
+                    <span class="task-number">1</span>
+                    <h2>createProductElement(product)</h2>
+                    <span class="task-points">25 Punkte</span>
+                </header>
+                <p> Schreibe eine Funktion <code>createProductElement</code>, die ein <code>Artikel</code>-Objekt erhält und ein
+                    <strong>DOM-Element</strong> zurückgibt. Das Element soll ein <code>&lt;article&gt;</code> mit der CSS-Klasse
+                    <code>shop-card</code> sein und folgende Kinder enthalten: </p>
+                <ul>
+                    <li>Ein <code>&lt;p&gt;</code> mit der Klasse <code>shop-emoji</code> und dem Emoji</li>
+                    <li>Ein <code>&lt;h3&gt;</code> mit dem Namen</li>
+                    <li>Ein <code>&lt;p&gt;</code> mit der Klasse <code>shop-category</code> und der Kategorie</li>
+                    <li>Ein <code>&lt;p&gt;</code> mit der Klasse <code>shop-price</code> und dem Preis (formatiert mit <code>.toFixed(2)</code> +
+                        <code>" Euro"</code>)</li>
+                </ul>
+                <pre class="task-signature">function createProductElement(product) {
+    // Dein Code hier
+    // Tipp: Nutze document.createElement() und .append()
+}</pre>
+                <div class="task-hint"> 💡 Hinweis: Erstelle jedes Kind-Element mit <code>document.createElement("p")</code>, setze
+                    <code>.textContent</code> und <code>.classList.add(...)</code>, und hänge alle mit <code>.append()</code> an das Article-Element.
+                </div>
+            </article>
+            <article class="task-card">
+                <header class="task-header">
+                    <span class="task-number">2</span>
+                    <h2>getTotal(products)</h2>
+                    <span class="task-points">10 Punkte</span>
+                </header>
+                <p> Schreibe eine Funktion <code>getTotal</code>, die ein Array von <code>Artikel</code>-Objekten erhält und die <strong>Gesamtsumme
+                        aller Preise</strong> als Zahl zurückgibt. </p>
+                <pre class="task-signature">function getTotal(products) {
+    // Dein Code hier
+}</pre>
+                <div class="task-hint"> 💡 Hinweis: Nutze eine <code>for...of</code>-Schleife und greife mit <code>product.price</code> auf den Preis
+                    zu. Vergiss nicht, das Ergebnis mit <code>return</code> zurückzugeben. </div>
+            </article>
+            <article class="task-card">
+                <header class="task-header">
+                    <span class="task-number">3</span>
+                    <h2>getByCategory(products, category)</h2>
+                    <span class="task-points">20 Punkte</span>
+                </header>
+                <p> Schreibe eine Funktion <code>getByCategory</code>, die ein Array von <code>Artikel</code>-Objekten und einen Kategorie-String
+                    erhält. Gib ein <strong>neues Array</strong> zurück, das nur die Artikel der angegebenen Kategorie enthält. </p>
+                <pre class="task-signature">function getByCategory(products, category) {
+    // Dein Code hier
+}</pre>
+                <div class="task-hint"> 💡 Hinweis: Nutze <code>.filter()</code>. Beispiel:
+                    <code>products.filter(p =&gt; p.category === category)</code>
+                </div>
+            </article>
+            <article class="task-card">
+                <header class="task-header">
+                    <span class="task-number">4</span>
+                    <h2>sortByPriceAsc(products)</h2>
+                    <span class="task-points">15 Punkte</span>
+                </header>
+                <p> Schreibe eine Funktion <code>sortByPriceAsc</code>, die ein Array von <code>Artikel</code>-Objekten erhält und die Artikel
+                    <strong>aufsteigend nach Preis</strong> sortiert. Gib das sortierte Array zurück. </p>
+                <pre class="task-signature">function sortByPriceAsc(products) {
+    // Dein Code hier
+}</pre>
+                <div class="task-hint"> 💡 Hinweis: Nutze <code>.sort()</code> mit einem Comparator. <code>(a, b) =&gt; a.price - b.price</code>
+                    sortiert aufsteigend. </div>
+            </article>
+            <article class="task-card">
+                <header class="task-header">
+                    <span class="task-number">5</span>
+                    <h2>sortByPriceDesc(products)</h2>
+                    <span class="task-points">10 Punkte</span>
+                </header>
+                <p> Schreibe eine Funktion <code>sortByPriceDesc</code>, die ein Array von <code>Artikel</code>-Objekten erhält und die Artikel
+                    <strong>absteigend nach Preis</strong> sortiert. Gib das sortierte Array zurück. </p>
+                <pre class="task-signature">function sortByPriceDesc(products) {
+    // Dein Code hier
+}</pre>
+                <div class="task-hint"> 💡 Hinweis: Drehe den Comparator aus Aufgabe 4 einfach um: <code>(a, b) =&gt; b.price - a.price</code>
+                </div>
+            </article>
+            <article class="task-card">
+                <header class="task-header">
+                    <span class="task-number">6</span>
+                    <h2>Event Handler verknüpfen</h2>
+                    <span class="task-points">20 Punkte</span>
+                </header>
+                <p> Verknüpfe die vorgegebenen Buttons mit <code>addEventListener</code>, sodass beim Klicken die entsprechenden Funktionen aufgerufen
+                    werden: </p>
+                <table class="task-table">
+                    <thead>
+                        <tr>
+                            <th>Button</th>
+                            <th>Aktion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>btnAll</code></td>
+                            <td><code>renderProducts(state.products)</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>btnInstruments</code></td>
+                            <td><code>renderProducts(getByCategory(state.products, "Instrument"))</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>btnZubehoer</code></td>
+                            <td><code>renderProducts(getByCategory(state.products, "Zubehör"))</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>btnSortAsc</code></td>
+                            <td><code>renderProducts(sortByPriceAsc(state.products))</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>btnSortDesc</code></td>
+                            <td><code>renderProducts(sortByPriceDesc(state.products))</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="task-hint"> 💡 Hinweis: Beispiel:
+                    <code>btnAll.addEventListener("click", function () { renderProducts(state.products); });</code>
+                </div>
+            </article>
+            <article class="task-card task-bonus">
+                <header class="task-header">
+                    <span class="task-number">⭐</span>
+                    <h2>Bonus: Warenkorb</h2>
+                    <span class="task-points">+10 Punkte</span>
+                </header>
+                <p> Erweitere die Anwendung um einen einfachen Warenkorb: </p>
+                <ol>
+                    <li> Beim Klick auf eine Produktkarte soll der Artikel zu <code>state.cart</code> hinzugefügt werden
+                        (<code>state.cart.push(product)</code>). </li>
+                    <li> Zeige die Artikel im Warenkorb im Element <code>cartList</code> an. </li>
+                    <li> Zeige die Zwischensumme im Element <code>cartSubtotal</code> an (nutze deine Funktion <code>getTotal</code>). </li>
+                    <li> Der Button <code>buyBtn</code> leert den Warenkorb und zeigt eine kurze Bestätigung an. </li>
+                    <li> Der Button <code>cancelBtn</code> leert den Warenkorb ebenfalls, aber ohne Bestätigung. </li>
+                </ol>
+                <div class="task-hint"> 💡 Hinweis: Du kannst <code>addEventListener</code> direkt in <code>createProductElement</code> auf das
+                    Article-Element setzen. Vergiss nicht, den Warenkorb nach jeder Aktion neu zu rendern. </div>
+            </article>
+            <footer class="angabe-footer">
+                <p>Gutes Gelingen! 🎵</p>
+            </footer>
+        </div>
+    </section>
+    <section id="website-view"
+             class="view">
+        <div class="website-page">
+            <h1>Musikgeschäft</h1>
+            <p id="instrument-summary"
+               class="counter"></p>
+            <section class="deal-panel">
+                <p id="deal-text"
+                   class="deal-text"></p>
+            </section>
+            <section class="filter-bar">
+                <button id="btn-all"
+                        type="button">Alle anzeigen</button>
+                <button id="btn-instruments"
+                        type="button">Nur Instrumente</button>
+                <button id="btn-zubehoer"
+                        type="button">Nur Zubehör</button>
+                <button id="btn-sort-asc"
+                        type="button">Preis &uarr;</button>
+                <button id="btn-sort-desc"
+                        type="button">Preis &darr;</button>
+            </section>
+            <section class="market-layout">
+                <section class="shop-section">
+                    <h2>Shop</h2>
+                    <div id="shop-grid"
+                         class="shop-grid"></div>
+                </section>
+                <aside class="cart-section">
+                    <h2>Warenkorb</h2>
+                    <ul id="cart-list"
+                        class="cart-list"></ul>
+                    <p id="cart-subtotal"
+                       class="cart-subtotal"></p>
+                    <div class="cart-actions">
+                        <button id="buy-btn"
+                                type="button">Kaufen</button>
+                        <button id="cancel-btn"
+                                type="button">Abbruch</button>
+                    </div>
+                </aside>
+            </section>
+            <section class="sales-section">
+                <h2>Bestellprotokoll</h2>
+                <ul id="sales-log"
+                    class="sales-log"></ul>
+                <p id="sales-summary"
+                   class="sales-summary"></p>
+            </section>
+        </div>
+    </section>
+    <section id="tests-view"
+             class="view">
+        <div class="test-page">
+            <h1>Funktions-Tests</h1>
+            <p class="test-subtitle">Teste deine implementierten Funktionen mit den echten Produktdaten.</p>
+            <article class="test-card">
+                <header class="test-header">
+                    <h2>Aufgabe 2: getTotal(products)</h2>
+                    <button class="test-btn"
+                            id="test-total-btn"
+                            type="button">Testen</button>
+                </header>
+                <pre class="test-code">getTotal(state.products)</pre>
+                <div class="test-expected">
+                    <p class="test-label">Erwartet:</p>
+                    <p class="test-value">4439</p>
+                </div>
+                <div class="test-result"
+                     id="test-total-result"></div>
+            </article>
+            <article class="test-card">
+                <header class="test-header">
+                    <h2>Aufgabe 3: getByCategory(products, category)</h2>
+                    <div class="test-controls">
+                        <select class="test-select"
+                                id="test-category-select">
+                            <option value="Instrument">Instrument</option>
+                            <option value="Zubehör">Zubehör</option>
+                        </select>
+                        <button class="test-btn"
+                                id="test-category-btn"
+                                type="button">Testen</button>
+                    </div>
+                </header>
+                <pre class="test-code">getByCategory(state.products, "<span id="test-category-label">Instrument</span>")</pre>
+                <div class="test-expected">
+                    <p class="test-label">Erwartet (<span id="test-category-count-label">Instrument</span>):</p>
+                    <ul class="test-list"
+                        id="test-category-expected">
+                        <li>Vintage E-Gitarre — 749.00 Euro</li>
+                        <li>Stage Keyboard — 1190.00 Euro</li>
+                        <li>Analog Synth — 980.00 Euro</li>
+                        <li>Drum Pad — 399.00 Euro</li>
+                    </ul>
+                </div>
+                <div class="test-result"
+                     id="test-category-result"></div>
+            </article>
+            <article class="test-card">
+                <header class="test-header">
+                    <h2>Aufgabe 4: sortByPriceAsc(products)</h2>
+                    <button class="test-btn"
+                            id="test-asc-btn"
+                            type="button">Testen</button>
+                </header>
+                <pre class="test-code">sortByPriceAsc(state.products)</pre>
+                <div class="test-expected">
+                    <p class="test-label">Erwartet (aufsteigend):</p>
+                    <ol class="test-list">
+                        <li>Capo Deluxe — 24.00 Euro</li>
+                        <li>Pedal Echo — 149.00 Euro</li>
+                        <li>Studio Kopfhörer — 179.00 Euro</li>
+                        <li>Studio Mikrofon — 229.00 Euro</li>
+                        <li>Drum Pad — 399.00 Euro</li>
+                        <li>Bass Combo — 540.00 Euro</li>
+                        <li>Vintage E-Gitarre — 749.00 Euro</li>
+                        <li>Analog Synth — 980.00 Euro</li>
+                        <li>Stage Keyboard — 1190.00 Euro</li>
+                    </ol>
+                </div>
+                <div class="test-result"
+                     id="test-asc-result"></div>
+            </article>
+            <article class="test-card">
+                <header class="test-header">
+                    <h2>Aufgabe 5: sortByPriceDesc(products)</h2>
+                    <button class="test-btn"
+                            id="test-desc-btn"
+                            type="button">Testen</button>
+                </header>
+                <pre class="test-code">sortByPriceDesc(state.products)</pre>
+                <div class="test-expected">
+                    <p class="test-label">Erwartet (absteigend):</p>
+                    <ol class="test-list">
+                        <li>Stage Keyboard — 1190.00 Euro</li>
+                        <li>Analog Synth — 980.00 Euro</li>
+                        <li>Vintage E-Gitarre — 749.00 Euro</li>
+                        <li>Bass Combo — 540.00 Euro</li>
+                        <li>Drum Pad — 399.00 Euro</li>
+                        <li>Studio Mikrofon — 229.00 Euro</li>
+                        <li>Studio Kopfhörer — 179.00 Euro</li>
+                        <li>Pedal Echo — 149.00 Euro</li>
+                        <li>Capo Deluxe — 24.00 Euro</li>
+                    </ol>
+                </div>
+                <div class="test-result"
+                     id="test-desc-result"></div>
+            </article>
+        </div>
+    </section>
+</body>
+
+</html>
