@@ -1,0 +1,19 @@
+{
+  "tasks": {
+    "p:g": "deno run -A npm:prisma generate",
+    "p:m": "deno run -A npm:prisma migrate dev",
+    "p:studio": "deno run -A npm:prisma studio",
+    "p:seed": "deno run -A --allow-ffi --env src/seed.ts"
+  },
+  "imports": {
+    "@prisma/client": "npm:@prisma/client@^7.2.0",
+    "@prisma/adapter-better-sqlite3": "npm:@prisma/adapter-better-sqlite3@^7.2.0",
+    "prisma": "npm:prisma@^7.2.0"
+  },
+  "compilerOptions": {
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "strict": true
+  },
+  "nodeModulesDir": "auto"
+}
