@@ -1,0 +1,14 @@
+GET http://localhost:8000/script.ts
+
+
+###  *alias select*
+GET http://localhost:8000/essen
+###
+GET http://localhost:8000/essen/7
+###
+POST http://localhost:8000/essen
+Content-Type:  application/x-www-form-urlencoded
+
+essen=Bolognese
+###
+GET http://localhost:8000/hallo
