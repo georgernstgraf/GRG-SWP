@@ -115,3 +115,24 @@ Das erzeugt folgende Verzeichnisstruktur:
 3. Wenn der Agent kompromittiert wird, löschst du einfach seine Zeile aus der `.gpg-id` und re-encryptest den Ordner – deine privaten Passwörter waren nie in Gefahr.
 
 **Fazit:** Keine zentrale Benutzerverwaltung, keine komplizierte ACL-Engine, keine zusätzliche Software. Nur das Dateisystem, GPG und `.gpg-id`-Dateien. Das ist die Eleganz von `pass`.
+
+---
+
+## Zugriff entziehen & Schlüsselrotation
+Einem Keyholder den Zugang zu entziehen ist ein zweischneidiges Schwert.
+
+### Was `pass` kann: Re-Encryption
+Entfernt man einen Key aus der `.gpg-id` und führt `pass init -p Agent-Secrets "georg@schule.at"` erneut aus, verschlüsselt `pass` **alle betroffenen Dateien neu** – der entfernte Key ist ab sofort nicht mehr in den Chiffraten enthalten. Neue Geheimnisse kann der ausgesperrte Keyholder nicht lesen.
+
+### Was `pass` nicht kann: Vergangenheit ungeschehen machen
+**Git merkt sich alles.** Ein entfernter Keyholder mit noch vorhandenem Git-Zugriff kann per `git checkout` einen alten Commit auschecken, in dem die `.gpg`-Dateien noch mit seinem Public Key mitverschlüsselt waren. Sein Private Key existiert noch – also liest er die alten Secrets.
+
+### Die einzig saubere Lösung: Schlüsselrotation
+Weil Kryptografie niemals rückwirkend wirkt, muss man die **Geheimnisse selbst** rotieren:
+- Datenbank-Passwort ändern
+- API-Keys neu generieren
+- Alles, was der ehemalige Keyholder je entschlüsselt hat, als kompromittiert betrachten
+
+Danach ist der Inhalt alter Chiffrate wertlos – egal wer sie entschlüsseln kann.
+
+**Merksatz:** `pass` kontrolliert den Zugriff auf Chiffrate, nicht auf Geheimnisse. Wenn das Vertrauen endet, endet auch die Gültigkeit der Geheimnisse.
