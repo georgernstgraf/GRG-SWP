@@ -57,6 +57,61 @@ Anstatt Passwörter einer Firma (wie LastPass oder 1Password) in der Cloud anzuv
 
 ### Die Vorteile der PASS-Architektur:
 1.  **Git-Integration:** Da es nur Textdateien (wenn auch verschlüsselt) sind, lassen sie sich perfekt in einem Git-Repository verwalten (`pass git init`). So kannst du deine Passwörter versionieren und sicher über einen Git-Server (z.B. GitHub) zwischen deinem Laptop und Smartphone synchronisieren.
-2.  **Multi-Client & Multi-Tenant:** Der genialste Aspekt von `pass` ist die Möglichkeit, ein Passwort für *mehrere* Schlüsselhalter zu verschlüsseln (Multi-Tenant).
-    *   Du kannst ein Passwort so verschlüsseln, dass es sowohl mit *deinem* Private Key als auch mit dem Private Key deines *KI-Agenten* geöffnet werden kann.
-    *   So kannst du einem Agenten (oder einem Teammitglied) gezielt Zugriff auf spezifische Passwörter (z.B. Datenbank-Credentials) geben, ohne ihm deine Master-Passwörter anvertrauen zu müssen. Der Agent entschlüsselt die Daten einfach mit seinem eigenen Private Key.
+
+---
+
+## Verschlüsselung für mehrere Empfänger (Multi-Recipient)
+Ein häufig unterschätztes Feature von PGP/GPG: **Ich kann dieselbe Datei gleichzeitig für mehrere Personen verschlüsseln.**
+
+PGP macht das technisch so: Es generiert einen zufälligen, symmetrischen **Session-Key**, mit dem die eigentliche Datei (die Klartext-Nachricht) verschlüsselt wird. Diesen Session-Key verschlüsselt PGP dann *einmal mit meinem Public Key* und *einmal mit deinem Public Key*. Beide verschlüsselten Session-Keys werden einfach an die Datei angehängt.
+
+Wenn du die Datei öffnest, probiert dein Private Key die Schlösser durch – eines davon ist deines – und holt den Session-Key heraus. Genauso kann ich mit meinem Private Key dasselbe tun. Die Datei ist für beide lesbar, ohne dass wir einander unseren Private Key verraten müssen.
+
+`pass` nutzt dieses Feature, indem du beim Initialisieren mehrere Keys angibst:
+
+```bash
+pass init "georg@schule.at" "agent@ai.local"
+```
+
+Das schreibt in die Datei `~/.password-store/.gpg-id`:
+```
+georg@schule.at
+agent@ai.local
+```
+
+Von nun an wird **jede** neue Passwort-Datei so mit GPG verschlüsselt, dass sie **beide** Private Keys entschlüsseln können.
+
+---
+
+## Feingranulare Rechtevergabe: `.gpg-id` in Unterordnern
+Das ist das geniale Konzept, um einem Agenten nur ein **Teilset** der Passwörter zugänglich zu machen.
+
+Der Befehl `pass init -p` erlaubt es, **pro Unterordner** eine eigene `.gpg-id`-Datei anzulegen – mit anderen Schlüsseln als die Wurzel:
+
+```bash
+# Root: ALLES ist nur für mich lesbar
+pass init "georg@schule.at"
+
+# Aber im Ordner "Agent-Secrets": Ich UND der Agent können lesen
+pass init -p Agent-Secrets "georg@schule.at" "agent@ai.local"
+```
+
+Das erzeugt folgende Verzeichnisstruktur:
+```
+~/.password-store/
+├── .gpg-id               → Inhalt: "georg@schule.at"
+├── Privat/
+│   └── Banking.gpg       → verschlüsselt NUR für georg@schule.at
+└── Agent-Secrets/
+    ├── .gpg-id            → Inhalt: "georg@schule.at\nagent@ai.local"
+    └── Datenbank.gpg      → verschlüsselt für georg@schule.at UND agent@ai.local
+```
+
+**Die Regel:** `pass` sucht beim Verschlüsseln immer die nächstgelegene `.gpg-id`-Datei – zuerst im aktuellen Unterordner, dann weiter oben, bis zum Wurzelverzeichnis. Die Datei im Unterordner überschreibt also die globale Einstellung.
+
+### Praktisches Beispiel: Der KI-Agent als Keyholder
+1. Du hast sensible Passwörter (Bank, private E-Mails) – die liegen im Root und in Ordnern ohne eigene `.gpg-id`. Nur du kannst sie lesen.
+2. Du hast Passwörter für den Agenten (Datenbank-Credentials, API-Keys für ein Testsystem) – die liegen im Ordner `Agent-Secrets/`. Der Agent hat einen eigenen GPG-Key und kann sie lesen, weil sein Fingerprint in der `.gpg-id` des Unterordners steht.
+3. Wenn der Agent kompromittiert wird, löschst du einfach seine Zeile aus der `.gpg-id` und re-encryptest den Ordner – deine privaten Passwörter waren nie in Gefahr.
+
+**Fazit:** Keine zentrale Benutzerverwaltung, keine komplizierte ACL-Engine, keine zusätzliche Software. Nur das Dateisystem, GPG und `.gpg-id`-Dateien. Das ist die Eleganz von `pass`.
