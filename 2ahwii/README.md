@@ -1,11 +1,17 @@
 # sj25-26-2ahwii-swpx
 
+keys mit wsl bulk bearbeiten
+
+grep key KEYS.json  | awk '{printf "gpg --recv-key %s\n", $2}' | sh
+grep key KEYS.json  | awk '{printf "gpg --sign-key %s\n", $2}' | sh
+grep key KEYS.json  | awk '{printf "gpg --send-key %s\n", $2}' | sh
+
 ## 2026-05-11
 
 - Nachbesprechung der PLF
 - transpile once again
 - volles CRUD im backend
-  
+
 ## 2026-05-04 PLF Musikgeschäft WebApp
 
 ## 2026-04-20_freie_provider
