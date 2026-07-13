@@ -35,18 +35,22 @@ Intensität werden von der Lehrperson beurteilt.
 
 ## Übersicht
 
-| Klasse | Jahr | Schwerpunkte |
+> Unterricht SJ 2025/26 ist archiviert unter [`ARCHIV/`](ARCHIV/). Der Rahmenlehrplan und die Einheitenplanung liegen unter [`docs/lehrplan/`](docs/lehrplan/).
+
+| Kohorte (SJ 2025/26) | archiviert unter | Schwerpunkte |
 |--------|------|--------------|
-| **2AHWII** | SJ 2025/26 | HTML/CSS, JavaScript, TypeScript, DOM, Promises, Fetch, Debugging |
-| **3AHWII** | SJ 2025/26 | C#/.NET, OOP, xUnit-Tests, Prisma-Intro, opencode |
-| **5AHWII X/Y** | SJ 2025/26 | Prisma ORM, Deno, REST-APIs, Full-Stack-Web, Regex, Agentic Coding |
-| 5AHWII (alle) | Maturavorbereitung | PLF-Übungen (Parkhaus, Non-Decided) |
+| **2AHWII** | [`ARCHIV/2025-26-2ahwii/`](ARCHIV/2025-26-2ahwii/) | HTML/CSS, JavaScript, TypeScript, DOM, Promises, Fetch, Hono, Prisma-Vertiefung |
+| **3AHWII** | [`ARCHIV/2025-26-3ahwii/`](ARCHIV/2025-26-3ahwii/) | C#/.NET, OOP, xUnit-Tests, Prisma-Intro, opencode |
+| **5AHWII X/Y** | [`ARCHIV/2025-26-5ahwii_X/`](ARCHIV/2025-26-5ahwii_X/), [`…_Y/`](ARCHIV/2025-26-5ahwii_Y/) | Prisma ORM, Deno, REST-APIs, Full-Stack-Web, Regex, Agentic Coding |
+| 5AHWII (alle) | [`ARCHIV/2025-26-5ahwii_alle/`](ARCHIV/2025-26-5ahwii_alle/) | Maturavorbereitung, PLF-Übungen (Parkhaus, Non-Decided) |
+
+**Geplant für SJ 2026/27:** 3AHWII (aus 2AHWII) – OOP mit **Deno/TypeScript** (nicht C#), GUI via **Deno Desktop**; in Verbundführung mit INFI. Siehe [`docs/lehrplan/jg3-einheiten.md`](docs/lehrplan/jg3-einheiten.md).
 
 ---
 
-## 2AHWII – Grundlagen Web & JavaScript
+## 2AHWII – Grundlagen Web & JavaScript *(archiviert SJ 2025/26)*
 
-Ordnername: [`2ahwii/`](2ahwii/)
+Ordnername: [`ARCHIV/2025-26-2ahwii/`](ARCHIV/2025-26-2ahwii/)
 
 Im ersten Jahr SWP werden die Grundlagen der Webentwicklung und
 Programmierung mit JavaScript / TypeScript vermittelt.
@@ -67,9 +71,9 @@ HTML-Seiten, Todo-Apps, Fetch-Übungen u.v.m.
 
 ---
 
-## 3AHWII – C#/.NET & OOP
+## 3AHWII – C#/.NET & OOP *(archiviert SJ 2025/26; C#-Variante)*
 
-Ordnername: [`3ahwii/`](3ahwii/)
+Ordnername: [`ARCHIV/2025-26-3ahwii/`](ARCHIV/2025-26-3ahwii/)
 
 Im zweiten Jahr liegt der Fokus auf **C# und dotnet** sowie auf
 **objektorientierter Programmierung**.
@@ -92,7 +96,7 @@ Danach geht es im Repo [GRG-CS](https://github.com/georgernstgraf/GRG-CS) weiter
 In der 5. Klasse wird mit **Prisma ORM, Deno und TypeScript**
 full-stack entwickelt. Die Klasse ist in zwei Gruppen geteilt:
 
-### Gruppe X – [`5ahwii_X/`](5ahwii_X/)
+### Gruppe X – [`ARCHIV/2025-26-5ahwii_X/`](ARCHIV/2025-26-5ahwii_X/)
 
 - Prisma-Schema-Design, Migrationen, Seeding
 - Quiz-Projekt mit opentdb.com-Daten
@@ -101,7 +105,7 @@ full-stack entwickelt. Die Klasse ist in zwei Gruppen geteilt:
 - Agentic Coding mit opencode
 - Tooltips, Router
 
-### Gruppe Y – [`5ahwii_Y/`](5ahwii_Y/)
+### Gruppe Y – [`ARCHIV/2025-26-5ahwii_Y/`](ARCHIV/2025-26-5ahwii_Y/)
 
 - Prisma Recap, Airline-Datenmodell
 - Lift Kata (Samman Coaching)
@@ -109,7 +113,7 @@ full-stack entwickelt. Die Klasse ist in zwei Gruppen geteilt:
 - CSS Positioning, Grid Garden
 - Parkhaus-Aufgabe
 
-### Gemeinsam – [`5ahwii_alle/`](5ahwii_alle/)
+### Gemeinsam – [`ARCHIV/2025-26-5ahwii_alle/`](ARCHIV/2025-26-5ahwii_alle/)
 
 - PLF-Übungen und Maturavorbereitung
 
@@ -161,8 +165,7 @@ Datenbank-Schema-Entwürfe und vollständige Mini-Apps:
 ## Organisatorisches
 
 - [`PROJECT_CONTRIBUTIONS.md`](PROJECT_CONTRIBUTIONS.md) – Leitfaden für Issues und PRs
-- [`Lehrplan_WII_SWP.md`](Lehrplan_WII_SWP.md) – offizieller Lehrplan (1. Semester)
-- [`LEHRPLAN/`](LEHRPLAN/) – offizielle Lehrplandokumente (SWP & INFI)
+- [`docs/lehrplan/`](docs/lehrplan/) – Rahmenlehrplan (Anlage 1.24) + Einheitenplanung pro Jahrgang; Quelle: [`LEHRPLAN.md`](docs/lehrplan/LEHRPLAN.md), Metadaten: [`METADATA.md`](docs/lehrplan/METADATA.md)
 
 ---
 
