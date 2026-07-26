@@ -1,208 +1,234 @@
-# LEHRPLAN – Softwareentwicklung und Projektmanagement (Wirtschaftsingenieure Betriebsinformatik)
+# LEHRPLAN — Softwareentwicklung und Projektmanagement (WII–Betriebsinformatik)
 
-> **Quelle:** Anlage 1.24 zu BGBl. II Nr. 262/2015 (Höhere Lehranstalt für Wirtschaftsingenieure – Betriebsinformatik), Fach „Softwareentwicklung und Projektmanagement".
-> Rechtliche Grundlagen siehe [`METADATA.md`](METADATA.md) und [`GRG-INFI/docs/lehrplan/METADATA.md`](https://github.com/georgernstgraf/GRG-INFI/blob/main/docs/lehrplan/METADATA.md).
-> Diese Datei ist die **Quelle** für die Einheitenplanung (`jgN-einheiten.md`). Sie enthält den vollständigen offiziellen Lehrstoff des Fachs für alle Jahrgänge (I–V). Eine spätere Session kann nur anhand dieser Datei weitere Jahrgangs-Pläne generieren (Anleitung am Ende).
-
----
-
-## Fach: Softwareentwicklung und Projektmanagement
-
-Wochenstunden (HTL Spengergasse): I 2 · II 2 · III 4 · IV 4 · V 6.
-
-Das Fach verschränkt **drei Bereiche**: *Strukturierte/OOP* (Programmierung), *Webtechnologien* und *Softwareentwicklung & Projektmanagement (PRE)*. Ab Jg III laufen OOP, Web und PRE parallel.
+> **Dreischichtig:** ① **offizieller Extrakt** (RIS, verbindlich) · ② **Schuladaption**
+> (`HWII_SWP.pdf`, schulinterne Umschichtung) · ③ **Didaktik/Stack** (unsere Umsetzung).
+> Rechtsstand & Abweichungs-Analyse: [`RIS.md`](RIS.md) · Metadaten/Stundentafel/Stack:
+> [`METADATA.md`](METADATA.md) · KM-Steckbriefe: [`../../kompetenzmodule/`](../../kompetenzmodule/).
+>
+> **Wer unterrichtet was (ab Jg III):** Bereiche **OOP + Web + UML-Klassendiagramm = Georg**;
+> **PRE (Projektmanagement) + übrige Modellierung = Kollege** (2+2-Split; PRE hier nur als
+> Soll sichtbar, nicht ausgearbeitet).
 
 ---
 
-## I. Jahrgang (1. und 2. Semester) — KM –
+# ① Offizieller Extrakt (RIS, Anlage 1.24 idF BGBl. II Nr. 235/2019)
 
-**Bildungs- und Lehraufgabe (Bereich Strukturierte Programmierung):**
-- grundlegende Datentypen und Kontrollstrukturen anwenden;
-- einfache algorithmische Problemstellungen analysieren, Lösungswege finden und diese darstellen und umsetzen;
-- eine Entwicklungsumgebung einsetzen;
-- grundlegende Algorithmen in einer höheren Programmiersprache umsetzen.
+> Getreuer Extrakt des Unterrichtsgegenstands „Softwareentwicklung und Projektmanagement"
+> (Abschnitt VII, B.4) aus der konsolidierten Fassung `NOR40217058` (Quellen: `RIS.md` §2).
+> **Sprach-agnostisch** — keine Programmiersprache wird vorgeschrieben.
 
-**Lehrstoff (Bereich Strukturierte Programmierung):**
-Programmiersprachenelemente (Anweisungsfolge, Verzweigung, Wiederholung, Variable und Datentypen); Algorithmus (Programmierung, Codierung, schrittweise Verfeinerung, Entwurf und Darstellung von Algorithmen); Einstieg in die Programmierung und Systemprogramme (visuelle Oberfläche, Systemprogramme, Interpreter, Compiler, Fehlerarten); Datenverarbeitung (Ein-/Ausgabe); Modularisierung (Funktionen und Unterprogramme mit Übergabeparametern und Rückgabewerten); Zusammengesetzte Datentypen (Datenfelder, Zeichenketten, Strukturen); Standardalgorithmen (Operationen auf Datenstrukturen).
+**Absolventenkompetenzen (III. Abschnitt, Auszug):** *„Im Bereich Softwareentwicklung und
+Projektmanagement können die Absolventinnen und Absolventen Vorgehensmodelle,
+Entwicklungsmethoden und wichtige Entwurfsmuster der Softwareentwicklung anwenden sowie
+Programme systematisch testen. Sie können reale Problemstellungen analysieren und die
+unterschiedlichen Methoden zu Leistungs-, Termin-, Ressourcen- und Kostenplanung einsetzen."*
 
----
+## I. Jahrgang (1. und 2. Semester)
 
-## II. Jahrgang — Bereich Webtechnologien
+**Bildungs- und Lehraufgabe:** Die Schülerinnen und Schüler können im
+- **Bereich Webtechnologien:** grundlegende Konzepte und Auszeichnungssprachen für die
+  Webentwicklung erläutern und statische Webseiten erstellen.
+- **Bereich Strukturierte Programmierung:** grundlegende Datentypen und Kontrollstrukturen
+  anwenden; einfache algorithmische Problemstellungen analysieren, Lösungswege finden sowie
+  diese darstellen und umsetzen; eine Entwicklungsumgebung bedienen.
+
+**Lehrstoff:**
+- *Webtechnologien:* Informationsdarstellung im Netz (Dokumentenbeschreibungssprachen,
+  Informationstypen und Datenformate, Präsentation).
+- *Strukturierte Programmierung:* Programmiersprachenelemente (Anweisungsfolge, Verzweigung,
+  Wiederholung, Variable und Datentypen); Algorithmus (Programmierung, Codierung, schrittweise
+  Verfeinerung, Entwurf und Darstellung von Algorithmen); Einstieg in die Programmierung und
+  Systemprogramme (Einsatz einer visuellen Oberfläche, Systemprogramme, Interpreter, Compiler,
+  Fehlerarten).
+
+## II. Jahrgang
 
 ### 3. Semester – Kompetenzmodul 3
 
-**Bildungs- und Lehraufgabe (Bereich Webtechnologien):**
-- grundlegende Konzepte sowie Auszeichnungs- und Programmiersprachen für die Webentwicklung erläutern;
-- statische Webseiten mit einfachem Design erstellen.
+**Bildungs- und Lehraufgabe:** Die Schülerinnen und Schüler können im
+- **Bereich Strukturierte Programmierung:** grundlegende Algorithmen in einer höheren
+  Programmiersprache umsetzen.
+- **Bereich Webtechnologien:** Internetanwendungen gestalten.
 
 **Lehrstoff:**
-Informationsdarstellung im Internet (Dokumentenbeschreibungssprachen, Datenformate).
+- *Strukturierte Programmierung:* Dateiverarbeitung (Ein-, Ausgabe); Modularisierung
+  (Funktionen und Unterprogramme mit Übergabeparametern).
+- *Webtechnologien:* Design und Inhalte (Kriterien, Methoden, Inhaltsformate).
 
 ### 4. Semester – Kompetenzmodul 4
 
-**Bildungs- und Lehraufgabe (Bereich Webtechnologien):**
-- Webanwendungen mit clientseitiger Logik erstellen;
-- Webseiten mit komplexem Design erstellen;
-- Webseiten für verschiedene Endgeräte optimieren.
+**Bildungs- und Lehraufgabe:** Die Schülerinnen und Schüler können im
+- **Bereich Strukturierte Programmierung:** grundlegende Algorithmen in einer höheren
+  Programmiersprache umsetzen.
+- **Bereich Webtechnologien:** clientseitige Internetanwendungen erstellen.
 
 **Lehrstoff:**
-Clientseitige Programmierung; fortgeschrittene Styling-Möglichkeiten (komplexes Layout, Animationen, Anpassung der Darstellung auf das Endgerät).
+- *Strukturierte Programmierung:* Zusammengesetzte Datentypen (Felder, Zeichenketten,
+  Strukturen); Standardalgorithmen (Operationen auf Datenstrukturen).
+- *Webtechnologien:* Erstellung von Internetanwendungen (Clientseitige Programmierung).
 
----
-
-## III. Jahrgang — OOP + SWP
+## III. Jahrgang
 
 ### 5. Semester – Kompetenzmodul 5
 
-**Bildungs- und Lehraufgabe (Bereich Objektorientierte Programmierung):**
-- die Konzepte der objektorientierten Programmierung mit **Vererbung und Polymorphismus** anwenden.
+**Bildungs- und Lehraufgabe:** Die Schülerinnen und Schüler können im
+- **Bereich Objektorientierte Programmierung:** die Konzepte der objektorientierten
+  Programmierung mit Vererbung und Polymorphismus anwenden.
+- **Bereich Softwareentwicklung und Projektmanagement:** Problemlösungen in grafischer
+  Notation darstellen und erweiterbare Modelle dazu entwickeln.
 
-**Bildungs- und Lehraufgabe (Bereich Softwareentwicklung und Projektmanagement):**
-- Problemlösungen in grafischer Notation darstellen und erweiterbare Modelle dazu entwickeln.
-
-**Lehrstoff (Bereich OOP):**
-Elemente und Konzepte (Klasse, Instanz, Schnittstelle, Methode, Zustand, Attribut und Sichtbarkeit, grafische Darstellung, Vererbung, Polymorphismus); Alternativen zu Arrays (Collections). Laufzeitanalysen.
-
-**Lehrstoff (Bereich SWP):**
-Modellierung (Modellierungssprachen, Darstellungen).
+**Lehrstoff:**
+- *Objektorientierte Programmierung:* Elemente und Konzepte (Klasse, Instanz, Methode,
+  Attribut und Sichtbarkeit, grafische Darstellung, Vererbung, Polymorphismus).
+- *Softwareentwicklung und Projektmanagement:* Modellierung (Modellierungssprachen,
+  Darstellungen).
 
 ### 6. Semester – Kompetenzmodul 6
 
-**Bildungs- und Lehraufgabe (Bereich OOP):**
-- erweiterbare und wartbare Programme mit **grafischer Oberfläche** erstellen;
-- Laufzeitanalysen durchführen;
-- Alternativen zu Arrays beschreiben und je nach Anwendungsbereich eine Auswahl treffen.
+**Bildungs- und Lehraufgabe:** Die Schülerinnen und Schüler können im
+- **Bereich Objektorientierte Programmierung:** erweiterbare und wartbare Programme mit
+  grafischer Oberfläche erstellen.
+- **Bereich Softwareentwicklung und Projektmanagement:** Projektmanagement in der
+  Softwareentwicklung anwenden.
 
-**Bildungs- und Lehraufgabe (Bereich SWP):**
-- Projektmanagement in der Softwareentwicklung anwenden.
+**Lehrstoff:**
+- *Objektorientierte Programmierung:* Programmierkonzepte (weitere OOP-Konzepte, parallele
+  Abläufe); grafische Benutzeroberflächen (Frameworks, GUI-Elemente, Events).
+- *Softwareentwicklung und Projektmanagement:* Grundlagen des Projektmanagements (Definition,
+  Projektteam und Rollen, Planungselemente, Dokumente); Angewandte Softwareentwicklung und
+  Projektmanagement (Durchführung eines Softwareprojekts im Team unter Einsatz von
+  Projektmanagementmethoden).
 
-**Lehrstoff (Bereich OOP):**
-Programmierkonzepte (weitere OOP-Konzepte, parallele Abläufe). Grafische Benutzeroberflächen (Frameworks, GUI-Elemente, Events).
-
-**Lehrstoff (Bereich SWP):**
-Grundlagen des Projektmanagements (Definition, Projektteam und Rollen, Planungselemente, Dokumente). Angewandte Softwareentwicklung und Projektmanagement (Durchführung eines Softwareprojekts im Team unter Einsatz von Projektmanagementmethoden).
-
----
-
-## IV. Jahrgang — OOP + Web + SWP
+## IV. Jahrgang
 
 ### 7. Semester – Kompetenzmodul 7
 
-**Bildungs- und Lehraufgabe (Bereich OOP):**
-- wiederverwendbare Komponenten für Standardaufgaben einsetzen;
-- Standardalgorithmen objektorientiert implementieren.
+**Bildungs- und Lehraufgabe:** Die Schülerinnen und Schüler können im
+- **Bereich Objektorientierte Programmierung:** Frameworks für Standardaufgaben einsetzen;
+  Standardalgorithmen objektorientiert implementieren.
+- **Bereich Softwareentwicklung und Projektmanagement:** aktuelle Vorgehensmodelle und
+  Entwicklungsmethoden sowie die wichtigsten Entwurfsmuster der Softwareentwicklung
+  beschreiben; eine reale Problemstellung analysieren und die unterschiedlichen Methoden zu
+  Leistungs-, Termin-, Ressourcen- und Kostenplanung einsetzen.
 
-**Bildungs- und Lehraufgabe (Bereich SWP):**
-- aktuelle Vorgehensmodelle und Entwicklungsmethoden beschreiben;
-- gängige Entwurfsmuster in der OOP beschreiben.
-
-**Lehrstoff (Bereich OOP):**
-Wiederverwendbare Komponenten (Architektur, Einbindung, Auswahl).
-
-**Lehrstoff (Bereich SWP):**
-Softwareentwicklungsmodelle (Einführung und Vergleich von Methoden, Schätzverfahren, Anforderungsanalyse); Entwurfsmuster (Anwendungsfälle sowie Vorteile/Nachteile gängiger Entwurfsmuster).
+**Lehrstoff:**
+- *Objektorientierte Programmierung:* Frameworks (Architektur, Einbindung, Auswahl);
+  Algorithmen (Darstellungsformen, Qualitätsanalyse, Standardalgorithmen).
+- *Softwareentwicklung und Projektmanagement:* Softwareentwicklungsmodelle (Einführung und
+  Vergleich von Methoden, Schätzverfahren, Anforderungsanalyse).
 
 ### 8. Semester – Kompetenzmodul 8
 
-**Bildungs- und Lehraufgabe (Bereich Webtechnologien):**
-- serverbasierende Internetanwendungen erstellen.
+**Bildungs- und Lehraufgabe:** Die Schülerinnen und Schüler können im
+- **Bereich Webtechnologien:** serverbasierende Internetanwendungen erstellen.
+- **Bereich Softwareentwicklung und Projektmanagement:** Testfälle definieren und damit
+  Programme systematisch testen; aktuelle Vorgehensmodelle und Entwicklungsmethoden in der
+  Softwareentwicklung anwenden.
 
-**Bildungs- und Lehraufgabe (Bereich SWP):**
-- Testfälle definieren und damit Programme systematisch testen;
-- aktuelle Vorgehensmodelle und Entwicklungsmethoden in der Softwareentwicklung anwenden.
-
-**Lehrstoff (Bereich Webtechnologien):**
-Erstellung von server-basierenden Internetanwendungen (Client-/Server-Konzept, serverseitige Programmierung, Anbindung von Datenbanken, Vergleich unterschiedlicher Technologien).
-
-**Lehrstoff (Bereich SWP):**
-Softwarequalitätsmanagement (Methoden, Testverfahren); Projektmanagement (Verträge, Softskills); Angewandte Softwareentwicklung und Projektmanagement (Erstellung eines Softwareprojekts im Team unter Einsatz von Projektmanagementmethoden).
-
----
+**Lehrstoff:**
+- *Webtechnologien:* Erstellung von serverbasierenden Internetanwendungen (Client-/Server
+  Konzept, serverseitige Programmierung, Anbindung von Datenbanken, Vergleich unterschiedlicher
+  Technologien).
+- *Softwareentwicklung und Projektmanagement:* Softwarequalitätsmanagement (Methoden,
+  Testverfahren); Projektmanagement (Verträge, Softskills); Angewandte Softwareentwicklung und
+  Projektmanagement (Erstellung eines Softwareprojekts im Team unter Einsatz von
+  Projektmanagementmethoden).
 
 ## V. Jahrgang – Kompetenzmodul 9
 
 ### 9. Semester
 
-**Bildungs- und Lehraufgabe (Bereich Webtechnologien):**
-- Webservices nutzen und eigene erstellen.
+**Bildungs- und Lehraufgabe:** Die Schülerinnen und Schüler können im
+- **Bereich Webtechnologien:** Webservices nutzen und eigene erstellen.
+- **Bereich Objektorientierte Programmierung:** Software-Pattern auswählen und einsetzen.
+- **Bereich Softwareentwicklung und Projektmanagement:** Anwendungs-, Klassen- und
+  Methodenrefactoring durchführen; Vorgehensmodelle und Entwicklungsmethoden in der
+  Softwareentwicklung anwenden.
 
-**Bildungs- und Lehraufgabe (Bereich OOP):**
-- Entwurfsmuster in der OOP auswählen und einsetzen.
-
-**Bildungs- und Lehraufgabe (Bereich SWP):**
-- Anwendungs-, Klassen- und Methodenrefactoring durchführen;
-- Vorgehensmodelle und Entwicklungsmethoden in der Softwareentwicklung anwenden.
-
-**Lehrstoff (Bereich Webtechnologien):**
-Webservices (Sicherheitsaspekte, Schnittstellen, Informationstypen und Datenformate, Frameworks).
-
-**Lehrstoff (Bereich OOP):**
-Entwurfsmuster (Umsetzung).
-
-**Lehrstoff (Bereich SWP):**
-Angewandte Softwareentwicklung und Projektmanagement (Durchführung eines Softwareprojekts im Team unter Einsatz von Projektmanagementmethoden); Refactoring (Refactoring in Softwareprojekten).
+**Lehrstoff:**
+- *Webtechnologien:* Webservices (Sicherheitsaspekte, Schnittstellen, Informationstypen und
+  Datenformate, Frameworks).
+- *Objektorientierte Programmierung:* Software-Patterns (Objektorientierte Prinzipien,
+  Entwurfsmuster).
+- *Softwareentwicklung und Projektmanagement:* Angewandte Softwareentwicklung und
+  Projektmanagement (Durchführung eines Softwareprojekts im Team unter Einsatz von
+  Projektmanagementmethoden); Refactoring (Refactoring in Softwareprojekten).
 
 ### 10. Semester
 
-**Bildungs- und Lehraufgabe (Bereich Webtechnologien):**
-- komplexe dynamische Webanwendungen erstellen.
+**Bildungs- und Lehraufgabe:** Die Schülerinnen und Schüler können im
+- **Bereich Webtechnologien:** komplexe dynamische Webanwendungen erstellen.
+- **Bereich Objektorientierte Programmierung:** Klassenbibliotheken erstellen.
+- **Bereich Softwareentwicklung und Projektmanagement:** Vorgehensmodelle und
+  Entwicklungsmethoden in der Softwareentwicklung anwenden.
 
-**Bildungs- und Lehraufgabe (Bereich OOP):**
-- wiederverwendbare Komponenten erstellen.
-
-**Bildungs- und Lehraufgabe (Bereich SWP):**
-- Vorgehensmodelle und Entwicklungsmethoden in der Softwareentwicklung anwenden.
-
-**Lehrstoff (Bereich Webtechnologien):**
-Webanwendung (Gesamterstellungsprozess dynamischer Web-Anwendungen, Sicherheitsaspekte, Frameworks).
-
-**Lehrstoff (Bereich OOP):**
-Arbeiten mit wiederverwendbaren Komponenten.
-
-**Lehrstoff (Bereich SWP):**
-Angewandte Softwareentwicklung und Projektmanagement (Durchführung eines Softwareprojekts im Team unter Einsatz von Projektmanagementmethoden).
+**Lehrstoff:**
+- *Webtechnologien:* Webanwendung (Gesamterstellungsprozess dynamischer Web-Anwendungen,
+  Sicherheitsaspekte, Frameworks).
+- *Objektorientierte Programmierung:* Arbeiten mit Klassenbibliotheken.
+- *Softwareentwicklung und Projektmanagement:* Angewandte Softwareentwicklung und
+  Projektmanagement (Durchführung eines Softwareprojekts im Team unter Einsatz von
+  Projektmanagementmethoden).
 
 ---
 
-## Didaktische Hinweise
+# ② Schuladaption (HWII_SWP.pdf)
 
-- Siehe BGBl. II Nr. 262/2015 **Anlage 1** „Didaktische Grundsätze" (Handlungsorientierung, Projektbezug, fächerübergreifender Unterricht).
-- **Stack-Entscheidung ab SJ 2026/27:** Jg III OOP mit **Deno/TypeScript** statt C#/.NET; GUI (KM6) via **Deno Desktop** (Deno ≥ 2.9). Siehe `METADATA.md`.
-- **Fächerübergreifend mit INFI:** gleiche Kohorte, gleicher Stack (Prisma/SQLite). OOP-Domäne + Repository als Nahtstelle zu INFI (Persistenz). Siehe `jg3-einheiten.md` Abschnitt „3ahwii-Verbund".
-- Spiralcurriculum: Konzepte (Kontrollstrukturen → OOP → Entwurfsmuster → Webservices) in höheren Jahrgängen vertiefen; web-Anwendungen über alle Jahrgänge.
+Die schulinterne Adaption ([`HWII_SWP.pdf`](HWII_SWP.pdf)) schichtet den Lehrstoff um und
+reichert ihn an — Basis der bisherigen Einheitenplanung. **Wesentliche Differenzen zu ①**
+(Analyse: `RIS.md` §6):
 
----
+| Thema | ① offiziell | ② Schuladaption |
+|-------|-------------|------------------|
+| Web-Einstieg | I. Jahrgang | 2. Klasse (KM3/KM4 als Web-Block) |
+| Strukturierte Programmierung | I. Jg + KM3/KM4 | vollständig 1. Klasse |
+| KM4 | nur „Clientseitige Programmierung" | + fortgeschrittenes Styling (Layout, Animationen, Endgerät) |
+| KM5 OOP | ohne Schnittstelle/Zustand/Collections/Laufzeit | **+ Schnittstelle, Zustand, Collections, Laufzeitanalysen** |
+| KM7 | Frameworks + Algorithmen; Kostenplanung; Patterns nur als Bildungsaufgabe | Komponenten + Standardalgorithmen; **Entwurfsmuster als Lehrstoff** |
+| KM9/10 OOP | Software-Patterns (OO-Prinzipien) / Klassenbibliotheken | Entwurfsmuster (Umsetzung) / wiederverwendbare Komponenten |
 
-## Anleitung: So wird ein Jahrgangs-Plan (`jgN-einheiten.md`) generiert
-
-Um z. B. `jg4-einheiten.md` oder `jg5-einheiten.md` zu befüllen, genügt diese Datei plus `METADATA.md`:
-
-1. **Offiziellen Lehrstoff übernehmen:** Kopiere den Lehrstoff des jeweiligen Semesters (KM) aus dieser Datei als „Soll" in den Kopf des Jahrgangs-Dokuments.
-2. **Bereiche trennen:** SWP hat ab Jg III *drei* Bereiche (OOP, Web, PRE) pro Semester – plane jede Einheit mit Bereichskennzeichnung.
-3. **Einheiten skizzieren:** ~12 Doppelstunden pro Semester, jede mit: Nummer, Thema, Bereich, Lehrplan-Bezug, Vorwissen, Aktivität, HÜ.
-4. **Stack konsistent halten:** Deno/TypeScript/Prisma durchgehend; Deno Desktop für GUI; Hono/Vite für Web.
-5. **Vorwissen verankern:** Verweise auf vorherige Jahrgänge (z. B. baut Jg IV beim OOP-Track auf `jg3-einheiten.md` auf).
-6. **Bewertungsrahmen:** PLF/HÜ/Mitarbeit je 1/3 (siehe Wurzel-`README.md`).
-7. **Sprache & Stil:** deutsche Kommentare, `deno fmt` (2 Spaces, doppelte Anführungszeichen).
-
-### Konvention für eine Einheit
-
-```
-### Einheit N – <Thema>  (Bereich: OOP | Web | PRE)
-- KM / Lehrplan-Bezug: <genauer Lehrstoffpunkt aus LEHRPLAN.md>
-- Vorwissen: <frühere Einheit/Jahrgang>
-- Inhalt: <geplanter Unterrichtsstoff, Stichpunkte>
-- Hausübung: <Aufgabe oder „keine">
-```
+② gliedert die Blöcke je Semester in **„SWP"** (fachliche Softwareentwicklung — Georg) und
+**„PRE"** (Projektmanagement — Kollege); diese Trennung spiegelt die tatsächliche
+Lehrer-Aufteilung. **Verbindlich bleibt ①**; die Abdeckungstabellen der Semesterpläne
+beziehen sich auf ② mit Rückverweis auf ①.
 
 ---
 
-## Status der Einheitenplanung
+# ③ Didaktik & Stack (unsere Umsetzung)
 
-| Jahrgang | Status | Datei |
-|----------|--------|-------|
-| I. | *(nicht geplant – Jg I strukturierte Programmierung, Vorjahr)* | — |
-| II. (KM3+KM4) | **Rückgepflegt aus Unterricht SJ 2025/26** | `jg2-einheiten.md` |
-| III. (KM5+KM6) | **Geplant (Priorität SJ 2026/27, OOP mit Deno/TS)** | `jg3-einheiten.md` |
-| IV. (KM7+KM8) | Stub | `jg4-einheiten.md` |
-| V. (KM9) | Stub | `jg5-einheiten.md` |
+- **Didaktische Grundsätze:** BGBl. II Nr. 262/2015 Anlage 1 (Handlungsorientierung,
+  Projektbezug, fächerübergreifender Unterricht).
+- **Sprach-Wahl:** Der Lehrplan ist sprach-agnostisch. **Ab SJ 2026/27:** Jg III OOP mit
+  **Deno/TypeScript** (Nachfolger von C#/.NET, archiviert unter `ARCHIV/2025-26-3ahwii/`
+  + Repo GRG-CS); GUI (KM6) via **Deno Desktop** (≥ 2.9). Begründung: Stack-Konsistenz
+  über alle Jahrgänge und nahtloser Anschluss an Jg II (Web/TS). Details: `METADATA.md`.
+- **Fächerübergreifend mit INFI:** gleiche Kohorte, gleicher Stack (Prisma/SQLite);
+  Verbundprojekt „eine App, zwei Noten" — Architektur: [`../../3HWII/README.md`](../../3HWII/README.md).
+- **Spiralcurriculum:** Kontrollstrukturen (Jg I) → OOP (Jg III) → Entwurfsmuster (Jg IV/V)
+  → Webservices (Jg V); Web-Anwendungen über alle Jahrgänge.
+
+## Anleitung: Jahrgangs-/Semesterpläne generieren
+
+1. **Lehrstoff übernehmen:** Soll des Semesters aus ② (mit Rückblick auf ①) in den Kopf
+   des Plan-Dokuments.
+2. **Bereiche & Wer:** jede UE mit Bereich (OOP | Web | PRE) und Lehrer-Zuordnung
+   (Georg/Kollege). PRE = nur Soll, keine UE-Ausarbeitung.
+3. **Zeitmodell:** **13 echte UE + 2 PLF-DS** pro Semester (1 DS/Woche = Georgs Anteil).
+4. **Konvention pro UE:** `UE | Thema | KM-Bezug | Inhalt/HÜ` (Tabellenform wie in
+   `3HWII/semesterplan-ws.md`), Bonus-UE + reservierte DS separat.
+5. **Stack konsistent:** Deno/TypeScript/Prisma; Deno Desktop für GUI; deutsche Kommentare;
+   `deno fmt` (2 Spaces, doppelte Anführungszeichen).
+6. **Vorwissen verankern** (Verweis auf Vorjahres-Plan), **Bewertungsrahmen:** PLF/HÜ/
+   Mitarbeit je 1/3 (Root-`README.md`).
+7. **Steckbriefe pflegen:** konzeptionelle Vertiefung pro KM in `kompetenzmodule/kmN.md`
+   (Gerüst → voll, wenn das Semester geplant wird).
+
+## Status der Planungs-Dokumente
+
+| Jahrgang | KM | Dokumente | Status |
+|----------|----|-----------|--------|
+| I. | — | — | nicht geplant (Vorjahr, anderer Lehrer) |
+| II. | KM3+KM4 | [`jg2-einheiten.md`](jg2-einheiten.md) + `kompetenzmodule/km3.md`/`km4.md` | **Rückgepflegt** (SJ 2025/26) |
+| III. | KM5+KM6 | [`../../3HWII/`](../../3HWII/) (`README.md`, `semesterplan-ws.md`, `semesterplan-ss.md`) + `kompetenzmodule/km5.md`/`km6.md` | **Geplant (SJ 2026/27, priorisiert)** |
+| IV. | KM7+KM8 | [`jg4-einheiten.md`](jg4-einheiten.md) + `kompetenzmodule/km7.md`/`km8.md` | Gerüst/Stub |
+| V. | KM9 | [`jg5-einheiten.md`](jg5-einheiten.md) + `kompetenzmodule/km9.md` | Gerüst/Stub |

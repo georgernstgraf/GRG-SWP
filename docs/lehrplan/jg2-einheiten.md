@@ -3,6 +3,7 @@
 > **Status:** Rückgepflegt aus dem tatsächlich gehaltenen Unterricht im Schuljahr 2025/26 (Klasse 2AHWII).
 > **Quelle:** [`../../ARCHIV/2025-26-2ahwii/`](../../ARCHIV/2025-26-2ahwii/) – Unterrichtsordner `YYYY-MM-DD_thema/` + [`README.md`](../../ARCHIV/2025-26-2ahwii/README.md) + [`Hausübungen.md`](../../ARCHIV/2025-26-2ahwii/Hausübungen.md).
 > **Offizieller Lehrstoff:** siehe [`LEHRPLAN.md`](LEHRPLAN.md) – II. Jahrgang, Bereich Webtechnologien (KM3 + KM4).
+> **KM-Steckbriefe:** [`../../kompetenzmodule/km3.md`](../../kompetenzmodule/km3.md) · [`../../kompetenzmodule/km4.md`](../../kompetenzmodule/km4.md) · **Nachfolge (3HWII, SJ 2026/27):** [`../../3HWII/`](../../3HWII/).
 
 ## Vorbemerkung
 
@@ -189,6 +190,6 @@ Offiziell ist Jg II dem **Bereich Webtechnologien** gewidmet (KM3 statische Webs
 
 ---
 
-## Vorwissen für Jg III (`jg3-einheiten.md`)
+## Vorwissen für Jg III ([`../../3HWII/`](../../3HWII/))
 
 Mitgegeben: TypeScript-Grundlagen + **OO-Vorgriff** (`class Bruch`, constructor/this/static, Tests), HTML/CSS (Box/Flex/Grid), DOM, Promises/async/await, Fetch, **Hono+SQLite+REST**, **Prisma-Vertiefung**, tRPC-/htmx-Berührung. Die Kohorte ist im Stack flüssig – Jg III bringt die **formalen OOP-Konzepte** (Vererbung, Polymorphismus, Schnittstellen) und die **Architektur** on top.

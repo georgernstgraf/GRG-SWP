@@ -2,8 +2,9 @@
 
 > **Status:** Stub / Gerüst. Wird in einer späteren Session aus [`LEHRPLAN.md`](LEHRPLAN.md) befüllt.
 > **Bereiche in Jg IV:** OOP (wiederverwendbare Komponenten, Standardalgorithmen) + **Webtechnologien** (server-basierende Internetanwendungen) + **SWP** (Entwurfsmuster, Vorgehensmodelle, Testen, QM).
+> **Wer:** 2+2-Split — Georg (OOP/Web) + **Kollege (PRE)**; PRE-Anteile hier nur als Soll, nicht ausgearbeitet. Steckbriefe: [`../../kompetenzmodule/km7.md`](../../kompetenzmodule/km7.md) · [`../../kompetenzmodule/km8.md`](../../kompetenzmodule/km8.md).
 > **Stack:** Deno/TypeScript weiter; serverseitig Hono/Prisma (aus Jg II/III bekannt).
-> **Wochenstunden:** 4 → **~12 Einheiten/Semester**.
+> **Wochenstunden:** 4 → Zeitmodell ab SJ 2027/28: **13 echte UE + 2 PLF-DS** (siehe `../../3HWII/`).
 
 ---
 

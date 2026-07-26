@@ -2,7 +2,8 @@
 
 > **Status:** Stub / Gerüst. Wird in einer späteren Session aus [`LEHRPLAN.md`](LEHRPLAN.md) befüllt.
 > **Bereiche in Jg V:** **Webtechnologien** (Webservices, komplexe dynamische Webanwendungen) + **OOP** (Entwurfsmuster-Umsetzung, wiederverwendbare Komponenten) + **SWP** (Refactoring, großes Team-Projekt, Maturabezug).
-> **Wochenstunden:** 6 (höchste Stundung im Fach) → **~12 Einheiten/Semester** (im Maturajahr netto eher weniger).
+> **Wer:** Aufteilung Georg (Web/OOP) / Kollege (PRE) zu klären; PRE-Anteile nur als Soll. Steckbrief: [`../../kompetenzmodule/km9.md`](../../kompetenzmodule/km9.md).
+> **Wochenstunden:** 6 (höchste Stundung im Fach) → Zeitmodell bei Konkretisierung an das 13-UE-Modell angleichen (siehe `../../3HWII/`; im Maturajahr netto eher weniger).
 
 ---
 
