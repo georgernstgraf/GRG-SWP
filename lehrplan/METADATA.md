@@ -13,7 +13,7 @@
 
 > Gleiche Rechtsgrundlage wie INFI (gleiche Anlage 1.24, gleiche Kohorte). Die rechtlichen
 > Details und die Abgrenzung zur Anlage 1.28 (Technisches Management) siehe im INFI-Repo:
-> [`GRG-INFI/docs/lehrplan/METADATA.md`](https://github.com/georgernstgraf/GRG-INFI/blob/main/docs/lehrplan/METADATA.md).
+> [`GRG-INFI/lehrplan/METADATA.md`](https://github.com/georgernstgraf/GRG-INFI/blob/main/lehrplan/METADATA.md).
 
 ## Stundentafel (HTL Spengergasse)
 

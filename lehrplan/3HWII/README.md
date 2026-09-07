@@ -21,9 +21,9 @@
 ## 3HWII-Verbund mit INFI (eine App – zwei Noten)
 
 > **Querverweis:** Dieselbe Kohorte hat parallel **INFI** (Jg III Datenbanken). INFI-Plan:
-> [`GRG-INFI/docs/lehrplan/jg3-einheiten.md`](https://github.com/georgernstgraf/GRG-INFI/blob/main/docs/lehrplan/jg3-einheiten.md)
-> (wird im Zuge der Spiegelarbeit ebenfalls auf das KM-/3HWII-Format umgestellt — siehe
-> `GRG-INFI/docs/ai/HANDOFF.md`).
+> [`GRG-INFI/lehrplan/3HWII/`](https://github.com/georgernstgraf/GRG-INFI/blob/main/lehrplan/3HWII/README.md)
+> (3HWII-Drehscheibe + Semesterpläne; Steckbriefe `lehrplan/kompetenzmodule/km5.md`/`km6.md` —
+> seit 2026-09-07 im Skill-Standard-Layout).
 
 Beide Fächer laufen im **selben Deno/TypeScript/Prisma/SQLite-Stack** bei **derselben Kohorte**.
 Sie werden als **ein** Spiralcurriculum mit **gemeinsamem Abschlussprojekt** geführt: *eine* App,
