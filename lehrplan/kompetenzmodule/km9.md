@@ -3,7 +3,7 @@
 **Klasse/Semester:** 5HWII, 9. + 10. Semester (voraussichtlich ab SJ 2028/29)
 **Wochenstunden (Lehrplan):** 6 — Aufteilung Georg/Kollege zu klären
 **Bereiche:** Webtechnologien + OOP (**Georg**) · SWP/Refactoring+Projekt (Aufteilung mit Kollege zu klären)
-**Einheiten-Gerüst:** `docs/lehrplan/jg5-einheiten.md`
+**Einheiten-Gerüst:** `lehrplan/jg5-einheiten.md`
 
 ## Worum geht es? (Skizze)
 

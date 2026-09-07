@@ -7,7 +7,7 @@ Superseded decisions are relocated to HISTORY.md.
 - **Choice**: Von 4 SWP-Wochenstunden (Jg V: 6) unterrichtet Georg 2 h (Bereiche OOP + Web + UML-Klassendiagramm), ein Kollege 2 h (Bereich PRE/Projektmanagement + übrige Modellierung).
 - **Reason**: Kollege übernimmt den Projektmanagement-Teil; Georg die Softwareentwicklung.
 - **Considered**: Alles bei Georg (Stand SJ 2025/26 in Jg II).
-- **Tradeoff**: PRE-Lehrstoff wird im Repo nur als „Soll (Kollege)" sichtbar gemacht, nicht ausgearbeitet; Koordinationsbedarf beim Verbundprojekt (offener Punkt in `3HWII/README.md`).
+- **Tradeoff**: PRE-Lehrstoff wird im Repo nur als „Soll (Kollege)" sichtbar gemacht, nicht ausgearbeitet; Koordinationsbedarf beim Verbundprojekt (offener Punkt in `lehrplan/3HWII/README.md`).
 
 ## 2026-07-26: Zeitmodell 13 echte UE + 2 PLF-DS pro Semester
 - **Choice**: Georgs Anteil = 1 Doppelstunde/Woche; Semesterplan = 13 echte Unterrichtseinheiten + 2 reservierte PLF-Doppelstunden; keine Einstiegstest-Reserve (Diagnostik in UE 1 integriert); 2 PLFs pro Semester.
@@ -15,20 +15,20 @@ Superseded decisions are relocated to HISTORY.md.
 - **Considered**: ~12 thematische Doppelstunden ohne explizite Reserve (altes jg3-Modell); 1 PLF + Einstiegstest.
 - **Tradeoff**: Weniger thematische UE als das naive 18-Wochen-Maximum; Ausfälle sind einkalkuliert.
 
-## 2026-07-26: Planungs-Ablage PMM-Stil im Root
-- **Choice**: `kompetenzmodule/` (Matrix + kmN.md-Steckbriefe) und `3HWII/` (README + semesterplan-ws/ss.md) als Top-Level-Ordner; Klassenordner groß geschrieben (Parallelklassen 3a/3b möglich).
-- **Reason**: Bewährtes Format aus GRG-PMM; Root bleibt navigierbar.
-- **Considered**: Alles unter `docs/lehrplan/` belassen.
-- **Tradeoff**: Zwei Orte mit Lehrplan-Bezug (docs/lehrplan = Quelle/Rahmen, kompetenzmodule+3HWII = Umsetzung); durch Verlinkung gelöst.
+## 2026-09-07: Lehrplan im Skill-Standard-Layout unter `lehrplan/`
+- **Choice**: Alle Lehrplan- und Planungsartefakte zusammen im Root-Ordner `lehrplan/` (wie im lehrplan-Skill): `LEHRPLAN.md` (dreischichtig), `RIS.md`, `METADATA.md`, `HWII_*.pdf`, `jg2/jg4/jg5-einheiten.md`, `kompetenzmodule/`, `3HWII/` (mit Klassenextrakt `3HWII.lehrplan.md`). Repo-`GLOSSAR.md` angelegt.
+- **Reason**: Konformität mit dem lehrplan-Skill (Gegenstand identifizieren, Novellen-Check, Extraktion) ohne Pfad-Sonderfall; ein Ort für Rechtsquelle + Didaktik + Umsetzung.
+- **Considered**: Alte Verteilung beibehalten (docs/lehrplan = Quelle, Root = Umsetzung); `lehrplan/` nur für Rechtsquelle.
+- **Tradeoff**: Repo-Root hat einen neuen Top-Ordner; ADR „Planungs-Ablage PMM-Stil im Root" (2026-07-26) supersediert → HISTORY.md. ARCHIV/ bleibt außerhalb.
 
 ## 2026-07-26: Lehrplan-Doku dreischichtig
-- **Choice**: `docs/lehrplan/LEHRPLAN.md` = ① getreuer RIS-Extrakt (verbindlich) + ② Schuladaption (`HWII_SWP.pdf`) + ③ Didaktik/Stack; Abweichungen in `docs/lehrplan/RIS.md` tabelliert.
+- **Choice**: `lehrplan/LEHRPLAN.md` = ① getreuer RIS-Extrakt (verbindlich) + ② Schuladaption (`HWII_SWP.pdf`) + ③ Didaktik/Stack; Abweichungen in `lehrplan/RIS.md` tabelliert.
 - **Reason**: Der bisherige Extrakt folgte ungekennzeichnet der Schuladaption, die vom offiziellen Text abweicht (Web ab Jg I, StruktProg bis KM4).
 - **Considered**: Nur Schuladaption als alleinige Wahrheit.
 - **Tradeoff**: Längeres Dokument; Abdeckungstabellen beziehen sich auf ② mit Rückverweis auf ①.
 
 ## 2026-07-26: jg3-einheiten.md nach Migration gelöscht
-- **Choice**: Inhalte verlustfrei verteilt (Einheiten → `3HWII/semesterplan-*.md`, INFI-Verbund → `3HWII/README.md`, Abdeckung → `kompetenzmodule/km5.md`/`km6.md`, Jg-IV-Ausblick → km7/km8-Gerüste), dann Datei gelöscht.
+- **Choice**: Inhalte verlustfrei verteilt (Einheiten → `lehrplan/3HWII/semesterplan-*.md`, INFI-Verbund → `lehrplan/3HWII/README.md`, Abdeckung → `lehrplan/kompetenzmodule/km5.md`/`km6.md`, Jg-IV-Ausblick → km7/km8-Gerüste), dann Datei gelöscht.
 - **Reason**: Doppelte Wahrheit vermeiden; 13-UE-Format ersetzt das 12-Einheiten-Format.
 - **Considered**: jg3 als Verweis-Stub behalten.
 - **Tradeoff**: Historischer Plan nur noch in der Git-History.
@@ -42,7 +42,7 @@ Superseded decisions are relocated to HISTORY.md.
 - **Choice**: Gemeinsames Abschlussprojekt mit INFI („eine App, zwei Noten") bleibt; PM-Rahmung (Rollen, Issues, PM-Dokumente) kommt vom PRE-Kollegen.
 - **Reason**: Verbund ist didaktischer Kern (Repository-Brücke, TPH/O-R-Mapping); PM ist Lehrstoff des Kollegen.
 - **Considered**: Verbund ohne PM-Rahmen; Verbund streichen.
-- **Tradeoff**: Koordination mit Kollegen erforderlich (TBD in `3HWII/README.md`).
+- **Tradeoff**: Koordination mit Kollegen erforderlich (TBD in `lehrplan/3HWII/README.md`).
 
 ## 2026-07-26: Spiegel-Session für GRG-INFI vorgesehen
 - **Choice**: Dieselbe Lehrplan-Arbeit wird in `../GRG-INFI` in einer eigenen Session (aus dem INFI-Repo heraus) durchgeführt; Auftrag + RIS-Befund liegen fertig in `GRG-INFI/docs/ai/HANDOFF.md`.

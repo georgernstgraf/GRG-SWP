@@ -12,9 +12,9 @@
 | **Zeitmodell (Georg)** | 1 DS/Woche → **13 echte UE + 2 PLF-DS** pro Semester |
 | **Beurteilung** | PLF / Hausübungen / Mitarbeit je 1/3 (Details: Root-`README.md`) |
 | **Stack** | Deno · TypeScript · `Deno.test` · Deno Desktop (GUI, KM6) · Prisma/SQLite (via INFI) |
-| **KM-Steckbriefe** | [`kompetenzmodule/km5.md`](../kompetenzmodule/km5.md) · [`kompetenzmodule/km6.md`](../kompetenzmodule/km6.md) |
+| **KM-Steckbriefe** | [`../kompetenzmodule/km5.md`](../kompetenzmodule/km5.md) · [`../kompetenzmodule/km6.md`](../kompetenzmodule/km6.md) |
 | **Semesterpläne** | [`semesterplan-ws.md`](semesterplan-ws.md) (KM5) · [`semesterplan-ss.md`](semesterplan-ss.md) (KM6) |
-| **Vorwissen** | [`docs/lehrplan/jg2-einheiten.md`](../docs/lehrplan/jg2-einheiten.md) — TS, OO-Vorgriff (`class Bruch` + Tests), HTML/CSS, DOM, Promises/async/await, Fetch, Hono+SQLite+REST, Prisma-Berührung, tRPC/htmx |
+| **Vorwissen** | [`../jg2-einheiten.md`](../jg2-einheiten.md) — TS, OO-Vorgriff (`class Bruch` + Tests), HTML/CSS, DOM, Promises/async/await, Fetch, Hono+SQLite+REST, Prisma-Berührung, tRPC/htmx |
 
 ---
 

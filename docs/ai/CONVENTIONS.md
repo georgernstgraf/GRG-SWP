@@ -4,13 +4,13 @@ Coding patterns, naming rules, and style agreements for this project.
 Follow these without question. Do not deviate unless explicitly told.
 
 ## Naming
-- Klassenordner groß: `3HWII/` (Parallelklassen 3a/3b möglich), Inhalte: `README.md` + `semesterplan-ws.md` + `semesterplan-ss.md`.
-- KM-Steckbriefe: `kompetenzmodule/kmN.md` (N = Kompetenzmodul-Nummer; KM9 ein File für Sem. 9+10).
+- Klassenordner groß: `lehrplan/3HWII/` (Parallelklassen 3a/3b möglich), Inhalte: `README.md` + `semesterplan-ws.md` + `semesterplan-ss.md` + Klassenextrakt `3HWII.lehrplan.md`.
+- KM-Steckbriefe: `lehrplan/kompetenzmodule/kmN.md` (N = Kompetenzmodul-Nummer; KM9 ein File für Sem. 9+10).
 - Unterrichts-Archiv: `ARCHIV/YYYY-YY-<klasse>kleingeschrieben/YYYY-MM-DD_thema/`.
 
 ## File Layout
-- Lehrplan-Quelle: `docs/lehrplan/` (LEHRPLAN.md dreischichtig ① RIS ② Schuladaption ③ Didaktik; RIS.md = Rechtsstand; METADATA.md = Stundentafel/Stack/Konventionen).
-- Umsetzungs-Pläne: Root (`kompetenzmodule/`, `3HWII/`).
+- Lehrplan nach Skill-Standard im Root-Ordner `lehrplan/`: Quelle `LEHRPLAN.md` (dreischichtig ① RIS ② Schuladaption ③ Didaktik), `RIS.md` = Rechtsstand, `METADATA.md` = Stundentafel/Stack/Konventionen.
+- Umsetzungs-Pläne: `lehrplan/kompetenzmodule/`, `lehrplan/3HWII/` (seit 2026-09-07 unter `lehrplan/`, davor Root).
 - Wissen für Agenten: `docs/ai/` (HANDOFF/STATE/DECISIONS/ARCHITECTURE/CONVENTIONS/PITFALLS/DOMAIN/HISTORY).
 
 ## Planungs-Format
@@ -21,7 +21,7 @@ Follow these without question. Do not deviate unless explicitly told.
 
 ## Lehrplan-Regeln
 - Verbindlich ist ① (RIS-Extrakt); Abdeckungstabellen beziehen sich auf ② (Schuladaption) mit Rückverweis auf ①.
-- RIS-Rechtsstand jährlich (Sommerferien) gegen die konsolidierte Fassung prüfen (Links in `docs/lehrplan/RIS.md`).
+- RIS-Rechtsstand jährlich (Sommerferien) gegen die konsolidierte Fassung prüfen (Links in `lehrplan/RIS.md`).
 - Rechtsgrundlage korrekt zitieren: „BGBl. II Nr. 262/2015 idF BGBl. II Nr. 235/2019, Anlage 1.24".
 
 ## Code (Unterrichtsbeispiele)

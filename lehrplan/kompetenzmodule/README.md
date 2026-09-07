@@ -5,8 +5,8 @@ Didaktische Steckbriefe zu den Kompetenzmodulen des Faches
 je ein Markdown-File pro KM.
 
 Rechtsgrundlage: BGBl. II Nr. 262/2015 idF BGBl. II Nr. 235/2019, Anlage 1.24
-(Recherche & Schichten-Vergleich: `docs/lehrplan/RIS.md` ·
-Lehrstoff-Extrakt: `docs/lehrplan/LEHRPLAN.md`).
+(Recherche & Schichten-Vergleich: `lehrplan/RIS.md` ·
+Lehrstoff-Extrakt: `lehrplan/LEHRPLAN.md`).
 
 ## Semester ↔ Klasse ↔ KM
 
@@ -51,8 +51,8 @@ betreffende Semester konkret plant.
 
 ## Verknüpfte Dokumente
 
-- `docs/lehrplan/LEHRPLAN.md` — Lehrstoff dreischichtig (offiziell / Schuladaption / Didaktik)
-- `docs/lehrplan/RIS.md` — Rechtsstand & Novellen-Historie
-- `docs/lehrplan/METADATA.md` — Stundentafel, Stack, Planungskonvention
-- `3HWII/semesterplan-ws.md`, `3HWII/semesterplan-ss.md` — konkrete Semesterpläne (KM5/KM6)
-- `docs/lehrplan/jg2-einheiten.md` — rückgepflegter Unterricht KM3/KM4 (SJ 2025/26)
+- `lehrplan/LEHRPLAN.md` — Lehrstoff dreischichtig (offiziell / Schuladaption / Didaktik)
+- `lehrplan/RIS.md` — Rechtsstand & Novellen-Historie
+- `lehrplan/METADATA.md` — Stundentafel, Stack, Planungskonvention
+- `lehrplan/3HWII/semesterplan-ws.md`, `lehrplan/3HWII/semesterplan-ss.md` — konkrete Semesterpläne (KM5/KM6)
+- `lehrplan/jg2-einheiten.md` — rückgepflegter Unterricht KM3/KM4 (SJ 2025/26)

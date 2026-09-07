@@ -43,7 +43,7 @@ sichtbar, wird hier aber **nicht ausgearbeitet**. In Jg I/II unterrichtet Georg 
 ## Kompetenzmodule und Bereiche (Fach: SWP)
 
 Das Fach verschränkt **drei Bereiche**, die über die Jahrgänge verteilt sind (Matrix mit
-Unterrichtet-Status: [`../../kompetenzmodule/README.md`](../../kompetenzmodule/README.md)):
+Unterrichtet-Status: [`kompetenzmodule/README.md`](kompetenzmodule/README.md)):
 
 | Jahrgang | Semester | KM | Bereiche (Schuladaption ②) | Wer |
 |----------|----------|----|-----------------------------|-----|
@@ -64,7 +64,8 @@ Unterrichtet-Status: [`../../kompetenzmodule/README.md`](../../kompetenzmodule/R
 - **Zeitmodell (Georgs Anteil, ab Jg III):** 1 DS/Woche à 2 h → **13 echte UE + 2 PLF-DS**
   pro Semester (Netto nach Abzug administrativer Termine und Ferien; 2 PLFs pro Semester).
 - **Dokumente:** Klassen-Drehscheibe `3HWII/README.md` + `semesterplan-ws.md` /
-  `semesterplan-ss.md` (PMM-Format), konzeptionelle Steckbriefe in `kompetenzmodule/kmN.md`.
+  `semesterplan-ss.md` (PMM-Format), Klassenextrakt `3HWII/3HWII.lehrplan.md`, konzeptionelle
+  Steckbriefe in `kompetenzmodule/kmN.md`.
 - **Selbsttragend:** [`LEHRPLAN.md`](LEHRPLAN.md) enthält den offiziellen Lehrstoff (Schicht ①)
   aller Jahrgänge plus Schuladaption (Schicht ②) und eine Generierungs-Anleitung (Schicht ③).
 
@@ -85,6 +86,9 @@ Unterrichtet-Status: [`../../kompetenzmodule/README.md`](../../kompetenzmodule/R
 
 ## Dateien in diesem Verzeichnis
 
+> **Layout seit 2026-09-07:** alles unter `lehrplan/` (Skill-Standard-Layout); zuvor lag
+> die Rechtsquelle unter `docs/lehrplan/` und die Umsetzung am Root. Repo-GLOSSAR.md (Domänenbegriffe) liegt am Repo-Root.
+
 | Datei | Beschreibung |
 |-------|--------------|
 | `METADATA.md` | Diese Datei |
@@ -94,7 +98,8 @@ Unterrichtet-Status: [`../../kompetenzmodule/README.md`](../../kompetenzmodule/R
 | `jg2-einheiten.md` | 2. Klasse (KM3+KM4 Webtechnologien) – Rückpflege aus SJ 2025/26 |
 | `jg4-einheiten.md` | 4. Klasse (KM7+KM8) – Stub/Gerüst |
 | `jg5-einheiten.md` | 5. Klasse (KM9) – Stub/Gerüst |
+| `kompetenzmodule/` | KM-Matrix (`README.md`) + Steckbriefe `km3.md`–`km9.md` (PMM-Format) |
+| `3HWII/` | Drehscheibe SJ 2026/27: `README.md` (Rahmen + INFI-Verbund), `semesterplan-ws.md` (KM5), `semesterplan-ss.md` (KM6), Klassenextrakt `3HWII.lehrplan.md` |
 
-> **Außerhalb dieses Verzeichnisses:** `kompetenzmodule/` (Matrix + Steckbriefe, Root) und
-> `3HWII/` (Semesterpläne SJ 2026/27, Root). Das frühere `jg3-einheiten.md` wurde dorthin
-> migriert (kein Informationsverlust) und gelöscht.
+> Das frühere `jg3-einheiten.md` wurde nach `3HWII/` (Semesterpläne) und
+> `kompetenzmodule/` (Abdeckung) migriert (kein Informationsverlust) und gelöscht.

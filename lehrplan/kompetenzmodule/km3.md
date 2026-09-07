@@ -3,7 +3,7 @@
 **Klasse/Semester:** 2HWII → 2AHWII, 3. Semester (WS, rückgepflegt SJ 2025/26)
 **Wochenstunden (Lehrplan):** 2 (Georg allein)
 **Bereich:** Webtechnologien
-**Konkrete Einheiten:** `docs/lehrplan/jg2-einheiten.md` (Ist-Zustand aus dem
+**Konkrete Einheiten:** `lehrplan/jg2-einheiten.md` (Ist-Zustand aus dem
 tatsächlich gehaltenen Unterricht) · Archiv: `ARCHIV/2025-26-2ahwii/`
 
 ## Worum geht es?

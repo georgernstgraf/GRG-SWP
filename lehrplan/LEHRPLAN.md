@@ -3,7 +3,7 @@
 > **Dreischichtig:** ① **offizieller Extrakt** (RIS, verbindlich) · ② **Schuladaption**
 > (`HWII_SWP.pdf`, schulinterne Umschichtung) · ③ **Didaktik/Stack** (unsere Umsetzung).
 > Rechtsstand & Abweichungs-Analyse: [`RIS.md`](RIS.md) · Metadaten/Stundentafel/Stack:
-> [`METADATA.md`](METADATA.md) · KM-Steckbriefe: [`../../kompetenzmodule/`](../../kompetenzmodule/).
+> [`METADATA.md`](METADATA.md) · KM-Steckbriefe: [`kompetenzmodule/`](kompetenzmodule/).
 >
 > **Wer unterrichtet was (ab Jg III):** Bereiche **OOP + Web + UML-Klassendiagramm = Georg**;
 > **PRE (Projektmanagement) + übrige Modellierung = Kollege** (2+2-Split; PRE hier nur als
@@ -203,7 +203,7 @@ beziehen sich auf ② mit Rückverweis auf ①.
   + Repo GRG-CS); GUI (KM6) via **Deno Desktop** (≥ 2.9). Begründung: Stack-Konsistenz
   über alle Jahrgänge und nahtloser Anschluss an Jg II (Web/TS). Details: `METADATA.md`.
 - **Fächerübergreifend mit INFI:** gleiche Kohorte, gleicher Stack (Prisma/SQLite);
-  Verbundprojekt „eine App, zwei Noten" — Architektur: [`../../3HWII/README.md`](../../3HWII/README.md).
+  Verbundprojekt „eine App, zwei Noten" — Architektur: [`3HWII/README.md`](3HWII/README.md).
 - **Spiralcurriculum:** Kontrollstrukturen (Jg I) → OOP (Jg III) → Entwurfsmuster (Jg IV/V)
   → Webservices (Jg V); Web-Anwendungen über alle Jahrgänge.
 
@@ -229,6 +229,6 @@ beziehen sich auf ② mit Rückverweis auf ①.
 |----------|----|-----------|--------|
 | I. | — | — | nicht geplant (Vorjahr, anderer Lehrer) |
 | II. | KM3+KM4 | [`jg2-einheiten.md`](jg2-einheiten.md) + `kompetenzmodule/km3.md`/`km4.md` | **Rückgepflegt** (SJ 2025/26) |
-| III. | KM5+KM6 | [`../../3HWII/`](../../3HWII/) (`README.md`, `semesterplan-ws.md`, `semesterplan-ss.md`) + `kompetenzmodule/km5.md`/`km6.md` | **Geplant (SJ 2026/27, priorisiert)** |
+| III. | KM5+KM6 | [`3HWII/`](3HWII/) (`README.md`, `semesterplan-ws.md`, `semesterplan-ss.md`) + `kompetenzmodule/km5.md`/`km6.md` | **Geplant (SJ 2026/27, priorisiert)** |
 | IV. | KM7+KM8 | [`jg4-einheiten.md`](jg4-einheiten.md) + `kompetenzmodule/km7.md`/`km8.md` | Gerüst/Stub |
 | V. | KM9 | [`jg5-einheiten.md`](jg5-einheiten.md) + `kompetenzmodule/km9.md` | Gerüst/Stub |
