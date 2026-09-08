@@ -1,4 +1,24 @@
-# 3AHWII SWP OOP (C#)
+# 3AHWII SWP OOP (TypeScript, Deno)
+
+## 2026-09-08 – Erste UE, SJ 2026/27
+
+OOP heuer in TypeScript/Deno (nicht mehr C#). Einstieg: Bruch-Klasse
+(`3ahwii/2026-09-08_intro/`), Domäne bekannt aus der 2. Klasse.
+
+HÜ:
+
+- GH Repo erstellen wenn nötig, URL an grafg@ schicken.
+- Bruch-Klasse: immer kürzen (ggt), toString in gemischter Form ("3 7/11", "3/4", "5"),
+  throw bei Nenner 0. `deno test` muss grün sein.
+
+Lehrer-Quellen für kommende OOP-UEs (Vererbung, Polymorphismus, Collections):
+
+- Total TypeScript, Workshop **Pro Essentials** – Kapitel „OOP with classes"
+  (bezahlt; als Inspirationsquelle für Übungen, nicht Schüler-Pflichtmaterial)
+- Buch: *Total TypeScript* (Pocock/Bell, No Starch Press, 2026) – Nachschlagewerk
+- Gratis für Schüler: <https://github.com/mattpocock/beginners-typescript-tutorial>,
+  <https://www.totaltypescript.com/tutorials>
+- Später (agentic coding): <https://github.com/ai-hero-dev>
 
 ## 2026-03-04
 
