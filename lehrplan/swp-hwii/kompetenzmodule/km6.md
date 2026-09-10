@@ -4,7 +4,7 @@
 **Wochenstunden (Lehrplan):** 4 — davon **Georg 2 h** (1 DS/Woche) + **Kollege 2 h (PRE)**
 **Zeitmodell:** 13 echte UE + 2 PLF-DS
 **Bereiche:** OOP/GUI + Architektur (**Georg**) · Projektmanagement (**Kollege**, nur Soll)
-**Konkreter Semesterplan:** `lehrplan/3HWII/semesterplan-ss.md` · **Verbund:** `lehrplan/3HWII/README.md`
+**Konkreter Semesterplan:** `unterricht/HWII-SWP/jg3-semesterplan-ss.md` · **Verbund:** `lehrplan/swp-hwii/3HWII/README.md`
 
 ## Worum geht es?
 
@@ -22,7 +22,7 @@ KM6 hat zwei Gesichter:
 
 Das Semester mündet in das **Verbundprojekt mit INFI** („eine App, zwei Noten"):
 SWP liefert Domäne (KM5) + Desktop-GUI + Repository-Vertrag (KM6), INFI liefert die
-Prisma-Persistenz — die PM-Rahmung kommt vom Kollegen. Details: `lehrplan/3HWII/README.md`.
+Prisma-Persistenz — die PM-Rahmung kommt vom Kollegen. Details: `lehrplan/swp-hwii/3HWII/README.md`.
 
 ## Wofür braucht man das in der Praxis?
 
@@ -55,7 +55,7 @@ Prisma-Persistenz — die PM-Rahmung kommt vom Kollegen. Details: `lehrplan/3HWI
 - Warum Event-Driven-Programmierung ein OOP-Muster ist (Observer informell, formal in KM7)
 - Warum Nebenläufigkeit ohne gemeinsamen mutable State harmlos ist — und mit ihm gefährlich
 - Warum Prisma keine Vererbung kennt und das Repository die Polymorphie „hineinpfriemelt"
-  (O/R-Impedance-Mismatch, TPH — siehe `lehrplan/3HWII/README.md`)
+  (O/R-Impedance-Mismatch, TPH — siehe `lehrplan/swp-hwii/3HWII/README.md`)
 
 ### Können (mit Deno/TypeScript umsetzen)
 - Eine Deno-Desktop-App mit Fenster, Formularen und Events bauen
@@ -76,7 +76,7 @@ Lehrplan-Soll KM6, Bereich SWP/PRE (Sichtbarkeit für die Klassenführung):
   Softwareprojekts im Team unter Einsatz von Projektmanagementmethoden
 - **Koordination (offener Punkt):** Das Verbundprojekt mit INFI wird vom Kollegen
   PM-methodisch gerahmt (Rollen, Issues, PM-Dokumente) — Abstimmung mit Georg/INFI
-  erforderlich; vermerkt in `lehrplan/3HWII/README.md`.
+  erforderlich; vermerkt in `lehrplan/swp-hwii/3HWII/README.md`.
 
 ## Ressourcen & Stack
 
@@ -86,7 +86,7 @@ Lehrplan-Soll KM6, Bereich SWP/PRE (Sichtbarkeit für die Klassenführung):
 | Architektur | Repository-Pattern, MVC — bewusst *informell* (Patterns formal erst KM7) |
 | Persistenz | Prisma/SQLite **via INFI** (SWP-Seite bleibt DB-frei bis zum Verbund) |
 | Tests/Benchmarks | `Deno.test`, `Deno.bench` |
-| Verbund | `lehrplan/3HWII/README.md` — Schichten-Aufteilung, TPH/O-R-Mapping, Domänenwahl |
+| Verbund | `lehrplan/swp-hwii/3HWII/README.md` — Schichten-Aufteilung, TPH/O-R-Mapping, Domänenwahl |
 
 **Mitgenommen aus KM5:** Vererbung/Polymorphismus, Interfaces, Generics, UML, Testdisziplin.
 **Mitnahme nach KM7/KM8:** Repository/MVC → wiederverwendbare Komponenten; informelle

@@ -9,9 +9,9 @@ Branch: `main` (GRG-SWP) · Tracking-Issue: **#7** (offen)
    heraus starten (dessen AGENTS.md beachten; Issues sind dort deaktiviert).
 2. [ ] **PM-Koordination mit PRE-Kollegen** (kein Agenten-Task, Erinnerung an Georg):
    PM-Rahmung Verbundprojekt, PM-Rubrik, Verteilung seiner 2 h — siehe
-   `lehrplan/3HWII/README.md` → „Offene Punkte (TBD)".
+   `lehrplan/swp-hwii/3HWII/README.md` → „Offene Punkte (TBD)".
 3. [ ] **Deno Desktop ≥ 2.9 vor SS-Start verifizieren** — sonst GUI-Einheiten
-   (`lehrplan/3HWII/semesterplan-ss.md` UE 1–4) auf Fallback Hono+Vite umstellen.
+   (`unterricht/HWII-SWP/jg3-semesterplan-ss.md` UE 1–4) auf Fallback Hono+Vite umstellen.
 
 ## Kontext für den nächsten Agenten
 

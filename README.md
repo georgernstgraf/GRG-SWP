@@ -44,7 +44,7 @@ Intensität werden von der Lehrperson beurteilt.
 | **5AHWII X/Y** | [`ARCHIV/2025-26-5ahwii_X/`](ARCHIV/2025-26-5ahwii_X/), [`…_Y/`](ARCHIV/2025-26-5ahwii_Y/) | Prisma ORM, Deno, REST-APIs, Full-Stack-Web, Regex, Agentic Coding |
 | 5AHWII (alle) | [`ARCHIV/2025-26-5ahwii_alle/`](ARCHIV/2025-26-5ahwii_alle/) | Maturavorbereitung, PLF-Übungen (Parkhaus, Non-Decided) |
 
-**Geplant für SJ 2026/27:** 3AHWII (aus 2AHWII) – OOP mit **Deno/TypeScript** (nicht C#), GUI via **Deno Desktop**; in Verbundführung mit INFI; 2+2-Split mit PM-Kollegen. Siehe [`lehrplan/3HWII/`](lehrplan/3HWII/) (Semesterpläne) und [`lehrplan/kompetenzmodule/`](lehrplan/kompetenzmodule/) (KM-Matrix + Steckbriefe).
+**Geplant für SJ 2026/27:** 3AHWII (aus 2AHWII) – OOP mit **Deno/TypeScript** (nicht C#), GUI via **Deno Desktop**; in Verbundführung mit INFI; 2+2-Split mit PM-Kollegen. Siehe [`lehrplan/swp-hwii/3HWII/`](lehrplan/swp-hwii/3HWII/) (Drehscheibe) und [`unterricht/HWII-SWP/`](unterricht/HWII-SWP/) (Semesterpläne + Einheiten), KM-Steckbriefe unter [`lehrplan/swp-hwii/kompetenzmodule/`](lehrplan/swp-hwii/kompetenzmodule/).
 
 ---
 
@@ -165,9 +165,10 @@ Datenbank-Schema-Entwürfe und vollständige Mini-Apps:
 ## Organisatorisches
 
 - [`PROJECT_CONTRIBUTIONS.md`](PROJECT_CONTRIBUTIONS.md) – Leitfaden für Issues und PRs
-- [`lehrplan/`](lehrplan/) – Rahmenlehrplan (Anlage 1.24, dreischichtig) + Rechtsstand-Recherche ([`RIS.md`](lehrplan/RIS.md)) + Einheitenplanung pro Jahrgang; Quelle: [`LEHRPLAN.md`](lehrplan/LEHRPLAN.md), Metadaten: [`METADATA.md`](lehrplan/METADATA.md)
-- [`lehrplan/kompetenzmodule/`](lehrplan/kompetenzmodule/) – KM-Matrix (Semester↔Klasse↔KM↔Wer) + didaktische Steckbriefe
-- [`lehrplan/3HWII/`](lehrplan/3HWII/) – Drehscheibe + Semesterpläne SJ 2026/27 (KM5/KM6, 13 UE + 2 PLF, INFI-Verbund)
+- [`lehrplan/`](lehrplan/) – Lehrplan-Werk (Anlage 1.24): Zweig-Ordner [`lehrplan/swp-hwii/`](lehrplan/swp-hwii/) mit dreischichtigem [`LEHRPLAN.md`](lehrplan/swp-hwii/LEHRPLAN.md), Rechtsstand ([`RIS.md`](lehrplan/swp-hwii/RIS.md)), ②-PDFs und [`METADATA.md`](lehrplan/METADATA.md)
+- [`lehrplan/swp-hwii/kompetenzmodule/`](lehrplan/swp-hwii/kompetenzmodule/) – KM-Matrix (Semester↔Klasse↔KM↔Wer) + didaktische Steckbriefe
+- [`lehrplan/swp-hwii/3HWII/`](lehrplan/swp-hwii/3HWII/) – Drehscheibe SJ 2026/27 (KM5/KM6, 13 UE + 2 PLF, INFI-Verbund)
+- [`unterricht/HWII-SWP/`](unterricht/HWII-SWP/) – Unterrichts-Ebene: Semesterpläne `jg3-semesterplan-{ws,ss}.md` + Einheiten `jg2/jg4/jg5-einheiten.md`
 
 ---
 

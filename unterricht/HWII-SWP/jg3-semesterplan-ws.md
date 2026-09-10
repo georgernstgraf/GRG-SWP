@@ -8,7 +8,7 @@ Offiziell 18 Schulwochen — Ausfälle durch Feiertage/Krankheit sind einkalkuli
 bei Glücksfall Bonus-UE (siehe unten).
 **Werkzeug:** Deno / TypeScript · **Didaktik:** testgetrieben (`Deno.test`), DB-frei,
 Domäne `Bruch` (aus Jg II bekannt) → kleine Hierarchien → Verbund-Vorgriff
-**KM-Steckbrief:** `../kompetenzmodule/km5.md` · **Verbund mit INFI:** `lehrplan/3HWII/README.md`
+**KM-Steckbrief:** `lehrplan/swp-hwii/kompetenzmodule/km5.md` · **Verbund mit INFI:** `lehrplan/swp-hwii/3HWII/README.md`
 
 > **Vorwissen aus Jg II (KM3/KM4):** TS-Grundlagen, `class Bruch` (constructor/this/static)
 > mit Tests, HTML/CSS, DOM, Promises/async/await, Fetch, Hono+SQLite+REST, Prisma-Berührung.
@@ -72,11 +72,11 @@ Domäne `Bruch` (aus Jg II bekannt) → kleine Hierarchien → Verbund-Vorgriff
 - **Modellierung, übrige Notationen:** Workflow-/Flussdiagramme, Aktivitäts-/Sequenzdiagramme
   (offizieller SWP-Bereich „Modellierungssprachen, Darstellungen" — UML-**Klassen**diagramm
   liegt bei Georg, UE 11–12).
-- Verteilung seiner 2 h (parallel/geblockt): **TBD**, siehe `lehrplan/3HWII/README.md` → Offene Punkte.
+- Verteilung seiner 2 h (parallel/geblockt): **TBD**, siehe `lehrplan/swp-hwii/3HWII/README.md` → Offene Punkte.
 
 ---
 
 **Schwerpunkte:** 6 UE OOP-Kern (Klasse→Polymorphismus) · 3 UE Collections/Laufzeit/Exceptions ·
 2 UE UML/Modellierung · 2 UE Fundament+Festigung/Projekt
 **INFI-Synchronisation:** SWP bleibt im WS DB-frei; ab ~Dez (UE 12) gemeinsame Beispieldomäne
-mit INFI andeuten — Details `lehrplan/3HWII/README.md` → Sequenz-Abstimmung.
+mit INFI andeuten — Details `lehrplan/swp-hwii/3HWII/README.md` → Sequenz-Abstimmung.

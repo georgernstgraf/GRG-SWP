@@ -3,7 +3,7 @@
 **Klasse/Semester:** 4HWII, 8. Semester (SS, voraussichtlich ab 2028)
 **Wochenstunden (Lehrplan):** 4 — 2+2-Split (Georg: Web + fachliches Testen · Kollege: PRE/QM)
 **Bereiche:** Webtechnologien (**Georg**) · SWP/Qualitätsmanagement+PM (Aufteilung mit Kollege zu klären)
-**Einheiten-Gerüst:** `lehrplan/jg4-einheiten.md`
+**Einheiten-Gerüst:** `unterricht/HWII-SWP/jg4-einheiten.md`
 
 ## Worum geht es? (Skizze)
 

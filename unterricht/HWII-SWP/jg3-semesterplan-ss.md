@@ -7,7 +7,7 @@ Softwareentwicklung und Projektmanagement (SWP) — KM6
 Offiziell 18 Schulwochen — Ausfälle einkalkuliert; bei Glücksfall Bonus-UE (siehe unten).
 **Werkzeug:** Deno / TypeScript · **Deno Desktop** (GUI, ≥ 2.9 — Stand vor SS-Start
 verifizieren, Fallback: Hono+Vite-Web-UI) · Prisma/SQLite **via INFI**
-**KM-Steckbrief:** `../kompetenzmodule/km6.md` · **Verbund mit INFI:** `lehrplan/3HWII/README.md`
+**KM-Steckbrief:** `lehrplan/swp-hwii/kompetenzmodule/km6.md` · **Verbund mit INFI:** `lehrplan/swp-hwii/3HWII/README.md`
 
 > **Vorwissen aus KM5 (WS):** Vererbung, Polymorphismus, Interfaces, abstrakte Klassen,
 > Generics/Collections, Laufzeitanalyse, UML-Klassendiagramm, Testdisziplin.
@@ -29,7 +29,7 @@ verifizieren, Fallback: Hono+Vite-Web-UI) · Prisma/SQLite **via INFI**
 
 | UE | Thema | KM-Bezug ② | Inhalt / HÜ |
 |----|-------|------------|--------------|
-| 5 | **Repository-Pattern (Brücke zu INFI)** | erweiterbare, wartbare Programme | `interface MediumRepository`; Domäne bleibt DB-frei (SWP); INFI implementiert mit Prisma → gemeinsames Artefakt (`lehrplan/3HWII/README.md`). HÜ: Interface + In-Memory-Implementierung (Tests) |
+| 5 | **Repository-Pattern (Brücke zu INFI)** | erweiterbare, wartbare Programme | `interface MediumRepository`; Domäne bleibt DB-frei (SWP); INFI implementiert mit Prisma → gemeinsames Artefakt (`lehrplan/swp-hwii/3HWII/README.md`). HÜ: Interface + In-Memory-Implementierung (Tests) |
 | 6 | **MVC / Schichtentrennung** | erweiterbare, wartbare Programme | Model (OOP) – View (Webview) – Controller (Bindings); warum trennen? Testbarkeit, Austauschbarkeit. HÜ: MVC-Skizze der eigenen App |
 | 7 | **Parallele Abläufe** | parallele Abläufe | `async`/`await` in Desktop (Rep Jg II), `Promise.all`; Nebenläufigkeit ohne Races; Ausblick Web Workers. HÜ: zwei Repositories parallel abfragen |
 
@@ -45,8 +45,8 @@ verifizieren, Fallback: Hono+Vite-Web-UI) · Prisma/SQLite **via INFI**
 
 > Lehrplan-Soll ①/②: **„Durchführung eines Softwareprojekts im Team unter Einsatz von
 > Projektmanagementmethoden"** — PM-Rahmung (Teams, Rollen, Issues, PM-Dokumente):
-> **Kollege** (PRE), Koordination siehe `lehrplan/3HWII/README.md` → Offene Punkte.
-> Domänenwahl per Abstimmung in UE 9 (5 Vorschläge: `lehrplan/3HWII/README.md`).
+> **Kollege** (PRE), Koordination siehe `lehrplan/swp-hwii/3HWII/README.md` → Offene Punkte.
+> Domänenwahl per Abstimmung in UE 9 (5 Vorschläge: `lehrplan/swp-hwii/3HWII/README.md`).
 
 | UE | Thema | KM-Bezug ② | Inhalt / HÜ |
 |----|-------|------------|--------------|
@@ -84,4 +84,4 @@ verifizieren, Fallback: Hono+Vite-Web-UI) · Prisma/SQLite **via INFI**
 **Schwerpunkte:** 4 UE Deno Desktop · 3 UE Architektur (Repository/MVC/Nebenläufigkeit) ·
 1 UE Laufzeit-Praxis · 5 UE Verbundprojekt
 **INFI-Synchronisation:** INFI liefert ab ~UE 10 die Prisma-Implementierung des
-Repository-Interfaces — Sequenz: `lehrplan/3HWII/README.md`.
+Repository-Interfaces — Sequenz: `lehrplan/swp-hwii/3HWII/README.md`.

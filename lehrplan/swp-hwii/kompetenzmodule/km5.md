@@ -4,7 +4,7 @@
 **Wochenstunden (Lehrplan):** 4 — davon **Georg 2 h** (1 DS/Woche) + **Kollege 2 h (PRE)**
 **Zeitmodell:** 13 echte UE + 2 PLF-DS
 **Bereiche:** Objektorientierte Programmierung (**Georg**) · Modellierung/UML-Klassendiagramm (**Georg**) · übrige Modellierung + PRE (**Kollege**, nur Soll)
-**Konkreter Semesterplan:** `lehrplan/3HWII/semesterplan-ws.md` · **Verbund:** `lehrplan/3HWII/README.md`
+**Konkreter Semesterplan:** `unterricht/HWII-SWP/jg3-semesterplan-ws.md` · **Verbund:** `lehrplan/swp-hwii/3HWII/README.md`
 
 ## Worum geht es?
 
@@ -90,12 +90,12 @@ Lehrplan-Soll, das **nicht** in Georgs 13 UE fällt (Sichtbarkeit für die Klass
 | Benchmarks | `Deno.bench` |
 | UML | Mermaid (rendert in GitHub-Markdown), PlantUML optional |
 | Übungsdomänen | `Bruch` (Dauerbrenner aus Jg II) → kleine Hierarchien (`Tier`, `Medium`-Vorgriff) |
-| Verbund-Domäne | ab ~Dezember: gemeinsame Wahl mit INFI (5 Vorschläge: `lehrplan/3HWII/README.md`) |
+| Verbund-Domäne | ab ~Dezember: gemeinsame Wahl mit INFI (5 Vorschläge: `lehrplan/swp-hwii/3HWII/README.md`) |
 | C#-Referenz (archiviert) | `ARCHIV/2025-26-3ahwii/` + Repo GRG-CS (Skriptum, xUnit-Variante) |
 
 **Mitgenommen aus KM3/KM4 (Vorwissen):** TS-Grundlagen, `class Bruch` mit
 constructor/this/static, Tests, HTML/CSS/DOM, Promises/async/await, Fetch, Hono+SQLite+REST,
-Prisma-Berührung — Details: `lehrplan/jg2-einheiten.md`.
+Prisma-Berührung — Details: `unterricht/HWII-SWP/jg2-einheiten.md`.
 
 **Mitnahme nach KM6/KM7:** OOP-Werkzeugkasten (Vererbung, Interfaces, Generics), UML,
 Testdisziplin → GUI (Deno Desktop), Repository-Pattern, MVC in KM6; Design Patterns in KM7.

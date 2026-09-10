@@ -14,15 +14,15 @@
 | **Stack** | Deno · TypeScript · `Deno.test` · Deno Desktop (GUI, KM6) · Prisma/SQLite (via INFI) |
 | **KM-Steckbriefe** | [`../kompetenzmodule/km5.md`](../kompetenzmodule/km5.md) · [`../kompetenzmodule/km6.md`](../kompetenzmodule/km6.md) |
 | **Semesterpläne** | [`semesterplan-ws.md`](semesterplan-ws.md) (KM5) · [`semesterplan-ss.md`](semesterplan-ss.md) (KM6) |
-| **Vorwissen** | [`../jg2-einheiten.md`](../jg2-einheiten.md) — TS, OO-Vorgriff (`class Bruch` + Tests), HTML/CSS, DOM, Promises/async/await, Fetch, Hono+SQLite+REST, Prisma-Berührung, tRPC/htmx |
+| **Vorwissen** | [`jg2-einheiten.md`](../../unterricht/HWII-SWP/jg2-einheiten.md) — TS, OO-Vorgriff (`class Bruch` + Tests), HTML/CSS, DOM, Promises/async/await, Fetch, Hono+SQLite+REST, Prisma-Berührung, tRPC/htmx |
 
 ---
 
 ## 3HWII-Verbund mit INFI (eine App – zwei Noten)
 
 > **Querverweis:** Dieselbe Kohorte hat parallel **INFI** (Jg III Datenbanken). INFI-Plan:
-> [`GRG-INFI/lehrplan/3HWII/`](https://github.com/georgernstgraf/GRG-INFI/blob/main/lehrplan/3HWII/README.md)
-> (3HWII-Drehscheibe + Semesterpläne; Steckbriefe `lehrplan/kompetenzmodule/km5.md`/`km6.md` —
+> [`GRG-INFI/lehrplan/infi-hwii/3HWII/`](https://github.com/georgernstgraf/GRG-INFI/blob/main/lehrplan/infi-hwii/3HWII/README.md)
+> (3HWII-Drehscheibe + Semesterpläne; Steckbriefe `lehrplan/infi-hwii/kompetenzmodule/km5.md`/`km6.md` —
 > seit 2026-09-07 im Skill-Standard-Layout).
 
 Beide Fächer laufen im **selben Deno/TypeScript/Prisma/SQLite-Stack** bei **derselben Kohorte**.

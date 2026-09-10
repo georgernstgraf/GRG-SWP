@@ -3,7 +3,7 @@
 **Klasse/Semester:** 4HWII, 7. Semester (WS, voraussichtlich ab 2027/28)
 **Wochenstunden (Lehrplan):** 4 — 2+2-Split (Georg: OOP/SWP-Fachliches · Kollege: PRE)
 **Bereiche:** OOP (**Georg**) · SWP/Vorgehensmodelle+Entwurfsmuster (Aufteilung mit Kollege zu klären)
-**Einheiten-Gerüst:** `lehrplan/jg4-einheiten.md`
+**Einheiten-Gerüst:** `unterricht/HWII-SWP/jg4-einheiten.md`
 
 ## Worum geht es? (Skizze)
 
