@@ -105,7 +105,7 @@ Offiziell ist Jg II dem **Bereich Webtechnologien** gewidmet (KM3 statische Webs
 
 ### Einheit 4 – Fetch & Response-Objekt
 - Datum: 02.03.2026
-- Archiv: [`2026-03-02_button fetch übung_mankah`](../../ARCHIV/2025-26-2ahwii/2026-03-02_button%20fetch%20übung_mankah/)
+- Archiv: [`2026-03-02-button-fetch-übung-mankah`](../../ARCHIV/2025-26-2ahwii/2026-03-02-button-fetch-übung-mankah/)
 - KM-Bezug: KM4 „clientseitige Logik"
 - Inhalt: `Response`-Objekt, `.json()`/`.text()` liefern wieder Promises
 - HÜ: Button fetcht Endpoint, baut Tabelle

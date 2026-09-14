@@ -39,7 +39,7 @@ Erstelle eine Promise-Kette für einen Pizza-Service:
 ### Thema: Fetch und Response-Objekt
 
 **Aufgabe:**
-Siehe Ordner `2026-03-02_button fetch übung_mankah/`
+Siehe Ordner `2026-03-02-button-fetch-übung-mankah/`
 
 Arbeite mit dem **Response-Objekt**:
 - Die Methoden `.json()` und `.text()` liefern ihrerseits wieder ein Promise
