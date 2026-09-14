@@ -4,9 +4,12 @@ Branch: `main` (GRG-SWP) · Tracking-Issue: **#7** (offen)
 
 ## Offene Tasks
 
-1. [ ] **Spiegel-Session GRG-INFI** — Auftrag, RIS-Befund, Formatvorlagen und Entscheidungen
-   liegen fertig in `../GRG-INFI/docs/ai/HANDOFF.md`. Neue Session aus dem INFI-Repo
-   heraus starten (dessen AGENTS.md beachten; Issues sind dort deaktiviert).
+1. [ ] **Spiegel-Session GRG-INFI** — Auftrag liegt fertig in
+   `../GRG-INFI/docs/ai/HANDOFF.md` (neu geschrieben am 2026-09-14, aktueller Kontext:
+   lehrplan/-Layout, HWII_INFI.pdf-Transfer, RIS-Recherche nicht wiederholen). Session
+   aus dem INFI-Repo heraus starten (dessen AGENTS.md beachten; Issues sind dort
+   deaktiviert → Tracking im HANDOFF-File). Erster Schritt dort: lehrplan-Skill
+   (Aufgabe A), dann Aufbau `lehrplan/infi-hwii/`.
 2. [ ] **PM-Koordination mit PRE-Kollegen** (kein Agenten-Task, Erinnerung an Georg):
    PM-Rahmung Verbundprojekt, PM-Rubrik, Verteilung seiner 2 h — siehe
    `lehrplan/swp-hwii/3HWII/README.md` → „Offene Punkte (TBD)".
