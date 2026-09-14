@@ -49,3 +49,9 @@ Superseded decisions are relocated to HISTORY.md.
 - **Reason**: INFI-Repo hat eigene AGENTS.md-Konventionen; RIS-Recherche (gleiche Anlage 1.24) muss nicht wiederholt werden.
 - **Considered**: Sofort in derselben Session von GRG-SWP aus.
 - **Tradeoff**: Zwei Sessions nötig.
+
+## 2026-09-14: Klassenspezifische Konkretisierung im Klassenordner
+- **Choice**: Das generische Unterrichts-Gerüst bleibt unter `unterricht/HWII-SWP/` und wird für Klassen-Abweichungen **nicht** angefasst. Die laufende Klasse SJ 2026/27 erhält den eigenen Ordner `3ahwii/` mit Hub (`README.md`), Klassen-Semesterplan (`semesterplan-ws.md`, Vollkopie des Gerüsts) und UE-Ordnern; Abweichungen (z. B. die Sondereinheit „Agentic Coding" vor UE 1) werden **nur hier** gepflegt.
+- **Reason**: Trennung von eruiertem, klassen-/jahrgangsübergreifendem Plan (Gerüst) und dem tatsächlich gehaltenen Plan der Klasse; verhindert, dass Einzelklassen-Änderungen das Gerüst verändern.
+- **Considered**: Klassen-Änderungen direkt im Gerüst `unterricht/HWII-SWP/`; nur ein Delta-Dokument statt Vollkopie.
+- **Tradeoff**: Zweite Plan-Datei pro Klasse (Duplikat), bewusst als lebende Klassenfassung; das Gerüst bleibt Referenz.
