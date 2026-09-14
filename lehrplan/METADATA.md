@@ -104,10 +104,15 @@ Unterrichtet-Status: [`swp-hwii/kompetenzmodule/README.md`](swp-hwii/kompetenzmo
 > die Rechtsquelle unter `docs/lehrplan/` und die Umsetzung am Root. Repo-GLOSSAR.md (Domänenbegriffe) liegt am Repo-Root.
 >
 > **Layout-Retrofit 2026-09-10** (lehrplan-Skill v2): Zweig-Ordner `swp-hwii/` angelegt —
-> `LEHRPLAN.md`, `RIS.md`, `kompetenzmodule/` und die ②-PDFs (`HWII_SWP.pdf`,
-> `HWII_INFI.pdf`) dorthin verschoben; Einheiten (`jg2/jg4/jg5-einheiten.md`) und
+> `LEHRPLAN.md`, `RIS.md`, `kompetenzmodule/` und das ②-PDF (`HWII_SWP.pdf`)
+> dorthin verschoben; Einheiten (`jg2/jg4/jg5-einheiten.md`) und
 > Semesterpläne (`jg3-semesterplan-{ws,ss}.md`) wanderten nach `unterricht/HWII-SWP/`
 > (Unterrichts-Ebene, Repo-Root).
+>
+> **Duplikat bereinigt 2026-09-14:** Die INFI-Schuladaption `HWII_INFI.pdf` (byte-identisch
+> mit der Kopie im INFI-Repo) wurde entfernt; sie wird allein in
+> `GRG-INFI/lehrplan/infi-hwii/HWII_INFI.pdf` gehalten. Die ②-Quelle dieses Repos
+> (`HWII_SWP.pdf`) ist davon nicht betroffen.
 
 ## Dateien in diesem Verzeichnis
 
@@ -116,7 +121,7 @@ Unterrichtet-Status: [`swp-hwii/kompetenzmodule/README.md`](swp-hwii/kompetenzmo
 | `METADATA.md` | Diese Datei |
 | `swp-hwii/LEHRPLAN.md` | Lehrstoff **dreischichtig**: ① offizieller Extrakt (RIS) · ② Schuladaption · ③ Didaktik/Stack — die QUELLE |
 | `swp-hwii/RIS.md` | **Rechtsstand & Recherche** (Novellen-Historie, RIS-Links, Schichten-Vergleich) |
-| `swp-hwii/HWII_SWP.pdf` / `swp-hwii/HWII_INFI.pdf` | Original-PDFs der Schule (Quellen der Schicht ②; letztere INFI-Referenz für Vorwissen) |
+| `swp-hwii/HWII_SWP.pdf` | Original-PDF der Schule (Quelle der Schicht ②); die INFI-Schuladaption `HWII_INFI.pdf` liegt im INFI-Repo unter `GRG-INFI/lehrplan/infi-hwii/` |
 | `swp-hwii/kompetenzmodule/` | KM-Matrix (`README.md`) + Steckbriefe `km3.md`–`km9.md` (PMM-Format) |
 | `swp-hwii/3HWII/` | Drehscheibe SJ 2026/27: `README.md` (Rahmen + INFI-Verbund), Klassenextrakt `3HWII.lehrplan.md` |
 | `swp-hwii/4HWII/4HWII.lehrplan.md` | Klassenextrakt 4. Klasse (KM7+KM8) — Stub |
