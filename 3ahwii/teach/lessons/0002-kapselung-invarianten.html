@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UE 2 — Kapselung &amp; Invarianten — 3AHWII</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <script type="module" src="../assets/quiz.js"></script>
+  </head>
+  <body>
+    <header class="lesson-header">
+      <p class="kicker">
+        Lesson 2 · UE 2026-09-22 · KM5 ②: Attribut und Sichtbarkeit
+      </p>
+      <h1>Kapselung &amp; Invarianten</h1>
+      <p>
+        Letzte Woche haben wir das Konto gebaut — aber jeder kann <code
+        >kontostand = -1000000</code> schreiben, wenn das Feld öffentlich ist.
+        Heute machen wir die Klasse zur Herrin ihres Zustands: <strong
+        >Kapselung</strong> ist das Werkzeug, <strong>Invarianten</strong> das
+        Ziel.
+      </p>
+    </header>
+
+    <h2>Das Problem: unkontrollierter Zustand</h2>
+    <pre><code><span class="hl-keyword">const</span> k = <span class="hl-keyword">new</span> Konto(<span class="hl-string">"AT1"</span>, 500);
+k.kontostand = -1_000_000;   <span class="hl-comment">// kompiliert, wenn kontostand public ist — und ist Datenmüll</span></code></pre>
+    <p>
+      Die Klasse <em>verspricht</em> „ein Konto hat einen sinnvollen
+      Kontostand" — aber jeder Zugriff von außen kann das Versprechen
+      brechen. Sobald der Müll einmal drin ist, verteilt er sich über das
+      ganze Programm: jene Fehler, die man drei Wochen später in einer völlig
+      anderen Datei sucht.
+    </p>
+
+    <h2>Die Lösung in drei Schichten</h2>
+    <table>
+      <tr>
+        <th>Schicht</th>
+        <th>Werkzeug</th>
+        <th>Wirkung</th>
+      </tr>
+      <tr>
+        <td>1. Sichtbarkeiten</td>
+        <td><code>private</code> / <code>readonly</code></td>
+        <td>Kein Zugriffspfad von außen; Identität unveränderlich</td>
+      </tr>
+      <tr>
+        <td>2. Kontrollierte Türen</td>
+        <td>getter / setter, Methoden mit Prüfung</td>
+        <td>Jede Änderung geht durch die Prüfung</td>
+      </tr>
+      <tr>
+        <td>3. Fail-Fast</td>
+        <td><code>throw</code> im Konstruktor &amp; Methoden</td>
+        <td>
+          Ungültige Werte sterben <em>sofort</em>, nicht drei Wochen später
+        </td>
+      </tr>
+    </table>
+
+    <pre><code><span class="hl-keyword">export class</span> Sparkonto {
+  <span class="hl-keyword">private</span> kontostand: number;
+
+  <span class="hl-keyword">constructor</span>(kontostand: number) {
+    <span class="hl-comment">// Fail-Fast: ein Sparkonto wird NIE negativ geboren</span>
+    <span class="hl-keyword">if</span> (kontostand &lt; 0) {
+      <span class="hl-keyword">throw new</span> Error(<span class="hl-string">`Kontostand darf nicht negativ sein (war ${kontostand})`</span>);
+    }
+    <span class="hl-keyword">this</span>.kontostand = kontostand;
+  }
+
+  <span class="hl-comment">// getter: Lesen ist unproblematisch — Zugriff, keine Änderung</span>
+  <span class="hl-keyword">get</span> kontostand(): number {
+    <span class="hl-keyword">return</span> <span class="hl-keyword">this</span>.kontostand;
+  }
+
+  <span class="hl-comment">// Änderung nur über geprüfte Methoden — kein setter für kontostand</span>
+  einzahlen(betrag: number): void {
+    <span class="hl-keyword">if</span> (betrag &lt;= 0) <span class="hl-keyword">throw new</span> Error(<span class="hl-string">"Betrag muss positiv sein"</span>);
+    <span class="hl-keyword">this</span>.kontostand += betrag;
+  }
+}</code></pre>
+
+    <aside class="marginnote">
+      <strong>Invariante</strong> = eine Regel, die für jedes Objekt zu jedem
+      Zeitpunkt gilt. Konstruktor sichert sie <em>beim Entstehen</em>, jede
+      zustandsändernde Methode hält sie <em>beim Wachsen</em>. <a
+        href="../reference/invarianten-checkliste.html"
+      >Checkliste zum Abhaken →</a>
+    </aside>
+
+    <div class="quiz" data-answer="0">
+      <p class="quiz-question">
+        Warum hat <code>kontostand</code> hier keinen setter?
+      </p>
+      <button class="quiz-option">
+        Änderungen gehen über geprüfte Methoden, ein setter würde die
+        Prüfung umgehen
+      </button>
+      <button class="quiz-option">
+        Setter sind veraltet, man schreibt sie generell nicht mehr
+      </button>
+      <button class="quiz-option">
+        Weil der Kontostand ein readonly-Feld ist und nie geändert wird
+      </button>
+      <p class="quiz-feedback">
+        Ein setter würde die zweite Tür aufmachen, durch die die Invariante
+        verletzt werden kann. Änderungen nur über <code
+        >einzahlen()</code>/<code>abheben()</code> — dort steht die Prüfung.
+      </p>
+    </div>
+
+    <h2>Fail-Fast vs. Happy Path — die Review-Frage</h2>
+    <p>
+      Fauler Code „rechnet einfach los" (Happy Path) und lässt den Fehler
+      irgendwann unten aufschlagen. Fail-Fast wirft <em>beim ersten unmöglichen
+        Aufruf</em>. Der Unterschied ist nicht Stil — er ist die Differenz
+      zwischen „Fehler gefunden in 2 Sekunden mit präziser Meldung" und
+      „Fehler gefunden in 3 Wochen ohne Spur".
+    </p>
+
+    <div class="quiz" data-answer="1">
+      <p class="quiz-question">
+        Wo gehört die Prüfung <code>betrag &gt; 0</code> hin?
+      </p>
+      <button class="quiz-option">
+        An jede Stelle, die kontostand ausliest
+      </button>
+      <button class="quiz-option">
+        In den Konstruktor und in jede Methode, die den Zustand ändert
+      </button>
+      <button class="quiz-option">
+        Nur in die Oberfläche, bevor der Wert zur Klasse kommt
+      </button>
+      <p class="quiz-feedback">
+        Die Klasse verteidigt ihre Invariante <em>selbst</em>, an jeder Tür,
+        durch die Zustand entstehen oder sich ändern kann — nicht der
+        Aufrufer draußen.
+      </p>
+    </div>
+
+    <h2>Dein Win heute</h2>
+    <p>
+      Du schreibst Klassen, die <em>beweisbar</em> (durch Tests) garantieren:
+      kein ungültiges Objekt wird je geboren, keine Methode bricht die Regel.
+      Das ist der Übergang von „Code läuft" zu „Code ist
+      vertrauenswürdig".
+    </p>
+
+    <h2>Weiter üben</h2>
+    <ul>
+      <li>
+        <strong>Primärquelle:</strong> <a
+          href="https://www.typescriptlang.org/docs/handbook/2/classes.html"
+        >TypeScript Handbook: Classes</a> — Abschnitte <code>private</code>,
+        <code>readonly</code>, Accessors.
+      </li>
+      <li>
+        <strong>HÜ:</strong> Starter in <code
+        >3ahwii/2026-09-22_kapselung/</code> — Domäne <strong
+        >Fahrzeug</strong>: <code>kmStand</code> readonly invariant, <code
+        >geschwindigkeit ≤ max</code>, Fail-Fast + Tests.
+      </li>
+      <li>
+        Checkliste: <a href="../reference/invarianten-checkliste.html"
+        >Invarianten-Checkliste</a> · <a href="../reference/glossar-oo.html"
+        >Glossar</a> · <a href="0003-interfaces-vertraege.html"
+        >Nächste Lesson: Interfaces →</a>
+      </li>
+    </ul>
+
+    <aside class="marginnote">
+      <strong>Fragen?</strong> Frag nach — im Unterricht oder im Klassen-Repo.
+      Ein unausgefragter Unterschied zwischen <code>private</code> (TS,
+      Kompilierzeit) und <code>#feld</code> (echtes JS) ist in der PLF gerne
+      eine ganze Punktereihe wert.
+    </aside>
+
+    <footer class="lesson-footer">
+      3AHWII · Lesson 2/3 des OO-Fundaments · Lehrplan-Basis: KM5 ②
+      (Schuladaption).
+    </footer>
+  </body>
+</html>

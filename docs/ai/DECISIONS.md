@@ -50,6 +50,18 @@ Superseded decisions are relocated to HISTORY.md.
 - **Considered**: Sofort in derselben Session von GRG-SWP aus.
 - **Tradeoff**: Zwei Sessions nötig.
 
+## 2026-09-14: Domänen-Strategie OO-Fundament (5 Domänen statt Bruch)
+- **Choice**: `Bruch` als OO-Träger verworfen (zu dünn: 2 Felder, kein Hierarchie-Potenzial). Fünf Domänen, die jeweils den vollen OO-Bogen tragen (getter/setter → Interfaces → Vererbung → Polymorphismus → abstract class → eigene Fehlerklassen): **Konto** (Unterricht, UE 1 ff.), **Tier** (HÜ 1), **Fahrzeug** (HÜ 2), **Produkt** (HÜ 3), **Person** (Test/PLF 1). Anti-Copy: Unterricht ≠ jede HÜ ≠ Test.
+- **Reason**: Kapselung/Invarianten/Polymorphie brauchen Substanz; reale is-a-Hierarchien (Girokonto *ist ein* Konto). Nebenwirkung: Tierpension/Shop/Schulverwaltung sind 3 der 5 Verbund-Kandidaten → informierte Abstimmung im Dezember. `Medium` (Bibliothek) bleibt frei (Verbund-Vorgriff UE 6/12).
+- **Considered**: Bruch als Unterrichtsträger behalten (Kaskade vermeiden); Medium als Unterrichtsdomäne (spoilert UE 6/12); Domänen-Varianten pro Schülergruppe.
+- **Tradeoff**: UE 4–10-HÜ-Spalten im Klassenplan sind noch Bruch-basiert → Rework offen (HANDOFF). Unterricht wechselt UE 1 von Bruch (10'-Brücke) auf Konto.
+
+## 2026-09-14: Teach-Workspace im Klassenordner
+- **Choice**: Schülermaterial nach Teach-Skill-Layout in `3ahwii/teach/` (MISSION/RESOURCES/NOTES, learning-records/, assets/, reference/, lessons/); UE-Ordner verlinken die Lessons und halten Deno-Starter mit rot→grün-Tests.
+- **Reason**: Ein Workspace pro Klasse deckt künftige UE ab (Assets/Glossar wiederverwendbar); klassenspezifisch pflegbar (ADR-Gerüst-Logik); HTML-Lessons sind im öffentlichen Repo direkt Schüler-tauglich.
+- **Considered**: `teach/` am Repo-Root (klassenunabhängig); Lessons direkt in UE-Ordnern (kein geteiltes Glossar/Assets).
+- **Tradeoff**: Zweites Layout neben den UE-Ordnern; Bewirtschaftung (Learning-Records nach jeder UE) muss diszipliniert laufen.
+
 ## 2026-09-14: Klassenspezifische Konkretisierung im Klassenordner
 - **Choice**: Das generische Unterrichts-Gerüst bleibt unter `unterricht/HWII-SWP/` und wird für Klassen-Abweichungen **nicht** angefasst. Die laufende Klasse SJ 2026/27 erhält den eigenen Ordner `3ahwii/` mit Hub (`README.md`), Klassen-Semesterplan (`semesterplan-ws.md`, Vollkopie des Gerüsts) und UE-Ordnern; Abweichungen (z. B. verschobene UE, zusätzliche Übungen) werden **nur hier** gepflegt.
 - **Reason**: Trennung von eruiertem, klassen-/jahrgangsübergreifendem Plan (Gerüst) und dem tatsächlich gehaltenen Plan der Klasse; verhindert, dass Einzelklassen-Änderungen das Gerüst verändern.

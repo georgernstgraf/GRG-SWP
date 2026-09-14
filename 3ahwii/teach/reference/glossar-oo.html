@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Glossar OO-Fundament — 3AHWII</title>
+    <link rel="stylesheet" href="../assets/style.css">
+  </head>
+  <body>
+    <header class="lesson-header">
+      <p class="kicker">Reference · 3AHWII · KM5 UE 1–3</p>
+      <h1>Glossar OO-Fundament</h1>
+      <p>
+        Die Begriffe des Semesters, kurz und präzise. Jede Lesson hält sich an
+        <em>diese</em> Wortwahl — und du auch in Commits, Tests und
+        PLF-Antworten.
+      </p>
+    </header>
+
+    <table>
+      <tr>
+        <th>Begriff</th>
+        <th>Definition</th>
+        <th>Merksatz</th>
+      </tr>
+      <tr>
+        <td><strong>Klasse</strong></td>
+        <td>
+          Bauplan: legt Attribute (Zustandsraum) und Verhalten fest. Existiert
+          einmal.
+        </td>
+        <td>Die Klasse ist die Form, nicht das Gebäude.</td>
+      </tr>
+      <tr>
+        <td><strong>Instanz / Objekt</strong></td>
+        <td>
+          Ein mit <code>new</code> erzeugter konkreter Vertreter einer Klasse,
+          mit eigenem Speicher.
+        </td>
+        <td><code>new Konto(…)</code> baut ein Gebäude nach der Form.</td>
+      </tr>
+      <tr>
+        <td><strong>Zustand</strong></td>
+        <td>Die aktuellen Feldwerte einer Instanz zu einem Zeitpunkt.</td>
+        <td>Zustand = Werte im Speicher <em>dieses</em> Objekts.</td>
+      </tr>
+      <tr>
+        <td><strong>Identität</strong></td>
+        <td>
+          Ein Objekt ist einzigartig, auch wenn der Zustand gleich ist. <code
+          >===</code> vergleicht Identität, <code>equals()</code> (selbst
+          geschrieben) vergleicht Zustand.
+        </td>
+        <td>Zwillinge sind gleich — nicht dieselbe Person.</td>
+      </tr>
+      <tr>
+        <td><strong>Attribut / Feld</strong></td>
+        <td>
+          Eine Zustandsvariable einer Klasse (<code>zähler</code>, <code
+          >kontostand</code>).
+        </td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><strong>Sichtbarkeit</strong></td>
+        <td>
+          <code>public</code> (alle), <code>private</code> (nur die Klasse),
+          <code>protected</code> (Klasse + Unterklassen). Default in TS: public.
+        </td>
+        <td>So wenig öffentlich wie möglich.</td>
+      </tr>
+      <tr>
+        <td><strong>Kapselung</strong></td>
+        <td>
+          Zustand ist privat; Änderungen nur über kontrollierte Methoden. Die
+          Klasse garantiert ihre Regeln selbst.
+        </td>
+        <td>
+          Keiner darf von außen kaputt machen, was die Klasse verspricht.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Invariante</strong></td>
+        <td>
+          Eine Regel, die für <em>jedes</em> Objekt <em>zu jedem</em> Zeitpunkt
+          gilt (<code>nenner ≠ 0</code>, <code>kontostand ≥
+            −überzug</code>).
+        </td>
+        <td>Einmal verletzt = Datenmüll für immer.</td>
+      </tr>
+      <tr>
+        <td><strong>Fail-Fast</strong></td>
+        <td>
+          Ungültige Eingaben sofort im Konstruktor/Methode mit <code
+          >throw</code> ablehnen, statt sie still weiterzureichen.
+        </td>
+        <td>Lieber laut crashen als still schrottreif weiterlaufen.</td>
+      </tr>
+      <tr>
+        <td><strong>Happy Path</strong></td>
+        <td>
+          Der Ablauf, bei dem alles glattgeht. Tests, die nur den Happy Path
+          prüfen, finden wenige Fehler.
+        </td>
+        <td>Die interessanten Fehler leben abseits des Happy Paths.</td>
+      </tr>
+      <tr>
+        <td><strong>getter / setter</strong></td>
+        <td>
+          Kontrollierte Lese-/Schreibzugriffe (<code>get</code>/<code>set</code>
+          in TS). Lesezugriff fast immer erlaubt; Schreibzugriff nur mit
+          Prüfung.
+        </td>
+        <td>Setzen ohne Prüfung ist Kapselung zum Schein.</td>
+      </tr>
+      <tr>
+        <td><strong>readonly</strong></td>
+        <td>
+          Feld kann nach dem Konstruktor nicht mehr geändert werden
+          (TS-Kompilierzeit-Schutz).
+        </td>
+        <td>Identität darf nicht wackeln.</td>
+      </tr>
+      <tr>
+        <td><strong>Interface</strong></td>
+        <td>
+          Ein Vertrag aus Signaturen: <em>was</em> getan werden kann, nicht <em
+          >wie</em>. Implementierer versprechen das Verhalten.
+        </td>
+        <td>Vertrag über Handlung, nicht über Herkunft.</td>
+      </tr>
+      <tr>
+        <td><strong>structural typing</strong></td>
+        <td>
+          TS prüft die <em>Form</em>, nicht die Deklaration: Wer die
+          geforderten Mitglieder hat, passt — auch ohne <code
+          >implements</code>.
+        </td>
+        <td>Form schlägt Papierkram.</td>
+      </tr>
+      <tr>
+        <td><strong>Vererbung (Vorblick UE 4)</strong></td>
+        <td>
+          <code>extends</code>: Unterklasse erbt Verhalten, ist eine <em
+          >is-a</em>-Beziehung.
+        </td>
+        <td>Nur echtes „ist ein“ vererben.</td>
+      </tr>
+    </table>
+
+    <aside class="marginnote">
+      <strong>Konvention:</strong> „Objekt" und „Instanz" verwenden wir
+      synonym; wenn es auf den Unterschied ankommt (Identität vs. Zustand),
+      sagen wir es ausdrücklich.
+    </aside>
+
+    <nav class="lesson-nav">
+      <span>Related: <a href="../lessons/0001-klasse-instanz-zustand.html"
+        >Lesson 1</a> · <a href="../lessons/0002-kapselung-invarianten.html"
+        >Lesson 2</a> · <a href="../lessons/0003-interfaces-vertraege.html"
+        >Lesson 3</a></span>
+      <span><a href="ts-oop-cheatsheet.html">Syntax-Cheatsheet →</a></span>
+    </nav>
+
+    <footer class="lesson-footer">
+      3AHWII · OO-Fundament · Fragen an den Unterricht / das Klassen-Repo.
+    </footer>
+  </body>
+</html>

@@ -24,9 +24,28 @@ WII–Betriebsinformatik), Schuljahr 2026/27.
 
 | Datum | UE | Thema |
 |-------|----|-------|
-| 2026-09-08 | 1 | [OOP in TypeScript – Die Bruch-Klasse](2026-09-08_intro/) |
+| 2026-09-08 | Intro | [OOP in TypeScript – Die Bruch-Klasse](2026-09-08_intro/) |
+| 2026-09-15 | 1 | [OO-Repetition & Klasse/Instanz/Zustand](2026-09-15_oo-repetition/) |
+| 2026-09-22 | 2 | [Kapselung & Sichtbarkeit](2026-09-22_kapselung/) |
+| 2026-09-29 | 3 | [Schnittstellen als Vertrag](2026-09-29_interfaces/) |
 
 ## Log SJ 2026/27
+
+### 2026-09-14 – Domänen-Strategie OO-Fundament (Planung)
+
+Der `Bruch` ist zu dünn als OO-Träger (keine echte Hierarchie, Invarianten ohne
+Substanz) — Abkehr davon in der Klassenfassung. **5 Domänen**, die jede den vollen
+OO-Bogen tragen (getter/setter → abstract class, Interfaces, Fehlerklassen):
+
+- **Unterricht:** `Konto` (Bankwesen) — UE 1 ff., Live-Coding-Domäne
+- **HÜ 1 (UE 1):** `Tier` · **HÜ 2 (UE 2):** `Fahrzeug` · **HÜ 3 (UE 3):** `Produkt`
+- **Test/PLF 1:** `Person` (Schulverwaltung)
+
+Anti-Copy: Unterricht ≠ jede HÜ ≠ Test. Nebenwirkung: Tierpension, Shop und
+Schulverwaltung sind 3 der 5 Verbund-Kandidaten → informierte Abstimmung im Dezember.
+Unterrichts-/Übungsmaterial im Teach-Workspace [`teach/`](teach/) (Lessons, Glossar,
+Cheatsheet, Invarianten-Checkliste, Domänen-Steckbriefe). `semesterplan-ws.md` UE 1–3
+umgestellt; **UE 4–10 sind noch Bruch-basiert** → Domänen-Rework offen (HANDOFF).
 
 ### 2026-09-08 – Erste UE: OOP in TypeScript
 

@@ -26,3 +26,9 @@ Follow these without question. Do not deviate unless explicitly told.
 
 ## Code (Unterrichtsbeispiele)
 - Deno + TypeScript; deutsche Kommentare; `deno fmt` (2 Spaces, doppelte Anführungszeichen); Tests mit `Deno.test` + `jsr:@std/assert`; Benchmarks mit `Deno.bench`.
+- HÜ-Starter in UE-Ordnern sind **absichtlich rot** (rot→grün-Format à la beginners-typescript-tutorial); `deno test` muss als Startzustand fehlschlagen dürfen.
+
+## Teach-Workspace (`3ahwii/teach/`)
+- Layout nach Teach-Skill: `MISSION.md`, `RESOURCES.md`, `NOTES.md`, `learning-records/NNNN-slug.md`, `assets/` (shared `style.css`, `quiz.js`), `reference/*.html`, `lessons/NNNN-slug.html`.
+- Lessons/Reference sind Schüler-tauglich (deutsch, druckbar) und werden aus den UE-Ordnern verlinkt; Unterrichtsbeispiele auf `Konto`, HÜ-Beispiele auf der jeweiligen HÜ-Domäne.
+- Nach jeder gehaltenen UE: Learning-Record erfassen (Vorwissen/Fehlbilder). Domänen-Zuordnung in `NOTES.md` pflegen, nicht in DECISIONS-Duplikaten.

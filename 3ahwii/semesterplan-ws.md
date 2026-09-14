@@ -12,7 +12,8 @@ Softwareentwicklung und Projektmanagement (SWP) — KM5
 Offiziell 18 Schulwochen — Ausfälle durch Feiertage/Krankheit sind einkalkuliert;
 bei Glücksfall Bonus-UE (siehe unten).
 **Werkzeug:** Deno / TypeScript · **Didaktik:** testgetrieben (`Deno.test`), DB-frei,
-Domäne `Bruch` (aus Jg II bekannt) → kleine Hierarchien → Verbund-Vorgriff
+Domänen-Strategie: 5 voll declinierbare Domänen — Unterricht `Konto`, HÜ `Tier`/`Fahrzeug`/
+`Produkt`, Test `Person` (UE 1–3 siehe unten; `Bruch` nur noch Brücke in UE 1)
 **KM-Steckbrief:** `../lehrplan/swp-hwii/kompetenzmodule/km5.md` · **Verbund mit INFI:** `../lehrplan/swp-hwii/3HWII/README.md`
 
 > **Vorwissen aus Jg II (KM3/KM4):** TS-Grundlagen, `class Bruch` (constructor/this/static)
@@ -24,11 +25,22 @@ Domäne `Bruch` (aus Jg II bekannt) → kleine Hierarchien → Verbund-Vorgriff
 
 ## UE 1–3: OO-Fundament (Formalismus auf bekanntem Terrain)
 
+> **Domänen-Strategie (Abweichung zum Gerüst, 2026-09-14):** Der `Bruch` ist zu dünn
+> als Träger (keine echte Hierarchie, Invarianten ohne Substanz). Ab UE 1 lebt der
+> Unterricht auf **`Konto`** (Bankwesen); HÜ und Test laufen auf eigenen Domänen —
+> jede der **5 Domänen** kann den vollen OO-Bogen tragen (getter/setter → abstract
+> class, Interfaces, eigene Fehlerklassen). Steckbriefe:
+> [`teach/reference/domaenen-steckbriefe.html`](teach/reference/domaenen-steckbriefe.html).
+> Unterricht-Material: [`teach/`](teach/) (Lessons, Glossar, Cheatsheet, Quiz).
+> **Achtung:** UE 4–10 sind im Gerüst noch Bruch-basiert (`GemischterBruch`,
+> `Comparable<Bruch>`, `BruchFehler`) — die HÜ-Spalten brauchen ein Domänen-Rework,
+> sobald UE 1–3 gelaufen sind (HANDOFF).
+
 | UE | Thema | KM-Bezug (Schuladaption ②) | Inhalt / HÜ |
 |----|-------|-----------------|--------------|
-| 1 | **OO-Repetition & Klasse/Instanz/Zustand formalisiert** | Klasse, Instanz, Zustand, Attribut | Rep `class Bruch`; Begriffsschärfung Klasse vs. Instanz vs. Objekt, Zustand = Feldwerte, Identität. **Orga mitgeführt:** Git-Disziplin (kleine Commits, sprechende Messages — Schwachstelle der C#-Kohorte). HÜ: `equals()` + Tests |
-| 2 | **Kapselung & Sichtbarkeit** | Attribut und Sichtbarkeit | `public`/`private`/`protected`, `readonly`, getter/setter, Invarianten im Konstruktor sichern. HÜ: Bruch invariant-gesichert (Nenner ≠ 0, gekürzt) |
-| 3 | **Schnittstellen (interface) als Vertrag** | Schnittstelle | `interface` deklarieren/implementieren; „was, nicht wie"; mehrere Interfaces; structural typing. HÜ: `interface Comparable<T>` für `Bruch` |
+| 1 | **OO-Repetition & Klasse/Instanz/Zustand formalisiert** | Klasse, Instanz, Zustand, Attribut | 10' Bruch-Brücke (Begriffe am Bekannten), dann Wechsel auf `Konto`: IBAN als *Identität*, `kontostand` als *Zustand*. **Orga mitgeführt:** Git-Disziplin (kleine Commits, sprechende Messages — Schwachstelle der C#-Kohorte). HÜ: `Tier` — `equals()` + `fuettern()` + Tests (Starter `2026-09-15_oo-repetition/`) |
+| 2 | **Kapselung & Sichtbarkeit** | Attribut und Sichtbarkeit | `public`/`private`/`protected`, `readonly`, getter/setter, Invarianten fail-fast im Konstruktor sichern (am `Konto`). HÜ: `Fahrzeug` invariant-gesichert (kmStand ≥ 0, 0 ≤ v ≤ max, nur `fahre()` erhöht kmStand) (Starter `2026-09-22_kapselung/`) |
+| 3 | **Schnittstellen (interface) als Vertrag** | Schnittstelle | `interface` deklarieren/implementieren; „was, nicht wie"; mehrere Interfaces (`Comparable` + `Verzinsbar`); structural typing. HÜ: `Produkt implements Comparable<Produkt>, Versendbar` (Starter `2026-09-29_interfaces/`) |
 
 ## UE 4–7: Vererbung & Polymorphismus (KM-Kern)
 

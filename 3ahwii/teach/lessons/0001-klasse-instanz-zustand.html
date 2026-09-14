@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UE 1 — Klasse, Instanz, Zustand — 3AHWII</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <script type="module" src="../assets/quiz.js"></script>
+  </head>
+  <body>
+    <header class="lesson-header">
+      <p class="kicker">
+        Lesson 1 · UE 2026-09-15 · KM5 ②: Klasse, Instanz, Zustand, Attribut
+      </p>
+      <h1>Klasse, Instanz, Zustand — formalisiert</h1>
+      <p>
+        Du <em>kannst</em> schon Klassen schreiben — der Bruch aus der 2.
+        Klasse hat es bewiesen. Diese Lesson schärft die Begriffe hinter dem
+        Können. Und: Ab heute ist <strong>Konto</strong> unser
+        Unterrichts-Maßstab — der Bruch war Aufwärmen.
+      </p>
+    </header>
+
+    <h2>Warum der Bruch nicht mehr reicht</h2>
+    <p>
+      <code>class Bruch</code> hat zwei Felder und eine Rechenart. Das genügt,
+      um Syntax zu lernen — aber nicht, um über <em>Design</em> zu sprechen.
+      Ein Konto hat <em>Identität</em> (die IBAN macht das Konto einzigartig),
+      <em>Zustand</em>, der sich ständig ändert (der Kontostand), und <em
+      >Regeln</em>, die niemals verletzt werden dürfen. Genau diese drei Dinge
+      machen OO-Denken aus.
+    </p>
+
+    <h2>Die drei Begriffe, sauber getrennt</h2>
+    <table>
+      <tr>
+        <th>Begriff</th>
+        <th>Antwortet auf die Frage</th>
+        <th>Am Konto</th>
+      </tr>
+      <tr>
+        <td><strong>Klasse</strong></td>
+        <td>Wie <em>bauen</em> wir?</td>
+        <td><code>class Konto</code> — der Bauplan, existiert einmal</td>
+      </tr>
+      <tr>
+        <td><strong>Instanz / Objekt</strong></td>
+        <td>Was existiert <em>jetzt</em>?</td>
+        <td>
+          <code>new Konto("AT12…", 500)</code> — jedes <code>new</code>
+          erzeugt ein neues Ding
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Zustand</strong></td>
+        <td>Welche Werte hält <em>dieses</em> Ding gerade?</td>
+        <td>
+          <code>kontostand = 750</code> — der Feldwert <em>dieser</em> Instanz
+        </td>
+      </tr>
+    </table>
+
+    <aside class="marginnote">
+      <strong>Identität</strong> ist der vierte Begriff: Ein Konto ist
+      einzigartig, <em>auch wenn</em> zwei Kontos denselben Kontostand haben.
+      <code>===</code> vergleicht Identität (gleicher Speicherplatz), selbst
+      geschriebenes <code>equals()</code> vergleicht Zustand.
+    </aside>
+
+    <div class="quiz" data-answer="1">
+      <p class="quiz-question">
+        Zwei Kontos: <code>a = new Konto("AT1", 500)</code>, <code>b = new
+          Konto("AT1", 500)</code>. Was gilt?
+      </p>
+      <button class="quiz-option">a und b sind dasselbe Objekt</button>
+      <button class="quiz-option">
+        a und b haben gleichen Zustand, verschiedene Identität
+      </button>
+      <button class="quiz-option">
+        a und b sind identisch, weil der Zustand gleich ist
+      </button>
+      <p class="quiz-feedback">
+        Zwei <code>new</code> = zwei Instanzen. Der Zustand (Feldwerte) ist
+        gleich, <code>a === b</code> ist <code>false</code> — deshalb
+        schreiben wir <code>equals()</code> für Zustandsvergleich.
+      </p>
+    </div>
+
+    <h2>Zustand live: Feldwerte sind pro Instanz</h2>
+    <pre><code><span class="hl-keyword">export class</span> Konto {
+  <span class="hl-keyword">private</span> kontostand: number;   <span class="hl-comment">// Zustand — gehört nur dieser Instanz</span>
+  <span class="hl-keyword">readonly</span> iban: string;        <span class="hl-comment">// Identität — nach dem Konstruktor unveränderlich</span>
+
+  <span class="hl-keyword">constructor</span>(iban: string, startBetrag: number) {
+    <span class="hl-keyword">this</span>.iban = iban;
+    <span class="hl-keyword">this</span>.kontostand = startBetrag;
+  }
+
+  einzahlen(betrag: number): void {
+    <span class="hl-keyword">this</span>.kontostand += betrag;   <span class="hl-comment">// ändert den Zustand DIESER Instanz</span>
+  }
+
+  equals(other: Konto): boolean {
+    <span class="hl-keyword">return</span> <span class="hl-keyword">this</span>.iban === other.iban;
+  }
+}</code></pre>
+    <p>
+      Ändert <code>k1.einzahlen(100)</code>, bleibt <code>k2</code> unberührt.
+      Das ist der ganze Punkt: <strong>Zustand lebt pro Instanz, Verhalten teilt
+        sich über die Klasse.</strong>
+    </p>
+
+    <div class="quiz" data-answer="2">
+      <p class="quiz-question">Was verändert <code>einzahlen()</code>?</p>
+      <button class="quiz-option">den Bauplan in der Klasse</button>
+      <button class="quiz-option">
+        alle Instanzen der Klasse gleichzeitig
+      </button>
+      <button class="quiz-option">nur die Feldwerte der einen Instanz</button>
+      <p class="quiz-feedback">
+        <code>this.kontostand += …</code> ändert das Feld der Instanz, über
+        die die Methode aufgerufen wurde. Klasse und andere Instanzen bleiben
+        unberührt.
+      </p>
+    </div>
+
+    <h2>Dein Win heute</h2>
+    <p>
+      Du kannst zu <em>jedem</em> Code sagen: Das ist Bauplan, das ist eine
+      Instanz, das ist Zustand, das ist Identität — und begründen, warum
+      <code>equals()</code> etwas anderes tut als <code>===</code>. Diese
+      Unterscheidung trägt das gesamte Semester.
+    </p>
+
+    <h2>Weiter üben</h2>
+    <ul>
+      <li>
+        <strong>Primärquelle:</strong> <a
+          href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Classes"
+        >MDN: JavaScript Classes</a> — Abschnitt „Klassen sind Funktionen"
+        überfliegen, dann in Ruhe.
+      </li>
+      <li>
+        <strong>HÜ:</strong> Starter im UE-Ordner <code
+        >3ahwii/2026-09-15_oo-repetition/</code> — Domäne <strong
+        >Tier</strong>: <code>equals()</code> + Tests von rot nach grün. Kleine
+        Commits, sprechende Messages.
+      </li>
+      <li>
+        <a href="../reference/glossar-oo.html">Glossar OO-Fundament</a> · <a
+          href="../reference/ts-oop-cheatsheet.html"
+        >Syntax-Cheatsheet</a> · <a href="0002-kapselung-invarianten.html"
+        >Nächste Lesson: Kapselung →</a>
+      </li>
+    </ul>
+
+    <aside class="marginnote">
+      <strong>Fragen?</strong> Frag im Unterricht nach — dein Agent/Lehrer
+      erklärt alles nach, was unklar ist. Unklar gestellte Fragen sind der
+      teuerste Fehler.
+    </aside>
+
+    <footer class="lesson-footer">
+      3AHWII · Lesson 1/3 des OO-Fundaments · Lehrplan-Basis: KM5 ②
+      (Schuladaption).
+    </footer>
+  </body>
+</html>

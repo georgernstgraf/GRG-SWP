@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>UE 3 — Interfaces als Vertrag — 3AHWII</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <script type="module" src="../assets/quiz.js"></script>
+  </head>
+  <body>
+    <header class="lesson-header">
+      <p class="kicker">Lesson 3 · UE 2026-09-29 · KM5 ②: Schnittstelle</p>
+      <h1>Interfaces als Vertrag</h1>
+      <p>
+        Bislang haben Klassen gesagt: <em>„Ich bin ein Sparkonto."</em> Heute
+        drehen wir es um: <em>„Egal was du bist — wenn du <code
+          >compareTo</code> kannst, bin ich mit dir im Geschäft."</em> Ein
+        <code>interface</code> ist ein Vertrag über <strong>was</strong>, nie
+        über <strong>wie</strong>.
+      </p>
+    </header>
+
+    <h2>Vertrag über Handlung, nicht über Herkunft</h2>
+    <pre><code><span class="hl-comment">// Der Vertrag: „Wer diesen Typ überreicht bekommt, kann compareTo rufen."</span>
+<span class="hl-keyword">export interface</span> Comparable&lt;T&gt; {
+  compareTo(other: T): number;   <span class="hl-comment">// &lt;0: dieses kleiner · 0: gleich · &gt;0: größer</span>
+}
+
+<span class="hl-comment">// Die Klasse unterzeichnet — und verspricht damit eine Implementierung</span>
+<span class="hl-keyword">export class</span> Sparkonto <span class="hl-keyword">implements</span> Comparable&lt;Sparkonto&gt; {
+  <span class="hl-comment">// …Zustand wie in Lesson 2…</span>
+  compareTo(other: Sparkonto): number {
+    <span class="hl-keyword">return</span> <span class="hl-keyword">this</span>.kontostand - other.kontostand;
+  }
+}</code></pre>
+    <p>
+      Wichtig: <code>compareTo</code> sagt <em>nichts</em> darüber, <em
+      >wie</em> verglichen wird — Sparkonto vergleicht nach Kontostand, dein
+      <code>Produkt</code> nach Preis. Der Vertrag ist gleich, die Umsetzung je
+      Klasse anders. Das ist „was, nicht wie".
+    </p>
+
+    <h2>Mehrere Verträge, eine Klasse</h2>
+    <p>
+      Vererbung (nächste Woche) ist eine <em>is-a</em>-Beziehung mit <strong
+      >einem</strong> Elternteil. Interfaces sind Verträge — und eine Klasse
+      darf beliebig viele unterschreiben:
+    </p>
+    <pre><code><span class="hl-keyword">export interface</span> Verzinsbar {
+  jahresZins(): number;
+}
+
+<span class="hl-comment">// implements: zwei Verträge gleichzeitig</span>
+<span class="hl-keyword">export class</span> Sparkonto <span class="hl-keyword">implements</span> Comparable&lt;Sparkonto&gt;, Verzinsbar { … }</code></pre>
+    <p>
+      <code>Sparkonto</code> <em>ist ein</em> Konto — und es ist <em
+      >vergleichbar</em> und <em>verzinsbar</em>. Fähigkeiten hängen an
+      Interfaces, Abstammung an Vererbung. Wer beides vermischt, baut später
+      beim O/R-Mapping (Verbund, SS) Schiffbruch.
+    </p>
+
+    <div class="quiz" data-answer="2">
+      <p class="quiz-question">
+        Warum mehrere Interfaces statt alles in die Basisklasse packen?
+      </p>
+      <button class="quiz-option">
+        Interfaces sind schneller, Klassen kosten zur Laufzeit Speicher
+      </button>
+      <button class="quiz-option">
+        Weil TypeScript mehr als ein Elternteil bei extends erlaubt
+      </button>
+      <button class="quiz-option">
+        Fähigkeiten sind unabhängige Verträge, Abstammung ist eine einzige
+        is-a-Linie
+      </button>
+      <p class="quiz-feedback">
+        Ein Konto <em>ist ein</em> Konto (Vererbung) — aber <em
+        >vergleichbar</em> zu sein und <em>verzinsbar</em> zu sein sind
+        unabhängige Fähigkeiten, die auch andere Klassen haben können.
+      </p>
+    </div>
+
+    <h2>Structural typing — die TS-Eigenart</h2>
+    <p>TypeScript prüft die <strong>Form</strong>, nicht die Unterschrift:</p>
+    <pre><code><span class="hl-keyword">const</span> testkonto = { jahresZins: () =&gt; 0.01 };   <span class="hl-comment">// kein implements, keine class</span>
+<span class="hl-keyword">const</span> v: Verzinsbar = testkonto;   <span class="hl-comment">// ok — die Form stimmt, TS zufrieden</span></code></pre>
+    <p>
+      Wer die geforderten Mitglieder hat, erfüllt den Vertrag — Dekoration
+      (<code>implements</code>) ist Dokumentation, nicht Bedingung. Das nennt
+      man <strong>structural typing</strong>. Java würde hier nein sagen; TS
+      sagt ja, solange die Form passt.
+    </p>
+
+    <div class="quiz" data-answer="0">
+      <p class="quiz-question">
+        Was prüft TypeScript bei einer Interface-Zuweisung?
+      </p>
+      <button class="quiz-option">
+        ob das Objekt die geforderten Mitglieder in der richtigen Form hat
+      </button>
+      <button class="quiz-option">
+        ob das Objekt von einer Klasse abstammt, die implements schreibt
+      </button>
+      <button class="quiz-option">
+        ob das Objekt zur Laufzeit denselben Speicherplatz teilt
+      </button>
+      <p class="quiz-feedback">
+        Structural typing: die Struktur zählt. <code>implements</code> hilft
+        dem Compiler und dem Leser, aber die Zuweisung hängt allein an der
+        Form.
+      </p>
+    </div>
+
+    <h2>Verträge als Funktionsparametertypen</h2>
+    <pre><code><span class="hl-comment">// Die Funktion kennt nur den Vertrag — jede erfüllende Klasse fliegt durch</span>
+<span class="hl-keyword">function</span> groesstes&lt;T <span class="hl-keyword">extends</span> Comparable&lt;T&gt;&gt;(liste: T[]): T | undefined {
+  <span class="hl-keyword">if</span> (liste.length === 0) <span class="hl-keyword">return</span> undefined;
+  <span class="hl-keyword">let</span> bestes = liste[0];
+  <span class="hl-keyword">for</span> (<span class="hl-keyword">const</span> kandidat <span class="hl-keyword">of</span> liste) {
+    <span class="hl-keyword">if</span> (kandidat.compareTo(bestes) &gt; 0) bestes = kandidat;
+  }
+  <span class="hl-keyword">return</span> bestes;
+}
+
+groesstes([k1, k2, k3]);   <span class="hl-comment">// Sparkonto[] — solange sie Comparable&lt;Sparkonto&gt; sind</span></code></pre>
+    <p>
+      <code>groesstes</code> weiß nicht einmal, dass es Kontos gibt. <strong
+      >Deshalb Interfaces:</strong> Code, der an Verträgen hängt, bleibt
+      erweiterbar, ohne anzufassen zu werden — die stille Vorwegnahme des
+      Open-Closed-Prinzips, das uns durchs ganze Semester begleitet.
+    </p>
+
+    <h2>Dein Win heute</h2>
+    <p>
+      Du deklarierst eigene Verträge, erfüllst mehrere davon pro Klasse, und
+      schreibst Funktionen, die nur den Vertrag kennen. Der nächste Test, der
+      nächste Subtyp, die nächste Domäne — alles passt durch dieselbe Tür.
+    </p>
+
+    <h2>Weiter üben</h2>
+    <ul>
+      <li>
+        <strong>Primärquelle:</strong> <a
+          href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces"
+        >TypeScript Handbook: Interfaces</a> — und danach <a
+          href="https://www.typescriptlang.org/docs/handbook/type-compatibility.html"
+        >Type Compatibility</a> für structural typing.
+      </li>
+      <li>
+        <strong>HÜ:</strong> Starter in <code
+        >3ahwii/2026-09-29_interfaces/</code> — Domäne <strong
+        >Produkt</strong>: <code>Comparable&lt;Produkt&gt;</code> (Preis) +
+        <code>Versendbar</code>, structural typing mit ausgedruckt.
+      </li>
+      <li>
+        <a href="../reference/ts-oop-cheatsheet.html">Syntax-Cheatsheet</a> ·
+        <a href="../reference/glossar-oo.html">Glossar</a> · <a
+          href="../reference/domaenen-steckbriefe.html"
+        >Was mit den Domänen weiter passiert →</a>
+      </li>
+    </ul>
+
+    <aside class="marginnote">
+      <strong>Fragen?</strong> Frag nach — besonders zur Grenze <code
+      >interface</code> vs. <code>abstract class</code>, die UE 6 voll ausgebaut
+      wird. Wer sie heute schon versteht, hat einen Vorsprung.
+    </aside>
+
+    <footer class="lesson-footer">
+      3AHWII · Lesson 3/3 des OO-Fundaments · Lehrplan-Basis: KM5 ②
+      (Schuladaption).
+    </footer>
+  </body>
+</html>

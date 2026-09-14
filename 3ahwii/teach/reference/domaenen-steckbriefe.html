@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Domänen-Steckbriefe — 3AHWII</title>
+    <link rel="stylesheet" href="../assets/style.css">
+  </head>
+  <body>
+    <header class="lesson-header">
+      <p class="kicker">Reference · 3AHWII · Domänen-Strategie WS 2026/27</p>
+      <h1>Domänen-Steckbriefe</h1>
+      <p>
+        Fünf Domänen, die jede für sich den <strong>gesamten
+          OO-Bogen</strong> tragen kann — von getter/setter über Interfaces
+        bis zu abstrakten Klassen und eigenen Fehlerklassen. Absicht:
+        Unterricht, Hausübungen und Tests laufen auf unterschiedlichen Domänen
+        — wer den Unterrichtscode umkopiert, hat nichts.
+      </p>
+    </header>
+
+    <table>
+      <tr>
+        <th>Domäne</th>
+        <th>Einsatz</th>
+        <th>abstract Basis</th>
+        <th>Subklassen</th>
+        <th>Typ-Interfaces</th>
+        <th>Fehlerklasse</th>
+      </tr>
+      <tr>
+        <td><strong>Konto</strong></td>
+        <td><strong>Unterricht</strong> (UE 1 ff., Live-Coding)</td>
+        <td><code>Konto</code></td>
+        <td>
+          <code>Girokonto</code>, <code>Sparkonto</code>, <code
+          >Kreditkonto</code>
+        </td>
+        <td><code>Comparable&lt;Konto&gt;</code>, <code>Verzinsbar</code></td>
+        <td><code>KontoFehler extends Error</code></td>
+      </tr>
+      <tr>
+        <td><strong>Tier</strong></td>
+        <td>HÜ 1 (UE 1)</td>
+        <td><code>Tier</code></td>
+        <td><code>Hund</code>, <code>Katze</code>, <code>Vogel</code></td>
+        <td>
+          <code>Comparable&lt;Tier&gt;</code> (Gewicht), <code>Beweglich</code>
+        </td>
+        <td><code>TierFehler extends Error</code></td>
+      </tr>
+      <tr>
+        <td><strong>Fahrzeug</strong></td>
+        <td>HÜ 2 (UE 2)</td>
+        <td><code>Fahrzeug</code></td>
+        <td>
+          <code>Auto</code>, <code>Elektroauto</code>, <code>Motorrad</code>
+        </td>
+        <td>
+          <code>Tankbar</code>, <code>Ladbar</code> — „mehrere
+          Interfaces"-Muster
+        </td>
+        <td><code>FahrzeugFehler extends Error</code></td>
+      </tr>
+      <tr>
+        <td><strong>Produkt</strong></td>
+        <td>HÜ 3 (UE 3)</td>
+        <td><code>Produkt</code></td>
+        <td>
+          <code>Elektronik</code>, <code>Lebensmittel</code>, <code
+          >DigitalProdukt</code>
+        </td>
+        <td>
+          <code>Comparable&lt;Produkt&gt;</code> (Preis), <code
+          >Versendbar</code>, <code>Rabattierbar</code>
+        </td>
+        <td><code>ShopFehler extends Error</code></td>
+      </tr>
+      <tr>
+        <td><strong>Person</strong></td>
+        <td><strong>Test/PLF 1</strong> (Stoff UE 1–7)</td>
+        <td><code>Person</code></td>
+        <td><code>Schueler</code>, <code>Lehrer</code></td>
+        <td><code>Comparable&lt;Person&gt;</code>, <code>Anredebar</code></td>
+        <td><code>PersonFehler extends Error</code></td>
+      </tr>
+    </table>
+
+    <h2>Der OO-Bogen — an jeder Domäne durchdeklinierbar</h2>
+    <table>
+      <tr>
+        <th>OO-Stoff (UE)</th>
+        <th>Was jede Domäne dazu beiträgt</th>
+      </tr>
+      <tr>
+        <td>1 — Klasse/Instanz/Zustand</td>
+        <td>
+          Mehrere Felder (nicht nur zwei wie beim Bruch) → Zustand vs.
+          Identität wird erst <em>interessant</em>: <code>iban</code> als
+          Identität, <code>kontostand</code> als Zustand.
+        </td>
+      </tr>
+      <tr>
+        <td>2 — Kapselung/Sichtbarkeit</td>
+        <td>
+          Echte Invarianten (Betrag ≥ 0, Gewicht &gt; 0, kmStand nie sinkend,
+          MHD) → Fail-Fast und getter/setter haben Substanz.
+        </td>
+      </tr>
+      <tr>
+        <td>3 — Interfaces</td>
+        <td>
+          Je 2–3 natürliche Verträge pro Domäne; mehrere Interfaces einer
+          Klasse sind der Normalfall, nicht das Sonderbeispiel.
+        </td>
+      </tr>
+      <tr>
+        <td>4 — Vererbung</td>
+        <td>
+          Reale is-a-Hierarchien: Girokonto <em>ist ein</em> Konto. Die
+          Subklassen erben Verhalten und überschreiben sinnvoll.
+        </td>
+      </tr>
+      <tr>
+        <td>5 — Polymorphismus</td>
+        <td>
+          Gemischte Arrays (<code>Konto[]</code>, <code>Tier[]</code>) →
+          gleicher Aufruf, anderes Verhalten; <code
+          >instanceof</code>-Diskussion.
+        </td>
+      </tr>
+      <tr>
+        <td>6 — abstrakte Klassen</td>
+        <td>
+          Die Basis-Klasse jeder Domäne ist instanzunfähig (<code>abstract
+            Tier { abstract laut(): string }</code>).
+        </td>
+      </tr>
+      <tr>
+        <td>10 — Exceptions</td>
+        <td>
+          Jede Domäne hat ihre Fehlerklasse (<code>extends Error</code>) —
+          Ausnahmen als Vererbung angewandt.
+        </td>
+      </tr>
+      <tr>
+        <td>11 — UML</td>
+        <td>
+          Jede Domäne ergibt ein zeichenbares Klassendiagramm (+/−/#,
+          Vererbungspfeile, Multiplizität).
+        </td>
+      </tr>
+    </table>
+
+    <aside class="marginnote">
+      <strong>Nebenwirkung mit Absicht:</strong> Tierpension, Shop und
+      Schulverwaltung sind 3 der 5 Verbund-Kandidaten (<code
+      >lehrplan/swp-hwii/3HWII/README.md</code>). Wer bis Dezember an zwei davon
+      OO gearbeitet hat, wählt im Verbund mit INFI informiert. <code
+      >Medium</code> (Bibliothek) bleibt bewusst unberührt — es ist der
+      Verbund-Vorgriff in UE 6/12.
+    </aside>
+
+    <h2>Größenordnung pro Domäne</h2>
+    <ul>
+      <li>
+        <strong>UE 1–3-HÜ-Ausschnitt:</strong> 1–2 Felder + eine Methode +
+        Tests. Mehr nicht — die HÜ übt <em>das eine Konzept</em>, nicht die
+        ganze Domäne.
+      </li>
+      <li>
+        <strong>UE 4–7 / Test-Ausschnitt:</strong> Hierarchie + Polymorphie an
+        der selben Domäne — deshalb Steckbrief mit Hierarchie ab Tag 1.
+      </li>
+      <li>
+        <strong>Unterricht (<code>Konto</code>):</strong> wächst über alle UE
+        mit und ist damit der längste rote Faden des Semesters.
+      </li>
+    </ul>
+
+    <nav class="lesson-nav">
+      <span><a href="invarianten-checkliste.html"
+        >← Invarianten-Checkliste</a></span>
+    </nav>
+    <footer class="lesson-footer">
+      3AHWII · Diese Seite ist Planungsgrundlage (Lehrer) und Übersicht
+      (Schüler) zugleich.
+    </footer>
+  </body>
+</html>

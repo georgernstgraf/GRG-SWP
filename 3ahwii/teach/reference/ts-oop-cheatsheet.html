@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TS-OOP-Syntax-Cheatsheet — 3AHWII</title>
+    <link rel="stylesheet" href="../assets/style.css">
+  </head>
+  <body>
+    <header class="lesson-header">
+      <p class="kicker">Reference · 3AHWII · KM5 UE 1–3</p>
+      <h1>TS-OOP-Syntax-Cheatsheet</h1>
+      <p>
+        Alles, was UE 1–3 an neuer Syntax brauchen — auf einen Blick, mit
+        Konto-Beispielen.
+      </p>
+    </header>
+
+    <h2>Klasse mit Zustand und Verhalten (UE 1)</h2>
+    <pre><code><span class="hl-keyword">export class</span> Konto {
+  <span class="hl-keyword">private</span> kontostand: number;   <span class="hl-comment">// Zustand: Feldwerte dieser Instanz</span>
+  <span class="hl-keyword">readonly</span> iban: string;        <span class="hl-comment">// Identität: nach Konstruktor unveränderlich</span>
+
+  <span class="hl-keyword">constructor</span>(iban: string, startBetrag: number) {
+    <span class="hl-keyword">this</span>.iban = iban;
+    <span class="hl-keyword">this</span>.kontostand = startBetrag;
+  }
+
+  einzahlen(betrag: number): void {
+    <span class="hl-keyword">this</span>.kontostand += betrag;
+  }
+
+  equals(other: Konto): boolean {
+    <span class="hl-keyword">return</span> <span class="hl-keyword">this</span>.iban === other.iban;   <span class="hl-comment">// Zustandsvergleich, nicht ===</span>
+  }
+
+  toString(): string {
+    <span class="hl-keyword">return</span> <span class="hl-string">`Konto ${this.iban} (${this.kontostand} €)`</span>;
+  }
+}</code></pre>
+
+    <h2>Kapselung: Sichtbarkeit + getter/setter (UE 2)</h2>
+    <pre><code><span class="hl-keyword">export class</span> Sparkonto {
+  <span class="hl-keyword">private</span> kontostand: number;   <span class="hl-comment">// privat: keine direkten Schreibzugriffe von außen</span>
+  <span class="hl-keyword">private</span> <span class="hl-keyword">static readonly</span> ZINS = 0.02;
+
+  <span class="hl-keyword">constructor</span>(kontostand: number) {
+    <span class="hl-comment">// Fail-Fast: Invariante im Konstruktor sichern</span>
+    <span class="hl-keyword">if</span> (kontostand &lt; 0) <span class="hl-keyword">throw new</span> Error(<span class="hl-string">"Kontostand darf nicht negativ sein"</span>);
+    <span class="hl-keyword">this</span>.kontostand = kontostand;
+  }
+
+  <span class="hl-comment">// getter: lesender Zugriff bleibt erlaubt</span>
+  <span class="hl-keyword">get</span> kontostand(): number {
+    <span class="hl-keyword">return</span> <span class="hl-keyword">this</span>.kontostand;
+  }
+
+  <span class="hl-comment">// Setter nur, wenn geprüft — oder gar kein setter (Änderung über Methoden)</span>
+  einzahlen(betrag: number): void {
+    <span class="hl-keyword">if</span> (betrag &lt;= 0) <span class="hl-keyword">throw new</span> Error(<span class="hl-string">"Betrag muss positiv sein"</span>);
+    <span class="hl-keyword">this</span>.kontostand += betrag;
+  }
+}</code></pre>
+    <aside class="marginnote">
+      <strong>TS vs. JS:</strong> TypeScript-<code>private</code> gilt zur
+      Kompilierzeit; echtes JavaScript-Kapseln tut <code>#feld</code>. Im
+      Unterricht nutzen wir <code>private</code> (kürzer, idiomatisch für
+      TS-Klassen) — den Unterschied kennen heißt Bonuspunkte in der PLF.
+    </aside>
+
+    <h2>Interface als Vertrag (UE 3)</h2>
+    <pre><code><span class="hl-comment">// „was, nicht wie": wer vergleichbar ist, verspricht compareTo</span>
+<span class="hl-keyword">export interface</span> Comparable&lt;T&gt; {
+  compareTo(other: T): number;   <span class="hl-comment">// &lt;0, 0, &gt;0 — wie bei Bruch üblich</span>
+}
+
+<span class="hl-keyword">export interface</span> Verzinsbar {
+  jahresZins(): number;
+}
+
+<span class="hl-comment">// mehrere Interfaces gleichzeitig implementieren</span>
+<span class="hl-keyword">export class</span> Sparkonto <span class="hl-keyword">implements</span> Comparable&lt;Sparkonto&gt;, Verzinsbar {
+  <span class="hl-comment">// …Zustand wie oben…</span>
+  compareTo(other: Sparkonto): number {
+    <span class="hl-keyword">return</span> <span class="hl-keyword">this</span>.kontostand - other.kontostand;
+  }
+  jahresZins(): number {
+    <span class="hl-keyword">return</span> Sparkonto.ZINS;
+  }
+}
+
+<span class="hl-comment">// Interfaces als Parametertypen: Funktionen hängen am Vertrag, nicht an der Klasse</span>
+<span class="hl-keyword">function</span> bestes&lt;T <span class="hl-keyword">extends</span> Comparable&lt;T&gt;&gt;(liste: T[]): T {
+  <span class="hl-comment">// …</span>
+}
+
+<span class="hl-comment">// structural typing: passt zur Form, auch ohne implements-Deklaration</span>
+<span class="hl-keyword">const</span> kontoOhneImplement = { jahresZins: () =&gt; 0.01 };
+<span class="hl-keyword">const</span> v: Verzinsbar = kontoOhneImplement;   <span class="hl-comment">// ok — Form stimmt</span></code></pre>
+
+    <h2>Test-Rahmen (alle HÜ)</h2>
+    <pre><code><span class="hl-comment">// Tier_test.ts — Starter ist rot, dein Job ist grün</span>
+<span class="hl-keyword">import</span> { assertEquals, assertThrows } <span class="hl-keyword">from</span> <span class="hl-string">"jsr:@std/assert"</span>;
+<span class="hl-keyword">import</span> { Tier } <span class="hl-keyword">from</span> <span class="hl-string">"./tier.ts"</span>;
+
+Deno.test(<span class="hl-string">"equals vergleicht Zustand, nicht Identität"</span>, () =&gt; {
+  <span class="hl-keyword">const</span> a = <span class="hl-keyword">new</span> Tier(<span class="hl-string">"Bello"</span>, 12);
+  <span class="hl-keyword">const</span> b = <span class="hl-keyword">new</span> Tier(<span class="hl-string">"Bello"</span>, 12);
+  assertEquals(a.equals(b), <span class="hl-keyword">true</span>);
+});</code></pre>
+
+    <nav class="lesson-nav">
+      <span><a href="glossar-oo.html">← Glossar</a></span>
+      <span><a href="invarianten-checkliste.html"
+        >Invarianten-Checkliste →</a></span>
+    </nav>
+    <footer class="lesson-footer">
+      3AHWII · OO-Fundament · Beispiele: Domäne <code>Konto</code>
+      (Unterricht), <code>Tier</code> (HÜ).
+    </footer>
+  </body>
+</html>

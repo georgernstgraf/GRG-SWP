@@ -22,7 +22,7 @@ Companion: `GRG-SWP-T` (Tests, Noten). Schwester-Repo mit Verbund: `GRG-INFI`.
 | `AGENTS.md` | Knowledge-Bootstrap für Agenten (→ `docs/ai/`), Repo-GLOSSAR.md (Domänenbegriffe) |
 | `lehrplan/` | Lehrplan nach Skill-Standard mit Zweig-Ebene (Retrofit 2026-09-10): `swp-hwii/LEHRPLAN.md` (dreischichtig ①②③), `swp-hwii/RIS.md` (Rechtsstand), `METADATA.md` (Stundentafel/Stack), `swp-hwii/HWII_*.pdf` (Schicht ②), `swp-hwii/kompetenzmodule/` (KM-Matrix + Steckbriefe `km3.md`–`km9.md`), `swp-hwii/3HWII/` (Drehscheibe + Klassenextrakt `3HWII.lehrplan.md`) |
 | `unterricht/HWII-SWP/` | **Generisches Unterrichts-Gerüst** (klassen-/jahrgangsübergreifend, wird für Klassen-Abweichungen **nicht** angefasst): `jg3-semesterplan-{ws,ss}.md` (KM5/KM6), `jg2/jg4/jg5-einheiten.md` |
-| `3ahwii/` | **Klassenordner SJ 2026/27** (konkrete Klasse): Hub `README.md` (+ Log), Klassen-Semesterplan `semesterplan-ws.md` (Vollkopie des Gerüsts + Abweichungen), UE-Ordner `YYYY-MM-DD_thema/` |
+| `3ahwii/` | **Klassenordner SJ 2026/27** (konkrete Klasse): Hub `README.md` (+ Log), Klassen-Semesterplan `semesterplan-ws.md` (Vollkopie des Gerüsts + Abweichungen), UE-Ordner `YYYY-MM-DD_thema/`, Teach-Workspace `teach/` (Lessons/Reference für Schüler, Domänen-Steckbriefe) |
 | `docs/ai/` | Agenten-Wissen (HANDOFF/STATE/DECISIONS/ARCHITECTURE/CONVENTIONS/PITFALLS/DOMAIN/HISTORY) |
 | `ARCHIV/` | Unterricht vergangener Schuljahre (`2025-26-2ahwii/` = Vorjahr der aktuellen Kohorte, TS; `2025-26-3ahwii/` = C#-Variante Jg III) |
 | `Unterlagen/`, `Übungen/`, `Sample_Projects/`, `Coole_Prisma_Schemas/`, `Testdata_(Generators)/` | Unterrichtsmaterial |
@@ -30,7 +30,8 @@ Companion: `GRG-SWP-T` (Tests, Noten). Schwester-Repo mit Verbund: `GRG-INFI`.
 ## Beziehungen
 
 - `unterricht/HWII-SWP/jg3-semesterplan-*.md` → bezieht Soll aus `lehrplan/swp-hwii/LEHRPLAN.md` (②, rückverwiesen auf ①) und Steckbriefe aus `lehrplan/swp-hwii/kompetenzmodule/km5|km6.md`.
-- `3ahwii/semesterplan-ws.md` → **Vollkopie/Konkretisierung** von `unterricht/HWII-SWP/jg3-semesterplan-ws.md`; klassenspezifische Abweichungen (z. B. Sondereinheit Agentic Coding) werden **nur hier** gepflegt.
+- `3ahwii/semesterplan-ws.md` → **Vollkopie/Konkretisierung** von `unterricht/HWII-SWP/jg3-semesterplan-ws.md`; klassenspezifische Abweichungen (z. B. Sondereinheit Agentic Coding, Domänen-Strategie UE 1–3) werden **nur hier** gepflegt.
+- `3ahwii/teach/` → Teach-Skill-Workspace (MISSION/lessons/reference/assets): erzeugt das Schülermaterial für UE 1–3; UE-Ordner verlinken die Lessons. Unterrichts-Domäne `Konto`, HÜ-Domänen `Tier`/`Fahrzeug`/`Produkt`, Test-Domäne `Person` (Anti-Copy-Strategie, Steckbriefe in `teach/reference/`).
 - `3ahwii/README.md` → Klassen-Hub: UE-Übersicht, Klassen-Semesterplan, Log SJ 2026/27.
 - `lehrplan/swp-hwii/3HWII/README.md` ↔ `GRG-INFI` (Verbundprojekt; Spiegel-Session vorbereitet via `GRG-INFI/docs/ai/HANDOFF.md`).
 - `lehrplan/swp-hwii/kompetenzmodule/km3|km4.md` → Ist-Rückpflege aus `ARCHIV/2025-26-2ahwii/` + `unterricht/HWII-SWP/jg2-einheiten.md`.

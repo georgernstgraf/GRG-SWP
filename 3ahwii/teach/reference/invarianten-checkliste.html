@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Invarianten-Checkliste — 3AHWII</title>
+    <link rel="stylesheet" href="../assets/style.css">
+  </head>
+  <body>
+    <header class="lesson-header">
+      <p class="kicker">Reference · 3AHWII · KM5 UE 2</p>
+      <h1>Invarianten-Checkliste</h1>
+      <p>
+        Wie du für jede Klasse deiner Domäne durchgehst, ob sie ihre Regeln
+        wirklich garantiert. Anwenden auf jede HÜ-Klasse — und in der PLF
+        auffindbar.
+      </p>
+    </header>
+
+    <h2>1. Regeln sammeln</h2>
+    <p>
+      Frage zu jedem Feld: <em>Welche Werte sind sinnvoll, welche sind
+        Datenmüll?</em>
+    </p>
+    <ul>
+      <li>
+        <code>kontostand</code> — darf nie unter −Überziehungsrahmen
+        sinken.
+      </li>
+      <li><code>gewicht</code> (Tier) — muss &gt; 0 sein.</li>
+      <li>
+        <code>kmStand</code> (Fahrzeug) — darf nie sinken (readonly!), nur
+        wachsen.
+      </li>
+      <li>
+        <code>preis</code> (Produkt) — ≥ 0; Nachkommastellen → Cent
+        speichern.
+      </li>
+    </ul>
+
+    <h2>2. Sichern — an genau einer Stelle</h2>
+    <table>
+      <tr>
+        <th>Wo?</th>
+        <th>Wie?</th>
+        <th>Regel</th>
+      </tr>
+      <tr>
+        <td>Konstruktor</td>
+        <td><code>if (betrag &lt;= 0) throw new Error(…)</code></td>
+        <td>Ein Objekt wird <strong>nie ungültig geboren</strong>.</td>
+      </tr>
+      <tr>
+        <td>Methoden, die Zustand ändern</td>
+        <td>Prüfung <em>vor</em> der Änderung (Fail-Fast)</td>
+        <td>Keine Methode umgeht die Prüfung.</td>
+      </tr>
+      <tr>
+        <td>Setter (falls vorhanden)</td>
+        <td>Nur mit Prüfung — oder gar kein Setter</td>
+        <td>Setter ohne Prüfung = Kapselung zum Schein.</td>
+      </tr>
+      <tr>
+        <td>private + readonly</td>
+        <td>Zustand unsichtbar, Identität unveränderlich</td>
+        <td>Kein Zugriffspfad von außen bleibt offen.</td>
+      </tr>
+    </table>
+
+    <aside class="marginnote">
+      <strong>Fail-Fast vs. Happy Path:</strong> Fail-Fast wirft <em>sofort</em>
+      beim ungültigen Aufruf. Der Happy-Path-Ansatz „rechnen, irgendwann
+      fällt es auf" schiebt denselben Fehler tiefer ins System — dort kostet
+      er ein Vielfaches. Code-Review-Frage im Unterricht: <em>Wo wird das hier
+        falsch — und wann merkt es jemand?</em>
+    </aside>
+
+    <h2>3. Beweisen — mit Tests</h2>
+    <p>
+      Eine Invariante, die nicht getestet wird, ist eine Behauptung. Für <em
+      >jede</em> Regel mindestens:
+    </p>
+    <ul>
+      <li>1 gültiger Fall (Happy Path bleibt grün).</li>
+      <li>
+        1 Grenzfall exakt an der Grenze (<code>betrag = 0</code>, <code
+        >kontostand = −überzug</code>).
+      </li>
+      <li>
+        1 ungültiger Fall mit <code>assertThrows</code> — und die
+        Fehlermeldung prüfen.
+      </li>
+    </ul>
+    <pre><code>Deno.test(<span class="hl-string">"new Sparkonto(-1) wirft — Invariante gesichert"</span>, () =&gt; {
+  assertThrows(
+    () =&gt; <span class="hl-keyword">new</span> Sparkonto(-1),
+    Error,
+    <span class="hl-string">"negativ"</span>,
+  );
+});</code></pre>
+
+    <h2>4. Schnell-Check vor Abgabe</h2>
+    <ul>
+      <li>
+        □ Alle Felder <code>private</code> (oder bewusst public mit
+        Begründung)?
+      </li>
+      <li>□ Identitätsfelder <code>readonly</code>?</li>
+      <li>□ Konstruktor prüft <em>alle</em> Invarianten?</li>
+      <li>□ Jede zustandsändernde Methode prüft zuerst?</li>
+      <li>
+        □ Fehler mit sinnvoller deutscher Meldung (<em>was</em> ist falsch,
+        <em>was</em> war erlaubt)?
+      </li>
+      <li>□ Grenzfälle getestet, nicht nur Happy Path?</li>
+    </ul>
+
+    <nav class="lesson-nav">
+      <span><a href="ts-oop-cheatsheet.html">← Syntax-Cheatsheet</a></span>
+      <span><a href="domaenen-steckbriefe.html"
+        >Domänen-Steckbriefe →</a></span>
+    </nav>
+    <footer class="lesson-footer">
+      3AHWII · OO-Fundament · Der Check gilt unverändert für Tier, Fahrzeug,
+      Produkt, Person und Konto.
+    </footer>
+  </body>
+</html>
