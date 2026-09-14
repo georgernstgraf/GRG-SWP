@@ -8,12 +8,10 @@
 Softwareentwicklung und Projektmanagement (SWP) — KM5
 (BGBl. II Nr. 262/2015 idF 235/2019, Anlage 1.24; Schichten: `../lehrplan/swp-hwii/LEHRPLAN.md`)
 
-**Zeitmodell:** 13 echte UE (1 DS/Woche à 2 h = Georgs Anteil am 2+2-Split) + 2 PLF-DS,
-**zuzüglich der Sondereinheit „Agentic Coding"** zu Semesterbeginn (beide Gruppen
-gemeinsam, außerhalb der 13+2-Zählung). Offiziell 18 Schulwochen — Ausfälle durch
-Feiertage/Krankheit sind einkalkuliert; bei Glücksfall Bonus-UE (siehe unten).
-**Werkzeug:** Deno / TypeScript · Agentic Coding mit **opencode** (Node/npm nur als Host) ·
-**Didaktik:** testgetrieben (`Deno.test`), DB-frei,
+**Zeitmodell:** 13 echte UE (1 DS/Woche à 2 h = Georgs Anteil am 2+2-Split) + 2 PLF-DS.
+Offiziell 18 Schulwochen — Ausfälle durch Feiertage/Krankheit sind einkalkuliert;
+bei Glücksfall Bonus-UE (siehe unten).
+**Werkzeug:** Deno / TypeScript · **Didaktik:** testgetrieben (`Deno.test`), DB-frei,
 Domäne `Bruch` (aus Jg II bekannt) → kleine Hierarchien → Verbund-Vorgriff
 **KM-Steckbrief:** `../lehrplan/swp-hwii/kompetenzmodule/km5.md` · **Verbund mit INFI:** `../lehrplan/swp-hwii/3HWII/README.md`
 
@@ -21,21 +19,6 @@ Domäne `Bruch` (aus Jg II bekannt) → kleine Hierarchien → Verbund-Vorgriff
 > mit Tests, HTML/CSS, DOM, Promises/async/await, Fetch, Hono+SQLite+REST, Prisma-Berührung.
 > Details: `../unterricht/HWII-SWP/jg2-einheiten.md`. **UE 1 startet mit Diagnostik-Rep** (ohne
 > eigene Reserve-DS — Einstieg ist Teil der UE).
-
----
-
-## Sondereinheit: Agentic Coding – Einstieg (kombiniert, beide Gruppen)
-
-> Auftakt des Semesters. Wird von **beiden Gruppen gemeinsam** gehalten und steht
-> **außerhalb** der 13-UE-Zählung (+2 PLF-DS) — das Zeitmodell bleibt unangetastet.
-> Inhaltlich hat Agentic Coding hier **Vorrang vor OOP-Detailtiefe**.
-
-| UE | Thema | KM-Bezug (Schuladaption ②) | Inhalt / HÜ |
-|----|-------|----------------------------|-------------|
-| S | **Agentic Coding mit opencode – Einstieg** | *Enrichment* (Werkzeug-/Berufskompetenz) | **Schulübung**: Setup Windows/winget (Node LTS → `opencode` → Git/gh/coreutils), freier Provider via `/connect`, erster Agent-Loop (Plan/Build, `@`, `/init`, `/undo`). Nicht Fertiggestelltes ist **HÜ nur für die X-Gruppe**. |
-
-Unterlagen: [`2026-09-15_agentic-coding-einstieg/`](2026-09-15_agentic-coding-einstieg/) ·
-Optional: [`windows-debloat.md`](windows-debloat.md) (Semester-/Jahresstart, von opencode gesteuert)
 
 ---
 
@@ -98,7 +81,7 @@ Optional: [`windows-debloat.md`](windows-debloat.md) (Semester-/Jahresstart, von
 
 ---
 
-**Schwerpunkte:** Sondereinheit Agentic Coding (Auftakt) · 6 UE OOP-Kern (Klasse→Polymorphismus) ·
+**Schwerpunkte:** 6 UE OOP-Kern (Klasse→Polymorphismus) ·
 3 UE Collections/Laufzeit/Exceptions · 2 UE UML/Modellierung · 2 UE Fundament+Festigung/Projekt
 **INFI-Synchronisation:** SWP bleibt im WS DB-frei; ab ~Dez (UE 12) gemeinsame Beispieldomäne
 mit INFI andeuten — Details `../lehrplan/swp-hwii/3HWII/README.md` → Sequenz-Abstimmung.

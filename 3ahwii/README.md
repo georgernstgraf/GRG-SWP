@@ -4,13 +4,15 @@ Klassenordner der **3AHWII** für das Fach **SWP** (HTL Spengergasse,
 WII–Betriebsinformatik), Schuljahr 2026/27.
 
 **Stack:** Unterrichtsbeispiele in **Deno + TypeScript** (siehe
-[`../docs/ai/CONVENTIONS.md`](../docs/ai/CONVENTIONS.md)). **Node/npm** kommt
-ausschließlich als **Host für opencode** zum Einsatz (Agentic Coding) – nicht als
-Übungssprache.
+[`../docs/ai/CONVENTIONS.md`](../docs/ai/CONVENTIONS.md)).
 
 > **Konkrete Klassenfassung.** Das generische Gerüst (klassen- und jahrgangsübergreifend)
 > liegt unter [`../unterricht/HWII-SWP/`](../unterricht/HWII-SWP/). Klassenspezifische
 > Abweichungen werden **hier** gepflegt – das Gerüst bleibt unangetastet.
+
+> **Agentic Coding → INFI:** Die Sondereinheit „Agentic Coding – Einstieg" (Schulübung,
+> HÜ nur Gruppe X) findet im **INFI-Unterricht** statt und liegt im Schwester-Repo:
+> [`GRG-INFI/3ahwii/2026-09-15_agentic-coding-einstieg/`](https://github.com/georgernstgraf/GRG-INFI/tree/main/3ahwii/2026-09-15_agentic-coding-einstieg/).
 
 ## Semesterplan
 
@@ -23,21 +25,8 @@ ausschließlich als **Host für opencode** zum Einsatz (Agentic Coding) – nich
 | Datum | UE | Thema |
 |-------|----|-------|
 | 2026-09-08 | 1 | [OOP in TypeScript – Die Bruch-Klasse](2026-09-08_intro/) |
-| 2026-09-15 | S | [Agentic Coding – Einstieg (Sondereinheit, beide Gruppen; Schulübung, HÜ nur X)](2026-09-15_agentic-coding-einstieg/) |
 
 ## Log SJ 2026/27
-
-### 2026-09-15 – Sondereinheit: Agentic Coding (Einstieg)
-
-Auftakt des Semesters, beide Gruppen gemeinsam. Einstieg ins agentic coding mit
-opencode: Node-Setup (winget) + `opencode` + erster Agent-Loop — als **Schulübung**.
-Details: [`2026-09-15_agentic-coding-einstieg/README.md`](2026-09-15_agentic-coding-einstieg/README.md).
-
-- **HÜ nur Gruppe X:** nicht Fertiggestelltes bis nächste UE — `opencode` installiert
-  (Nachweis `opencode --version`), freier Provider verbunden, `AGENTS.md` im eigenen
-  Repo angepasst und committet.
-- Optional: [`windows-debloat.md`](windows-debloat.md) (Semester-/Jahresstart, von
-  opencode gesteuert).
 
 ### 2026-09-08 – Erste UE: OOP in TypeScript
 
