@@ -12,6 +12,7 @@ keine Benotung, sondern Übung im Umgang mit einem Agenten an einer echten, aber
 
 - opencode eine Aufgabe mit **Systemwirkung** geben,
 - **vorher** ein Sicherheitsnetz aufbauen (Wiederherstellungspunkt),
+- mit **`winget`** inventarisieren, was installiert bzw. sauber entfernbar ist,
 - **vor** jeder Änderung den Vorschlag prüfen – nichts blind bestätigen,
 - das Ergebnis **protokollieren**.
 
@@ -41,11 +42,29 @@ Prüfen mit `Get-ComputerRestorePoint`.
 opencode starten und die Aufgabe **mit Sicherheitsrahmen** übergeben, z. B.:
 
 > Erkläre mir zuerst, was Win11Debloat macht. Lege dann einen
-> Wiederherstellungspunkt an, **bevor** du irgendetwas änderst. Führe anschließend
-> den Standard-Debloat aus und zeige mir **vor jeder Änderung**, was passieren
-> wird. Protokolliere am Ende, was entfernt bzw. geändert wurde.
+> Wiederherstellungspunkt an, **bevor** du irgendetwas änderst. Prüfe zusätzlich mit
+> `winget list`, welche Programme installiert sind, und ob sich unerwünschte Win32-Apps
+> sauber per `winget uninstall` entfernen lassen (statt sie manuell zu löschen).
+> Führe anschließend den Standard-Debloat aus und zeige mir **vor jeder Änderung**,
+> was passieren wird. Protokolliere am Ende, was entfernt bzw. geändert wurde.
 
 Genau das ist Agenten-Steuerung: **Ziel + Schranken + Review**.
+
+## Schritt 2b – Inventar & Entfernen mit winget
+
+`winget` ist der Paketmanager unter Windows und ergänzt Win11Debloat: Dieses räumt
+v. a. vorinstallierte (Store-/AppX-)Apps weg, `winget` deckt zusätzlich klassische
+Win32-Programme ab.
+
+```powershell
+winget list                     # was ist installiert?
+winget uninstall --id <PaketID> # gezielt entfernen (erst prüfen!)
+winget install --id <PaketID>   # später sauber wieder installieren
+```
+
+- **Erst listen, dann entscheiden** – nichts entfernen, das du noch brauchst.
+- Lieber per `winget uninstall` deinstallieren als Ordner/Dateien von Hand löschen.
+- Für das Wiederherstellen ist `winget install` oft der bequemere Weg als der Store.
 
 ## Schritt 3 – Win11Debloat ausführen
 
@@ -71,7 +90,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force
 - Win11Debloat **erneut ausführen** und die gewünschten Änderungen abwählen.
 - **Registry-Backup** des Tools zurückspielen.
 - `Regfiles/Undo`-Dateien ausführen; entfernte Apps ggf. aus dem **Microsoft Store**
-  neu installieren.
+  oder per `winget install` neu installieren.
 - Notfalls den gesetzten **Wiederherstellungspunkt** nutzen.
 
 Wiki: <https://github.com/Raphire/Win11Debloat/wiki/Reverting-Changes>
@@ -84,5 +103,6 @@ was hat funktioniert, was würdest du beim nächsten Mal anders machen?
 ## Weiterführend
 
 - Win11Debloat: <https://github.com/Raphire/Win11Debloat>
+- winget: <https://learn.microsoft.com/windows/package-manager/winget/>
 - Alternativen im Vergleich: WinUtil (ChrisTitusTech), Winhance, BloatyNosy,
   ShutUp10++
