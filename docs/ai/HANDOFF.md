@@ -5,8 +5,10 @@ Branch: `main` (GRG-SWP) · Tracking-Issue: **#8** (offen; Klassen-Hub + Agentic
 ## Offene Tasks
 
 1. [ ] **Sondereinheit 2026-09-15 halten** (beide Gruppen) —
-   `3ahwii/2026-09-15_agentic-coding-einstieg/README.md`; danach HÜ-Eingang prüfen
-   (opencode installiert, Provider verbunden, `AGENTS.md` im eigenen Repo committet).
+   `3ahwii/2026-09-15_agentic-coding-einstieg/README.md`; **Schulübung**, der
+   HÜ-Rest gilt **nur für die X-Gruppe** (opencode installiert, Provider verbunden,
+   `AGENTS.md` im eigenen Repo committet). Optional: `3ahwii/windows-debloat.md`
+   (privat, von opencode gesteuert).
 2. [ ] **3HWII-Detailmaterial UE 1–3** auf Basis der Klassenfassung
    `3ahwii/semesterplan-ws.md` aufbauen (Bruch-Repetition, Kapselung, Interfaces; Git-Disziplin).
 3. [ ] **PM-Koordination mit PRE-Kollegen** (kein Agenten-Task, Erinnerung an Georg):

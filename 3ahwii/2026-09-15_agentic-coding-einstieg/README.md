@@ -4,32 +4,45 @@ Sondereinheit zu Semesterbeginn (beide Gruppen gemeinsam), SJ 2026/27.
 Agentic Coding hat hier bewusst **Vorrang vor OOP-Detailtiefe**: Der Umgang mit
 Coding-Agenten ist in der Berufswelt heute Grundwerkzeug.
 
-## HÜ (bis nächste UE)
+> **Schulübung.** Ziel ist, dass alle bis zum Ende der Einheit `opencode` laufen
+> haben. Was in der Schule **nicht fertig** wird, ist als **HÜ zu erledigen –
+> nur für die X-Gruppe** (siehe unten).
 
-1. **Node + opencode installieren** (siehe Setup) und nachweisen:
-   `opencode --version` (Screenshot oder Textausgabe).
-2. **Freien Provider verbinden:** `opencode` starten → `/connect` → einen freien
-   Anbieter wählen (z. B. opencode Zen, GitHub …).
-3. **Im eigenen (HÜ-)Repo** `opencode` starten → `/init` laufen lassen →
-   entstandenes `AGENTS.md` **lesen, anpassen und committen**.
+## Schulübung (im Unterricht)
+
+1. **Node + opencode installieren** (siehe Setup) und prüfen: `opencode --version`.
+2. **Provider verbinden:** `opencode` starten → `/connect` → einen freien Anbieter
+   wählen (z. B. opencode Zen, GitHub …).
+3. **Im eigenen Repo** `opencode` starten → `/init` → entstandenes `AGENTS.md`
+   **lesen und anpassen**.
 4. Empfohlen für saubere Agent-Arbeit: `git`, `gh` und Grund-CLI-Tools
    (`ls`, `grep`, `sed`, `awk`) müssen in PowerShell funktionieren (siehe Setup).
 
-Abgabe bis nächste UE: Commit im eigenen Repo + kurze Notiz, was `AGENTS.md` steuert.
+## HÜ – nur Gruppe X (bis nächste UE)
 
-## Ablauf der Sondereinheit
+Was in der Schulübung **nicht fertig** wurde, bis zur nächsten UE erledigen:
 
-1. **Orga (10')** – Ablauf, HÜ-Policy, Arbeitsweise mit einem Agenten.
-2. **Was ist agentic coding? (15')** – Ein Coding-Agent ist ein LLM mit
-   **Werkzeugen** (Dateien lesen/schreiben, Shell, Tests) in einer Schleife:
-   Ziel vorgeben → Agent handelt im Repo → Ergebnis prüfen → committen.
-   Unterschied zum reinen Chat: Der Agent arbeitet selbst im Projekt.
-3. **Setup (20')** – gemeinsam durch die Schritte unten; Ziel: `opencode` läuft
-   und ist mit einem Provider verbunden.
-4. **Erster Agent-Loop (30')** – live im Unterrichtsbeispiel
-   [`../2026-09-08_intro/bruch.ts`](../2026-09-08_intro/bruch.ts): erklären,
-   verbessern, testen lassen; Plan-/Build-Modus, `@`-Datei, `/undo`.
-5. **HÜ besprechen (10')** – Setup abschließen und `AGENTS.md`-Auftrag klären.
+- `opencode` installiert und lauffähig (Nachweis `opencode --version`),
+- freier Provider verbunden,
+- im eigenen Repo `/init` gelaufen und `AGENTS.md` **angepasst und committet**.
+
+Abgabe: Commit im eigenen Repo + kurze Notiz, was `AGENTS.md` steuert.
+
+## Ablauf der Sondereinheit (Impuls + offene Werkstatt)
+
+1. **Impuls (10')** – Orga, „Was ist agentic coding?" (Agent = LLM mit
+   **Werkzeugen** in einer Schleife: Ziel → handeln → prüfen → committen),
+   Regeln und HÜ-Policy.
+2. **Offene Werkstatt (~60')** – jede/r arbeitet im eigenen Tempo an den
+   **Checkpoints**; die Lehrperson geht herum und supportet:
+   - **Checkpoint 1 – Setup:** Node + opencode installiert (`opencode --version`).
+   - **Checkpoint 2 – Provider:** `/connect` verbunden.
+   - **Checkpoint 3 – Agent-Loop:** im eigenen Repo `/init` → `AGENTS.md` prüfen;
+     im Unterrichtsbeispiel [`../2026-09-08_intro/bruch.ts`](../2026-09-08_intro/bruch.ts)
+     erklären, verbessern, testen lassen (Plan-/Build-Modus, `@`-Datei, `/undo`).
+   - **Optional:** [`../windows-debloat.md`](../windows-debloat.md) – Windows-Debloat,
+     von opencode gesteuert.
+3. **Sammeln (10')** – offene Punkte, HÜ-Auftrag (nur X), Ausblick.
 
 ## Setup (Windows, PowerShell + winget)
 
@@ -47,6 +60,13 @@ npm -v
 ```
 
 ### 2. opencode
+
+PowerShell blockiert sonst `npm.ps1` – einmalig die Ausführungsrichtlinie für den
+eigenen Benutzer lockern:
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
 
 opencode hat kein winget-Paket – Installation über npm:
 
@@ -91,6 +111,12 @@ In der TUI `/connect` ausführen und einen freien Anbieter wählen.
 - Änderungen des Agenten **prüfen** (Diff), bevor committet wird.
 - Kleine Commits mit sprechenden Messages.
 - `AGENTS.md` aktuell halten.
+
+## Optional: Windows-Debloat mit opencode
+
+Als optionaler Semester-/Jahresstart das eigene (private) Windows entrümpeln –
+**von opencode gesteuert**, mit Sicherheitsnetz und Undo:
+[`../windows-debloat.md`](../windows-debloat.md).
 
 ## Wenn du mehr wissen willst (optional)
 

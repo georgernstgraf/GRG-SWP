@@ -32,9 +32,10 @@ Domäne `Bruch` (aus Jg II bekannt) → kleine Hierarchien → Verbund-Vorgriff
 
 | UE | Thema | KM-Bezug (Schuladaption ②) | Inhalt / HÜ |
 |----|-------|----------------------------|-------------|
-| S | **Agentic Coding mit opencode – Einstieg** | *Enrichment* (Werkzeug-/Berufskompetenz) | Setup Windows/winget (Node LTS → `opencode` → Git/gh/coreutils), freier Provider via `/connect`, erster Agent-Loop (Plan/Build, `@`, `/init`, `/undo`). HÜ: `opencode` installiert + Provider verbunden + `AGENTS.md` im eigenen Repo committen. |
+| S | **Agentic Coding mit opencode – Einstieg** | *Enrichment* (Werkzeug-/Berufskompetenz) | **Schulübung**: Setup Windows/winget (Node LTS → `opencode` → Git/gh/coreutils), freier Provider via `/connect`, erster Agent-Loop (Plan/Build, `@`, `/init`, `/undo`). Nicht Fertiggestelltes ist **HÜ nur für die X-Gruppe**. |
 
-Unterlagen: [`2026-09-15_agentic-coding-einstieg/`](2026-09-15_agentic-coding-einstieg/)
+Unterlagen: [`2026-09-15_agentic-coding-einstieg/`](2026-09-15_agentic-coding-einstieg/) ·
+Optional: [`windows-debloat.md`](windows-debloat.md) (Semester-/Jahresstart, von opencode gesteuert)
 
 ---
 

@@ -23,18 +23,21 @@ ausschließlich als **Host für opencode** zum Einsatz (Agentic Coding) – nich
 | Datum | UE | Thema |
 |-------|----|-------|
 | 2026-09-08 | 1 | [OOP in TypeScript – Die Bruch-Klasse](2026-09-08_intro/) |
-| 2026-09-15 | S | [Agentic Coding – Einstieg (Sondereinheit, beide Gruppen)](2026-09-15_agentic-coding-einstieg/) |
+| 2026-09-15 | S | [Agentic Coding – Einstieg (Sondereinheit, beide Gruppen; Schulübung, HÜ nur X)](2026-09-15_agentic-coding-einstieg/) |
 
 ## Log SJ 2026/27
 
 ### 2026-09-15 – Sondereinheit: Agentic Coding (Einstieg)
 
 Auftakt des Semesters, beide Gruppen gemeinsam. Einstieg ins agentic coding mit
-opencode: Workflow Node-Setup (winget) + `opencode` + erster Agent-Loop.
-Details und HÜ: [`2026-09-15_agentic-coding-einstieg/README.md`](2026-09-15_agentic-coding-einstieg/README.md).
+opencode: Node-Setup (winget) + `opencode` + erster Agent-Loop — als **Schulübung**.
+Details: [`2026-09-15_agentic-coding-einstieg/README.md`](2026-09-15_agentic-coding-einstieg/README.md).
 
-HÜ: Node + opencode installiert (Nachweis `opencode --version`), freien Provider
-verbunden, im eigenen Repo `/init` → `AGENTS.md` committen.
+- **HÜ nur Gruppe X:** nicht Fertiggestelltes bis nächste UE — `opencode` installiert
+  (Nachweis `opencode --version`), freier Provider verbunden, `AGENTS.md` im eigenen
+  Repo angepasst und committet.
+- Optional: [`windows-debloat.md`](windows-debloat.md) (Semester-/Jahresstart, von
+  opencode gesteuert).
 
 ### 2026-09-08 – Erste UE: OOP in TypeScript
 
