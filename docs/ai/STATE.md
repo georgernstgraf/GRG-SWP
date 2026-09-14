@@ -1,18 +1,22 @@
 # Project State
 
-Current status as of 2026-09-07.
+Current status as of 2026-09-14.
 
 ## Current Focus
-Skill-Standard-Layout umgesetzt: alles unter `lehrplan/` (LEHRPLAN/RIS/METADATA/PDFs/
-jgN-einheiten + kompetenzmodule/ + 3HWII/ mit Klassenextrakt), Repo-GLOSSAR.md angelegt,
-alle Referenzen und docs/ai-Pfade aktualisiert. Lehrplan-Werk SJ 2026/27 zuvor (Issue #7).
-Tracking-Issue: **#7** (offen).
+Erläuterungs-Ebene (lehrplan-Skill Aufgabe 2) vervollständigt: `LEHRPLAN.md` (Jg I–V) und
+alle Klassenextrakte (3HWII/4HWII/5HWII) annotiert (Überblick pro KM, Erläuterung pro
+Lernziel/Lehrstoff-Bereich); Stub-Klassenextrakte 4HWII/5HWII neu; defekte Relativ-Links
+nach dem Layout-Retrofit repariert. Tracking-Issue: **#7** (offen).
 
 ## Completed (this cycle)
 - [x] RIS-Recherche: Anlage 1.24 = BGBl. II Nr. 262/2015 idF 235/2019, aktuell → `lehrplan/swp-hwii/RIS.md`
 - [x] Offizieller SWP-Extrakt aus RIS-Dump `NOR40217058` verifiziert
 - [x] `lehrplan/swp-hwii/kompetenzmodule/README.md` (Matrix) + km3–km9 Steckbriefe (km5/km6 voll)
 - [x] `lehrplan/swp-hwii/3HWII/README.md` (Rahmen + INFI-Verbund komplett) + Semesterpläne `unterricht/HWII-SWP/jg3-semesterplan-{ws,ss}.md`
+- [x] Erläuterungs-Ebene in `lehrplan/swp-hwii/LEHRPLAN.md` (Jg I–V, alle KM3–KM9 + Jg I) — 2026-09-14
+- [x] Erläuterungs-Ebene in `lehrplan/swp-hwii/3HWII/3HWII.lehrplan.md` (KM5+KM6) — 2026-09-14
+- [x] Klassenextrakte `4HWII/4HWII.lehrplan.md` + `5HWII/5HWII.lehrplan.md` (Stub, annotiert) — 2026-09-14
+- [x] Relativ-Links repariert (LEHRPLAN/RIS/3HWII-README/jgN-einheiten nach Retrofit) — 2026-09-14
 - [x] `LEHRPLAN.md` dreischichtig; `METADATA.md` (idF 235/2019, 2+2-Split, 13+2-Modell)
 - [x] jg2/jg4/jg5 Minimal-Updates; Root-README Links + „Betriebsinformatik"-Fix
 - [x] `jg3-einheiten.md` nach verlustfreier Migration gelöscht (git rm)

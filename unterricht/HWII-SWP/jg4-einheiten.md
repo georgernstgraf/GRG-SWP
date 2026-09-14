@@ -1,16 +1,16 @@
 # 4. Klasse – Einheitenplan (KM7 + KM8) — Stub
 
-> **Status:** Stub / Gerüst. Wird in einer späteren Session aus [`LEHRPLAN.md`](LEHRPLAN.md) befüllt.
+> **Status:** Stub / Gerüst. Wird in einer späteren Session aus [`lehrplan/swp-hwii/LEHRPLAN.md`(../../lehrplan/swp-hwii/LEHRPLAN.md) befüllt.
 > **Bereiche in Jg IV:** OOP (wiederverwendbare Komponenten, Standardalgorithmen) + **Webtechnologien** (server-basierende Internetanwendungen) + **SWP** (Entwurfsmuster, Vorgehensmodelle, Testen, QM).
-> **Wer:** 2+2-Split — Georg (OOP/Web) + **Kollege (PRE)**; PRE-Anteile hier nur als Soll, nicht ausgearbeitet. Steckbriefe: [`kompetenzmodule/km7.md`](kompetenzmodule/km7.md) · [`kompetenzmodule/km8.md`](kompetenzmodule/km8.md).
+> **Wer:** 2+2-Split — Georg (OOP/Web) + **Kollege (PRE)**; PRE-Anteile hier nur als Soll, nicht ausgearbeitet. Steckbriefe: [`kompetenzmodule/km7.md`(../../lehrplan/swp-hwii/kompetenzmodule/km7.md) · [`kompetenzmodule/km8.md`(../../lehrplan/swp-hwii/kompetenzmodule/km8.md).
 > **Stack:** Deno/TypeScript weiter; serverseitig Hono/Prisma (aus Jg II/III bekannt).
-> **Wochenstunden:** 4 → Zeitmodell ab SJ 2027/28: **13 echte UE + 2 PLF-DS** (siehe `3HWII/`).
+> **Wochenstunden:** 4 → Zeitmodell ab SJ 2027/28: **13 echte UE + 2 PLF-DS** (siehe `lehrplan/swp-hwii/3HWII/`).
 
 ---
 
 ## 7. Semester – Kompetenzmodul 7
 
-**Lehrstoff (Soll, aus `LEHRPLAN.md`):**
+**Lehrstoff (Soll, aus `lehrplan/swp-hwii/LEHRPLAN.md`):**
 - *OOP:* wiederverwendbare Komponenten (Architektur, Einbindung, Auswahl); Standardalgorithmen objektorientiert implementieren.
 - *SWP:* Softwareentwicklungsmodelle (Methoden-Vergleich, Schätzverfahren, Anforderungsanalyse); **Entwurfsmuster** (Anwendungsfälle, Vor-/Nachteile gängiger Patterns).
 
@@ -35,7 +35,7 @@
 
 ## 8. Semester – Kompetenzmodul 8
 
-**Lehrstoff (Soll, aus `LEHRPLAN.md`):**
+**Lehrstoff (Soll, aus `lehrplan/swp-hwii/LEHRPLAN.md`):**
 - *Webtechnologien:* server-basierende Internetanwendungen (Client-/Server, serverseitige Programmierung, Datenbankanbindung, Technologie-Vergleich).
 - *SWP:* Softwarequalitätsmanagement (Methoden, Testverfahren); Projektmanagement (Verträge, Softskills); Team-Projekt.
 
@@ -60,8 +60,8 @@
 
 ## Notiz für die befüllende Session
 
-Anleitung zum Ausfüllen: siehe [`LEHRPLAN.md`](LEHRPLAN.md) Abschnitt „Anleitung". Vorab zu klären:
+Anleitung zum Ausfüllen: siehe [`lehrplan/swp-hwii/LEHRPLAN.md`(../../lehrplan/swp-hwii/LEHRPLAN.md) Abschnitt „Anleitung". Vorab zu klären:
 1. Mitnahme aus Jg III (OOP-Werkzeugkasten, Repository, Deno Desktop) explizit verankern.
 2. Koordination mit INFI Jg IV: Achtung – INFI Jg IV wechselt in **ERP-Domäne**, deshalb entfällt der Verbund mit INFI ab Jg IV. SWP läuft domänentechnisch eigenständig (server-basierte Web-Apps, Patterns).
 3. Patterns-Schwerpunkt: welche GoF-Patterns verpflichtend? (Strategy, Factory, Singleton, Observer, Decorator sind der übliche Kanon.)
-4. Server-Stack: Hono weiter, oder Vite/SSR-Framework (vgl. `LEHRPLAN.md` Deno-Desktop-Framework-Liste)?
+4. Server-Stack: Hono weiter, oder Vite/SSR-Framework (vgl. `lehrplan/swp-hwii/LEHRPLAN.md` Deno-Desktop-Framework-Liste)?

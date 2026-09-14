@@ -1,15 +1,15 @@
 # 5. Klasse – Einheitenplan (KM9) — Stub
 
-> **Status:** Stub / Gerüst. Wird in einer späteren Session aus [`LEHRPLAN.md`](LEHRPLAN.md) befüllt.
+> **Status:** Stub / Gerüst. Wird in einer späteren Session aus [`lehrplan/swp-hwii/LEHRPLAN.md`(../../lehrplan/swp-hwii/LEHRPLAN.md) befüllt.
 > **Bereiche in Jg V:** **Webtechnologien** (Webservices, komplexe dynamische Webanwendungen) + **OOP** (Entwurfsmuster-Umsetzung, wiederverwendbare Komponenten) + **SWP** (Refactoring, großes Team-Projekt, Maturabezug).
-> **Wer:** Aufteilung Georg (Web/OOP) / Kollege (PRE) zu klären; PRE-Anteile nur als Soll. Steckbrief: [`kompetenzmodule/km9.md`](kompetenzmodule/km9.md).
-> **Wochenstunden:** 6 (höchste Stundung im Fach) → Zeitmodell bei Konkretisierung an das 13-UE-Modell angleichen (siehe `3HWII/`; im Maturajahr netto eher weniger).
+> **Wer:** Aufteilung Georg (Web/OOP) / Kollege (PRE) zu klären; PRE-Anteile nur als Soll. Steckbrief: [`kompetenzmodule/km9.md`(../../lehrplan/swp-hwii/kompetenzmodule/km9.md).
+> **Wochenstunden:** 6 (höchste Stundung im Fach) → Zeitmodell bei Konkretisierung an das 13-UE-Modell angleichen (siehe `lehrplan/swp-hwii/3HWII/`; im Maturajahr netto eher weniger).
 
 ---
 
 ## 9. Semester – KM9 (Teil 1)
 
-**Lehrstoff (Soll, aus `LEHRPLAN.md`):**
+**Lehrstoff (Soll, aus `lehrplan/swp-hwii/LEHRPLAN.md`):**
 - *Webtechnologien:* Webservices (Sicherheitsaspekte, Schnittstellen, Informationstypen/Datenformate, Frameworks).
 - *OOP:* Entwurfsmuster (Umsetzung).
 - *SWP:* Anwendungs-/Klassen-/Methodenrefactoring; Projekt im Team.
@@ -35,7 +35,7 @@
 
 ## 10. Semester – KM9 (Teil 2)
 
-**Lehrstoff (Soll, aus `LEHRPLAN.md`):**
+**Lehrstoff (Soll, aus `lehrplan/swp-hwii/LEHRPLAN.md`):**
 - *Webtechnologien:* komplexe dynamische Webanwendungen (Gesamterstellungsprozess, Sicherheit, Frameworks).
 - *OOP:* wiederverwendbare Komponenten erstellen.
 - *SWP:* Vorgehensmodelle/Methoden anwenden; großes Team-Projekt.
@@ -61,7 +61,7 @@
 
 ## Notiz für die befüllende Session
 
-Anleitung zum Ausfüllen: siehe [`LEHRPLAN.md`](LEHRPLAN.md) Abschnitt „Anleitung". Vorab zu klären:
+Anleitung zum Ausfüllen: siehe [`lehrplan/swp-hwii/LEHRPLAN.md`(../../lehrplan/swp-hwii/LEHRPLAN.md) Abschnitt „Anleitung". Vorab zu klären:
 1. **Diplomarbeitsverschränkung:** wieviel von KM9 ist Fachunterricht vs. DA-Betreuung?
 2. **Maturarelevanz:** welche Themen (Patterns, Vorgehensmodelle, Webservices) sind prüfungsrelevant?
 3. **Server-Stack:** Hono/Vite/SSR-Framework, REST vs. tRPC (Jg II hatte tRPC-POC) – verbindlich festlegen.

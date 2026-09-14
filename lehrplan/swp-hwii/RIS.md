@@ -79,6 +79,6 @@ Die Schuladaption ② (`HWII_SWP.pdf`, Basis unseres [`LEHRPLAN.md`](LEHRPLAN.md
 
 ## 8. Konsequenzen für dieses Repo
 
-1. [`METADATA.md`](METADATA.md) führt die Rechtsgrundlage als **„BGBl. II Nr. 262/2015 idF BGBl. II Nr. 235/2019"**.
+1. [`../METADATA.md`](../METADATA.md) führt die Rechtsgrundlage als **„BGBl. II Nr. 262/2015 idF BGBl. II Nr. 235/2019"**.
 2. [`LEHRPLAN.md`](LEHRPLAN.md) ist dreischichtig aufgebaut: ① offizieller Extrakt · ② Schuladaption · ③ Didaktik/Stack.
 3. **Re-Check-Empfehlung:** einmal jährlich (Sommerferien) die konsolidierte Fassung (Link oben) auf eine neue „Änderung"-Zeile prüfen. Nächster Check: Sommer 2027.

@@ -119,10 +119,17 @@ Unterrichtet-Status: [`swp-hwii/kompetenzmodule/README.md`](swp-hwii/kompetenzmo
 | `swp-hwii/HWII_SWP.pdf` / `swp-hwii/HWII_INFI.pdf` | Original-PDFs der Schule (Quellen der Schicht ②; letztere INFI-Referenz für Vorwissen) |
 | `swp-hwii/kompetenzmodule/` | KM-Matrix (`README.md`) + Steckbriefe `km3.md`–`km9.md` (PMM-Format) |
 | `swp-hwii/3HWII/` | Drehscheibe SJ 2026/27: `README.md` (Rahmen + INFI-Verbund), Klassenextrakt `3HWII.lehrplan.md` |
+| `swp-hwii/4HWII/4HWII.lehrplan.md` | Klassenextrakt 4. Klasse (KM7+KM8) — Stub |
+| `swp-hwii/5HWII/5HWII.lehrplan.md` | Klassenextrakt 5. Klasse (KM9) — Stub |
 | `unterricht/HWII-SWP/jg2-einheiten.md` | 2. Klasse (KM3+KM4 Webtechnologien) – Rückpflege aus SJ 2025/26 |
 | `unterricht/HWII-SWP/jg4-einheiten.md` | 4. Klasse (KM7+KM8) – Stub/Gerüst |
 | `unterricht/HWII-SWP/jg5-einheiten.md` | 5. Klasse (KM9) – Stub/Gerüst |
 | `unterricht/HWII-SWP/jg3-semesterplan-{ws,ss}.md` | Semesterpläne 3. Klasse (KM5/KM6, aktiv SJ 2026/27) |
 
+> **Erläuterungs-Ebene 2026-09-14:** `LEHRPLAN.md` und alle Klassenextrakte tragen jetzt
+> die vollständige Annotations-Ebene (`> **Überblick:**` pro KM, `> **Erläuterung:**` pro
+> Lernziel/Lehrstoff-Bereich) gemäß lehrplan-Skill (Aufgabe 2); Substanz aus den
+> KM-Steckbriefen.
+>
 > Das frühere `jg3-einheiten.md` wurde nach `3HWII/` (Semesterpläne) und
 > `kompetenzmodule/` (Abdeckung) migriert (kein Informationsverlust) und gelöscht.
