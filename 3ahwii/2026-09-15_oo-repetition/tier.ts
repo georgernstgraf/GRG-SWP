@@ -11,11 +11,13 @@ export class Tier {
 
   // TODO HÜ: vergleicht Zustand (Name + Gewicht), nicht Identität.
   equals(other: Tier): boolean {
-    return false;
+    return this.name === other.name && this.gewicht === other.gewicht;
   }
 
   // TODO HÜ: erhöht das Gewicht um kg.
-  fuettern(kg: number): void {}
+  fuettern(kg: number): void {
+    this.gewicht += kg;
+  }
 
   toString(): string {
     return `${this.name} (${this.gewicht} kg)`;

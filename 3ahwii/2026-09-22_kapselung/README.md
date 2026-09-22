@@ -1,5 +1,22 @@
 # 3AHWII – UE 2: Kapselung & Sichtbarkeit (22.09.2026)
 
+## lambda function syntax Möglichkeiten
+
+```typescript
+> a.filter( _ => _%2===1)
+[ 1, 3, 5, 7, 9 ]
+> a.filter( wert => wert%2===1)
+[ 1, 3, 5, 7, 9 ]
+> a.filter( (wert) => wert%2===1)
+[ 1, 3, 5, 7, 9 ]
+> a.filter( (wert) => {wert%2===1})
+[]
+> a.filter( (wert) => {wert%2===1; return})
+[]
+> a.filter( (wert) => {return wert%2===1;})
+[ 1, 3, 5, 7, 9 ]
+```
+
 ## HÜ (bis nächste UE)
 
 Starter ist rot — dein Job ist grün:
