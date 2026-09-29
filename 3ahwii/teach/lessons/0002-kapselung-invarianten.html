@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UE 2 — Kapselung &amp; Invarianten — 3AHWII</title>
     <link rel="stylesheet" href="../assets/style.css">
-    <script type="module" src="../assets/quiz.js"></script>
+    <script src="../assets/quiz.js" defer></script>
   </head>
   <body>
     <header class="lesson-header">
@@ -90,25 +90,14 @@ k.kontostand = -1_000_000;   <span class="hl-comment">// kompiliert, wenn kontos
       >Checkliste zum Abhaken →</a>
     </aside>
 
-    <div class="quiz" data-answer="0">
-      <p class="quiz-question">
+    <div class="quiz" data-loesung="0">
+      <p class="frage">
         Warum hat <code>kontostand</code> hier keinen setter?
       </p>
-      <button class="quiz-option">
-        Änderungen gehen über geprüfte Methoden, ein setter würde die
-        Prüfung umgehen
-      </button>
-      <button class="quiz-option">
-        Setter sind veraltet, man schreibt sie generell nicht mehr
-      </button>
-      <button class="quiz-option">
-        Weil der Kontostand ein readonly-Feld ist und nie geändert wird
-      </button>
-      <p class="quiz-feedback">
-        Ein setter würde die zweite Tür aufmachen, durch die die Invariante
-        verletzt werden kann. Änderungen nur über <code
-        >einzahlen()</code>/<code>abheben()</code> — dort steht die Prüfung.
-      </p>
+      <label><input type="radio" name="q1" value="0" data-grund="Richtig, weil ein setter die zweite Tür öffnen würde, durch die die Invariante verletzt werden kann — Änderungen laufen nur über geprüfte Methoden wie einzahlen()."> Änderungen gehen über geprüfte Methoden, ein setter würde die Prüfung umgehen</label>
+      <label><input type="radio" name="q1" value="1" data-grund="Falsch, weil setter nicht veraltet sind — der Grund ist die Invariante: Hier würde ein setter die Prüfung umgehen."> Setter sind veraltet, man schreibt sie generell nicht mehr</label>
+      <label><input type="radio" name="q1" value="2" data-grund="Falsch, weil der Kontostand nicht readonly ist — er ändert sich über Methoden wie einzahlen(), nur eben kontrolliert und geprüft."> Weil der Kontostand ein readonly-Feld ist und nie geändert wird</label>
+      <p class="feedback" aria-live="polite"></p>
     </div>
 
     <h2>Fail-Fast vs. Happy Path — die Review-Frage</h2>
@@ -120,24 +109,14 @@ k.kontostand = -1_000_000;   <span class="hl-comment">// kompiliert, wenn kontos
       „Fehler gefunden in 3 Wochen ohne Spur".
     </p>
 
-    <div class="quiz" data-answer="1">
-      <p class="quiz-question">
+    <div class="quiz" data-loesung="1">
+      <p class="frage">
         Wo gehört die Prüfung <code>betrag &gt; 0</code> hin?
       </p>
-      <button class="quiz-option">
-        An jede Stelle, die kontostand ausliest
-      </button>
-      <button class="quiz-option">
-        In den Konstruktor und in jede Methode, die den Zustand ändert
-      </button>
-      <button class="quiz-option">
-        Nur in die Oberfläche, bevor der Wert zur Klasse kommt
-      </button>
-      <p class="quiz-feedback">
-        Die Klasse verteidigt ihre Invariante <em>selbst</em>, an jeder Tür,
-        durch die Zustand entstehen oder sich ändern kann — nicht der
-        Aufrufer draußen.
-      </p>
+      <label><input type="radio" name="q2" value="0" data-grund="Falsch, weil Lesen unproblematisch ist — geprüft wird dort, wo Zustand entsteht oder sich ändert, nicht beim Auslesen."> An jede Stelle, die kontostand ausliest</label>
+      <label><input type="radio" name="q2" value="1" data-grund="Richtig, weil die Klasse ihre Invariante an jeder Tür selbst verteidigt: Der Konstruktor sichert sie beim Entstehen, jede zustandsändernde Methode beim Wachsen."> In den Konstruktor und in jede Methode, die den Zustand ändert</label>
+      <label><input type="radio" name="q2" value="2" data-grund="Falsch, weil die Klasse die Invariante selbst verteidigt — verlässt man sich nur auf die Oberfläche, kann jeder andere Aufrufer sie brechen."> Nur in die Oberfläche, bevor der Wert zur Klasse kommt</label>
+      <p class="feedback" aria-live="polite"></p>
     </div>
 
     <h2>Dein Win heute</h2>

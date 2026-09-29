@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UE 1 — Klasse, Instanz, Zustand — 3AHWII</title>
     <link rel="stylesheet" href="../assets/style.css">
-    <script type="module" src="../assets/quiz.js"></script>
+    <script src="../assets/quiz.js" defer></script>
   </head>
   <body>
     <header class="lesson-header">
@@ -67,23 +67,15 @@
       geschriebenes <code>equals()</code> vergleicht Zustand.
     </aside>
 
-    <div class="quiz" data-answer="1">
-      <p class="quiz-question">
+    <div class="quiz" data-loesung="1">
+      <p class="frage">
         Zwei Kontos: <code>a = new Konto("AT1", 500)</code>, <code>b = new
           Konto("AT1", 500)</code>. Was gilt?
       </p>
-      <button class="quiz-option">a und b sind dasselbe Objekt</button>
-      <button class="quiz-option">
-        a und b haben gleichen Zustand, verschiedene Identität
-      </button>
-      <button class="quiz-option">
-        a und b sind identisch, weil der Zustand gleich ist
-      </button>
-      <p class="quiz-feedback">
-        Zwei <code>new</code> = zwei Instanzen. Der Zustand (Feldwerte) ist
-        gleich, <code>a === b</code> ist <code>false</code> — deshalb
-        schreiben wir <code>equals()</code> für Zustandsvergleich.
-      </p>
+      <label><input type="radio" name="q1" value="0" data-grund="Falsch, weil jedes new eine eigene Instanz erzeugt — a und b belegen zwei verschiedene Speicherplätze."> a und b sind dasselbe Objekt</label>
+      <label><input type="radio" name="q1" value="1" data-grund="Richtig, weil zwei new zwei Instanzen erzeugen: Die Feldwerte sind gleich, aber a === b ist false — deshalb vergleicht equals() den Zustand."> a und b haben gleichen Zustand, verschiedene Identität</label>
+      <label><input type="radio" name="q1" value="2" data-grund="Falsch, weil gleicher Zustand nicht dieselbe Identität bedeutet — a === b ist false, obwohl beide Konten 500 halten."> a und b sind identisch, weil der Zustand gleich ist</label>
+      <p class="feedback" aria-live="polite"></p>
     </div>
 
     <h2>Zustand live: Feldwerte sind pro Instanz</h2>
@@ -110,18 +102,12 @@
         sich über die Klasse.</strong>
     </p>
 
-    <div class="quiz" data-answer="2">
-      <p class="quiz-question">Was verändert <code>einzahlen()</code>?</p>
-      <button class="quiz-option">den Bauplan in der Klasse</button>
-      <button class="quiz-option">
-        alle Instanzen der Klasse gleichzeitig
-      </button>
-      <button class="quiz-option">nur die Feldwerte der einen Instanz</button>
-      <p class="quiz-feedback">
-        <code>this.kontostand += …</code> ändert das Feld der Instanz, über
-        die die Methode aufgerufen wurde. Klasse und andere Instanzen bleiben
-        unberührt.
-      </p>
+    <div class="quiz" data-loesung="2">
+      <p class="frage">Was verändert <code>einzahlen()</code>?</p>
+      <label><input type="radio" name="q2" value="0" data-grund="Falsch, weil die Klasse der Bauplan ist und einmal existiert — Methoden ändern ihn nie, nur den Zustand einer Instanz."> den Bauplan in der Klasse</label>
+      <label><input type="radio" name="q2" value="1" data-grund="Falsch, weil Zustand pro Instanz lebt: einzahlen() ändert nur die Instanz, über die sie aufgerufen wurde, andere bleiben unberührt."> alle Instanzen der Klasse gleichzeitig</label>
+      <label><input type="radio" name="q2" value="2" data-grund="Richtig, weil this.kontostand += … nur die Feldwerte der Instanz ändert, über die die Methode aufgerufen wurde; Klasse und andere Instanzen bleiben unberührt."> nur die Feldwerte der einen Instanz</label>
+      <p class="feedback" aria-live="polite"></p>
     </div>
 
     <h2>Dein Win heute</h2>

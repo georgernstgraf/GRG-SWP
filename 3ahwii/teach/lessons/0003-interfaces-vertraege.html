@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>UE 3 — Interfaces als Vertrag — 3AHWII</title>
     <link rel="stylesheet" href="../assets/style.css">
-    <script type="module" src="../assets/quiz.js"></script>
+    <script src="../assets/quiz.js" defer></script>
   </head>
   <body>
     <header class="lesson-header">
@@ -59,25 +59,14 @@
       beim O/R-Mapping (Verbund, SS) Schiffbruch.
     </p>
 
-    <div class="quiz" data-answer="2">
-      <p class="quiz-question">
+    <div class="quiz" data-loesung="2">
+      <p class="frage">
         Warum mehrere Interfaces statt alles in die Basisklasse packen?
       </p>
-      <button class="quiz-option">
-        Interfaces sind schneller, Klassen kosten zur Laufzeit Speicher
-      </button>
-      <button class="quiz-option">
-        Weil TypeScript mehr als ein Elternteil bei extends erlaubt
-      </button>
-      <button class="quiz-option">
-        Fähigkeiten sind unabhängige Verträge, Abstammung ist eine einzige
-        is-a-Linie
-      </button>
-      <p class="quiz-feedback">
-        Ein Konto <em>ist ein</em> Konto (Vererbung) — aber <em
-        >vergleichbar</em> zu sein und <em>verzinsbar</em> zu sein sind
-        unabhängige Fähigkeiten, die auch andere Klassen haben können.
-      </p>
+      <label><input type="radio" name="q1" value="0" data-grund="Falsch, weil es nicht um Laufzeit oder Geschwindigkeit geht — der Unterschied ist die Rolle: Fähigkeiten als unabhängige Verträge statt einer is-a-Linie."> Interfaces sind schneller, Klassen kosten zur Laufzeit Speicher</label>
+      <label><input type="radio" name="q1" value="1" data-grund="Falsch, weil TypeScript bei extends gerade nur ein Elternteil erlaubt — deshalb nutzt man Interfaces für die zusätzlichen Fähigkeiten."> Weil TypeScript mehr als ein Elternteil bei extends erlaubt</label>
+      <label><input type="radio" name="q1" value="2" data-grund="Richtig, weil Vererbung eine einzige is-a-Linie ist, während vergleichbar oder verzinsbar zu sein unabhängige Fähigkeiten sind, die auch andere Klassen haben können."> Fähigkeiten sind unabhängige Verträge, Abstammung ist eine einzige is-a-Linie</label>
+      <p class="feedback" aria-live="polite"></p>
     </div>
 
     <h2>Structural typing — die TS-Eigenart</h2>
@@ -91,24 +80,14 @@
       sagt ja, solange die Form passt.
     </p>
 
-    <div class="quiz" data-answer="0">
-      <p class="quiz-question">
+    <div class="quiz" data-loesung="0">
+      <p class="frage">
         Was prüft TypeScript bei einer Interface-Zuweisung?
       </p>
-      <button class="quiz-option">
-        ob das Objekt die geforderten Mitglieder in der richtigen Form hat
-      </button>
-      <button class="quiz-option">
-        ob das Objekt von einer Klasse abstammt, die implements schreibt
-      </button>
-      <button class="quiz-option">
-        ob das Objekt zur Laufzeit denselben Speicherplatz teilt
-      </button>
-      <p class="quiz-feedback">
-        Structural typing: die Struktur zählt. <code>implements</code> hilft
-        dem Compiler und dem Leser, aber die Zuweisung hängt allein an der
-        Form.
-      </p>
+      <label><input type="radio" name="q2" value="0" data-grund="Richtig, weil TypeScript die Form prüft: Wer die geforderten Mitglieder hat, erfüllt den Vertrag — structural typing."> ob das Objekt die geforderten Mitglieder in der richtigen Form hat</label>
+      <label><input type="radio" name="q2" value="1" data-grund="Falsch, weil implements nur Dokumentation ist — die Zuweisung hängt allein an der Form, nicht an der Abstammung."> ob das Objekt von einer Klasse abstammt, die implements schreibt</label>
+      <label><input type="radio" name="q2" value="2" data-grund="Falsch, weil es nicht um Speicherplatz geht: Der Vertrag verlangt die geforderten Mitglieder, kein gemeinsames Objekt."> ob das Objekt zur Laufzeit denselben Speicherplatz teilt</label>
+      <p class="feedback" aria-live="polite"></p>
     </div>
 
     <h2>Verträge als Funktionsparametertypen</h2>
