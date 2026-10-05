@@ -36,11 +36,8 @@ deno test           # grün/rot
 
 ## Material
 
-- Lesson 3:
-  [`teach/lessons/0003-interfaces-vertraege.html`](../teach/lessons/0003-interfaces-vertraege.html)
-- Domänen-Steckbriefe (was aus Tier/Fahrzeug/Produkt/Person noch wird):
-  [`teach/reference/domaenen-steckbriefe.html`](../teach/reference/domaenen-steckbriefe.html)
-- Glossar + Syntax-Cheatsheet wie in UE 1/2.
+- Lesson (kohortenagnostisch):
+  [`unterricht/KM5-03-interfaces-vertraege/lesson.html`](../../unterricht/KM5-03-interfaces-vertraege/lesson.html)
 
 ## Wenn du mehr wissen willst (optional)
 

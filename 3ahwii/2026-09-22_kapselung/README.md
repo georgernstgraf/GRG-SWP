@@ -52,12 +52,8 @@ deno test           # grün/rot
 
 ## Material
 
-- Lesson 2:
-  [`teach/lessons/0002-kapselung-invarianten.html`](../teach/lessons/0002-kapselung-invarianten.html)
-- Invarianten-Checkliste:
-  [`teach/reference/invarianten-checkliste.html`](../teach/reference/invarianten-checkliste.html)
-- Syntax-Cheatsheet:
-  [`teach/reference/ts-oop-cheatsheet.html`](../teach/reference/ts-oop-cheatsheet.html)
+- Lesson (kohortenagnostisch):
+  [`unterricht/KM5-02-kapselung-invarianten/lesson.html`](../../unterricht/KM5-02-kapselung-invarianten/lesson.html)
 
 ## Wenn du mehr wissen willst (optional)
 

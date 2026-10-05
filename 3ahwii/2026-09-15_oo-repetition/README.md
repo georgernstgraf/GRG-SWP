@@ -35,10 +35,9 @@ deno test           # grün/rot
 
 ## Material
 
-- Lesson 1:
-  [`teach/lessons/0001-klasse-instanz-zustand.html`](../teach/lessons/0001-klasse-instanz-zustand.html)
-- Glossar:
-  [`teach/reference/glossar-oo.html`](../teach/reference/glossar-oo.html)
+- Lesson (kohortenagnostisch):
+  [`unterricht/KM5-01-klasse-instanz-zustand/lesson.html`](../../unterricht/KM5-01-klasse-instanz-zustand/lesson.html)
+- Glossar: [`GLOSSAR.md`](../../GLOSSAR.md) (OO-Fachbegriffe)
 
 ## Wenn du mehr wissen willst (optional)
 

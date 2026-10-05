@@ -29,9 +29,9 @@ Domänen-Strategie: 5 voll declinierbare Domänen — Unterricht `Konto`, HÜ `T
 > als Träger (keine echte Hierarchie, Invarianten ohne Substanz). Ab UE 1 lebt der
 > Unterricht auf **`Konto`** (Bankwesen); HÜ und Test laufen auf eigenen Domänen —
 > jede der **5 Domänen** kann den vollen OO-Bogen tragen (getter/setter → abstract
-> class, Interfaces, eigene Fehlerklassen). Steckbriefe:
-> [`teach/reference/domaenen-steckbriefe.html`](teach/reference/domaenen-steckbriefe.html).
-> Unterricht-Material: [`teach/`](teach/) (Lessons, Glossar, Cheatsheet, Quiz).
+> class, Interfaces, eigene Fehlerklassen). Domänen-Zuordnung/Lehrplan-Hintergrund:
+> [`README.md`](README.md) (Log 2026-09-14). Prepared Lessons (kohortenagnostisch):
+> `unterricht/KM5-01…KM5-03/`.
 > **Achtung:** UE 4–10 sind im Gerüst noch Bruch-basiert (`GemischterBruch`,
 > `Comparable<Bruch>`, `BruchFehler`) — die HÜ-Spalten brauchen ein Domänen-Rework,
 > sobald UE 1–3 gelaufen sind (HANDOFF).

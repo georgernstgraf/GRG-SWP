@@ -43,8 +43,9 @@ OO-Bogen tragen (getter/setter → abstract class, Interfaces, Fehlerklassen):
 
 Anti-Copy: Unterricht ≠ jede HÜ ≠ Test. Nebenwirkung: Tierpension, Shop und
 Schulverwaltung sind 3 der 5 Verbund-Kandidaten → informierte Abstimmung im Dezember.
-Unterrichts-/Übungsmaterial im Teach-Workspace [`teach/`](teach/) (Lessons, Glossar,
-Cheatsheet, Invarianten-Checkliste, Domänen-Steckbriefe). `semesterplan-ws.md` UE 1–3
+Unterrichtsmaterial als kohortenagnostische Prepared Lessons unter
+`unterricht/KM5-01…KM5-03/` (Lektion = Präsentation; Glossar: `GLOSSAR.md`).
+`semesterplan-ws.md` UE 1–3
 umgestellt; **UE 4–10 sind noch Bruch-basiert** → Domänen-Rework offen (HANDOFF).
 
 ### 2026-09-08 – Erste UE: OOP in TypeScript
