@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lektion KM5-02 — Kapselung &amp; Invarianten</title>
+<script>(function(){var s=location.pathname.split("/");s.pop();(function t(){if(!s.length)return;var r=s.join("/")+"/",e=document.createElement("script");e.src=r+"assets/loader.js";e.setAttribute("data-css","lesson.css");e.setAttribute("data-js","quiz.js,theme.js");e.onerror=function(){s.pop();t()};e.onload=function(){if(!window.__SITE_ROOT__){s.pop();t()}};document.head.appendChild(e)})()})();</script>
+</head>
+<body>
+
+<header class="meta">
+  <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Dunkel</button>
+  <span class="kicker">Lektion KM5-02 · OO-Fundament</span>
+  <h1>Kapselung &amp; Invarianten</h1>
+  <p class="subtitle">Die Klasse wird Herrin ihres Zustands: Sichtbarkeiten,
+  kontrollierte Türen und Fail-Fast — damit ungültige Objekte gar nicht erst
+  entstehen.</p>
+</header>
+
+<div class="callout">
+  <span class="label">Lektüre (Pflicht)</span>
+  <p><a href="https://www.typescriptlang.org/docs/handbook/2/classes.html">TypeScript
+  Handbook: Classes</a> — Abschnitte <code>public</code>/<code>private</code>/<code>protected</code>,
+  <code>readonly</code>, Accessors. Ergänzend
+  <a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Classes/Private_properties">MDN:
+  Private properties</a> für <code>#feld</code>.</p>
+</div>
+
+<h2>Einstiegsfrage</h2>
+<pre><code>const k = new Konto("AT1", 500);
+k.kontostand = -1_000_000;   // kompiliert, wenn kontostand public ist — und ist Datenmüll</code></pre>
+<p>Die Klasse <em>verspricht</em> „ein Konto hat einen sinnvollen Kontostand" —
+aber jeder Zugriff von außen kann das Versprechen brechen. <strong>Wer darf
+diesen Zustand eigentlich ändern?</strong> Und wie erzwingt man das, statt es
+nur zu hoffen?</p>
+
+<h2>Ziel-Artefakt</h2>
+<p>Am Ende dieser Doppelstunde steht eine Konto-Klasse, die
+<strong>beweisbar</strong> (durch Tests) garantiert: kein ungültiges Objekt
+wird je geboren, keine Methode bricht die Regel. Das ist der Übergang von
+„Code läuft" zu „Code ist vertrauenswürdig".</p>
+
+<h2>Das Problem: unkontrollierter Zustand</h2>
+<p>Sobald Müll einmal drin ist, verteilt er sich über das ganze Programm —
+jene Fehler, die man drei Wochen später in einer völlig anderen Datei sucht.
+Kapselung ist die Antwort: Der Zustand gehört der Klasse, die ihn schützt.</p>
+
+<h2>Die Lösung in drei Schichten</h2>
+<table>
+  <tr>
+    <th>Schicht</th>
+    <th>Werkzeug</th>
+    <th>Wirkung</th>
+  </tr>
+  <tr>
+    <td>1. Sichtbarkeiten</td>
+    <td><code>private</code> / <code>readonly</code></td>
+    <td>Kein Zugriffspfad von außen; Identität unveränderlich</td>
+  </tr>
+  <tr>
+    <td>2. Kontrollierte Türen</td>
+    <td>getter / setter, Methoden mit Prüfung</td>
+    <td>Jede Änderung geht durch die Prüfung</td>
+  </tr>
+  <tr>
+    <td>3. Fail-Fast</td>
+    <td><code>throw</code> im Konstruktor &amp; in Methoden</td>
+    <td>Ungültige Werte sterben <em>sofort</em>, nicht drei Wochen später</td>
+  </tr>
+</table>
+
+<div class="quiz" data-loesung="0">
+  <p class="frage">Warum hat <code>kontostand</code> in einer gepflegten Klasse keinen setter?</p>
+  <label><input type="radio" name="q1" value="0" data-grund="Richtig, weil ein setter die zweite Tür öffnen würde, durch die die Invariante verletzt werden kann — Änderungen laufen nur über geprüfte Methoden wie einzahlen()."> Änderungen gehen über geprüfte Methoden, ein setter würde die Prüfung umgehen</label>
+  <label><input type="radio" name="q1" value="1" data-grund="Falsch, weil setter nicht veraltet sind — der Grund ist die Invariante: Hier würde ein setter die Prüfung umgehen."> Setter sind veraltet, man schreibt sie generell nicht mehr</label>
+  <label><input type="radio" name="q1" value="2" data-grund="Falsch, weil der Kontostand nicht readonly ist — er ändert sich über Methoden wie einzahlen(), nur eben kontrolliert und geprüft."> Weil der Kontostand ein readonly-Feld ist und nie geändert wird</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Sichtbarkeiten: public, private, protected, readonly</h2>
+<table>
+  <tr><th>Modifizierer</th><th>Wer darf zugreifen?</th><th>Typischer Einsatz</th></tr>
+  <tr><td><code>public</code> (Default)</td><td>alle</td><td>Methoden, die die Welt braucht</td></tr>
+  <tr><td><code>private</code></td><td>nur dieselbe Klasse</td><td>interne Feldwerte, Hilfsmethoden</td></tr>
+  <tr><td><code>protected</code></td><td>dieselbe Klasse und Subklassen</td><td>Zustand, den eine Subklasse erben soll (ab Vererbung)</td></tr>
+  <tr><td><code>readonly</code></td><td>alle lesen, nur der Konstruktor schreiben</td><td>Identität (IBAN, ID)</td></tr>
+</table>
+<p><strong>TypeScript-Eigenart:</strong> <code>private</code> prüft nur die
+<em>Kompilierzeit</em> — zur Laufzeit bleibt das Feld erreichbar. Willst du
+harte Kapselung im JavaScript selbst, nutzt du <code>#feld</code>:</p>
+<pre><code>class Konto {
+  #kontostand = 0;        // echtes JS-private: von außen unerreichbar
+  readonly iban: string;  // TS-readonly: nur im Konstruktor setzbar
+  // …
+}</code></pre>
+
+<div class="quiz" data-loesung="2">
+  <p class="frage">Worin unterscheiden sich <code>private kontostand</code> (TS) und <code>#kontostand</code> (JS)?</p>
+  <label><input type="radio" name="q2" value="0" data-grund="Falsch, weil beide nur innerhalb der Klasse erlaubt sind — der Unterschied liegt darin, ob die Sperre schon zur Kompilierzeit oder erst im JavaScript greift."> In der Sichtbarkeit innerhalb der Klasse</label>
+  <label><input type="radio" name="q2" value="1" data-grund="Falsch, weil der Zugriff bei beiden gleich geregelt ist — der Unterschied ist die Zeitschicht, nicht der Ort."> Darin, wer auf das Feld zugreifen darf</label>
+  <label><input type="radio" name="q2" value="2" data-grund="Richtig, weil TypeScript private nur zur Kompilierzeit prüft, während #feld zur Laufzeit im JavaScript unerreichbar bleibt."> Darin, ob die Sperre schon in TypeScript oder erst im JavaScript greift</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Invarianten &amp; Fail-Fast</h2>
+<p><strong>Invariante</strong> = eine Regel, die für jedes Objekt zu jedem
+Zeitpunkt gilt. Der Konstruktor sichert sie <em>beim Entstehen</em>, jede
+zustandsändernde Methode <em>beim Wachsen</em>.</p>
+<pre><code>export class Sparkonto {
+  private kontostand: number;
+
+  constructor(kontostand: number) {
+    // Fail-Fast: ein Sparkonto wird NIE negativ geboren
+    if (kontostand &lt; 0) {
+      throw new Error(`Kontostand darf nicht negativ sein (war ${kontostand})`);
+    }
+    this.kontostand = kontostand;
+  }
+
+  // getter: Lesen ist unproblematisch — Zugriff, keine Änderung
+  get stand(): number {
+    return this.kontostand;
+  }
+
+  // Änderung nur über geprüfte Methoden — kein setter für kontostand
+  einzahlen(betrag: number): void {
+    if (betrag &lt;= 0) throw new Error("Betrag muss positiv sein");
+    this.kontostand += betrag;
+  }
+}</code></pre>
+<p>Fauler Code „rechnet einfach los" (Happy Path) und lässt den Fehler
+irgendwann unten aufschlagen. Fail-Fast wirft <em>beim ersten unmöglichen
+Aufruf</em>. Der Unterschied ist nicht Stil: „Fehler in 2 Sekunden mit präziser
+Meldung" gegen „Fehler in 3 Wochen ohne Spur".</p>
+
+<div class="quiz" data-loesung="1">
+  <p class="frage">Wo gehört die Prüfung <code>betrag &gt; 0</code> hin?</p>
+  <label><input type="radio" name="q3" value="0" data-grund="Falsch, weil Lesen unproblematisch ist — geprüft wird dort, wo Zustand entsteht oder sich ändert, nicht beim Auslesen."> An jede Stelle, die kontostand ausliest</label>
+  <label><input type="radio" name="q3" value="1" data-grund="Richtig, weil die Klasse ihre Invariante an jeder Tür selbst verteidigt: Der Konstruktor sichert sie beim Entstehen, jede zustandsändernde Methode beim Wachsen."> In den Konstruktor und in jede Methode, die den Zustand ändert</label>
+  <label><input type="radio" name="q3" value="2" data-grund="Falsch, weil die Klasse die Invariante selbst verteidigt — verlässt man sich nur auf die Oberfläche, kann jeder andere Aufrufer sie brechen."> Nur in die Oberfläche, bevor der Wert zur Klasse kommt</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Mehrere Invarianten an einer Klasse</h2>
+<pre><code>export class Konto {
+  private kontostand: number;
+  constructor(start: number) {
+    if (start &lt; 0) throw new Error("Start negativ");
+    this.kontostand = start;
+  }
+  abheben(betrag: number): void {
+    if (betrag &lt;= 0) throw new Error("Betrag muss positiv sein");
+    if (betrag &gt; this.kontostand) throw new Error("Kein Dispo vereinbart");
+    this.kontostand -= betrag;   // Invariante: kontostand bleibt ≥ 0
+  }
+}</code></pre>
+<p>Zwei Regeln, zwei Prüfungen, eine Methode: positiv <em>und</em> gedeckt.
+Jede Verletzung endet sofort — bevor ein halb-verändertes Objekt zurückbleibt.</p>
+
+<div class="quiz" data-loesung="0">
+  <p class="frage">Was bedeutet „fail-fast" bei <code>abheben()</code> genau?</p>
+  <label><input type="radio" name="q4" value="0" data-grund="Richtig, weil die Methode beim ersten unmöglichen Aufruf sofort mit throw abbricht, statt still einen ungültigen Zustand zu hinterlassen."> Der unmögliche Aufruf bricht sofort ab, kein halb-verändertes Objekt bleibt zurück</label>
+  <label><input type="radio" name="q4" value="1" data-grund="Falsch, weil fail-fast gerade nicht weiterrechnet — es geht um den Abbruch beim ersten Verstoß, nicht um spätes Loggen."> Der Fehler wird gesammelt und am Programmende einmal gemeldet</label>
+  <label><input type="radio" name="q4" value="2" data-grund="Falsch, weil fail-fast nicht mit try/catch arbeitet, sondern die Invariante erzwingt — Abbruch statt Weiterlaufen mit falschem Zustand."> Die Prüfung wird in einen try/catch-Block verpackt und verschluckt</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Jetzt du!</h2>
+<p><em>Erst vorhersagen, dann prüfen.</em></p>
+<ol>
+  <li><strong>Vorhersage:</strong> Ein <code>public kontostand</code> und ein
+    <code>private kontostand</code> — bei welchem der beiden schlägt
+    <code>deno check</code> auf <code>k.kontostand = -1</code> fehl? Und was passiert
+    jeweils zur <em>Laufzeit</em>?</li>
+  <li><strong>Vorhersage:</strong> Ein Konstruktor wirft bei negativem Startwert. Wie viele
+    Objekte existieren nach <code>new Konto(-5)</code> — null oder ein halbfertiges? Begründe.</li>
+  <li><strong>Ausführen:</strong> Erweitere <code>Konto</code> um <code>ueberweisen(auf: Konto, betrag)</code>,
+    sodass entweder beide Konten stimmen oder gar keines. Sichere es mit Tests (rot → grün).</li>
+</ol>
+
+<h2>Typische Fehler</h2>
+<table>
+  <tr><th>Fehler</th><th>Was wirklich passiert</th></tr>
+  <tr>
+    <td>Feld <code>public</code> lassen, „ist ja nur ein Demo"</td>
+    <td>Jeder Aufrufer kann die Invariante brechen; die Fehlersuche wandert Wochen später in eine fremde Datei.</td>
+  </tr>
+  <tr>
+    <td>setter bauen, der die Prüfung umgeht</td>
+    <td>Öffnet genau die zweite Tür, die man schließen wollte — die Invariante ist dahinter wertlos.</td>
+  </tr>
+  <tr>
+    <td>getter mit Seiteneffekt (z. B. „Zinsen buchen")</td>
+    <td>Lesen soll den Zustand nicht ändern. Zustandsänderung gehört in eine benannte Methode.</td>
+  </tr>
+  <tr>
+    <td>Konstruktor prüft, Methoden nicht</td>
+    <td>Kapselung ist eine <em>permanente</em> Regel, nicht eine einmalige Eingangskontrolle.</td>
+  </tr>
+</table>
+
+<h2>Zusammenfassung</h2>
+<table>
+  <tr><th>Werkzeug</th><th>Schützt gegen</th></tr>
+  <tr><td><code>private</code></td><td>Zugriff von außen (Kompilierzeit)</td></tr>
+  <tr><td><code>#feld</code></td><td>Zugriff von außen (auch zur Laufzeit)</td></tr>
+  <tr><td><code>readonly</code></td><td>Neuzuweisung nach dem Konstruktor</td></tr>
+  <tr><td>geprüfte Methoden</td><td>ungültige Zustandsübergänge</td></tr>
+  <tr><td><code>throw</code> (Fail-Fast)</td><td>das Weiterleben ungültiger Objekte</td></tr>
+</table>
+<p><strong>Ausblick:</strong> In <a href="../KM5-03-interfaces-vertraege/lesson.html">KM5-03</a>
+machen wir aus Verhalten einen <em>Vertrag</em> (interface) — und ab der
+Vererbung wird <code>protected</code> wichtig, weil Subklassen den geschützten
+Zustand erben.</p>
+
+<h2>Aufgabe</h2>
+<p>Nimm eine kleine Klasse deiner Wahl mit mindestens einem veränderlichen Feld.
+Formuliere <em>zwei</em> Invarianten, sichere sie mit Fail-Fast im Konstruktor
+und in jeder mutierenden Methode, und schreibe zu jeder Invariante einen Test,
+der beweist, dass die Verletzung wirklich wirft (rot → grün). Abgabe nach
+Vorgabe deiner Lehrperson.</p>
+
+<footer class="lesson-foot">
+  <p>Zurück: <a href="../KM5-01-klasse-instanz-zustand/lesson.html">Lektion KM5-01</a>
+  · Weiter: <a href="../KM5-03-interfaces-vertraege/lesson.html">Lektion KM5-03 — Interfaces als Vertrag</a>
+  · Grundlage: KM5 (Schuladaption ②)</p>
+</footer>
+
+</body>
+</html>

@@ -23,3 +23,11 @@
 | **INFI-Verbund** | Verbundprojekt mit dem Schwester-Repo GRG-INFI („eine App, zwei Noten") in Jg III SS 2027; Schnittstelle: `lehrplan/swp-hwii/3HWII/README.md` |
 | **ARCHIV** | Unterricht vergangener Schuljahre (`ARCHIV/YYYY-YY-<klasse>/…`); Quelle der Ist-Rückpflege in die KM-Steckbriefe |
 | **Deno Stack** | Pädagogischer Stack ab SJ 2026/27: TypeScript + Deno, Prisma + SQLite, Hono (Jg II), Deno Desktop ab KM6 (Fallback: Hono+Vite), `Deno.test` |
+| **Klasse / Instanz** | OOP (KM5): Klasse = Bauplan (existiert einmal); Instanz = mit `new` erzeugtes Objekt zur Laufzeit |
+| **Zustand** | Die aktuellen Feldwerte einer Instanz (z. B. `kontostand`) — pro Instanz eigen |
+| **Identität** | Einzigartigkeit eines Objekts (`===` = gleicher Speicherplatz); ≠ Zustandsgleichheit (`equals()`) |
+| **Kapselung** | Zustand ist privat; Änderung nur über kontrollierte Türen (Methoden/getter), nie über öffentliche Felder |
+| **Invariante** | Regel, die für jedes Objekt jederzeit gilt (z. B. Betrag ≥ 0); gesichert im Konstruktor und in jeder mutierenden Methode |
+| **Fail-Fast** | Eine Verletzung bricht sofort mit `throw` ab, statt spät einen ungültigen Zustand zu hinterlassen |
+| **Interface** | Vertrag über „was" (welche Mitglieder ein Typ hat), nicht „wie"; eine Klasse kann beliebig viele `implements` |
+| **Structural typing** | TypeScript prüft die Form eines Objekts, nicht seine Abstammung — `implements` ist dafür nicht nötig |

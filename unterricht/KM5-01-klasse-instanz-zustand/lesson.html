@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lektion KM5-01 — Klasse, Instanz, Zustand</title>
+<script>(function(){var s=location.pathname.split("/");s.pop();(function t(){if(!s.length)return;var r=s.join("/")+"/",e=document.createElement("script");e.src=r+"assets/loader.js";e.setAttribute("data-css","lesson.css");e.setAttribute("data-js","quiz.js,theme.js");e.onerror=function(){s.pop();t()};e.onload=function(){if(!window.__SITE_ROOT__){s.pop();t()}};document.head.appendChild(e)})()})();</script>
+</head>
+<body>
+
+<header class="meta">
+  <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Dunkel</button>
+  <span class="kicker">Lektion KM5-01 · OO-Fundament</span>
+  <h1>Klasse, Instanz, Zustand — formalisiert</h1>
+  <p class="subtitle">Der Bauplan, die Objekte und ihr Zustand: warum zwei Konten
+  mit demselben Kontostand trotzdem zwei verschiedene Dinge sind.</p>
+</header>
+
+<div class="callout">
+  <span class="label">Lektüre (Pflicht)</span>
+  <p><a href="https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Classes">MDN:
+  JavaScript Classes</a> — lies die Abschnitte <code>constructor</code> und
+  Instanzfelder. Du kannst Klassen schon schreiben; hier schärfen wir die
+  Begriffe dahinter.</p>
+</div>
+
+<h2>Einstiegsfrage</h2>
+<p>Zwei Konten im Speicher:</p>
+<pre><code>const a = new Konto("AT12…01", 500);
+const b = new Konto("AT12…01", 500);</code></pre>
+<p><strong>Sind <code>a</code> und <code>b</code> dasselbe Konto?</strong> Beide
+tragen dieselbe IBAN und denselben Kontostand. Die Antwort ist trotzdem
+<em>nein</em> — und der Grund dafür ist der ganze Stoff dieser Lektion.</p>
+
+<h2>Warum der Bruch nicht mehr reicht</h2>
+<p><code>class Bruch</code> hat zwei Felder und eine Rechenart. Das genügt, um
+Syntax zu lernen — aber nicht, um über <em>Design</em> zu sprechen. Ein Konto
+hat <strong>Identität</strong> (die IBAN macht das Konto einzigartig),
+<strong>Zustand</strong>, der sich ständig ändert (der Kontostand), und
+<strong>Regeln</strong>, die niemals verletzt werden dürfen. Genau diese drei
+Dinge machen OO-Denken aus.</p>
+
+<h2>Die drei Begriffe, sauber getrennt</h2>
+<table>
+  <tr>
+    <th>Begriff</th>
+    <th>Antwortet auf die Frage</th>
+    <th>Am Konto</th>
+  </tr>
+  <tr>
+    <td><strong>Klasse</strong></td>
+    <td>Wie <em>bauen</em> wir?</td>
+    <td><code>class Konto</code> — der Bauplan, existiert einmal</td>
+  </tr>
+  <tr>
+    <td><strong>Instanz / Objekt</strong></td>
+    <td>Was existiert <em>jetzt</em>?</td>
+    <td><code>new Konto("AT12…", 500)</code> — jedes <code>new</code> erzeugt ein neues Ding</td>
+  </tr>
+  <tr>
+    <td><strong>Zustand</strong></td>
+    <td>Welche Werte hält <em>dieses</em> Ding gerade?</td>
+    <td><code>kontostand = 750</code> — der Feldwert <em>dieser</em> Instanz</td>
+  </tr>
+</table>
+
+<div class="callout">
+  <span class="label">Identität — der vierte Begriff</span>
+  <p>Ein Konto ist einzigartig, <em>auch wenn</em> zwei Konten denselben
+  Kontostand haben. <code>===</code> vergleicht Identität (gleicher
+  Speicherplatz); ein selbst geschriebenes <code>equals()</code> vergleicht
+  Zustand.</p>
+</div>
+
+<h2>Zustand live: Feldwerte sind pro Instanz</h2>
+<pre><code>export class Konto {
+  private kontostand: number;   // Zustand — gehört nur dieser Instanz
+  readonly iban: string;        // Identität — nach dem Konstruktor unveränderlich
+
+  constructor(iban: string, startBetrag: number) {
+    this.iban = iban;
+    this.kontostand = startBetrag;
+  }
+
+  einzahlen(betrag: number): void {
+    this.kontostand += betrag;  // ändert den Zustand DIESER Instanz
+  }
+
+  equals(other: Konto): boolean {
+    return this.iban === other.iban;
+  }
+}</code></pre>
+<p>Ändert <code>k1.einzahlen(100)</code>, bleibt <code>k2</code> unberührt. Das
+ist der ganze Punkt: <strong>Zustand lebt pro Instanz, Verhalten teilt sich
+über die Klasse.</strong></p>
+
+<div class="quiz" data-loesung="1">
+  <p class="frage">
+    Zwei Konten: <code>a = new Konto("AT1", 500)</code>, <code>b = new
+    Konto("AT1", 500)</code>. Was gilt?
+  </p>
+  <label><input type="radio" name="q1" value="0" data-grund="Falsch, weil jedes new eine eigene Instanz erzeugt — a und b belegen zwei verschiedene Speicherplätze."> a und b sind dasselbe Objekt</label>
+  <label><input type="radio" name="q1" value="1" data-grund="Richtig, weil zwei new zwei Instanzen erzeugen: Die Feldwerte sind gleich, aber a === b ist false — deshalb vergleicht equals() den Zustand."> a und b haben gleichen Zustand, verschiedene Identität</label>
+  <label><input type="radio" name="q1" value="2" data-grund="Falsch, weil gleicher Zustand nicht dieselbe Identität bedeutet — a === b ist false, obwohl beide Konten 500 halten."> a und b sind identisch, weil der Zustand gleich ist</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<div class="quiz" data-loesung="2">
+  <p class="frage">Was verändert <code>einzahlen()</code>?</p>
+  <label><input type="radio" name="q2" value="0" data-grund="Falsch, weil die Klasse der Bauplan ist und einmal existiert — Methoden ändern ihn nie, nur den Zustand einer Instanz."> den Bauplan in der Klasse</label>
+  <label><input type="radio" name="q2" value="1" data-grund="Falsch, weil Zustand pro Instanz lebt: einzahlen() ändert nur die Instanz, über die sie aufgerufen wurde, andere bleiben unberührt."> alle Instanzen der Klasse gleichzeitig</label>
+  <label><input type="radio" name="q2" value="2" data-grund="Richtig, weil this.kontostand += … nur die Feldwerte der Instanz ändert, über die die Methode aufgerufen wurde; Klasse und andere Instanzen bleiben unberührt."> nur die Feldwerte der einen Instanz</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Jetzt du!</h2>
+<p><em>Erst vorhersagen, dann prüfen.</em></p>
+<ol>
+  <li><strong>Vorhersage:</strong> <code>const c = a;</code> — gilt <code>c === a</code>?
+    Wie viele Konto-Objekte gibt es jetzt, wie viele Variablen?</li>
+  <li><strong>Vorhersage:</strong> Wir rufen <code>a.einzahlen(100)</code> und lesen danach
+    <code>c.kontostand</code>. Was steht dort — 500 oder 600? Warum?</li>
+  <li><strong>Ausführen:</strong> Schreibe <code>equals()</code> so, dass zwei Konten mit
+    <em>gleicher IBAN</em> als gleich gelten — egal, wie unterschiedlich der Kontostand ist.
+    Prüfe mit zwei <code>Deno.test</code>-Fällen (gleich / ungleich).</li>
+</ol>
+
+<h2>Typische Fehler</h2>
+<table>
+  <tr><th>Fehler</th><th>Was wirklich passiert</th></tr>
+  <tr>
+    <td><code>a === b</code> für „gleiches Konto" halten</td>
+    <td><code>===</code> vergleicht <em>Identität</em>, nicht Zustand. Zwei neue
+      Konten sind nie <code>===</code>. Zustandsvergleich braucht <code>equals()</code>.</td>
+  </tr>
+  <tr>
+    <td>„Die Methode ändert die Klasse"</td>
+    <td>Methoden ändern nie den Bauplan — nur die Feldwerte <em>einer</em> Instanz
+      (<code>this</code>).</td>
+  </tr>
+  <tr>
+    <td><code>readonly</code> mit „konstant" verwechseln</td>
+    <td><code>readonly</code> verbietet nur die <em>Neuzuweisung</em> nach dem
+      Konstruktor — es ist kein <code>const</code> für Objekte.</td>
+  </tr>
+</table>
+
+<h2>Dein Win heute</h2>
+<p>Du kannst zu <em>jedem</em> Code sagen: Das ist Bauplan, das ist eine
+Instanz, das ist Zustand, das ist Identität — und begründen, warum
+<code>equals()</code> etwas anderes tut als <code>===</code>. Diese
+Unterscheidung trägt das gesamte Semester (Kapselung, Vererbung,
+Polymorphismus bauen alle darauf auf).</p>
+
+<h2>Aufgabe</h2>
+<p>Setze die drei Schritte aus <em>„Jetzt du!"</em> in deinem eigenen
+Deno-Projekt um und sichere <code>equals()</code> mit Tests ab (rot → grün).
+Abgabe nach Vorgabe deiner Lehrperson.</p>
+
+<footer class="lesson-foot">
+  <p>Weiter: <a href="../KM5-02-kapselung-invarianten/lesson.html">Lektion KM5-02 — Kapselung &amp; Invarianten</a>
+  · Grundlage: KM5 (Schuladaption ②)</p>
+</footer>
+
+</body>
+</html>

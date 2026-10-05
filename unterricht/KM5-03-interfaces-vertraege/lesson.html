@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lektion KM5-03 — Interfaces als Vertrag</title>
+<script>(function(){var s=location.pathname.split("/");s.pop();(function t(){if(!s.length)return;var r=s.join("/")+"/",e=document.createElement("script");e.src=r+"assets/loader.js";e.setAttribute("data-css","lesson.css");e.setAttribute("data-js","quiz.js,theme.js");e.onerror=function(){s.pop();t()};e.onload=function(){if(!window.__SITE_ROOT__){s.pop();t()}};document.head.appendChild(e)})()})();</script>
+</head>
+<body>
+
+<header class="meta">
+  <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Dunkel</button>
+  <span class="kicker">Lektion KM5-03 · OO-Fundament</span>
+  <h1>Interfaces als Vertrag</h1>
+  <p class="subtitle">„Egal was du bist — wenn du <code>compareTo</code> kannst,
+  bin ich mit dir im Geschäft." Ein Vertrag über <strong>was</strong>, nie über
+  <strong>wie</strong>.</p>
+</header>
+
+<div class="callout">
+  <span class="label">Lektüre (Pflicht)</span>
+  <p><a href="https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#interfaces">TypeScript
+  Handbook: Interfaces</a> und danach
+  <a href="https://www.typescriptlang.org/docs/handbook/type-compatibility.html">Type
+  Compatibility</a> (structural typing).</p>
+</div>
+
+<h2>Einstiegsfrage</h2>
+<p>Wir wollen aus einer Liste das <em>größte</em> Element finden. Die Liste
+enthält Konten, Produkte, irgendetwas — die Funktion soll das gar nicht wissen
+müssen. <strong>Was muss ein Element mitbringen, damit „größer" überhaupt einen
+Sinn hat?</strong></p>
+
+<h2>Ziel-Artefakt</h2>
+<pre><code>function groesstes&lt;T extends Comparable&lt;T&gt;&gt;(liste: T[]): T | undefined {
+  // kennt Konten, Produkte, … nicht — nur den Vertrag compareTo
+}</code></pre>
+<p>Eine einzige Funktion für beliebige Typen — weil sie nur an einem
+<em>Vertrag</em> hängt, nicht an einer Klasse.</p>
+
+<h2>Vertrag über Handlung, nicht über Herkunft</h2>
+<pre><code>// Der Vertrag: „Wer diesen Typ überreicht bekommt, kann compareTo rufen."
+export interface Comparable&lt;T&gt; {
+  compareTo(other: T): number;   // &lt;0: dieses kleiner · 0: gleich · &gt;0: größer
+}
+
+// Die Klasse unterzeichnet — und verspricht damit eine Implementierung
+export class Sparkonto implements Comparable&lt;Sparkonto&gt; {
+  compareTo(other: Sparkonto): number {
+    return this.stand - other.stand;
+  }
+}</code></pre>
+<p><code>compareTo</code> sagt <em>nichts</em> darüber, <em>wie</em> verglichen
+wird — Sparkonto vergleicht nach Kontostand, ein Produkt nach Preis. Der
+Vertrag ist gleich, die Umsetzung je Klasse anders. Das ist „was, nicht wie".</p>
+
+<div class="quiz" data-loesung="2">
+  <p class="frage">Warum mehrere Interfaces statt alles in eine Basisklasse packen?</p>
+  <label><input type="radio" name="q1" value="0" data-grund="Falsch, weil es nicht um Laufzeit oder Geschwindigkeit geht — der Unterschied ist die Rolle: Fähigkeiten als unabhängige Verträge statt einer is-a-Linie."> Interfaces sind schneller, Klassen kosten zur Laufzeit Speicher</label>
+  <label><input type="radio" name="q1" value="1" data-grund="Falsch, weil TypeScript bei extends gerade nur ein Elternteil erlaubt — deshalb nutzt man Interfaces für die zusätzlichen Fähigkeiten."> Weil TypeScript mehr als ein Elternteil bei extends erlaubt</label>
+  <label><input type="radio" name="q1" value="2" data-grund="Richtig, weil Vererbung eine einzige is-a-Linie ist, während vergleichbar oder verzinsbar zu sein unabhängige Fähigkeiten sind, die auch andere Klassen haben können."> Fähigkeiten sind unabhängige Verträge, Abstammung ist eine einzige is-a-Linie</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Mehrere Verträge, eine Klasse</h2>
+<p>Vererbung (nächste Einheit) ist eine <em>is-a</em>-Beziehung mit
+<strong>einem</strong> Elternteil. Interfaces sind Verträge — und eine Klasse
+darf beliebig viele unterschreiben:</p>
+<pre><code>export interface Verzinsbar {
+  jahresZins(): number;
+}
+
+// implements: zwei Verträge gleichzeitig
+export class Sparkonto implements Comparable&lt;Sparkonto&gt;, Verzinsbar { … }</code></pre>
+<p><code>Sparkonto</code> <em>ist ein</em> Konto — und es ist
+<em>vergleichbar</em> und <em>verzinsbar</em>. Fähigkeiten hängen an
+Interfaces, Abstammung an Vererbung. Wer beides vermischt, baut später beim
+O/R-Mapping (Verbund, SS) Schiffbruch.</p>
+
+<h2>Was ein Interface beschreiben kann</h2>
+<pre><code>export interface Produkt {
+  readonly id: string;        // Pflicht-Eigenschaft, nicht neu zuweisbar
+  preis: number;              // Pflicht-Eigenschaft
+  rabatt?: number;            // optionale Eigenschaft
+  istVerfuegbar(): boolean;   // Pflicht-Methode
+  versende(an: string): void; // Pflicht-Methode
+}</code></pre>
+<p><code>?</code> markiert <em>optional</em>: nicht jedes Produkt muss einen
+Rabatt haben. <code>readonly</code> im Interface heißt: Wer den Vertrag
+erfüllt, darf die Eigenschaft nach dem Entstehen nicht neu zuweisen.</p>
+
+<div class="quiz" data-loesung="1">
+  <p class="frage">Was bedeutet <code>rabatt?: number</code> im Interface?</p>
+  <label><input type="radio" name="q2" value="0" data-grund="Falsch, weil das ? Optionalität meint, nicht Zulässigkeit — ob eine Eigenschaft erlaubt ist, regelt der Vertrag nicht als Warnung."> Die Eigenschaft ist verboten und wird nur zu Testzwecken geduldet</label>
+  <label><input type="radio" name="q2" value="1" data-grund="Richtig, weil das ? die Eigenschaft optional macht: Ein Produkt darf einen rabatt haben, muss aber nicht — der Typ erlaubt number oder undefined."> Die Eigenschaft darf fehlen, der Typ ist dann number oder undefined</label>
+  <label><input type="radio" name="q2" value="2" data-grund="Falsch, weil das ? nichts über Schreibzugriff sagt — Lesen und Schreiben sind erlaubt, nur das Vorhandensein ist optional."> Die Eigenschaft darf nur genau einmal gelesen werden</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Interface oder type-Alias?</h2>
+<table>
+  <tr><th>Frage</th><th><code>interface</code></th><th><code>type</code></th></tr>
+  <tr><td>Objekt-/Klassen-Form beschreiben („Vertrag")</td><td>✔ erste Wahl</td><td>möglich</td></tr>
+  <tr><td>Vereinigung / Tupel / Primitiv-Alias</td><td>✘</td><td>✔</td></tr>
+  <tr><td>Erweiterbar durch neue Deklaration</td><td>✔ (declaration merging)</td><td>✘</td></tr>
+</table>
+<p>Faustregel: <strong>Formen/Verträge als <code>interface</code></strong>,
+komplexe Typ-Algebren (Union, Tupel) als <code>type</code>.</p>
+
+<h2>Structural typing — die TS-Eigenart</h2>
+<pre><code>const testkonto = { jahresZins: () =&gt; 0.01 };  // kein implements, keine class
+const v: Verzinsbar = testkonto;                // ok — die Form stimmt</code></pre>
+<p>Wer die geforderten Mitglieder hat, erfüllt den Vertrag — die Dekoration
+(<code>implements</code>) ist Dokumentation, nicht Bedingung. Java würde hier
+<em>nein</em> sagen; TypeScript sagt <em>ja</em>, solange die Form passt.</p>
+
+<div class="quiz" data-loesung="0">
+  <p class="frage">Was prüft TypeScript bei einer Interface-Zuweisung?</p>
+  <label><input type="radio" name="q3" value="0" data-grund="Richtig, weil TypeScript die Form prüft: Wer die geforderten Mitglieder hat, erfüllt den Vertrag — structural typing."> ob das Objekt die geforderten Mitglieder in der richtigen Form hat</label>
+  <label><input type="radio" name="q3" value="1" data-grund="Falsch, weil implements nur Dokumentation ist — die Zuweisung hängt allein an der Form, nicht an der Abstammung."> ob das Objekt von einer Klasse abstammt, die implements schreibt</label>
+  <label><input type="radio" name="q3" value="2" data-grund="Falsch, weil es nicht um Speicherplatz geht: Der Vertrag verlangt die geforderten Mitglieder, kein gemeinsames Objekt."> ob das Objekt zur Laufzeit denselben Speicherplatz teilt</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Verträge als Funktionsparametertypen</h2>
+<pre><code>// Die Funktion kennt nur den Vertrag — jede erfüllende Klasse fliegt durch
+function groesstes&lt;T extends Comparable&lt;T&gt;&gt;(liste: T[]): T | undefined {
+  if (liste.length === 0) return undefined;
+  let bestes = liste[0];
+  for (const kandidat of liste) {
+    if (kandidat.compareTo(bestes) &gt; 0) bestes = kandidat;
+  }
+  return bestes;
+}
+
+groesstes([k1, k2, k3]);   // Sparkonto[] — solange sie Comparable&lt;Sparkonto&gt; sind</code></pre>
+<p><code>groesstes</code> weiß nicht einmal, dass es Konten gibt. <strong>Deshalb
+Interfaces:</strong> Code, der an Verträgen hängt, bleibt erweiterbar, ohne
+angefasst zu werden — die stille Vorwegnahme des Open-Closed-Prinzips.</p>
+
+<div class="quiz" data-loesung="2">
+  <p class="frage">Warum steht in <code>groesstes&lt;T extends Comparable&lt;T&gt;&gt;</code> ein <code>extends</code>?</p>
+  <label><input type="radio" name="q4" value="0" data-grund="Falsch, weil kein Vererbungsbaum entsteht — extends grenzt hier nur den Typ-Parameter auf Vertragserfüller ein."> Damit T wirklich von einer Klasse erbt</label>
+  <label><input type="radio" name="q4" value="1" data-grund="Falsch, weil es die Laufzeit nicht betrifft — die Beschränkung wirkt zur Kompilierzeit und macht compareTo auf T überhaupt erst typisierbar."> Damit die Funktion zur Laufzeit schneller läuft</label>
+  <label><input type="radio" name="q4" value="2" data-grund="Richtig, weil es den Typ-Parameter beschränkt: T muss den Vertrag erfüllen, erst dadurch ist kandidat.compareTo erlaubt und typgeprüft."> Damit T den Vertrag erfüllen muss — nur dann ist compareTo erlaubt</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Abgrenzung: interface vs. abstract class (Vorgriff)</h2>
+<table>
+  <tr><th></th><th><code>interface</code></th><th><code>abstract class</code></th></tr>
+  <tr><td>Beziehung</td><td>kann (Fähigkeit)</td><td>ist ein (Abstammung)</td></tr>
+  <tr><td>Wie viele?</td><td>beliebig viele</td><td>genau eine</td></tr>
+  <tr><td>Implementierung</td><td>keine</td><td>gemeinsamer Code möglich</td></tr>
+  <tr><td>Zustand/Felder</td><td>nein</td><td>ja</td></tr>
+</table>
+<p>Beides kommt später zusammen: abstrakte Klassen liefern <em>gemeinsamen
+Code</em>, Interfaces den <em>Vertrag</em>, den die Funktionen kennen.</p>
+
+<h2>Jetzt du!</h2>
+<p><em>Erst vorhersagen, dann prüfen.</em></p>
+<ol>
+  <li><strong>Vorhersage:</strong> Eine Klasse deklariert
+    <code>implements Verzinsbar</code>, vergisst aber <code>jahresZins()</code>.
+    Kompiliert das — und wo genau meckert TypeScript?</li>
+  <li><strong>Vorhersage:</strong> Du weist ein Objekt mit <code>jahresZins</code>, aber
+    ohne <code>implements</code> einer Variablen vom Typ <code>Verzinsbar</code> zu.
+    Erlaubt oder nicht?</li>
+  <li><strong>Ausführen:</strong> Definiere <code>Versendbar</code> mit
+    <code>versende(an: string): void</code>. Gib einer Klasse <em>beide</em> Verträge
+    (<code>Comparable&lt;T&gt;</code> und <code>Versendbar</code>) und nutze sie als
+    Parameter von <code>groesstes()</code>. Tests (rot → grün).</li>
+</ol>
+
+<h2>Typische Fehler</h2>
+<table>
+  <tr><th>Fehler</th><th>Was wirklich passiert</th></tr>
+  <tr>
+    <td>„Eine Klasse erbt von einem Interface"</td>
+    <td>Interfaces werden <em>implementiert</em>, nicht vererbt: Fähigkeit (kann) statt Abstammung (ist ein).</td>
+  </tr>
+  <tr>
+    <td>Zur Laufzeit mit <code>instanceof</code> auf ein Interface prüfen</td>
+    <td>Interfaces existieren zur Laufzeit nicht — sie sind reine Typ-Information. Dafür braucht es eine Unterscheidung über Felder/Methoden.</td>
+  </tr>
+  <tr>
+    <td>Signatur weicht minimal ab (anderer Parametertyp)</td>
+    <td>Der Vertrag ist dann nicht erfüllt — <code>implements</code> erzwingt die exakte Form.</td>
+  </tr>
+  <tr>
+    <td>Alles in <code>any</code> stecken, „damit es läuft"</td>
+    <td>Damit ist der Vertrag wertlos — genau die Typprüfung, die die Erweiterbarkeit sichert, ist abgeschaltet.</td>
+  </tr>
+</table>
+
+<h2>Zusammenfassung</h2>
+<table>
+  <tr><th>Begriff</th><th>Kern</th></tr>
+  <tr><td><code>interface</code></td><td>Vertrag über „was": Welche Mitglieder muss ein Typ haben?</td></tr>
+  <tr><td><code>implements</code></td><td>Klasse unterzeichnet — und verpflichtet sich zur Umsetzung.</td></tr>
+  <tr><td>structural typing</td><td>Nicht die Abstammung zählt, sondern die Form.</td></tr>
+  <tr><td>Vertrag als Parametertyp</td><td>Code bleibt erweiterbar, ohne angefasst zu werden.</td></tr>
+</table>
+<p><strong>Ausblick:</strong> Ab der Vererbung (<code>extends</code>) kombinieren
+wir beides — <a href="../KM5-01-klasse-instanz-zustand/lesson.html">KM5-01</a> und
+<a href="../KM5-02-kapselung-invarianten/lesson.html">KM5-02</a> liefern Zustand
+und Schutz, diese Lektion den Vertrag.</p>
+
+<h2>Aufgabe</h2>
+<p>Entwirf einen eigenen Vertrag mit mindestens einer Methode und einer
+<code>readonly</code>-Eigenschaft. Lass <em>zwei</em> verschiedene Klassen ihn
+unterschiedlich umsetzen, schreibe eine Funktion, die nur den Vertragstyp kennt
+(als Parameter), und zeige an beiden Klassen denselben Aufruf. Sichere das
+Verhalten mit Tests (rot → grün). Abgabe nach Vorgabe deiner Lehrperson.</p>
+
+<footer class="lesson-foot">
+  <p>Zurück: <a href="../KM5-02-kapselung-invarianten/lesson.html">Lektion KM5-02</a>
+  · Grundlage: KM5 (Schuladaption ②)</p>
+</footer>
+
+</body>
+</html>
