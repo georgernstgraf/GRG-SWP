@@ -16,3 +16,17 @@ Before starting any task, read the following files in order:
 
 If `HANDOFF.md` contains open tasks, complete them before starting
 any new work unless the user explicitly says otherwise.
+
+## Lernplattform (GitHub Pages)
+
+GitHub Pages ist die **Lernplattform**: veröffentlicht wird **nur `unterricht/`**
+(+ zentrales `assets/` + Navigator `index.html`) über
+`.github/workflows/pages.yml`. Klassenordner (`3ahwii/`, `ARCHIV/`),
+`Sample_Projects/`, `Unterlagen/` usw. werden **nicht** deployt.
+
+- Der Root-`index.html` ist der **Navigator** und verlinkt ausschließlich
+  `unterricht/`-Ziele. Neue Lessons werden im selben Commit dort eingetragen.
+- Zentrale Assets: `assets/` (`loader.js`, `lesson.css`, `quiz.js`, `theme.js`,
+  `site.js`, `github-pages-link.js`); Nutzung über `./serve.sh`, nie `file://`.
+- Der Teach-Workspace `3ahwii/teach/` bleibt kohortengebunden und ist **nicht**
+  Teil der Lernplattform.

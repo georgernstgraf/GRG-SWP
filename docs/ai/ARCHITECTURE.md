@@ -1,6 +1,6 @@
 # Architecture
 
-Living structural map of the system as of 2026-09-07.
+Living structural map of the system as of 2026-10-05.
 Overwritten when structural changes occur during a session.
 
 ## Overview
@@ -22,6 +22,8 @@ Companion: `GRG-SWP-T` (Tests, Noten). Schwester-Repo mit Verbund: `GRG-INFI`.
 | `AGENTS.md` | Knowledge-Bootstrap für Agenten (→ `docs/ai/`), Repo-GLOSSAR.md (Domänenbegriffe) |
 | `lehrplan/` | Lehrplan nach Skill-Standard mit Zweig-Ebene (Retrofit 2026-09-10): `swp-hwii/LEHRPLAN.md` (dreischichtig ①②③), `swp-hwii/RIS.md` (Rechtsstand), `METADATA.md` (Stundentafel/Stack), `swp-hwii/HWII_*.pdf` (Schicht ②), `swp-hwii/kompetenzmodule/` (KM-Matrix + Steckbriefe `km3.md`–`km9.md`), `swp-hwii/3HWII/` (Drehscheibe + Klassenextrakt `3HWII.lehrplan.md`) |
 | `unterricht/HWII-SWP/` | **Generisches Unterrichts-Gerüst** (klassen-/jahrgangsübergreifend, wird für Klassen-Abweichungen **nicht** angefasst): `jg3-semesterplan-{ws,ss}.md` (KM5/KM6), `jg2/jg4/jg5-einheiten.md` |
+| `index.html` + `assets/` + `serve.sh` | **Lernplattform** (GitHub Pages): Root-Navigator `index.html` (verlinkt nur `unterricht/`), zentrales Lesson-Fundament `assets/` (`loader.js`, `lesson.css`, `quiz.js`, `theme.js` → Key `swp-theme`, `site.js`, `github-pages-link.js`), Live-Server `serve.sh` |
+| `.github/workflows/pages.yml` | Deployt **nur** `index.html`, `assets/` und `unterricht/` nach GitHub Pages (Klassen-/Archiv-/Unterlagen-Ordner ausgeschlossen) |
 | `3ahwii/` | **Klassenordner SJ 2026/27** (konkrete Klasse): Hub `README.md` (+ Log), Klassen-Semesterplan `semesterplan-ws.md` (Vollkopie des Gerüsts + Abweichungen), UE-Ordner `YYYY-MM-DD_thema/`, Teach-Workspace `teach/` (Lessons/Reference für Schüler, Domänen-Steckbriefe) |
 | `docs/ai/` | Agenten-Wissen (HANDOFF/STATE/DECISIONS/ARCHITECTURE/CONVENTIONS/PITFALLS/DOMAIN/HISTORY) |
 | `ARCHIV/` | Unterricht vergangener Schuljahre (`2025-26-2ahwii/` = Vorjahr der aktuellen Kohorte, TS; `2025-26-3ahwii/` = C#-Variante Jg III) |

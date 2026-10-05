@@ -1,0 +1,172 @@
+/* GRG-SWP — zentrales Lektion-Stylesheet
+   (Tufte-nah, druckfreundlich, hell/dunkel, keine externen Abhängigkeiten).
+   Palette und Grundcharakter aus 3ahwii/assets/style.css; Dark-Theme,
+   Toggle-Button und Print-Regeln ergänzt. */
+
+:root {
+  --ink: #1a1a1a;
+  --paper: #ffffff;
+  --accent: #1d4ed8;
+  --muted: #5b5b5b;
+  --line: #e2e2e2;
+  --code-bg: #f6f6f4;
+  --ok: #15803d;
+  --err: #b91c1c;
+  --maxw: 42rem;
+}
+
+:root[data-theme="dark"] {
+  --ink: #e8e6df;
+  --paper: #1b1b18;
+  --accent: #7aa2f7;
+  --muted: #9a988f;
+  --line: #3a3a34;
+  --code-bg: #26261f;
+  --ok: #7fc98a;
+  --err: #f08a7a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0 auto;
+  max-width: var(--maxw);
+  padding: 2.5rem 1.25rem 5rem;
+  background: var(--paper);
+  color: var(--ink);
+  font: 17px/1.65 Georgia, "Times New Roman", serif;
+}
+
+h1, h2, h3 {
+  font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.25;
+}
+h1 { font-size: 1.9rem; margin: 0 0 0.25rem; }
+h2 { font-size: 1.3rem; margin-top: 2.4rem; }
+h3 { font-size: 1.05rem; margin-top: 1.6rem; }
+
+.subtitle { color: var(--muted); margin: 0 0 1.5rem; }
+a { color: var(--accent); }
+
+header.meta {
+  border-bottom: 2px solid var(--line);
+  padding-bottom: 0.6rem;
+  margin-bottom: 2rem;
+}
+header.meta .kicker {
+  font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+header.meta .ort {
+  display: block;
+  font-size: 0.85em;
+  color: var(--muted);
+  margin-top: 0.15em;
+}
+
+/* Hell/Dunkel-Umschalter (assets/theme.js) */
+.theme-toggle {
+  float: right;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+}
+.theme-toggle:hover { color: var(--ink); border-color: var(--muted); }
+
+nav.breadcrumb {
+  font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+nav.breadcrumb a { color: var(--accent); }
+
+hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+code, pre, .out, .cmt {
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+p code, li code, td code { background: var(--code-bg); padding: 0.1em 0.3em; }
+.out { color: var(--muted); }
+.cmt { color: var(--muted); font-style: italic; }
+
+table { border-collapse: collapse; width: 100%; font-size: 0.95rem; margin: 1rem 0; }
+th, td { border: 1px solid var(--line); padding: 0.5rem 0.6rem; text-align: left; vertical-align: top; }
+th {
+  background: var(--code-bg);
+  font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.callout {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  padding: 0.8rem 1rem;
+  margin: 1.25rem 0;
+  background: var(--code-bg);
+  font-size: 0.95rem;
+}
+.callout .label {
+  display: inline-block;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+.quiz { border: 1px solid var(--line); border-radius: 4px; padding: 1rem 1.1rem; margin: 1.4rem 0; }
+.quiz .frage { margin: 0 0 0.7rem; }
+.quiz label {
+  display: block;
+  padding: 0.45rem 0.7rem;
+  margin: 0.3rem 0;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.quiz label:hover { border-color: var(--muted); }
+.quiz input { margin-right: 0.5rem; }
+.quiz .feedback { margin-top: 0.7rem; font-size: 0.92rem; min-height: 1.3em; }
+.quiz .feedback.richtig { color: var(--ok); }
+.quiz .feedback.falsch { color: var(--err); }
+
+footer.lesson-foot { margin-top: 2.5rem; font-size: 0.9rem; color: var(--muted); }
+footer.lesson-foot a { color: var(--accent); }
+
+@media print {
+  :root, :root[data-theme="dark"] {
+    --ink: #1a1a1a;
+    --paper: #ffffff;
+    --accent: #1d4ed8;
+    --muted: #5b5b5b;
+    --line: #e2e2e2;
+    --code-bg: #f6f6f4;
+    --ok: #15803d;
+    --err: #b91c1c;
+  }
+  body { max-width: none; padding: 0; }
+  pre { white-space: pre-wrap; }
+  .quiz label { break-inside: avoid; border: 1px solid #999; }
+  .theme-toggle, #gh-pages-badge, nav.breadcrumb { display: none !important; }
+}

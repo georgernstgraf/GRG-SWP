@@ -3,6 +3,13 @@
 Current status as of 2026-09-14.
 
 ## Current Focus
+**Lernplattform (#9):** GitHub Pages neu eingerichtet — repo-weites `assets/`
+(Loader/Theme/Quiz/Badge, Theme-Key `swp-theme`), `serve.sh`, Root-Navigator
+`index.html` (nur `unterricht/`-Ziele) und `.github/workflows/pages.yml`
+(rsync `index.html assets unterricht`), `build_type: workflow`. Der
+Teach-Workspace `3ahwii/teach/` bleibt kohortengebunden und wird **nicht**
+veröffentlicht.
+
 Klassen-Hub **`3ahwii/`** für SJ 2026/27 (SWP): Hub-README + Log, Klassen-Semesterplan
 (`semesterplan-ws.md`, Vollkopie des Gerüsts). **Neu (2026-09-14): Domänen-Strategie
 OO-Fundament** — `Bruch` als Träger verworfen; 5 voll declinierbare Domänen (Konto =
@@ -11,6 +18,7 @@ mit Lessons UE 1–3; UE-Ordner mit rot→grün-Startern. UE 4–10 HÜ-Spalten 
 Domänen-Rework. `unterricht/HWII-SWP/` bleibt generisches Gerüst (ADR 2026-09-14).
 
 ## Completed (this cycle)
+- [x] #9 CLOSED 2026-10-05 — Lernplattform-Infrastruktur: `assets/` (6 Dateien), `serve.sh`, Root-Navigator `index.html`, `pages.yml`; Pages auf `build_type: workflow` aktiviert; AGENTS/CONVENTIONS/ARCHITECTURE nachgezogen
 - [x] 3HWII-Detailmaterial UE 1–3: Teach-Workspace `3ahwii/teach/` (MISSION/RESOURCES/NOTES,
       Learning-Record 0001, assets, 4 Reference-Docs, Lessons 0001–0003 auf Domäne Konto)
 - [x] UE-Ordner `2026-09-15_oo-repetition/` (HÜ Tier), `2026-09-22_kapselung/` (HÜ Fahrzeug),

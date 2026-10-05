@@ -3,6 +3,11 @@
 Unterrichtsrepo für das Fach **SWP (Softwareentwicklung und Projektmanagement)** an der
 **HTL Spengergasse**, Abteilung **Wirtschaftsingenieure – Betriebsinformatik (WII)**.
 
+> **Lernplattform (GitHub Pages):** <https://georgernstgraf.github.io/GRG-SWP/> —
+> veröffentlicht werden nur die vorbereiteten Lektionen aus
+> [`unterricht/`](./unterricht/). Der Teach-Workspace `3ahwii/teach/` bleibt
+> kohortengebunden und ist **nicht** Teil der Lernplattform.
+
 ---
 
 ## Beurteilung

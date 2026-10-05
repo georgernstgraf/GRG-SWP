@@ -13,6 +13,12 @@ Follow these without question. Do not deviate unless explicitly told.
 - Umsetzungs-Pläne: `lehrplan/swp-hwii/kompetenzmodule/`, `lehrplan/swp-hwii/3HWII/` (seit 2026-09-07 unter `lehrplan/`); Einheiten + Semesterpläne seit 2026-09-10 unter `unterricht/HWII-SWP/`.
 - Wissen für Agenten: `docs/ai/` (HANDOFF/STATE/DECISIONS/ARCHITECTURE/CONVENTIONS/PITFALLS/DOMAIN/HISTORY).
 
+## Lernplattform (GitHub Pages)
+- GitHub Pages ist die **Lernplattform**: veröffentlicht wird **nur `unterricht/`** (+ zentrales `assets/` + Navigator `index.html`) über `.github/workflows/pages.yml` (rsync). Klassenordner (`3ahwii/`), `ARCHIV/`, `Sample_Projects/`, `Unterlagen/` usw. werden **nicht** deployt.
+- Der Root-`index.html` verlinkt ausschließlich `unterricht/`-Ziele. Neue Lessons werden im selben Commit eingetragen.
+- Zentrale, repo-weite **`assets/`** (`loader.js` mit generischem Inline-Bootstrap, `site.js`, `github-pages-link.js`, `theme.js` mit `localStorage`-Key `swp-theme`, `quiz.js`, `lesson.css`); Nutzung über `./serve.sh`, nie `file://`.
+- Der Teach-Workspace `3ahwii/teach/` (eigene `assets/`, kohortengebunden) ist **nicht** Teil der Lernplattform.
+
 ## Planungs-Format
 - 1 UE = 1 Doppelstunde (2 h). Semesterplan = **13 echte UE + 2 PLF-DS** (+ optionale Bonus-UE).
 - UE-Tabellen: `| UE | Thema | KM-Bezug (Schuladaption ②) | Inhalt / HÜ |`, gruppiert in Blöcken mit `## UE a–b: Titel`.
