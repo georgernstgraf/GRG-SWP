@@ -23,6 +23,7 @@ Unterricht `Konto`, HÜ `Tier`/`Fahrzeug`/`Produkt`, Test `Person` (Anti-Copy).
 - [x] #10 CLOSED 2026-10-05 — Prepared Lessons `KM5-01…03` (kohortenagnostisch, Lektion = Präsentation) + `3ahwii/teach/` aufgelöst + Schema/Ordner + docs/ai
 - [x] #9 CLOSED 2026-10-05 — Lernplattform-Infrastruktur
 - [x] #8 CLOSED — Klassen-Hub + Agentic-Coding-Einstieg (Vorarbeit)
+- [x] #11 CLOSED 2026-10-05 — `assets/quiz.js` startet jetzt auch bei asynchroner Injektion durch `loader.js` (`document.readyState`-Guard); Quizze auf GitHub Pages wieder klickbar
 
 ## Pending
 - [ ] Domänen-Rework UE 4–10 in `3ahwii/semesterplan-ws.md` (HÜ-Spalten noch Bruch-basiert)
