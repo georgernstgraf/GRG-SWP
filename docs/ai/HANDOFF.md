@@ -1,6 +1,6 @@
 # HANDOFF
 
-Branch: `main` (GRG-SWP) · Aktueller Workstream: **#10** (Prepared Lessons KM5-01–03 + teach-Auflösung)
+Branch: `main` (GRG-SWP) · **#10 CLOSED 2026-10-05** (Prepared Lessons KM5-01–03 + teach-Auflösung); offen: UE 4+ / Domänen-Rework
 
 ## Offene Tasks
 

@@ -20,6 +20,7 @@ Unterricht `Konto`, HÜ `Tier`/`Fahrzeug`/`Produkt`, Test `Person` (Anti-Copy).
 - [x] `3ahwii/teach/` entfernt; UE-READMEs und `semesterplan-ws.md` auf Prepared Lessons umgebogen
 - [x] UE-Ordner auf `YYYY-MM-DD__thema` umbenannt; Schema in `docs/ai/CONVENTIONS.md` festgeschrieben
 - [x] `docs/ai/`: ADR 2026-10-05 (+ HISTORY-Supersede), ARCHITECTURE, HANDOFF, STATE
+- [x] #10 CLOSED 2026-10-05 — Prepared Lessons `KM5-01…03` (kohortenagnostisch, Lektion = Präsentation) + `3ahwii/teach/` aufgelöst + Schema/Ordner + docs/ai
 - [x] #9 CLOSED 2026-10-05 — Lernplattform-Infrastruktur
 - [x] #8 CLOSED — Klassen-Hub + Agentic-Coding-Einstieg (Vorarbeit)
 
