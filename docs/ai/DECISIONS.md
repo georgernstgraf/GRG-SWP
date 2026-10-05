@@ -56,14 +56,14 @@ Superseded decisions are relocated to HISTORY.md.
 - **Considered**: Bruch als Unterrichtsträger behalten (Kaskade vermeiden); Medium als Unterrichtsdomäne (spoilert UE 6/12); Domänen-Varianten pro Schülergruppe.
 - **Tradeoff**: UE 4–10-HÜ-Spalten im Klassenplan sind noch Bruch-basiert → Rework offen (HANDOFF). Unterricht wechselt UE 1 von Bruch (10'-Brücke) auf Konto.
 
-## 2026-09-14: Teach-Workspace im Klassenordner
-- **Choice**: Schülermaterial nach Teach-Skill-Layout in `3ahwii/teach/` (MISSION/RESOURCES/NOTES, learning-records/, assets/, reference/, lessons/); UE-Ordner verlinken die Lessons und halten Deno-Starter mit rot→grün-Tests.
-- **Reason**: Ein Workspace pro Klasse deckt künftige UE ab (Assets/Glossar wiederverwendbar); klassenspezifisch pflegbar (ADR-Gerüst-Logik); HTML-Lessons sind im öffentlichen Repo direkt Schüler-tauglich.
-- **Considered**: `teach/` am Repo-Root (klassenunabhängig); Lessons direkt in UE-Ordnern (kein geteiltes Glossar/Assets).
-- **Tradeoff**: Zweites Layout neben den UE-Ordnern; Bewirtschaftung (Learning-Records nach jeder UE) muss diszipliniert laufen.
-
 ## 2026-09-14: Klassenspezifische Konkretisierung im Klassenordner
 - **Choice**: Das generische Unterrichts-Gerüst bleibt unter `unterricht/HWII-SWP/` und wird für Klassen-Abweichungen **nicht** angefasst. Die laufende Klasse SJ 2026/27 erhält den eigenen Ordner `3ahwii/` mit Hub (`README.md`), Klassen-Semesterplan (`semesterplan-ws.md`, Vollkopie des Gerüsts) und UE-Ordnern; Abweichungen (z. B. verschobene UE, zusätzliche Übungen) werden **nur hier** gepflegt.
 - **Reason**: Trennung von eruiertem, klassen-/jahrgangsübergreifendem Plan (Gerüst) und dem tatsächlich gehaltenen Plan der Klasse; verhindert, dass Einzelklassen-Änderungen das Gerüst verändern.
 - **Considered**: Klassen-Änderungen direkt im Gerüst `unterricht/HWII-SWP/`; nur ein Delta-Dokument statt Vollkopie.
 - **Tradeoff**: Zweite Plan-Datei pro Klasse (Duplikat), bewusst als lebende Klassenfassung; das Gerüst bleibt Referenz.
+
+## 2026-10-05: Prepared Lessons unter `unterricht/`, teach-Workspace aufgelöst
+- **Choice**: Kohortenagnostisches Schülermaterial liegt flach in `unterricht/<PREFIX>-<NN>-<slug>/` (create-lesson-Skill): `lesson.html` ist **Lektion und Präsentation** (beamer-taugliche Einzel-HTML), plus `hausaufgabe.md` + Tages-README-Vorlage. `3ahwii/teach/` wird entfernt; die UE-READMEs verweisen auf die Prepared Lessons. OO-Fachbegriffe im Root-`GLOSSAR.md`; kein lauffähiger Code unter `unterricht/`.
+- **Reason**: Eine Lesson gehört zum Thema/KM, nicht zur Kohorte; GitHub Pages deployt ohnehin nur `unterricht/`. Die Doppelstruktur (teach-Workspace + UE-Ordner + eigene Assets/Reference) entfällt.
+- **Considered**: teach-Workspace behalten (kohortengebunden); Lessons direkt in den UE-Ordnern.
+- **Tradeoff**: UE-Ordner sind reine Übernahme-/Starter-Ablage; die Quelle liegt in `unterricht/`. Supersedet ADR 2026-09-14 „Teach-Workspace im Klassenordner" (→ HISTORY).

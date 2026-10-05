@@ -5,8 +5,8 @@ Unterrichtsrepo für das Fach **SWP (Softwareentwicklung und Projektmanagement)*
 
 > **Lernplattform (GitHub Pages):** <https://georgernstgraf.github.io/GRG-SWP/> —
 > veröffentlicht werden nur die vorbereiteten Lektionen aus
-> [`unterricht/`](./unterricht/). Der Teach-Workspace `3ahwii/teach/` bleibt
-> kohortengebunden und ist **nicht** Teil der Lernplattform.
+> [`unterricht/`](./unterricht/) (Lektion = Präsentation). Der Klassenordner
+> `3ahwii/` (Datums-UE-Ordner) ist **nicht** Teil der Lernplattform.
 
 ---
 

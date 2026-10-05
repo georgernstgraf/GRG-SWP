@@ -17,7 +17,7 @@ Follow these without question. Do not deviate unless explicitly told.
 - GitHub Pages ist die **Lernplattform**: veröffentlicht wird **nur `unterricht/`** (+ zentrales `assets/` + Navigator `index.html`) über `.github/workflows/pages.yml` (rsync). Klassenordner (`3ahwii/`), `ARCHIV/`, `Sample_Projects/`, `Unterlagen/` usw. werden **nicht** deployt.
 - Der Root-`index.html` verlinkt ausschließlich `unterricht/`-Ziele. Neue Lessons werden im selben Commit eingetragen.
 - Zentrale, repo-weite **`assets/`** (`loader.js` mit generischem Inline-Bootstrap, `site.js`, `github-pages-link.js`, `theme.js` mit `localStorage`-Key `swp-theme`, `quiz.js`, `lesson.css`); Nutzung über `./serve.sh`, nie `file://`.
-- Der Teach-Workspace `3ahwii/teach/` (eigene `assets/`, kohortengebunden) ist **nicht** Teil der Lernplattform.
+- Der Klassenordner `3ahwii/` (Datums-UE-Ordner) ist **nicht** Teil der Lernplattform; die Prepared Lessons unter `unterricht/<PREFIX>-<NN>-<slug>/` sind es.
 
 ## Planungs-Format
 - 1 UE = 1 Doppelstunde (2 h). Semesterplan = **13 echte UE + 2 PLF-DS** (+ optionale Bonus-UE).
@@ -34,7 +34,15 @@ Follow these without question. Do not deviate unless explicitly told.
 - Deno + TypeScript; deutsche Kommentare; `deno fmt` (2 Spaces, doppelte Anführungszeichen); Tests mit `Deno.test` + `jsr:@std/assert`; Benchmarks mit `Deno.bench`.
 - HÜ-Starter in UE-Ordnern sind **absichtlich rot** (rot→grün-Format à la beginners-typescript-tutorial); `deno test` muss als Startzustand fehlschlagen dürfen.
 
-## Teach-Workspace (`3ahwii/teach/`)
-- Layout nach Teach-Skill: `MISSION.md`, `RESOURCES.md`, `NOTES.md`, `learning-records/NNNN-slug.md`, `assets/` (shared `style.css`, `quiz.js`), `reference/*.html`, `lessons/NNNN-slug.html`.
-- Lessons/Reference sind Schüler-tauglich (deutsch, druckbar) und werden aus den UE-Ordnern verlinkt; Unterrichtsbeispiele auf `Konto`, HÜ-Beispiele auf der jeweiligen HÜ-Domäne.
-- Nach jeder gehaltenen UE: Learning-Record erfassen (Vorwissen/Fehlbilder). Domänen-Zuordnung in `NOTES.md` pflegen, nicht in DECISIONS-Duplikaten.
+## Prepared Lessons & Kohorten-Übernahme
+- **Prepared Lesson** = kohortenagnostisch, themen-/KM-gebunden, flach in
+  `unterricht/<PREFIX>-<NN>-<slug>/` (`PREFIX` = `KM<#>`|`SA`; `<NN>` läuft pro `PREFIX`).
+  Inhalt: `lesson.html` + `hausaufgabe.md` + Tages-README-Vorlage `<PREFIX>-<NN>-<slug>.md`.
+- **Lektion = Präsentation:** eine einzige (beamer-taugliche) HTML, kein separater Foliensatz.
+- **Kein lauffähiger Projektcode** unter `unterricht/` — Beispielprojekte liegen in `Sample_Projects/`.
+- **Übernahme nur per Hand:** Kopie nach `3ahwii/YYYY-MM-DD__thema/` (Datum präfix, **doppelter**
+  Unterstrich), Tages-README aus der Vorlage; die UE-Nummer steht nur dort.
+- **Zähl-Achse:** `KM5-0x` = Prepared Lesson · `YYYY-MM-DD__thema` = Kohorten-Übernahme.
+- Ein UE-Ordner trennt nach Möglichkeit Live-Code (`unterricht/`, Domäne `Konto`) und
+  HÜ-Starter (`hue/`, rot→grün).
+- Nach jeder gehaltenen UE: Vorwissen/Fehlbilder als Learning-Record festhalten.

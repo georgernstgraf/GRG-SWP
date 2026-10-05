@@ -28,5 +28,6 @@ GitHub Pages ist die **Lernplattform**: veröffentlicht wird **nur `unterricht/`
   `unterricht/`-Ziele. Neue Lessons werden im selben Commit dort eingetragen.
 - Zentrale Assets: `assets/` (`loader.js`, `lesson.css`, `quiz.js`, `theme.js`,
   `site.js`, `github-pages-link.js`); Nutzung über `./serve.sh`, nie `file://`.
-- Der Teach-Workspace `3ahwii/teach/` bleibt kohortengebunden und ist **nicht**
-  Teil der Lernplattform.
+- Prepared Lessons liegen flach unter `unterricht/<PREFIX>-<NN>-<slug>/` und sind
+  **Lektion und Präsentation in einem** (beamer-taugliche Einzel-HTML); der
+  Klassenordner `3ahwii/` (Datums-UE-Ordner) ist **nicht** Teil der Lernplattform.

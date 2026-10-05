@@ -24,10 +24,10 @@ WII–Betriebsinformatik), Schuljahr 2026/27.
 
 | Datum | UE | Thema |
 |-------|----|-------|
-| 2026-09-08 | Intro | [OOP in TypeScript – Die Bruch-Klasse](2026-09-08_intro/) |
-| 2026-09-15 | 1 | [OO-Repetition & Klasse/Instanz/Zustand](2026-09-15_oo-repetition/) |
-| 2026-09-22 | 2 | [Kapselung & Sichtbarkeit](2026-09-22_kapselung/) |
-| 2026-09-29 | 3 | [Schnittstellen als Vertrag](2026-09-29_interfaces/) |
+| 2026-09-08 | Intro | [OOP in TypeScript – Die Bruch-Klasse](2026-09-08__intro/) |
+| 2026-09-15 | 1 | [OO-Repetition & Klasse/Instanz/Zustand](2026-09-15__oo-repetition/) |
+| 2026-09-22 | 2 | [Kapselung & Sichtbarkeit](2026-09-22__kapselung/) |
+| 2026-09-29 | 3 | [Schnittstellen als Vertrag](2026-09-29__interfaces/) |
 
 ## Log SJ 2026/27
 
@@ -51,7 +51,7 @@ umgestellt; **UE 4–10 sind noch Bruch-basiert** → Domänen-Rework offen (HAN
 ### 2026-09-08 – Erste UE: OOP in TypeScript
 
 OOP heuer in TypeScript/Deno (nicht mehr C#). Einstieg: Bruch-Klasse
-([`2026-09-08_intro/`](2026-09-08_intro/)), Domäne bekannt aus der 2. Klasse.
+([`2026-09-08__intro/`](2026-09-08__intro/)), Domäne bekannt aus der 2. Klasse.
 
 HÜ:
 

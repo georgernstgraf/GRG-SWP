@@ -1,49 +1,38 @@
 # Project State
 
-Current status as of 2026-09-14.
+Current status as of 2026-10-05.
 
 ## Current Focus
-**Lernplattform (#9):** GitHub Pages neu eingerichtet — repo-weites `assets/`
-(Loader/Theme/Quiz/Badge, Theme-Key `swp-theme`), `serve.sh`, Root-Navigator
-`index.html` (nur `unterricht/`-Ziele) und `.github/workflows/pages.yml`
-(rsync `index.html assets unterricht`), `build_type: workflow`. Der
-Teach-Workspace `3ahwii/teach/` bleibt kohortengebunden und wird **nicht**
-veröffentlicht.
-
-Klassen-Hub **`3ahwii/`** für SJ 2026/27 (SWP): Hub-README + Log, Klassen-Semesterplan
-(`semesterplan-ws.md`, Vollkopie des Gerüsts). **Neu (2026-09-14): Domänen-Strategie
-OO-Fundament** — `Bruch` als Träger verworfen; 5 voll declinierbare Domänen (Konto =
-Unterricht, Tier/Fahrzeug/Produkt = HÜ 1–3, Person = Test). Teach-Workspace `3ahwii/teach/`
-mit Lessons UE 1–3; UE-Ordner mit rot→grün-Startern. UE 4–10 HÜ-Spalten brauchen noch
-Domänen-Rework. `unterricht/HWII-SWP/` bleibt generisches Gerüst (ADR 2026-09-14).
+**3AHWII OO-Fundament (#10):** UE 1–3 liegen als kohortenagnostische **Prepared Lessons**
+unter `unterricht/KM5-01…03/` — **Lektion = Präsentation** (beamer-taugliche Einzel-HTML,
+zentrale `assets/`, kein CDN), im Root-Navigator `index.html` verlinkt. Der kohortengebundene
+`3ahwii/teach/`-Workspace wurde aufgelöst; die UE-Ordner (`3ahwii/YYYY-MM-DD__thema/`) sind
+Übernahme-Ablage + rot→grün-Starter. OO-Fachbegriffe im Root-`GLOSSAR.md`. Domänen:
+Unterricht `Konto`, HÜ `Tier`/`Fahrzeug`/`Produkt`, Test `Person` (Anti-Copy).
 
 ## Completed (this cycle)
-- [x] #9 CLOSED 2026-10-05 — Lernplattform-Infrastruktur: `assets/` (6 Dateien), `serve.sh`, Root-Navigator `index.html`, `pages.yml`; Pages auf `build_type: workflow` aktiviert; AGENTS/CONVENTIONS/ARCHITECTURE nachgezogen
-- [x] 3HWII-Detailmaterial UE 1–3: Teach-Workspace `3ahwii/teach/` (MISSION/RESOURCES/NOTES,
-      Learning-Record 0001, assets, 4 Reference-Docs, Lessons 0001–0003 auf Domäne Konto)
-- [x] UE-Ordner `2026-09-15_oo-repetition/` (HÜ Tier), `2026-09-22_kapselung/` (HÜ Fahrzeug),
-      `2026-09-29_interfaces/` (HÜ Produkt) — jeweils README (Ablauf 50', HÜ oben) +
-      Deno-Starter mit absichtlich roten Tests
-- [x] Domänen-Steckbriefe (5 Domänen mit vollem OO-Bogen) als Planungs-/Schüler-Referenz
-- [x] Klassenplan UE 1–3 auf Domänen-Strategie umgestellt; Hub-Tabelle + Log-Eintrag 2026-09-14
-- [x] Klasse 3ahwii: Hub `3ahwii/README.md` + Log (Eintrag 2026-09-08 aus ARCHIV-Log herübergezogen)
-- [x] Klassenplan `3ahwii/semesterplan-ws.md` (Vollkopie des WS-Gerüsts; Sondereinheit wieder entfernt)
-- [x] Agentic-Coding-Sondereinheit + `windows-debloat.md` nach GRG-INFI verschoben (Move + Querverweis; SWP-Kopie `git rm`)
-- [x] `ARCHIV/2025-26-3ahwii/README.md` auf C#-History reduziert; laufende Klasse verweist auf `3ahwii/`
-- [x] `docs/ai/`: ARCHITECTURE (Gerüst vs. Klassenordner), DECISIONS (ADR 2026-09-14), STATE, HANDOFF
-- [x] Spiegel-Session GRG-INFI (lehrplan-Skill) — Details `../GRG-INFI/docs/ai/HANDOFF.md`
+- [x] _opencode-helpers#104_ — create-lesson: „Lektion und Präsentation in einem"
+      (eine beamer-taugliche HTML, kein separater Foliensatz/CDN)
+- [x] Prepared Lessons `unterricht/KM5-01-klasse-instanz-zustand/` (Inhalt stabil),
+      `KM5-02-kapselung-invarianten/` (erweitert), `KM5-03-interfaces-vertraege/` (erweitert)
+      — je `lesson.html` + `hausaufgabe.md` + Tages-README-Vorlage
+- [x] Root-`index.html` (KM5-Block) + `GLOSSAR.md` (OO-Begriffe mit KM-Verweis)
+- [x] `3ahwii/teach/` entfernt; UE-READMEs und `semesterplan-ws.md` auf Prepared Lessons umgebogen
+- [x] UE-Ordner auf `YYYY-MM-DD__thema` umbenannt; Schema in `docs/ai/CONVENTIONS.md` festgeschrieben
+- [x] `docs/ai/`: ADR 2026-10-05 (+ HISTORY-Supersede), ARCHITECTURE, HANDOFF, STATE
+- [x] #9 CLOSED 2026-10-05 — Lernplattform-Infrastruktur
+- [x] #8 CLOSED — Klassen-Hub + Agentic-Coding-Einstieg (Vorarbeit)
 
 ## Pending
 - [ ] Domänen-Rework UE 4–10 in `3ahwii/semesterplan-ws.md` (HÜ-Spalten noch Bruch-basiert)
-- [ ] Lessons UE 4+ + Learning-Records je gehaltener UE (Teach-Workspace nachziehen)
-- [ ] PM-Koordination mit PRE-Kollegen klären (menschlich, vor SS-Start; TBD in `../lehrplan/swp-hwii/3HWII/README.md`)
+- [ ] Prepared Lessons UE 4+ (KM5-04 …) + Learning-Record je gehaltener UE
+- [ ] PM-Koordination mit PRE-Kollegen klären (menschlich, vor SS-Start)
 - [ ] Deno-Desktop-Versionsstand (≥ 2.9) vor SS-Start verifizieren; Fallback Hono+Vite
 
 ## Blockers
 - Keine (agentenseitig). PM-Koordination erfordert Kollegengespräch.
 
-## Next Session Suggestion
-1. **Domänen-Rework UE 4–10**: HÜ-Spalten in `3ahwii/semesterplan-ws.md` von Bruch auf
-   die 5 Domänen umstellen (Steckbriefe: `3ahwii/teach/reference/domaenen-steckbriefe.html`);
-   danach Lessons UE 4+ im Teach-Workspace nachziehen.
-2. Agentic Coding liegt in `../GRG-INFI/3ahwii/` (dortige `docs/ai` zuerst lesen).
+## Hinweise
+- `3ahwii/2026-09-15_agentic-coding-einstieg/` bewusst belassen (Einheit liegt in GRG-INFI;
+  zwei bekannte tote `windows-debloat.md`-Links).
+- Agentic Coding in `../GRG-INFI/3ahwii/` (dortige `docs/ai` zuerst lesen).

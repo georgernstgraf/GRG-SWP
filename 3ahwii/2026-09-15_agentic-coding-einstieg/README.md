@@ -38,7 +38,7 @@ Abgabe: Commit im eigenen Repo + kurze Notiz, was `AGENTS.md` steuert.
    - **Checkpoint 1 – Setup:** Node + opencode installiert (`opencode --version`).
    - **Checkpoint 2 – Provider:** `/connect` verbunden.
    - **Checkpoint 3 – Agent-Loop:** im eigenen Repo `/init` → `AGENTS.md` prüfen;
-     im Unterrichtsbeispiel [`../2026-09-08_intro/bruch.ts`](../2026-09-08_intro/bruch.ts)
+     im Unterrichtsbeispiel [`../2026-09-08__intro/bruch.ts`](../2026-09-08__intro/bruch.ts)
      erklären, verbessern, testen lassen (Plan-/Build-Modus, `@`-Datei, `/undo`).
    - **Optional:** [`../windows-debloat.md`](../windows-debloat.md) – Windows-Debloat,
      von opencode gesteuert.
@@ -100,7 +100,7 @@ In der TUI `/connect` ausführen und einen freien Anbieter wählen.
 
 - **Plan-/Build-Modus** (Tab): erst planen lassen, dann umsetzen lassen.
 - **`@`-Datei**: Kontext gezielt geben, z. B.
-  `erkläre @3ahwii/2026-09-08_intro/bruch.ts`.
+  `erkläre @3ahwii/2026-09-08__intro/bruch.ts`.
 - **`/init`**: erzeugt `AGENTS.md` – die Projekt-Anweisung für den Agenten.
 - **`/undo`** / **`/redo`**: Änderungen zurücknehmen bzw. wiederherstellen.
 - **`/share`**: Verlauf teilen.

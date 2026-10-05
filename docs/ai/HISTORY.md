@@ -16,3 +16,11 @@ Entries here are no longer active truth. Never delete from this file.
 - **Considered**: Alles unter `docs/lehrplan/` belassen.
 - **Tradeoff**: Zwei Orte mit Lehrplan-Bezug (docs/lehrplan = Quelle/Rahmen, kompetenzmodule+3HWII = Umsetzung); durch Verlinkung gelöst.
 - **Superseded by**: ADR 2026-09-07 — alles unter `lehrplan/` (Skill-Standard-Layout).
+
+## 2026-09-14 (SUPERSEDED 2026-10-05): Teach-Workspace im Klassenordner
+- **Choice**: Schülermaterial nach Teach-Skill-Layout in `3ahwii/teach/` (MISSION/RESOURCES/NOTES, learning-records/, assets/, reference/, lessons/); UE-Ordner verlinken die Lessons und halten Deno-Starter mit rot→grün-Tests.
+- **Reason**: Ein Workspace pro Klasse deckt künftige UE ab (Assets/Glossar wiederverwendbar); klassenspezifisch pflegbar.
+- **Considered**: `teach/` am Repo-Root (klassenunabhängig); Lessons direkt in UE-Ordnern (kein geteiltes Glossar/Assets).
+- **Tradeoff**: Zweites Layout neben den UE-Ordnern; Bewirtschaftung (Learning-Records) diszipliniert nötig.
+- **Superseded by**: ADR 2026-10-05 — Prepared Lessons unter `unterricht/`, teach-Workspace aufgelöst.
+- **Note**: Der Lern-Record und die Domänen-Steckbriefe dieses Workspaces sind nur noch über die Git-History erreichbar.

@@ -38,9 +38,9 @@ Domänen-Strategie: 5 voll declinierbare Domänen — Unterricht `Konto`, HÜ `T
 
 | UE | Thema | KM-Bezug (Schuladaption ②) | Inhalt / HÜ |
 |----|-------|-----------------|--------------|
-| 1 | **OO-Repetition & Klasse/Instanz/Zustand formalisiert** | Klasse, Instanz, Zustand, Attribut | 10' Bruch-Brücke (Begriffe am Bekannten), dann Wechsel auf `Konto`: IBAN als *Identität*, `kontostand` als *Zustand*. **Orga mitgeführt:** Git-Disziplin (kleine Commits, sprechende Messages — Schwachstelle der C#-Kohorte). HÜ: `Tier` — `equals()` + `fuettern()` + Tests (Starter `2026-09-15_oo-repetition/`) |
-| 2 | **Kapselung & Sichtbarkeit** | Attribut und Sichtbarkeit | `public`/`private`/`protected`, `readonly`, getter/setter, Invarianten fail-fast im Konstruktor sichern (am `Konto`). HÜ: `Fahrzeug` invariant-gesichert (kmStand ≥ 0, 0 ≤ v ≤ max, nur `fahre()` erhöht kmStand) (Starter `2026-09-22_kapselung/`) |
-| 3 | **Schnittstellen (interface) als Vertrag** | Schnittstelle | `interface` deklarieren/implementieren; „was, nicht wie"; mehrere Interfaces (`Comparable` + `Verzinsbar`); structural typing. HÜ: `Produkt implements Comparable<Produkt>, Versendbar` (Starter `2026-09-29_interfaces/`) |
+| 1 | **OO-Repetition & Klasse/Instanz/Zustand formalisiert** | Klasse, Instanz, Zustand, Attribut | 10' Bruch-Brücke (Begriffe am Bekannten), dann Wechsel auf `Konto`: IBAN als *Identität*, `kontostand` als *Zustand*. **Orga mitgeführt:** Git-Disziplin (kleine Commits, sprechende Messages — Schwachstelle der C#-Kohorte). HÜ: `Tier` — `equals()` + `fuettern()` + Tests (Starter `2026-09-15__oo-repetition/`) |
+| 2 | **Kapselung & Sichtbarkeit** | Attribut und Sichtbarkeit | `public`/`private`/`protected`, `readonly`, getter/setter, Invarianten fail-fast im Konstruktor sichern (am `Konto`). HÜ: `Fahrzeug` invariant-gesichert (kmStand ≥ 0, 0 ≤ v ≤ max, nur `fahre()` erhöht kmStand) (Starter `2026-09-22__kapselung/`) |
+| 3 | **Schnittstellen (interface) als Vertrag** | Schnittstelle | `interface` deklarieren/implementieren; „was, nicht wie"; mehrere Interfaces (`Comparable` + `Verzinsbar`); structural typing. HÜ: `Produkt implements Comparable<Produkt>, Versendbar` (Starter `2026-09-29__interfaces/`) |
 
 ## UE 4–7: Vererbung & Polymorphismus (KM-Kern)
 
