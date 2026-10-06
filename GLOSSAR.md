@@ -31,3 +31,13 @@
 | **Fail-Fast** | Eine Verletzung bricht sofort mit `throw` ab, statt spät einen ungültigen Zustand zu hinterlassen |
 | **Interface** | Vertrag über „was" (welche Mitglieder ein Typ hat), nicht „wie"; eine Klasse kann beliebig viele `implements` |
 | **Structural typing** | TypeScript prüft die Form eines Objekts, nicht seine Abstammung — `implements` ist dafür nicht nötig |
+| **Schicht (Layer)** | Baustein einer Applikation mit genau einer Aufgabe (View, Endpoint, Controller, Service, Repository); KM6 |
+| **Dependency Rule** | Abhängigkeiten zeigen nur nach innen: außen kennt innen, innen kennt außen nicht; der Service hängt am Repository-Interface, nicht an der DB; KM6 |
+| **Domänenobjekt** | Objekt der Fachklassen (z. B. `Konto`) — was das Repository zurückgibt, statt roher DB-Zeilen; KM5/KM6 |
+| **Repository (Schicht)** | Datenbank-Layer: lädt/speichert Domänenobjekte und garantiert Transaktionen; kennt keine Fachregeln; KM6 |
+| **Service-Layer** | Geschäftsablauf/Use-Case; kennt weder HTTP noch die konkrete Datenbank; KM6 |
+| **Controller** | Übersetzt zwischen Außenwelt und Service, fängt Fehler ab; kennt keine HTTP-Statuscodes; KM6 |
+| **Endpoint** | Dünne Route: liest Body/Parameter, ruft den Controller, setzt HTTP-Status und JSON; KM6 |
+| **View** | Anzeige + Eingabe (Webview); bleibt „dumm", enthält keine Fachlogik; KM6 |
+| **Composition Root** | Der eine Ort (`main.ts`), der alle Schichten kennt und mit `new` verdrahtet; KM6 |
+| **Transaktion / Atomarität** | Mehrere Schreibvorgänge als unteilbarer Schritt — ganz oder gar nicht (Rollback); Aufgabe des DB-Layers; KM6 |

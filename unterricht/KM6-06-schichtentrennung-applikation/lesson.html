@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lektion KM6-06 — Schichtentrennung in einer Applikation</title>
+<script>(function(){var s=location.pathname.split("/");s.pop();(function t(){if(!s.length)return;var r=s.join("/")+"/",e=document.createElement("script");e.src=r+"assets/loader.js";e.setAttribute("data-css","lesson.css");e.setAttribute("data-js","quiz.js,theme.js");e.onerror=function(){s.pop();t()};e.onload=function(){if(!window.__SITE_ROOT__){s.pop();t()}};document.head.appendChild(e)})()})();</script>
+</head>
+<body>
+
+<header class="meta">
+  <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Dunkel</button>
+  <span class="kicker">Lektion KM6-06 · Architektur</span>
+  <h1>Schichtentrennung in einer Applikation</h1>
+  <p class="subtitle">Datenbank, Service, Controller, Endpoints — und die eine Regel,
+  die alles zusammenhält: <strong>Abhängigkeiten zeigen nach innen</strong>.</p>
+</header>
+
+<div class="callout">
+  <span class="label">Lektüre (Pflicht)</span>
+  <p><a href="https://martinfowler.com/bliki/PresentationDomainDataLayering.html">Martin
+  Fowler: PresentationDomainDataLayering</a> — die klassischen Schichten und warum sie
+  sich nicht kennen sollen. Dazu
+  <a href="https://hono.dev/docs/api/routing">Hono: Routing</a> und
+  <a href="https://hono.dev/docs/api/context">Hono: Context</a>
+  (<code>c.req.json()</code>, <code>c.req.param()</code>, <code>c.json()</code>) sowie
+  <a href="https://docs.deno.com/api/deno/~/Deno.serve">Deno: <code>Deno.serve</code></a>.</p>
+</div>
+
+<h2>Einstiegsfrage</h2>
+<p>Eine kleine Bank-App funktioniert. Alles steckt in <em>einem</em> Handler:</p>
+<pre><code>app.post("/api/ueberweisung", async (c) =&gt; {
+  const { von, an, betrag } = await c.req.json();
+  const quelle = db.query("SELECT * FROM konten WHERE iban = ?", [von]);
+  const ziel   = db.query("SELECT * FROM konten WHERE iban = ?", [an]);
+  if (betrag &gt; quelle.stand) return c.json({ fehler: "keine Deckung" }, 409);
+  db.query("UPDATE konten SET stand = stand - ? WHERE iban = ?", [betrag, von]);
+  db.query("UPDATE konten SET stand = stand + ? WHERE iban = ?", [betrag, an]);
+  return c.json({ ok: true });
+});</code></pre>
+<p>Läuft. <strong>Aber:</strong> Wo änderst du etwas, wenn die Spalte <code>stand</code>
+künftig <code>saldo</code> heißt? Wo testest du die Regel „keine Deckung", ohne eine
+echte Datenbank und einen echten HTTP-Server zu starten? Und wer verhindert, dass zwei
+Entwickler:innen gleichzeitig dieselbe Datei umbauen? Genau dagegen hilft
+<strong>Schichtentrennung</strong>.</p>
+
+<h2>Ziel-Artefakt</h2>
+<p>Aus <em>einem</em> Handler werden <em>fünf</em> klar getrennte Bausteine — jeder mit
+genau einer Aufgabe:</p>
+<table>
+  <tr><th>Schicht</th><th>Aufgabe</th><th>darf nichts wissen von …</th></tr>
+  <tr><td>View</td><td>anzeigen, Eingaben einsammeln</td><td>DB, Fachregeln</td></tr>
+  <tr><td>Endpoint</td><td>Route + HTTP (Status, JSON)</td><td>Fachregeln, DB</td></tr>
+  <tr><td>Controller</td><td>Ein-/Ausgabe übersetzen, Fehler abfangen</td><td>HTTP-Statuscodes, DB</td></tr>
+  <tr><td>Service</td><td>Geschäftslogik / Ablauf (Use-Case)</td><td>HTTP, konkrete DB</td></tr>
+  <tr><td>Repository (DB-Layer)</td><td>laden/speichern, Transaktion</td><td>Fachregeln, HTTP</td></tr>
+</table>
+<p>Und daneben, im Zentrum: die <strong>Domäne</strong> (<code>Konto</code>) aus KM5 —
+die reine Fachklasse mit ihren Invarianten.</p>
+<p>Der Merksatz dieser Doppelstunde:</p>
+<pre><code>View → Endpoint → Controller → Service → Repository → DB
+                        ↘      Domäne      ↙
+Pfeile zeigen NACH INNEN — außen kennt innen, innen kennt außen nicht.</code></pre>
+
+<h2>Leitregel: Abhängigkeiten zeigen nach innen</h2>
+<p>Eine Schicht darf die <em>nächste</em> aufrufen — nie zurück und nie quer. Der Service
+kennt das Repository nur als <code>interface</code>, nicht die konkrete Datenbank. Genau
+deshalb kann <code>InMemoryKontoRepository</code> im Unterricht und
+<code>PrismaKontoRepository</code> (mit INFI) in echt dieselbe Stelle besetzen.</p>
+<p>Das ist dieselbe Idee wie in KM5: Ein Interface legt „was" fest, nicht „wie". Hieß es
+dort <code>Comparable</code>, heißt es hier <code>KontoRepository</code>.</p>
+
+<h2>Schicht 1 — Datenbank-Layer (Repository)</h2>
+<p>Er kann zwei Dinge: Objekte finden und speichern. Sonst nichts. Und er gibt
+<strong>Domänenobjekte</strong> zurück, keine Datenbank-Zeilen.</p>
+<pre><code>// repository/konto_repository.ts — der Vertrag, keine Implementierung
+import { Konto } from "../domain/konto.ts";
+
+export class KontoNichtGefundenError extends Error {}
+
+export interface KontoRepository {
+  finde(iban: string): Promise&lt;Konto&gt;;
+  speichere(konto: Konto): Promise&lt;void&gt;;
+  // atomar: alle Schreibvorgänge in fn — ganz oder gar nicht (siehe „Atomarität")
+  transaktion&lt;T&gt;(fn: () =&gt; Promise&lt;T&gt;): Promise&lt;T&gt;;
+}</code></pre>
+<pre><code>// repository/in_memory_konto_repository.ts — Implementierung für Unterricht &amp; Tests
+export class InMemoryKontoRepository implements KontoRepository {
+  private konten = new Map&lt;string, Konto&gt;();
+
+  async finde(iban: string): Promise&lt;Konto&gt; {
+    const konto = this.konten.get(iban);
+    if (!konto) throw new KontoNichtGefundenError(`Konto ${iban} nicht gefunden`);
+    return konto;
+  }
+
+  async speichere(konto: Konto): Promise&lt;void&gt; {
+    this.konten.set(konto.iban, konto);
+  }
+  // transaktion() folgt im Abschnitt „Atomarität".
+}</code></pre>
+<p>Wichtig: Die Fachregel „keine Deckung" steht hier <em>nicht</em>. Der DB-Layer weiß
+nicht, was ein Konto fachlich darf — er weiß nur, wie es in den Speicher kommt.</p>
+
+<div class="quiz" data-loesung="0">
+  <p class="frage">Wofür ist der Datenbank-Layer (Repository) zuständig?</p>
+  <label><input type="radio" name="q1" value="0" data-grund="Richtig: Persistenz ist seine einzige Aufgabe — er gibt Domänenobjekte zurück und kennt keine Fachregel."> Laden und Speichern von Domänenobjekten — ohne Fachregeln</label>
+  <label><input type="radio" name="q1" value="1" data-grund="Falsch: Fachregeln und Domänenfehler gehören in die Domäne bzw. den Service, nicht in die Persistenz."> Prüfen der Fachregeln und Werfen von Domänenfehlern</label>
+  <label><input type="radio" name="q1" value="2" data-grund="Falsch: HTTP-Anfragen wandelt der Controller bzw. Endpoint um, nicht der Datenbank-Layer."> Umwandeln von HTTP-Anfragen in Methodenaufrufe</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Schicht 2 — Service-Layer</h2>
+<p>Hier lebt der <strong>Ablauf</strong> (Use-Case) „Geld überweisen". Der Service kennt
+die Domäne und das Repository-Interface — aber kein Hono, kein SQL, kein HTTP.</p>
+<pre><code>// service/konto_service.ts
+export class KontoService {
+  constructor(private repo: KontoRepository) {}
+
+  async ueberweise(von: string, an: string, betrag: number): Promise&lt;void&gt; {
+    const quelle = await this.repo.finde(von);
+    const ziel   = await this.repo.finde(an);
+    quelle.abheben(betrag);   // Domänenregel aus KM5: wirft bei fehlender Deckung
+    ziel.einzahlen(betrag);
+    await this.repo.speichere(quelle);
+    await this.repo.speichere(ziel);
+  }
+
+  async stand(iban: string): Promise&lt;number&gt; {
+    return (await this.repo.finde(iban)).stand;
+  }
+}</code></pre>
+<p>Die Invarianten aus KM5 sind hier gratis: <code>abheben</code> prüft die Deckung,
+<code>einzahlen</code> weist negative Beträge ab. Der Service <em>verlässt sich</em>
+darauf — er prüft nicht doppelt.</p>
+
+<div class="quiz" data-loesung="1">
+  <p class="frage">Was darf der Service-Layer <em>nicht</em> wissen?</p>
+  <label><input type="radio" name="q2" value="0" data-grund="Falsch: Die Domäne und ihre Regeln sind genau das, womit der Service arbeitet — er orchestriert sie."> welche Domänenobjekte es gibt und welche Regeln für sie gelten</label>
+  <label><input type="radio" name="q2" value="1" data-grund="Richtig: Persistenz kennt er nur über das Repository-Interface, HTTP gar nicht — deshalb ist er ohne Server und DB testbar."> wie die Daten persistiert werden und wie eine HTTP-Anfrage aussieht</label>
+  <label><input type="radio" name="q2" value="2" data-grund="Falsch: Dass eine Überweisung zwei Konten betrifft, ist Geschäftslogik und gehört genau hierher."> dass eine Überweisung ein Quell- und ein Zielkonto betrifft</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Schicht 3 — Controller</h2>
+<p>Der Controller ist der <strong>Übersetzer</strong>: Er nimmt die nackten Daten aus der
+Außenwelt (z. B. ein JSON-Objekt), ruft den Service und übersetzt Ergebnis bzw. Fehler in
+eine neutrale Form. Er kennt <em>keine</em> HTTP-Statuscodes — die sind Sache des
+Endpoints.</p>
+<pre><code>// controller/konto_controller.ts
+export type FehlerArt = "nicht_gefunden" | "keine_deckung" | "ungueltig";
+
+export type Ergebnis&lt;T&gt; =
+  | { ok: true; wert: T }
+  | { ok: false; art: FehlerArt; meldung: string };
+
+export class KontoController {
+  constructor(private service: KontoService) {}
+
+  async ueberweisung(daten: UeberweisungsDaten): Promise&lt;Ergebnis&lt;null&gt;&gt; {
+    try {
+      await this.service.ueberweise(daten.von, daten.an, daten.betrag);
+      return { ok: true, wert: null };
+    } catch (fehler) {
+      return { ok: false, ...this.art(fehler) };   // Fehler-Thread
+    }
+  }
+
+  private art(fehler: unknown): { art: FehlerArt; meldung: string } {
+    if (fehler instanceof KontoNichtGefundenError) {
+      return { art: "nicht_gefunden", meldung: fehler.message };
+    }
+    if (fehler instanceof KeineDeckungError) {
+      return { art: "keine_deckung", meldung: fehler.message };
+    }
+    return { art: "ungueltig", meldung: (fehler as Error).message };
+  }
+}</code></pre>
+<p>Damit ist der <strong>Fehler-Thread</strong> sichtbar: Die Domäne wirft eine typisierte
+Fehlerklasse, der Service reicht sie durch, der Controller übersetzt sie in
+<code>FehlerArt</code> — und erst der Endpoint macht daraus einen HTTP-Status. Jede
+Schicht kennt nur ihr eigenes Vokabular.</p>
+
+<div class="quiz" data-loesung="2">
+  <p class="frage">Wozu ist der Controller da?</p>
+  <label><input type="radio" name="q3" value="0" data-grund="Falsch: Die Fachregeln liegen in Domäne und Service; der Controller rechnet nicht."> Er entscheidet über die Fachregeln und rechnet die Überweisung aus</label>
+  <label><input type="radio" name="q3" value="1" data-grund="Falsch: Speichern und Transaktion sind Aufgabe des Repositories."> Er speichert die Objekte und führt die Transaktion aus</label>
+  <label><input type="radio" name="q3" value="2" data-grund="Richtig: Er nimmt die rohen Daten, ruft den Service und übersetzt dessen Ergebnis bzw. Fehler in eine neutrale Form."> Er übersetzt zwischen Außenwelt und Service und fängt Fehler ab</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Schicht 4 — Endpoints</h2>
+<p>Der Endpoint ist <strong>dünn</strong>. Er kennt die Route und die HTTP-Sprache — sonst
+nichts. Hono erledigt das Auslesen von Body und Parametern:</p>
+<pre><code>// routes/konto_routes.ts
+const STATUS: Record&lt;FehlerArt, 400 | 404 | 409&gt; = {
+  nicht_gefunden: 404,
+  keine_deckung: 409,
+  ungueltig: 400,
+};
+
+app.post("/api/ueberweisung", async (c) =&gt; {
+  const daten = await c.req.json&lt;UeberweisungsDaten&gt;();
+  const ergebnis = await controller.ueberweisung(daten);
+  if (ergebnis.ok) return c.json({ ok: true });
+  return c.json({ ok: false, fehler: ergebnis.meldung }, STATUS[ergebnis.art]);
+});
+
+app.get("/api/konten/:iban", async (c) =&gt; {
+  const ergebnis = await controller.stand(c.req.param("iban"));
+  if (ergebnis.ok) return c.json({ iban: c.req.param("iban"), stand: ergebnis.wert });
+  return c.json({ ok: false, fehler: ergebnis.meldung }, STATUS[ergebnis.art]);
+});</code></pre>
+<p><code>c.req.json&lt;T&gt;()</code> liest den Request-Body typisiert,
+<code>c.req.param("iban")</code> holt den Pfadparameter, <code>c.json(...)</code> setzt
+Antwort und Status. Der Endpoint entscheidet <em>nur</em>, dass ein
+<code>nicht_gefunden</code> zu 404 wird — nicht, wann es auftritt.</p>
+<p><strong>Und Deno Desktop?</strong> Dort gilt dieselbe Rollenverteilung: Die
+<em>Bindings</em> (<code>bindings.ueberweise(...)</code>) sind der Controller, das Webview
+ist die View, und <code>Deno.serve</code> ist der Unterbau, auf dem Hono (oder die Route)
+läuft.</p>
+
+<div class="quiz" data-loesung="0">
+  <p class="frage">Was gehört in die Endpoint-Schicht?</p>
+  <label><input type="radio" name="q4" value="0" data-grund="Richtig: Der Endpoint ist dünn — er kennt nur die Route und die HTTP-Sprache (Status, JSON)."> Route und HTTP-Übersetzung: Body/Parameter lesen und Status/JSON setzen</label>
+  <label><input type="radio" name="q4" value="1" data-grund="Falsch: Geschäftsregeln und Ablauf liegen im Service, nicht im Endpoint."> Die Geschäftsregeln und die Reihenfolge der Speichervorgänge</label>
+  <label><input type="radio" name="q4" value="2" data-grund="Falsch: Datenbankzugriff und Transaktion gehören in den Repository-/DB-Layer."> Der Datenbankzugriff und die Transaktionsgrenze</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Schicht 5 — View</h2>
+<p>Die View ist das Webview (HTML/CSS aus Jg II). Sie soll <strong>dumm</strong> bleiben:
+anzeigen und Eingaben einsammeln — nicht rechnen.</p>
+<pre><code>&lt;!-- static/index.html --&gt;
+&lt;form id="ueberweisung"&gt;
+  &lt;input name="von" placeholder="Von (IBAN)"&gt;
+  &lt;input name="an"  placeholder="An (IBAN)"&gt;
+  &lt;input name="betrag" type="number"&gt;
+  &lt;button&gt;Überweisen&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+  form.addEventListener("submit", async (e) =&gt; {
+    e.preventDefault();
+    const daten = Object.fromEntries(new FormData(form));
+    const antwort = await fetch("/api/ueberweisung", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(daten),
+    });
+    zeigeStatus(await antwort.json());   // die View zeigt nur an
+  });
+&lt;/script&gt;</code></pre>
+<p>Kein <code>if (betrag &gt; stand)</code> in der View — das wäre die Fachregel an der
+falschen Stelle. Der Datenfluss läuft einmal nach unten (View → … → DB) und als Ergebnis
+wieder nach oben.</p>
+
+<div class="quiz" data-loesung="1">
+  <p class="frage">Was ist die Aufgabe der View?</p>
+  <label><input type="radio" name="q5" value="0" data-grund="Falsch: Rechnen und Werfen ist Sache der Domäne bzw. des Services — die View bleibt dumm."> Die Fachlogik berechnen und bei Fehlern Ausnahmen werfen</label>
+  <label><input type="radio" name="q5" value="1" data-grund="Richtig: Die View zeigt an und sammelt Eingaben; jede Regel liegt in den inneren Schichten."> Daten anzeigen und Eingaben einsammeln — ohne Fachlogik</label>
+  <label><input type="radio" name="q5" value="2" data-grund="Falsch: DB-Zugriff und Transaktion sind Aufgabe des Repositories, nicht der View."> Die Datenbank abfragen und die Transaktion steuern</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Atomarität — ganz oder gar nicht</h2>
+<p>Schau auf <code>ueberweise()</code>: Es speichert <em>zweimal</em> — erst die Quelle,
+dann das Ziel. Was, wenn der zweite <code>speichere</code> abbricht (Netz, DB weg)?</p>
+<pre><code>await this.repo.speichere(quelle);   // ✓ AT01: 100 → 70 (schon persistiert!)
+await this.repo.speichere(ziel);     // ✗ Absturz — nie ausgeführt</code></pre>
+<p>Ergebnis: 30 € sind <strong>verschwunden</strong>. Geld darf so etwas nicht. Die beiden
+Schreibvorgänge müssen <em>ein</em> unteilbarer Schritt sein — eine
+<strong>Transaktion</strong>.</p>
+<p>Wichtig: Das ist <strong>Aufgabe des DB-Layers</strong>, nicht des Services. Der Service
+sagt „diese Arbeit gehört zusammen", die Datenbank garantiert es. Für die
+In-Memory-Variante heißt das: Zustand sichern und bei Fehler zurückrollen.</p>
+<pre><code>// service/konto_service.ts — der Ablauf wird in eine Transaktion geklammert
+await this.repo.transaktion(async () =&gt; {
+  const quelle = await this.repo.finde(von);
+  const ziel   = await this.repo.finde(an);
+  quelle.abheben(betrag);
+  ziel.einzahlen(betrag);
+  await this.repo.speichere(quelle);
+  await this.repo.speichere(ziel);
+});</code></pre>
+<pre><code>// in_memory_konto_repository.ts — Rollback über eine Sicherungskopie
+async transaktion&lt;T&gt;(fn: () =&gt; Promise&lt;T&gt;): Promise&lt;T&gt; {
+  const sicherung = new Map&lt;string, Konto&gt;();
+  for (const [iban, konto] of this.konten) sicherung.set(iban, konto.kopie());
+  try {
+    return await fn();
+  } catch (fehler) {
+    this.konten = sicherung;   // Rollback: alles zurück auf Anfang
+    throw fehler;
+  }
+}</code></pre>
+<p>Mit Prisma (Verbund) übernimmt das die Datenbank:
+<code>prisma.$transaction(async (tx) =&gt; { … })</code>. Der Service-Code bleibt fast
+gleich — nur transaktional. Genau das ist der Wert der Schichtentrennung: Die Fachlogik
+hängt nur am Repository-Interface, nicht an SQLite.</p>
+
+<div class="quiz" data-loesung="2">
+  <p class="frage">Warum muss die Überweisung in einer Transaktion laufen?</p>
+  <label><input type="radio" name="q6" value="0" data-grund="Falsch: Transaktionen sichern die Konsistenz, nicht die Geschwindigkeit."> Weil Transaktionen die Antwort der API beschleunigen</label>
+  <label><input type="radio" name="q6" value="1" data-grund="Falsch: Fehler reicht der Service auch ohne Transaktion weiter — es geht um Atomarität, nicht um Fehlerweitergabe."> Weil nur Transaktionen Fehler aus dem Service weiterreichen</label>
+  <label><input type="radio" name="q6" value="2" data-grund="Richtig: abheben und einzahlen sind zwei Schreibvorgänge; ohne Transaktion bliebe bei einem Abbruch ein inkonsistenter Zwischenstand."> Weil zwei Schreibvorgänge nötig sind und ein Abbruch sonst einen halben Zustand hinterlässt</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Verzeichnislayout — wo liegt was?</h2>
+<p>Die Schichten aus dem Code sollen sich im Ordnerbaum wiederfinden:</p>
+<pre><code>meine-app/
+├── deno.json
+├── main.ts                     # Composition Root: verdrahtet alle Schichten
+├── src/
+│   ├── domain/
+│   │   └── konto.ts            # Fachklasse (KM5), DB- und HTTP-frei
+│   ├── repository/
+│   │   ├── konto_repository.ts        # Interface + Fehlerklassen
+│   │   └── in_memory_konto_repository.ts
+│   ├── service/
+│   │   └── konto_service.ts
+│   ├── controller/
+│   │   └── konto_controller.ts
+│   └── routes/
+│       └── konto_routes.ts     # Hono-Endpoints
+├── static/
+│   └── index.html              # View (Webview)
+├── tests/                      # oder *_test.ts direkt neben dem Code
+│   └── konto_service_test.ts
+└── prisma/                     # ab Verbund/INFI: Schema + Migrationen
+    └── schema.prisma</code></pre>
+<p><strong>Allgemeine Tipps:</strong></p>
+<ul>
+  <li><strong>Composition Root:</strong> <code>main.ts</code> ist der <em>einzige</em>
+    Ort, der alle Schichten kennt und mit <code>new</code> verdrahtet. Überall sonst gilt:
+    nur die nächste Schicht importieren.</li>
+  <li><strong>Eine Richtung:</strong> <code>routes → controller → service → repository</code>.
+    Kommt ein Import in die Gegenrichtung oder quer vor, ist die Schicht „undicht".</li>
+  <li><strong>Technik- vs. feature-orientiert:</strong> Für kleine Apps sind Technik-Ordner
+    (<code>domain/</code>, <code>service/</code> …) ideal. Wächst die App, gruppiert man
+    nach <em>Feature</em> (<code>src/konto/…</code>, <code>src/kunde/…</code>) und behält
+    die Schichten <em>innerhalb</em> des Features.</li>
+  <li><strong>Tests spiegeln die Struktur:</strong> Der Service ist ohne Server und ohne
+    echte DB testbar, weil er am Interface hängt (In-Memory-Repository).</li>
+  <li><strong>Konfiguration zentral:</strong> Port, DB-URL usw. an <em>einer</em> Stelle
+    (<code>config.ts</code>, <code>.env</code>), nicht verstreut.</li>
+  <li><strong>Anti-Tipps:</strong> Riesen-<code>utils/</code>, in das alles wandert;
+    zirkuläre Importe; Logik im Controller; dieselbe Aufgabe in zwei Schichten;
+    „Schicht" nur als Ordner ohne Regel.</li>
+</ul>
+
+<div class="quiz" data-loesung="0">
+  <p class="frage">Was besagt die Dependency Rule?</p>
+  <label><input type="radio" name="q7" value="0" data-grund="Richtig: Der Service kennt das Repository nur als Interface — deshalb bleibt die DB austauschbar."> Abhängigkeiten zeigen nach innen: außen kennt innen, innen kennt außen nicht</label>
+  <label><input type="radio" name="q7" value="1" data-grund="Falsch: Ordner allein machen keine Schicht; entscheidend ist, wer wen importieren darf."> Jede Schicht darf jede andere aufrufen, solange die Ordner stimmen</label>
+  <label><input type="radio" name="q7" value="2" data-grund="Falsch: Nach innen hängt nichts von der konkreten DB ab — nur das Repository selbst."> Alle Schichten hängen von der konkreten Datenbank ab</label>
+  <p class="feedback" aria-live="polite"></p>
+</div>
+
+<h2>Jetzt du!</h2>
+<p><em>Erst vorhersagen, dann prüfen.</em></p>
+<ol>
+  <li><strong>Vorhersage:</strong> Du änderst im DB-Schema <code>stand</code> in
+    <code>saldo</code>. Wie viele Dateien <em>außerhalb</em> des Repository-Ordners musst
+    du anfassen? Begründe.</li>
+  <li><strong>Vorhersage:</strong> Jemand ruft <code>controller.ueberweisung(...)</code>
+    mit einem negativen Betrag auf. Welche Schicht wirft, und in welchen HTTP-Status
+    mündet es später?</li>
+  <li><strong>Ausführen:</strong> Zerlege den Handler aus der Einstiegsfrage in die fünf
+    Schichten. Schreibe einen Test für den Service, der <em>ohne</em> HTTP-Server läuft
+    (In-Memory-Repository). Rot → grün.</li>
+</ol>
+
+<h2>Typische Fehler</h2>
+<table>
+  <tr><th>Fehler</th><th>Was wirklich passiert</th></tr>
+  <tr>
+    <td>Fachregel im Controller oder Endpoint</td>
+    <td>Die Regel ist versteckt oder doppelt — Domäne bzw. Service ist die richtige Stelle.</td>
+  </tr>
+  <tr>
+    <td>Service importiert Hono oder Prisma</td>
+    <td>Die Schicht ist undicht: Tests brauchen plötzlich Server/DB, der Austausch (In-Memory ↔ Prisma) wird unmöglich.</td>
+  </tr>
+  <tr>
+    <td>Repository gibt DB-Zeilen statt Domänenobjekte</td>
+    <td>Fachregeln fehlen, das Domänenmodell wird umgangen — der Kern von KM5 geht verloren.</td>
+  </tr>
+  <tr>
+    <td>Zwei Schreibvorgänge ohne Transaktion</td>
+    <td>Ein halber Zustand bleibt persistiert (z. B. Geld verschwindet).</td>
+  </tr>
+  <tr>
+    <td>Endpoint ruft das Repository direkt</td>
+    <td>Schicht übersprungen: Controller und Service (Regeln, Übersetzung) werden umgangen.</td>
+  </tr>
+  <tr>
+    <td>Jede Mini-Funktion in eine eigene Schicht pressen</td>
+    <td>Over-Engineering: Schichten sollen Änderungen isolieren, nicht das Denken ersetzen.</td>
+  </tr>
+</table>
+
+<h2>Zusammenfassung</h2>
+<table>
+  <tr><th>Schicht</th><th>Aufgabe in einem Satz</th></tr>
+  <tr><td>View</td><td>Anzeigen, Eingaben einsammeln — keine Logik.</td></tr>
+  <tr><td>Endpoint</td><td>Route + HTTP: Body/Parameter lesen, Status/JSON setzen.</td></tr>
+  <tr><td>Controller</td><td>Übersetzen und Fehler abfangen — ohne HTTP-Status.</td></tr>
+  <tr><td>Service</td><td>Geschäftsablauf (Use-Case) — ohne DB- und HTTP-Kenntnis.</td></tr>
+  <tr><td>Repository</td><td>Laden/Speichern und Transaktionen — ohne Fachregel.</td></tr>
+  <tr><td>Domäne</td><td>Die Regeln selbst (Konto-Invarianten aus KM5).</td></tr>
+</table>
+<p><strong>Ausblick:</strong> Die <a href="../KM5-03-interfaces-vertraege/lesson.html">KM5-03</a>-Idee
+„Vertrag, nicht Umsetzung" wird hier zur Architektur: Der Service hängt am
+<code>KontoRepository</code>-Interface. Ab dem Repository-Pattern (UE 5) und im
+INFI-Verbund liefert die Prisma-Implementierung genau diesen Vertrag — eine Datei, zwei
+Fächer.</p>
+
+<h2>Aufgabe</h2>
+<p>Zerlege den monolithischen Handler aus der Einstiegsfrage (oder einen eigenen) in die
+fünf Schichten: Domäne, Repository (Interface + In-Memory-Implementierung), Service,
+Controller, Endpoint. Halte das Repository hinter einem Interface, sodass die Datenbank
+austauschbar bleibt. Schreibe einen Test für den Service, der <em>ohne</em> HTTP-Server und
+<em>ohne</em> echte Datenbank läuft (rot → grün). Weise die Fehlerkette nach: Ein
+Domänenfehler führt über den Controller zu einem passenden HTTP-Status (404 bzw. 409).
+Abgabe nach Vorgabe deiner Lehrperson.</p>
+
+<footer class="lesson-foot">
+  <p>Zurück: <a href="../KM5-03-interfaces-vertraege/lesson.html">Lektion KM5-03 — Interfaces als Vertrag</a>
+  · Grundlage: KM6 (Schuladaption ②)</p>
+</footer>
+
+</body>
+</html>
