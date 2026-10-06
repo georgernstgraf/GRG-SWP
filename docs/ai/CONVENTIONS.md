@@ -36,8 +36,12 @@ Follow these without question. Do not deviate unless explicitly told.
 
 ## Prepared Lessons & Kohorten-Übernahme
 - **Prepared Lesson** = kohortenagnostisch, themen-/KM-gebunden, flach in
-  `unterricht/<PREFIX>-<NN>-<slug>/` (`PREFIX` = `KM<#>`|`SA`; `<NN>` läuft pro `PREFIX`).
+  `unterricht/<PREFIX>-<NN>-<slug>/` (`PREFIX` = `KM<#>`|`SA`).
   Inhalt: `lesson.html` + `hausaufgabe.md` + Tages-README-Vorlage `<PREFIX>-<NN>-<slug>.md`.
+- **Nummer `<NN>` = UE-Nummer** innerhalb des KM (Beispiel: `KM6-06` ↔ UE 6 des
+  Semesterplans, nicht die sechste gebaute Lesson). Lücken sind erlaubt — Lessons
+  entstehen in der Reihenfolge, in der sie gebraucht werden. `SA`-Lessons laufen
+  fortlaufend.
 - **Lektion = Präsentation:** eine einzige (beamer-taugliche) HTML, kein separater Foliensatz.
 - **Kein lauffähiger Projektcode** unter `unterricht/` — Beispielprojekte liegen in `Sample_Projects/`.
 - **Übernahme nur per Hand:** Kopie nach `3ahwii/YYYY-MM-DD__thema/` (Datum präfix, **doppelter**
