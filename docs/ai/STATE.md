@@ -13,6 +13,12 @@ mit Deno 2.9.7 verifiziert (5 Tests + Integrationstest 200/409/404). Die Lesson-
 `docs/ai/CONVENTIONS.md`).
 
 ## Completed (this cycle)
+- [x] 2026-10-12 — Homework-Discovery 3ahwii (SWP1x): `3ahwii/2026-10-06/Aufgabe.md`
+      erzeugt (Folie Interfaces + KM5-Hausübungen 1–3, Links auf
+      `unterricht/KM5-0N-*/hausaufgabe.md`); README `## Aufgaben` als erste
+      Sektion mit 3 Evidenz-Einträgen (HÜ 22.9. Fahrzeug-Invarianten, HÜ 29.9.
+      Produkt/Versendbar, HÜ 6.10. — Textquellen: Tages-READMEs `## HÜ`).
+      Generierte Aufgabe-Dateien bewusst **uncommitted** zur Review.
 - [x] #12 — Prepared Lesson `unterricht/KM6-06-schichtentrennung-applikation/`
       (`lesson.html` + `hausaufgabe.md` + Tages-README-Vorlage), Root-`index.html`
       (neuer KM6-Block), `GLOSSAR.md` (Architektur-Begriffe: Schicht, Dependency Rule,
