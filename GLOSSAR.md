@@ -35,6 +35,20 @@
 | **Dependency Rule** | Abhängigkeiten zeigen nur nach innen: außen kennt innen, innen kennt außen nicht; der Service hängt am Repository-Interface, nicht an der DB; KM6 |
 | **Domänenobjekt** | Objekt der Fachklassen (z. B. `Konto`) — was das Repository zurückgibt, statt roher DB-Zeilen; KM5/KM6 |
 | **Repository (Schicht)** | Datenbank-Layer: lädt/speichert Domänenobjekte und garantiert Transaktionen; kennt keine Fachregeln; KM6 |
+| **Supply-Chain-Angriff** | Schaden kommt über einen Baustein, den man selbst eingeladen hat (CDN-Skript, Installer, Paket, Gerät); Vertrauen an der Stelle, wo geprüft werden müsste; SA-01 |
+| **SRI (Subresource Integrity)** | Browser prüft den Hash der nachgeladenen Datei gegen das `integrity`-Attribut und blockt Abweichungen; schützt nur den Nachladeinhalt, nicht die Seite selbst; SA-01 |
+| **Version-Pinning** | Exakte Version laden (`lib-1.4.2.js`) statt `latest` — der Host bestimmt sonst, was dein Browser morgen bekommt; SA-01 |
+| **Vendoring** | Fremde Datei ins eigene Repository aufnehmen statt sie bei jedem Aufruf nachzuladen; SA-01 |
+| **Malvertising** | Gesponserte Suchanzeige als Angriffsweg: täuschend ähnliche Domain, manipulierter Installer; „offiziell aussehend" ist keine Prüfung; SA-01 |
+| **postinstall** | Lifecycle-Skript von npm/pip, das beim Installieren beliebigen Code ausführt — bevor das Paket je benutzt wurde; SA-01 |
+| **Deploy-Token** | Geheimnis, das eine Maschine berechtigt, Code in Produktion zu bringen; eine Fähigkeit ohne zweiten Faktor, solange sie auf einem Gerät liegt; SA-01 |
+| **Least Privilege** | Jede Person/Identität bekommt nur die Rechte, die ihre Aufgabe braucht; SA-01 |
+| **4-Augen-Prinzip** | Aktionen über einer Schwelle brauchen die Freigabe einer zweiten Person — die Kontrolle, die bei Binance laut Video fehlte; SA-01 |
+| **Seed-Phrase** | Wiederherstellungsphrase einer Hardware-Wallet; wird im Gerät erzeugt und verlässt es nie — eine vorgegebene Phrase ist ein rotes Flag; SA-01 |
+| **Zertifikat / CA** | X.509: bindet einen Namen an einen öffentlichen Schlüssel, signiert von einer Zertifizierungsstelle (Root → Intermediate → Leaf); nur so sicher wie die Schlüsselerzeugung; SA-01 |
+| **Entropie** | Zufallsqualität bei der Schlüsselerzeugung; fällt sie auf einstellige Zahlen (Fall eMudhra, „Schlüssel 4"), ist der private Schlüssel ableitbar; SA-01 |
+| **Revocation / Distrust-Liste** | Mechanismen, mit denen gesperrte Zertifikate/Intermediates aus der Vertrauensbasis fliegen (CRL/OCSP, Browser-Distrust); Truststores von Java/Node/Go/CI ziehen unabhängig nach; SA-01 |
+| **Mixer (Tornado Cash)** | Dienst, der Krypto-Zu- und -abflüsse vermischt und die Nachverfolgbarkeit erschwert; SA-01 |
 | **Service-Layer** | Geschäftsablauf/Use-Case; kennt weder HTTP noch die konkrete Datenbank; KM6 |
 | **Controller** | Übersetzt zwischen Außenwelt und Service, fängt Fehler ab; kennt keine HTTP-Statuscodes; KM6 |
 | **Endpoint** | Dünne Route: liest Body/Parameter, ruft den Controller, setzt HTTP-Status und JSON; KM6 |

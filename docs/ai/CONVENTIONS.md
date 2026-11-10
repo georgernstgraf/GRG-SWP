@@ -37,12 +37,17 @@ Follow these without question. Do not deviate unless explicitly told.
 ## Prepared Lessons & Kohorten-Übernahme
 - **Prepared Lesson** = kohortenagnostisch, themen-/KM-gebunden, flach in
   `unterricht/<PREFIX>-<NN>-<slug>/` (`PREFIX` = `KM<#>`|`SA`).
-  Inhalt: `lesson.html` + `hausaufgabe.md` + Tages-README-Vorlage `<PREFIX>-<NN>-<slug>.md`.
+  Inhalt: `lesson.html` + `aufgabe.md` (drei abzugebende Beispiele).
+  Eine Tages-README-Vorlage entsteht nicht — die Lehrperson pflegt das
+  Kohorten-README selbst.
 - **Nummer `<NN>` = UE-Nummer** innerhalb des KM (Beispiel: `KM6-06` ↔ UE 6 des
   Semesterplans, nicht die sechste gebaute Lesson). Lücken sind erlaubt — Lessons
   entstehen in der Reihenfolge, in der sie gebraucht werden. `SA`-Lessons laufen
   fortlaufend.
 - **Lektion = Präsentation:** eine einzige (beamer-taugliche) HTML, kein separater Foliensatz.
+- **Lernquiz Format 2.1** (`assets/quiz.js`): Checkboxen, Lösungsmenge per `data-richtig`
+  an der Option (0–4 richtig), Begründung je Option per `data-grund`, „Überprüfen" je Frage,
+  Infokugeln; der Radio-Altmodus (`data-loesung`) bleibt für Lessons vor Format 2.0.
 - **Kein lauffähiger Projektcode** unter `unterricht/` — Beispielprojekte liegen in `Sample_Projects/`.
 - **Übernahme nur per Hand:** Kopie nach `3ahwii/YYYY-MM-DD__thema/` (Datum präfix, **doppelter**
   Unterstrich), Tages-README aus der Vorlage; die UE-Nummer steht nur dort.

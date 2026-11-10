@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lektion SA-01 — Security Awareness: Fünf Hacks, ein Muster</title>
+<script>(function(){var s=location.pathname.split("/");s.pop();(function t(){if(!s.length)return;var r=s.join("/")+"/",e=document.createElement("script");e.src=r+"assets/loader.js";e.setAttribute("data-css","lesson.css");e.setAttribute("data-js","quiz.js,theme.js");e.onerror=function(){s.pop();t()};e.onload=function(){if(!window.__SITE_ROOT__){s.pop();t()}};document.head.appendChild(e)})()})();</script>
+</head>
+<body>
+
+<header class="meta">
+  <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">Dunkel</button>
+  <span class="kicker">Lektion SA-01 · Security Awareness (schulautonom)</span>
+  <h1>Fünf Hacks, ein Muster</h1>
+  <p class="subtitle">Ein fremdes Skript, eine Werbeanzeige und ein „Testprogramm" reichen
+  für Milliarden — und in keinem einzigen Fall wurde ein Passwort geknackt.</p>
+</header>
+
+<div class="callout">
+  <span class="label">Lektüre (Pflicht)</span>
+  <p>Das Video: <a href="https://www.youtube.com/watch?v=KMOyP_ArDMo">„HAHAHA (You
+  deserve it)"</a> — The PrimeTime, 9. November 2026, 15:21 Minuten, englisch.
+  Diese Lektion nimmt seine fünf Fälle und erklärt die Technik dahinter;
+  Zahlen aus dem Video sind mit „laut Video" markiert.</p>
+  <p>Dazu zum Nachschlagen: <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">MDN:
+  Subresource Integrity</a> und <a href="https://docs.deno.com/runtime/fundamentals/security/">Deno:
+  Security &amp; Permissions</a>.</p>
+</div>
+
+<h2>Einstiegsfrage</h2>
+<p>29. Oktober, 17:15 Uhr. Auf einem Rechner bei Binance wird ein Container
+ausgerollt. Bis etwa 20:00 Uhr sind laut Video sechs Milliarden US-Dollar
+unterwegs — ohne dass jemand ein Passwort-Dialogfeld sieht, ohne dass jemand
+eine Datenbank knackt. Um 17:15 Uhr lag die Berechtigung, genau das zu tun,
+<em>bereits auf einem Laptop</em>.</p>
+<p><strong>Wie kommt Geld aus einer Wallet, ohne dass ein Passwort im Spiel
+ist?</strong> Die Antwort ist der Stoff dieser Doppelstunde: Die Angreifer
+brauchten keine Schlüssel zu stehlen, die es gar nicht gab — sie nutzten
+Berechtigungen, die längst vorhanden waren.</p>
+
+<h2>Vier Fälle, ein Muster</h2>
+<p>Das Video behandelt eigentlich fünf Vorfälle — aber alle laufen nach
+demselben Drehbuch. Finde es in der Tabelle, bevor du weiterliest:</p>
+<table>
+  <tr>
+    <th>Fall</th>
+    <th>Der fremde Baustein</th>
+    <th>Wo das Vertrauen saß</th>
+    <th>Folge</th>
+  </tr>
+  <tr>
+    <td><strong>Polymarket</strong></td>
+    <td>JavaScript von der DebugBear-Domain</td>
+    <td>Die Seite lädt Skripte von fremden Hosts nach</td>
+    <td>Konten wurden leergeräumt, sobald die Seite öffnete</td>
+  </tr>
+  <tr>
+    <td><strong>Binance, Weg 1</strong></td>
+    <td>Homebrew-Installer aus einer Suchanzeige</td>
+    <td>Die Suchmaschine, dann der Installer</td>
+    <td>Schadsoftware auf dem Arbeitslaptop</td>
+  </tr>
+  <tr>
+    <td><strong>Binance, Weg 2</strong></td>
+    <td>„Testprogramm" aus einem Bewerbungsgespräch</td>
+    <td>Die Job-Plattform, dann die ausgebende Person</td>
+    <td>Zweiter kompromittierter Rechner</td>
+  </tr>
+  <tr>
+    <td><strong>Ledger</strong></td>
+    <td>Hardware-Wallet auf dem Versandweg</td>
+    <td>Die Verpackung, dann das Gerät selbst</td>
+    <td>86 Millionen US-Dollar, jahrelang angesammelt (laut Video)</td>
+  </tr>
+  <tr>
+    <td><strong>eMudhra</strong></td>
+    <td>Ein privater Schlüssel, der praktisch „4" war</td>
+    <td>Die Schlüsselerzeugung der Zertifizierungsstelle</td>
+    <td>Zertifikate, die man ableiten konnte</td>
+  </tr>
+</table>
+<div class="callout">
+  <span class="label">Merke</span>
+  <p>In keinem Fall wurde eine Betriebssystem-Lücke ausgenutzt und in keinem
+  Fall ein Passwort geknackt. Der Angriff kam jedes Mal über einen
+  <strong>ungeprüften Baustein an einer Stelle, an der Vertrauen angenommen
+  wurde</strong>. Das ist der rote Faden — und er zieht sich durch die ganze
+  Lektion.</p>
+</div>
+
+<div class="quiz" data-titel="Quiz: das-muster">
+  <fieldset class="frage">
+    <legend class="frage-text">Was haben die Fälle aus der Tabelle gemeinsam?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q1" value="0" data-richtig data-grund="Richtig — Polymarket lud ein fremdes Skript, Binance installierte fremde Software, Ledger nahm ein fremdes Paket entgegen: Der Schaden kam jedes Mal über einen Baustein, der ungeprüft übernommen wurde."> Ein fremder Baustein wurde ungeprüft übernommen</label>
+      <label><input type="checkbox" name="sa-01-q1" value="1" data-richtig data-grund="Richtig — die Stellen, an denen vertraut wurde (CDN, Suchmaschine, Paketlieferung, Schlüsselerzeugung), sind genau die Stellen, an denen keine Prüfung lief."> Die Kontrolle fehlte an einer Stelle, der man vertraute</label>
+      <label><input type="checkbox" name="sa-01-q1" value="2" data-grund="Falsch — in keinem der Fälle war eine Betriebssystem-Lücke die Ursache; die Angreifer nutzten Wege, die die Opfer selbst geöffnet hatten."> In jedem Fall wurde eine Sicherheitslücke im Betriebssystem ausgenutzt</label>
+      <label><input type="checkbox" name="sa-01-q1" value="3" data-grund="Falsch — kein Passwort wurde geknackt; die Angreifer schlichen sich über Skripte, Installer und Geräte ein und fanden auf den Rechnern bereits vorhandene Berechtigungen vor."> In jedem Fall wurde ein Passwort erbeutet</label>
+    </div>
+  </fieldset>
+</div>
+
+<h2>Fall 1 — Polymarket: die URL bleibt, die Bytes ändern sich</h2>
+<p>Polymarket bindet — wie fast jede moderne Webseite — fremde Skripte ein,
+z. B. von DebugBear, einem Dienst, der die Ladezeit von Webseiten misst.
+Laut Video übernahmen die Angreifer die Kontrolle über die Domain von
+DebugBear (Registrar/DNS) und lieferten danach über denselben Hostnamen ein
+fremdes Skript aus. Jeder, der danach Polymarket öffnete, lud es — und der
+Browser führte es aus.</p>
+<h3>Warum das so verheerend ist</h3>
+<p>Ein Skript, das eine Webseite per <code>&lt;script src&gt;</code> nachlädt,
+bekommt <strong>keine Sandbox</strong>: Es liest die Seite, es sieht Cookies
+und lokale Eingaben, es kann Anfragen im Namen der Seite stellen. Dem Browser
+ist es egal, woher die Bytes kamen — er führt, was ankommt.</p>
+<div class="callout">
+  <span class="label">Antwort auf die Einstiegsfrage — Teil 1</span>
+  <p>HTTPS schützt nur den <strong>Transport</strong>: Niemand auf der Strecke
+  kann die Bytes manipulieren. Es sagt nichts über die <strong>Herkunft</strong>
+  der Bytes aus. Das Zertifikat von <code>debugbear.com</code> war echt — nur
+  der Server dahinter (bzw. die DNS-Auflösung dorthin) gehörte nicht mehr
+  DebugBear. „Verschlüsselt" und „ehrlich" sind zwei verschiedene Fragen.</p>
+</div>
+<h3>Die drei Verteidigungen, die genau das stoppen</h3>
+<p>Der Autor kritisiert im Video: keine fixierte Version, kein Pinning, kein
+Review. Übersetzt in konkrete Mittel:</p>
+<ol>
+  <li><strong>Version pinnen:</strong> <code>lib-1.4.2.min.js</code> laden,
+  nie <code>lib-latest.js</code>. Bei <code>latest</code> bestimmt der Host,
+  was du morgen auslieferst.</li>
+  <li><strong>SRI (Subresource Integrity):</strong> der Browser prüft einen
+  Hash gegen den <em>Inhalt</em> der Datei — geänderte Bytes werden abgelehnt.</li>
+  <li><strong>Self-Hosting / CSP:</strong> die Datei ins eigene Repository
+  legen (Vendoring), oder per Content-Security-Policy festlegen, von welchen
+  Hosts überhaupt Skripte geladen werden dürfen.</li>
+</ol>
+<p>So sieht die gehärtete Variante aus — mit einem echten, selbst berechneten
+Hash:</p>
+<pre><code>&lt;!-- Datei hallo.js: eine Zeile — console.log("hallo, welt"); --&gt;
+&lt;script src="https://cdn.example.com/hallo-1.0.0.js"
+        integrity="sha384-02R8oPI0u63WwYXyPtq/6SkP7JdWTXAr4LXLrOIDQ+A2W9bWgcF8QuNMXCPKg5YF"
+        crossorigin="anonymous"&gt;&lt;/script&gt;</code></pre>
+<p>Und so rechnet man den Hash selbst — hier an der echten Datei
+<code>hallo.js</code> (28 Bytes, der Zeilenumbruch am Ende zählt mit),
+deren Hash oben steht:</p>
+<pre><code>$ curl -sS https://cdn.example.com/hallo-1.0.0.js -o hallo.js
+$ openssl dgst -sha384 -binary hallo.js | openssl base64 -A
+<span class="out">02R8oPI0u63WwYXyPtq/6SkP7JdWTXAr4LXLrOIDQ+A2W9bWgcF8QuNMXCPKg5YF</span></code></pre>
+<p>Zu den Schritten: <code>openssl dgst -sha384</code> bildet einen
+Fingerabdruck über <em>die exakten Bytes</em> der Datei; <code>-binary</code>
+gibt die rohen Bytes aus, <code>openssl base64 -A</code> macht daraus eine
+Zeile Text, wie es das <code>integrity</code>-Attribut verlangt. Ändert
+jemand ein einziges Byte in der Datei, ändert sich der Fingerabdruck
+vollständig — und der Browser blockt mit einer Fehlermeldung à la
+<em>„Failed to find a valid digest in the 'integrity' attribute"</em>.
+Genau diese Meldung hättest du bei Polymarket am Tag des Angriffs gesehen.</p>
+<div class="callout">
+  <span class="label">Achtung</span>
+  <p>SRI schützt nur den <strong>nachgeladenen Inhalt</strong>. Wenn die
+  Angreifer stattdessen deine <em>HTML-Seite</em> ändern (mit dem neuen Hash
+  der neuen Datei), kommt der Schutz nicht mehr gegen die Seite an. Deshalb
+  gilt SRI als eine Schicht von mehreren — nicht als Ersatz für Pinning und
+  Vendoring. Übrigens: Der Video-Autor nennt das Verhalten
+  „<em>raw-dogging a link</em>" — einen Link roh durchziehen, ohne jede
+  Prüfung. Der Begriff hat es nicht in die Lehrbücher geschafft, das Problem
+  aber in die Realität.</p>
+</div>
+
+<div class="quiz" data-titel="Quiz: sri-und-cdn">
+  <fieldset class="frage">
+    <legend class="frage-text">Was bedeutet die <code>integrity</code>-Angabe in einem script-Tag?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q2" value="0" data-richtig data-grund="Richtig — der Browser berechnet den Hash der tatsächlich ankommenden Datei und vergleicht ihn mit dem Attribut; bei Abweichung ist das ein Beweis für fremde Bytes."> Der Browser vergleicht den Hash der geladenen Datei mit dem angegebenen</label>
+      <label><input type="checkbox" name="sa-01-q2" value="1" data-richtig data-grund="Richtig — genau das ist der Schutz: Die Datei wird nicht ausgeführt, sondern abgelehnt, wenn die Bytes nicht zum Hash passen."> Bei Abweichung führt der Browser das Skript nicht aus</label>
+      <label><input type="checkbox" name="sa-01-q2" value="2" data-grund="Falsch — die Verschlüsselung auf dem Transportweg ist TLS/HTTPS; SRI hat damit nichts zu tun, es prüft den Inhalt, nicht die Verbindung."> Die Datei wird verschlüsselt übertragen</label>
+      <label><input type="checkbox" name="sa-01-q2" value="3" data-grund="Falsch — der Hash beweist nur, dass die Bytes mit dem übereinstimmen, was beim Schreiben des Attributs vorlag. Ob der Autor vertrauenswürdig ist, steht in keiner Prüfsumme."> Der Hash beweist, dass der Autor vertrauenswürdig ist</label>
+    </div>
+  </fieldset>
+  <fieldset class="frage">
+    <legend class="frage-text">Warum half HTTPS beim Polymarket-Angriff nicht?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q3" value="0" data-richtig data-grund="Richtig — die TLS-Kette war intakt; das Problem war, dass die Domain ihre Auslieferung nicht mehr an die echten Inhalte band."> Das Zertifikat der Domain war echt — die Auslieferung kam trotzdem vom Angreifer</label>
+      <label><input type="checkbox" name="sa-01-q3" value="1" data-richtig data-grund="Richtig — HTTPS garantiert nur, dass zwischen dir und dem Server niemand mithört oder verändert; was der Server sendet, kann trotzdem bösartig sein."> HTTPS schützt nur den Transport, nicht die Absicht des Codes</label>
+      <label><input type="checkbox" name="sa-01-q3" value="2" data-grund="Falsch — im Video gibt es keinen Hinweis auf eine TLS-Fehlkonfiguration; die Verbindung war sauber, nur der Inhalt war es nicht."> HTTPS war falsch konfiguriert</label>
+      <label><input type="checkbox" name="sa-01-q3" value="3" data-grund="Falsch — der Browser hat keine Warnung ignoriert; ohne SRI-Hash gibt es schlicht nichts zu warnen, denn die Bytes passten formal dazu, was die Seite verlangt hat."> Der Browser hat eine Warnung ignoriert</label>
+    </div>
+  </fieldset>
+  <fieldset class="frage">
+    <legend class="frage-text">Welche Zeile ist gegen einen CDN-Tausch gehärtet?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q4" value="0" data-grund="Falsch — „latest" heißt: der Host entscheidet täglich neu, was dein Browser morgen bekommt; einen Hash gegen den es zu prüfen gäbe, gibt es nicht.">&lt;script src="https://cdn.example.com/lib/latest.js"&gt;&lt;/script&gt;</label>
+      <label><input type="checkbox" name="sa-01-q4" value="1" data-richtig data-grund="Richtig — fixierte Version plus Hash: Ändert sich ein Byte der Datei, verweigert der Browser die Ausführung."> &lt;script src="https://cdn.example.com/lib-1.4.2.min.js" integrity="sha384-…" crossorigin="anonymous"&gt;&lt;/script&gt;</label>
+      <label><input type="checkbox" name="sa-01-q4" value="2" data-grund="Falsch — protocol-relative URL und kein Hash: gleicher Angriffsweg wie bei Polymarket, nur ohne SRI-Schutz.">&lt;script src="//cdn.example.com/lib.js"&gt;&lt;/script&gt;</label>
+      <label><input type="checkbox" name="sa-01-q4" value="3" data-grund="Falsch — ob das Skript per JS-String oder direkt im HTML steht, ändert nichts an der Prüfung: Es wird ohne Hash geladen.">&lt;script&gt;document.write("&lt;script src='https://cdn.example.com/lib.js'&gt;")&lt;/script&gt;</label>
+    </div>
+  </fieldset>
+</div>
+
+<h2>Fall 2a — Binance: die gesponserte Anzeige</h2>
+<p>Laut Video suchte ein DevOps-Engineer auf seinem Arbeitslaptop nach „how
+do I install homebrew" und klickte auf die <strong>gesponserte</strong>
+Anzeige über dem organischen Treffer. Die Anzeige führte zu einer Seite, die
+der offiziellen täuschend ähnlich sah — und zu einem manipulierten
+Installer. Und der Weg, wie man Homebrew üblicherweise installiert, ist
+genau der Mechanismus, den Angreifer brauchen:</p>
+<pre><code>$ curl -fsSL https://beispiel.example/install.sh | bash</code></pre>
+<p>Was hier Schritt für Schritt passiert: <code>curl</code> lädt einen
+Text herunter und schreibt ihn auf die Standardausgabe. Das Pipe-Zeichen
+<code>|</code> verbindet diese Ausgabe mit der Eingabe von <code>bash</code>.
+Die Shell führt also <strong>fremden Text als Code</strong> aus — mit den
+Rechten deines Benutzers. Niemand hat vorher hingeschaut, denn genau
+dafür ist das Muster nicht gedacht: Es ist bequem, aber es hat keinen
+Prüfschritt eingebaut.</p>
+<div class="callout">
+  <span class="label">Merke</span>
+  <p><code>curl … | bash</code> ist nicht grundsätzlich böse — die
+  offiziellen Installer vieler Werkzeuge genau so gebaut. Der Punkt ist der
+  <strong>Prüfschritt</strong>: Erst herunterladen, dann lesen oder wenigstens
+  die Prüfsumme gegen die offizielle Quelle vergleichen, <em>dann</em>
+  ausführen. Und die Quelle direkt eintippen statt auf eine Anzeige zu
+  klicken — „offiziell aussehend" ist kein Beweis, sondern eine
+  Verkaufsbehauptung.</p>
+</div>
+<p>Homebrew selbst hat einen impliziten Vertrauenspfad: Formeln (Anleitungen,
+wie ein Paket gebaut wird) liegen in Git-Repos, die fertigen Pakete
+(„Bottles") tragen SHA256-Prüfsummen. Das funktioniert, <strong>solange</strong>
+der Weg zur Formel stimmt. Ein installer, den du aus einer Anzeige beziehst,
+liegt nicht auf diesem Pfad — da gibt es keine Prüfsumme, die dir jemand
+bestätigt.</p>
+
+<div class="quiz" data-titel="Quiz: anzeige-und-installer">
+  <fieldset class="frage">
+    <legend class="frage-text">Was passiert bei <code>curl -fsSL https://…/install.sh | bash</code>?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q5" value="0" data-richtig data-grund="Richtig — curl gibt den Text aus, die Pipe verbindet ihn mit der Eingabe von bash, und die Shell führt ihn sofort aus; es gibt keinen Blick und keine Bestätigung."> Der heruntergeladene Text wird direkt an eine Shell übergeben und ausgeführt</label>
+      <label><input type="checkbox" name="sa-01-q5" value="1" data-grund="Falsch — genau das tut das Muster nicht: Es gibt keinen Zwischenschritt, der die Datei anzeigt, speichert oder zur Prüfung auffordert."> Der Download wird vor der Ausführung angezeigt und muss bestätigt werden</label>
+      <label><input type="checkbox" name="sa-01-q5" value="2" data-richtig data-grund="Richtig — ein Programm läuft mit den Rechten des Benutzers, der es startet; ohne Sandbox kann es Dateien lesen, ins Netz gehen und Dateien anlegen."> Das Skript läuft mit den Rechten des angemeldeten Benutzers</label>
+      <label><input type="checkbox" name="sa-01-q5" value="3" data-grund="Falsch — curl kennt die Signatur nicht, die Pipe ist nur ein Transport; Signaturen müssen aktiv geprüft werden, das passiert in diesem Muster nicht."> curl prüft die Signatur des Skripts automatisch</label>
+    </div>
+  </fieldset>
+  <fieldset class="frage">
+    <legend class="frage-text">Warum ist eine gesponserte Suchanzeige ein guter Angriffsweg?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q6" value="0" data-richtig data-grund="Richtig — Anzeigen stehen über den organischen Treffern und tragen ein „Anzeige"-Label, das viele überlesen; wer nach „homebrew install" sucht, will schnell zum Ziel."> Sie steht über dem organischen Treffer und sieht wie das Ziel aus</label>
+      <label><input type="checkbox" name="sa-01-q6" value="1" data-grund="Falsch — Anzeigenplätze werden bezahlt, nicht technisch geprüft; genau deshalb sind Scam-Ads (laut Video ein relevanter Anteil der Anzeigenumsätze) ein dauerhaftes Problem."> Wer eine Anzeige schaltet, wird vorher technisch geprüft</label>
+      <label><input type="checkbox" name="sa-01-q6" value="2" data-richtig data-grund="Richtig — eine Domain wie „brewinstall.example" sieht auf den ersten Blick wie das Original aus; die Ähnlichkeit ist der eigentliche Köder."> Die Domain kann dem Original täuschend ähnlich sein</label>
+      <label><input type="checkbox" name="sa-01-q6" value="3" data-grund="Falsch — Suchmaschinen garantieren nicht, dass eine Anzeige zur Marke gehört, die sie imitiert; das ist gerade der Angriff."> Suchmaschinen garantieren, dass Anzeigen zur echten Marke gehören</label>
+    </div>
+  </fieldset>
+</div>
+
+<h2>Fall 2b — Binance: das „Testprogramm"</h2>
+<p>Im September (laut Video) kontaktierte jemand, der sich als
+<strong>Project Director</strong> ausgab, einen Software-Engineer über eine
+<em>legitime</em> Job-Plattform. Im Laufe des Gesprächs schickte er ein
+„Testprogramm" — und der Engineer lud es auf seinen <strong>Arbeitslaptop</strong>
+und führte es aus. Laut Video schrieb das Programm anschließend Teile der
+Python-/pip-Umgebung um, um sich zu verankern.</p>
+<p>Warum ist „führe das einmal aus" so teuer? Ein Programm, das du startest,
+erbt deine Rechte: Es liest Dateien, die du lesen kannst. Es öffnet
+Verbindungen, die du öffnen kannst. Es sieht Cookies und Sitzungen, die du
+offen hast. Und es kann <strong>weitere Software nachladen</strong> —
+genau darüber läuft die nächste Stufe: <code>pip install</code> und
+<code>npm install</code> führen Installations-Skripte aus (z. B.
+<code>postinstall</code>), die beliebigen Code starten dürfen, bevor du das
+Paket überhaupt zum ersten Mal benutzt.</p>
+<div class="callout">
+  <span class="label">Merke — Deno macht das anders</span>
+  <p>Deno startet ein Skript <strong>ohne jede Berechtigung</strong>: Lesen,
+  Schreiben und Netz müssen einzeln erlaubt werden
+  (<code>--allow-read</code>, <code>--allow-net</code>). Mit
+  <code>--allow-all</code> gibst du genau diese Schutzwand auf — dann ist
+  Deno für Angreifer genau so gut wie jedes andere Programm. Sandboxing ist
+  eine Einstellung, kein Erkennungszeichen.</p>
+</div>
+<p>Der Video-Tipp dazu: <em>„Ask an AI agent: does this send anything off my
+computer?"</em> — ein KI-Werkzeug fragen, ob das Programm Dateien verändert
+oder Daten schickt. Das ist eine vernünftige <strong>zweite Meinung</strong>,
+aber kein Ersatz für eine Kontrolle: Ein Modell kann überlesen und kann
+falsch liegen. Für echte Entscheidungen gehört der Prüfschritt in eine
+Umgebung, die man wegwerfen kann — eine virtuelle Maschine oder einen
+Container auf einem Gerät, das nichts zu verlieren hat.</p>
+<div class="callout">
+  <span class="label">Achtung — die Reaktion ist die eigentliche Übung</span>
+  <p>Ein seriöses Bewerbungsverfahren akzeptiert „das mache ich nicht auf
+  meinem Arbeitsgerät" ohne weiteres Murren. Wer darauf besteht, dass du
+  fremde Software <em>jetzt</em> auf dem Firmenlaptop ausführst, hat dir
+  damit schon gesagt, was das ist.</p>
+</div>
+
+<div class="quiz" data-titel="Quiz: testprogramm-und-rechte">
+  <fieldset class="frage">
+    <legend class="frage-text">Warum ist „führe dieses Programm aus" gefährlich, auch ohne Admin-Rechte?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q7" value="0" data-richtig data-grund="Richtig — ein Programm erbt die Rechte seines Benutzers: Dateien, Netzwerkverbindungen, offene Sitzungen; nichts davon braucht ein Admin-Passwort."> Ein Programm erbt die Rechte des Benutzers: Dateien, Netz, Sitzungen</label>
+      <label><input type="checkbox" name="sa-01-q7" value="1" data-grund="Falsch — ein Admin-Passwort schützt nur Einstellungen auf Systemebene; der normale Benutzerraum enthält bereits alles, was ein Angreifer braucht."> Ohne Admin-Passwort kann es nichts tun</label>
+      <label><input type="checkbox" name="sa-01-q7" value="2" data-richtig data-grund="Richtig — Software kann Pakete und Module nachziehen (pip/npm, Installskripte), Persistenz anlegen und sich Werkzeuge beschaffen, die ihre Rechte ausweiten."> Es kann weitere Pakete nachladen und sich verankern</label>
+      <label><input type="checkbox" name="sa-01-q7" value="3" data-grund="Falsch — Rechnen ist keine Sicherheitsgrenze; ein Programm mit Benutzierrechten tut im Benutzerraum, was es will."> Es kann nur rechnen, solange kein Admin bestätigt</label>
+    </div>
+  </fieldset>
+  <fieldset class="frage">
+    <legend class="frage-text">Was macht <code>npm install</code> / <code>pip install</code> zusätzlich gefährlich?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q8" value="0" data-richtig data-grund="Richtig — Lifecycle-Skripte wie postinstall laufen beim Installieren, also bevor du das Paket überhaupt einmal benutzt hast; der Code startet unter deinem Konto."> Installations-Skripte (z. B. postinstall) führen Code aus</label>
+      <label><input type="checkbox" name="sa-01-q8" value="1" data-grund="Falsch — Pakete werden in der Regel nicht vom Autor kryptographisch signiert geprüft; Registry-Metadaten zu prüfen ist nicht dasselbe."> Alle Pakete werden vom Autor signiert und geprüft</label>
+      <label><input type="checkbox" name="sa-01-q8" value="2" data-richtig data-grund="Richtig — Abhängigkeiten haben Abhängigkeiten; jede Stufe ist ein eigener Angriffspunkt, den du nicht einzeln gelesen hast."> Abhängigkeiten können weitere Abhängigkeiten nachziehen</label>
+      <label><input type="checkbox" name="sa-01-q8" value="3" data-grund="Falsch — die Installation läuft im normalen Benutzerraum; eine Sandbox müsste ausdrücklich gebaut werden (Container, VM), sie ist nicht Teil des Paketmanagers."> Die Installation läuft in einer Sandbox</label>
+    </div>
+  </fieldset>
+  <fieldset class="frage">
+    <legend class="frage-text">Wie unterscheidet sich Deno hier von der üblichen Praxis?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q9" value="0" data-richtig data-grund="Richtig — der Standard ist: nichts erlaubt; jede Fähigkeit (Lesen, Schreiben, Netz) muss beim Start ausdrücklich freigegeben werden."> <code>deno run</code> startet ohne Rechte; Lesen und Netz müssen erlaubt werden</label>
+      <label><input type="checkbox" name="sa-01-q9" value="1" data-grund="Falsch — es ist genau umgekehrt: ohne Flags ist fast nichts erlaubt; die Rechte sind die Ausnahme, nicht der Normalzustand."> Deno führt Skripte automatisch mit Vollrechten aus</label>
+      <label><input type="checkbox" name="sa-01-q9" value="2" data-richtig data-grund="Richtig — --allow-all schaltet die gesamte Berechtigungsprüfung ab; danach verhält sich Deno wie ein Programm ohne Sandboxing."> <code>--allow-all</code> hebt den Schutz komplett auf</label>
+      <label><input type="checkbox" name="sa-01-q9" value="3" data-grund="Falsch — Permissions schränken ein Programm ein, sobald es läuft; gegen den Menschen, der es freiwillig startet, hilft keine Runtime."> Deno verhindert Social Engineering</label>
+    </div>
+  </fieldset>
+</div>
+
+<h2>Fall 2c — Binance: vom Laptop zu sechs Milliarden</h2>
+<p>Jetzt wird die Kette vollständig — und jede Station hat einen Namen und
+eine Funktion:</p>
+<table>
+  <tr>
+    <th>Schritt</th>
+    <th>Was passiert</th>
+    <th>Die fehlende Kontrolle</th>
+  </tr>
+  <tr>
+    <td>1 · Weg 1 (Anzeige)</td>
+    <td>Engineer A (Wallet-DevOps) installiert ein manipuliertes Homebrew</td>
+    <td>Prüfschritt vor der Installation</td>
+  </tr>
+  <tr>
+    <td>2 · Weg 2 (Interview)</td>
+    <td>Engineer B führt das „Testprogramm" aus, führt zur Umgehung der Umgebung</td>
+    <td>Kein Ausführen fremder Software auf dem Arbeitsgerät</td>
+  </tr>
+  <tr>
+    <td>3 · Pivot</td>
+    <td>Über B's Rechner wird ein <strong>internes KI-Werkzeug</strong> als Sprungbrett genutzt, um Zugriff auf A und auf Wallet-Engineer C zu bekommen</td>
+    <td>Ein Werkzeug mit Rechten und Credentials ist selbst eine Angriffsfläche</td>
+  </tr>
+  <tr>
+    <td>4 · Fund</td>
+    <td>Auf A's Rechner liegt ein <strong>Container-Deployment-Token</strong></td>
+    <td>Geheimnisse liegen dauerhaft auf Arbeitsgeräten</td>
+  </tr>
+  <tr>
+    <td>5 · Auslösung</td>
+    <td>29. Oktober, ca. 17:15–20:00: Zugriff über C, Credential von A, ein Container wird ausgerollt, ein Skript startet</td>
+    <td>Kein 4-Augen-Prinzip, keine Schwelle, die eine zweite Person einschaltet</td>
+  </tr>
+  <tr>
+    <td>6 · Beute &amp; Flucht</td>
+    <td>Über 6 Mrd. US-Dollar (laut Video); rund 3 Mrd. können eingefroren werden; 60 Mio. USDT dienen als Sicherheit für 19.762 geliehene ETH — die ETH wandern Minuten vor dem Freeze weg, Tornado Cash mischt die Spuren</td>
+    <td>Nachträglich: keine Überwachung, die den Abfluss vor dem Freeze bemerkt</td>
+  </tr>
+</table>
+<h3>Drei Mechanismen, die man verstehen muss</h3>
+<p><strong>Ein Token ist eine Fähigkeit.</strong> Wer den Token hat, hat
+nicht „Zugang zu einem Konto" — er kann die Aktion ausführen, für die der
+Token steht, meist ohne zweiten Faktor. Ein Deployment-Token auf einem
+Laptop ist daher eine Schreibrechte-Karte für die Produktion, die in der
+Hosentasche liegt.</p>
+<p><strong>Ein Container-Deploy ist eine Schreiboperation.</strong> „Deploy"
+klingt nach Technik, ist aber das Anbringen von Code an einer Stelle, die
+mit den Rechten des Systems läuft. Wer deployn darf, kann Produktion
+verändern — daher gehört das Deploy zu den Operationen, die man
+<em>bestätigen lässt</em>, nicht nur ausführt.</p>
+<p><strong>Ein KI-Werkzeug mit Rechten ist ein Stellvertreter.</strong> Das
+interne Werkzeug konnte offenbar auf Systeme zugreifen und Aktionen
+ausführen. Wer eine Sitzung eines Stellvertreters übernimmt, erbt dessen
+Rechte — deshalb sind Rechtegrenzen und Sitzungssicherheit bei
+KI-Werkzeugen keine Nebensache, sondern Teil derselben Frage wie der
+Deployment-Token.</p>
+<div class="callout">
+  <span class="label">Achtung — der Todd-Gag ist die Lehre</span>
+  <p>Der Autor fragt sinngemäß: „Wie kann es sein, dass eine einzige Person
+  so weitreichende Rechte hat, dass sie Milliarden bewegen kann, ohne dass
+  <em>Todd aus der Buchhaltung</em> kurz drüberschaut?" Das 4-Augen-Prinzip
+  — große Beträge brauchen eine zweite Freigabe — ist keine Bürokratie.
+  Es ist die Kontrolle, die genau diesen Schritt abfängt, und laut Video
+  fehlte sie.</p>
+</div>
+<p>Und der Rest der Geschichte erklärt sich aus dem Modell: Die Börse hielt
+die Schlüssel, also konnte <em>sie</em> einfrieren (rund 3 Mrd.) — der
+Autor kommentiert das mit „this is the future of finance", weil das
+Krypto-Versprechen lautet, dass niemand über dein Geld verfügen kann. Die
+Flucht lief über die DeFi-Baukasten-Mechanik: 60 Mio. gestohlene USDT als
+Sicherheit hinterlegen, 19.762 ETH leihen, ETH abziehen — <strong>bevor</strong>
+das Einfrieren wirksam wurde — und die Spuren über einen Mixer
+(Tornado Cash) verwischen.</p>
+
+<div class="quiz" data-titel="Quiz: token-container-und-4-augen">
+  <fieldset class="frage">
+    <legend class="frage-text">Was bedeutet ein Deployment-Token auf einem Laptop?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q10" value="0" data-richtig data-grund="Richtig — der Token berechtigt die Maschine (bzw. jeden, der ihn liest), Code in Produktion zu bringen; er ist eine Fähigkeit, kein Zertifikat über den Inhaber."> Ein Geheimnis, das berechtigt, Code in Produktion zu bringen</label>
+      <label><input type="checkbox" name="sa-01-q10" value="1" data-grund="Falsch — ein Token ist genau das Gegenteil von bedeutungslos: Er ist die Karte, die der Angreifer braucht, um den letzten Schritt zu tun."> Ein Eintrag ohne praktische Bedeutung</label>
+      <label><input type="checkbox" name="sa-01-q10" value="2" data-richtig data-grund="Richtig — Tokens stehen typischerweise ohne zweiten Faktor in der Pipeline; wer den Wert hat, kann handeln, ohne noch einmal etwas beweisen zu müssen."> Es wirkt wie ein Passwort, oft ohne zweiten Faktor</label>
+      <label><input type="checkbox" name="sa-01-q10" value="3" data-grund="Falsch — er ist kein Logeintrag, sondern ein aktives Geheimnis in einer Datei oder Umgebungsvariable auf dem Gerät."> Er ist nur ein Eintrag im Log</label>
+    </div>
+  </fieldset>
+  <fieldset class="frage">
+    <legend class="frage-text">Warum war das Zeitfenster 17:15–20:00 günstig für den Angreifer?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q11" value="0" data-richtig data-grund="Richtig — nach Arbeitsschluss sitzen weniger Menschen an Dashboards und Alerts; die Reaktionszeit verlängert sich, ohne dass dafür ein Angriff nötig wäre."> Nach Arbeitsschluss schauen weniger Menschen auf Dashboards</label>
+      <label><input type="checkbox" name="sa-01-q11" value="1" data-grund="Falsch — Sicherheitssysteme laufen rund um die Uhr; das Zeitfenster ist eine Frage der Wachsamkeit von Menschen, nicht einer Abschaltung."> In dieser Zeit sind die Sicherheitssysteme abgeschaltet</label>
+      <label><input type="checkbox" name="sa-01-q11" value="2" data-richtig data-grund="Richtig — der ganze Ablauf (Zugriff, Deploy, Skript) lief in einem Zug; je kürzer das Fenster zwischen Aktion und Entdeckung, desto weniger Eingriffsmöglichkeiten."> Der Angriff konnte in einem Zug durchlaufen, bevor jemand eingreift</label>
+      <label><input type="checkbox" name="sa-01-q11" value="3" data-grund="Falsch — Bandbreite spielt in der Größenordnung keine Rolle; relevant ist die menschliche Reaktionszeit, nicht die Leitung."> Nachts ist das Internet schneller</label>
+    </div>
+  </fieldset>
+  <fieldset class="frage">
+    <legend class="frage-text">Welche Kontrolle hätte den Schaden am ehesten verhindert?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q12" value="0" data-richtig data-grund="Richtig — genau diese Schwelle fehlte laut Video; sie bricht die Kette an Schritt 5, egal wie die vorherigen Stationen ausgesehen haben."> 4-Augen-Prinzip für Transaktionen und Deploys über einer Schwelle</label>
+      <label><input type="checkbox" name="sa-01-q12" value="1" data-grund="Falsch — ein stärkeres Passwort für eine einzelne Person ändert nichts an der Struktur; die Rechte sind das Problem, nicht ihre Länge."> Ein stärkeres Passwort für den Engineer</label>
+      <label><input type="checkbox" name="sa-01-q12" value="2" data-grund="Falsch — eine zweite Firewall prüft Netzverkehr, aber der Angriff lief über eine legitime Deployment-Schnittstelle mit gültigem Token."> Eine zweite Firewall</label>
+      <label><input type="checkbox" name="sa-01-q12" value="3" data-grund="Falsch — die Größe der Container ist technisch egal; relevant ist, wer sie ausrollen darf und wer das bestätigt."> Kleinere Container</label>
+    </div>
+  </fieldset>
+  <fieldset class="frage">
+    <legend class="frage-text">Warum ist „3 Milliarden eingefroren" ein Widerspruch zum Krypto-Versprechen?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q13" value="0" data-richtig data-grund="Richtig — die Werbung lautet: niemand kann über dein Geld verfügen; ein Freeze von Milliarden ist der sichtbare Gegenbeweis."> Krypto wirbt damit, dass niemand über dein Geld verfügen kann</label>
+      <label><input type="checkbox" name="sa-01-q13" value="1" data-richtig data-grund="Richtig — eine zentrale Börse verwahrt die Schlüssel für ihre Kunden; wer die Schlüssel hält, kann auch sperren."> Eine zentrale Börse kann sperren, weil sie die Schlüssel hält</label>
+      <label><input type="checkbox" name="sa-01-q13" value="2" data-grund="Falsch — umgekehrt: Ein zentraler Eingriff in Guthaben ist das Gegenteil von Dezentralität; genau darüber ärgert sich der Autor."> Der Freeze beweist, dass Krypto dezentral ist</label>
+      <label><input type="checkbox" name="sa-01-q13" value="3" data-grund="Falsch — eingefroren heißt blockiert, nicht vernichtet; die Beträge blieben (vorläufig) da, wo sie waren."> Eingefrorene Beträge sind sofort vernichtet</label>
+    </div>
+  </fieldset>
+</div>
+
+<h2>Fall 3 — Ledger: das Gerät auf dem Versandweg</h2>
+<p>Hardware-Wallets sind kleine Geräte, die kryptographische Schlüssel
+enthalten und Transaktionen <strong>im Gerät</strong> signieren. Der
+Vertrauenssatz lautet: Der Seed (die Wiederherstellungsphrase) wird im Gerät
+erzeugt und verlässt es nie — selbst ein infizierter Rechner kann ohne das
+Gerät nichts unterschreiben.</p>
+<p>Laut Video haben Angreifer über Jahre Hardware-Wallets <strong>auf dem
+Versandweg</strong> geöffnet, zusätzliche Hardware eingebaut und wieder
+verschlossen. Die Zusatzhardware sammelte ein, was Kundinnen und Kunden
+eintippten — ihre privaten Schlüssel beziehungsweise ihre Seed-Phrase. Die
+Angreifer warteten, bis sich genug angesammelt hatte, und zogen dann laut
+Video rund 86 Millionen US-Dollar ab.</p>
+<div class="callout">
+  <span class="label">Merke</span>
+  <p>Die Vertrauensgrenze lag nicht im Chip, sondern <strong>im
+  Paket</strong>. „Hardware" beschreibt, wo die Kryptographie läuft — nicht,
+  dass der Weg dorthin ehrlich war. Kaufen beim Hersteller, Verpackung
+  prüfen, und die Seed-Phrase vom Gerät <em>selbst</em> neu erzeugen lassen:
+  Eine Phrase, die du in ein vorgegebenes Gerät tippst, hat das Gerät
+  schon gelesen.</p>
+</div>
+
+<div class="quiz" data-titel="Quiz: hardware-wallet">
+  <fieldset class="frage">
+    <legend class="frage-text">Wo lag beim Ledger-Angriff die Vertrauensgrenze?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q14" value="0" data-richtig data-grund="Richtig — der Angriff saß im Transport und in der Verpackung; der Chip selbst hat das gemacht, wofür er gebaut wurde, nur war vorher jemand anderes im Gerät."> Im Paketweg zum Kunden, nicht im Chip auf dem Gerät</label>
+      <label><input type="checkbox" name="sa-01-q14" value="1" data-grund="Falsch — der Browser des Kunden spielte keine Rolle; die Manipulation saß in der Hardware, die ankam."> Im Browser des Kunden</label>
+      <label><input type="checkbox" name="sa-01-q14" value="2" data-grund="Falsch — die Blockchain ist hier der neutrale Hintergrund; angegriffen wurde der Weg zum Gerät, nicht das Netz selbst."> In der Blockchain</label>
+      <label><input type="checkbox" name="sa-01-q14" value="3" data-grund="Falsch — das WLAN hatte mit dem Angriff nichts zu tun; die Beute entstand durch die Zusatzhardware im Gerät."> Im WLAN des Kunden</label>
+    </div>
+  </fieldset>
+  <fieldset class="frage">
+    <legend class="frage-text">Was gehört zum sicheren Umgang mit einer Hardware-Wallet?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q15" value="0" data-richtig data-grund="Richtig — der direkte Weg zum Hersteller verkürzt die Lieferkette, und eine geöffnete Verpackung ist ein Warnsignal, das man ernst nehmen kann."> Beim Hersteller direkt kaufen und die Verpackung prüfen</label>
+      <label><input type="checkbox" name="sa-01-q15" value="1" data-richtig data-grund="Richtig — nur wenn das Gerät selbst die Phrase erzeugt, kann die Zusatzhardware sie nicht vorab kennen; eine vorgegebene Phrase ist ein rotes Flag."> Den Seed vom Gerät selbst erzeugen lassen</label>
+      <label><input type="checkbox" name="sa-01-q15" value="2" data-grund="Falsch — genau das ist der Angriff: Eine Phrase, die du in ein Gerät tippst, das du nicht selbst initialisiert hast, hat das Gerät (oder seine Zusatzhardware) gelesen."> Einen vorhandenen Seed in ein gebrauchtes Gerät tippen</label>
+      <label><input type="checkbox" name="sa-01-q15" value="3" data-richtig data-grund="Richtig — die Anzeige des Geräts ist der einzige Bildschirm, den die Zusatzhardware des Rechners nicht fälschen kann; Adresse gegenprüfen gehört zur Routine."> Die Empfangsadresse am Bildschirm des Geräts gegenprüfen</label>
+    </div>
+  </fieldset>
+</div>
+
+<h2>Fall 4 — eMudhra: der Schlüssel, der „4" war</h2>
+<p>Dieser Fall steht im Video nur am Rande („a private key of four") —
+technisch ist er der tiefste, deshalb bekommt er seinen eigenen Abschnitt.</p>
+<h3>Was ein Zertifikat eigentlich tut</h3>
+<p>Ein X.509-Zertifikat bindet einen Namen (z. B. <code>example.com</code>)
+an einen <strong>öffentlichen Schlüssel</strong>. Die Signatur dafür stammt
+von einer Zertifizierungsstelle (CA); die Kette läuft vom Root-CA über
+Intermediate-CAs bis zum Blattzertifikat. Der Browser prüft: Signiert die
+Intermediate? Ist die Intermediate vom Root autorisiert? Ist die Kette
+gesperrt?</p>
+<p>Der private Schlüssel ist das Geheimnis, das zur Signatur gehört. Er
+entsteht durch Zufall — und die Qualität dieses Zufalls heißt
+<strong>Entropie</strong>. Ein Schlüssel moderner Größe entsteht aus rund
+384 Bit Zufall; das ist eine Zahl mit über hundert Dezimalstellen,
+praktisch unausprobierbar.</p>
+<h3>Was hier schiefging</h3>
+<p>Bei einer Key-Ceremony am 30. April 2025 (Hintergrund aus den
+Begleitnotizen zum Knowledge-Check, nicht im Video) brach ein Skriptfehler
+beim Schlüssel-Wrap die Entropie der erzeugten Intermediate-Schlüssel auf
+einstellige Zahlen ein. Der Autor des Videos spitzt das so zu: Der private
+Schlüssel war praktisch die Zahl 4.</p>
+<div class="callout">
+  <span class="label">Merke</span>
+  <p>Nicht „schwach". <strong>Vier.</strong> Wenn der geheime Schlüssel aus
+  einer Handvoll Möglichkeiten stammt, genügt Ausprobieren — der öffentliche
+  Schlüssel steht im Zertifikat, und mit ihm lässt sich der private
+  ableiten, ohne dass etwas „gestohlen" worden wäre. Ein Zertifikat ist nur
+  so sicher wie die Erzeugung seines Schlüssels.</p>
+</div>
+<h3>Und warum das wochenlang nachwirkte</h3>
+<p>Die Browser sperrten die betroffenen Intermediate innerhalb von Tagen
+(Distrust-Listen, plus klassische Sperren wie CRL/OCSP). Aber Vertrauen
+steckt nicht nur in Browsern: Java-Keystores, Node-Installationen, Go-Binaries,
+CI-Images und Container-Truststores ziehen ihre Listen auf eigener
+Zeitreihe nach. Genau deshalb war die Lehre aus den Begleitnotizen:
+<strong>Vertrauen lebt in Abhängigkeiten, die niemand auf dem Schirm
+hat</strong> — derselbe rote Faden wie bei Polymarket, nur mit
+Zertifikaten statt Skripten.</p>
+
+<div class="quiz" data-titel="Quiz: zertifikate-und-entropie">
+  <fieldset class="frage">
+    <legend class="frage-text">Was ist ein privater Schlüssel?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q16" value="0" data-richtig data-grund="Richtig — er erzeugt die Signaturen, die der öffentliche Schlüssel bestätigt; solange er geheim ist, kann niemand in seinem Namen unterschreiben."> Das Geheimnis, mit dem Signaturen erzeugt werden</label>
+      <label><input type="checkbox" name="sa-01-q16" value="1" data-grund="Falsch — öffentlich ist der <em>öffentliche</em> Schlüssel; der private muss geheim bleiben, sonst kann jeder in deinem Namen signieren."> Er ist öffentlich, damit jeder ihn prüfen kann</label>
+      <label><input type="checkbox" name="sa-01-q16" value="2" data-richtig data-grund="Richtig — kleine Entropie heißt kleine Anzahl möglicher Schlüssel; Ausprobieren wird rechnerisch möglich, wie der Fall „4" zeigt."> Bei kleiner Entropie ist er durch Ausprobieren ableitbar</label>
+      <label><input type="checkbox" name="sa-01-q16" value="3" data-grund="Falsch — ein privater Schlüssel ist das Geheimnis schlechthin; teilen macht jede Signatur wertlos, die darauf verweist."> Eine Datei, die man gefahrlos teilen kann</label>
+    </div>
+  </fieldset>
+  <fieldset class="frage">
+    <legend class="frage-text">Warum genügte der Blick auf das öffentliche Zertifikat, um den Schlüssel zu finden?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q17" value="0" data-richtig data-grund="Richtig — der öffentliche Schlüssel steht im Zertifikat; bei winziger Entropie lässt sich mit ihm der private Schlüssel ableiten, ohne dass etwas gestohlen wurde."> Der öffentliche Schlüssel stand darin; bei winziger Entropie lässt sich der private ableiten</label>
+      <label><input type="checkbox" name="sa-01-q17" value="1" data-grund="Falsch — das wäre ein vollkommen anderes Problem; der private Schlüssel stand nirgends im Klartext, er war rechnerisch zu klein."> Das Zertifikat enthielt den privaten Schlüssel im Klartext</label>
+      <label><input type="checkbox" name="sa-01-q17" value="2" data-richtig data-grund="Richtig — das ist die Pointe des Videos: keine 384 Bit Zufall, sondern eine Zahl, die man sich merken kann."> Der private Schlüssel war praktisch eine kleine Zahl</label>
+      <label><input type="checkbox" name="sa-01-q17" value="3" data-grund="Falsch — dafür gibt es keinen Hinweis; das Problem war die Erzeugung, nicht ein Versand."> Die CA hatte den Schlüssel per E-Mail verschickt</label>
+    </div>
+  </fieldset>
+  <fieldset class="frage">
+    <legend class="frage-text">Warum brauchten Java-, Node- und Go-Truststores Wochen, obwohl die Browser schnell waren?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q18" value="0" data-richtig data-grund="Richtig — jedes Ökosystem verteilt Vertrauenslisten in seinem eigenen Rhythmus; die Browser-Updates sind nur eine von vielen Auslieferungen."> Jede Umgebung verteilt ihre Vertrauenslisten in eigenem Rhythmus</label>
+      <label><input type="checkbox" name="sa-01-q18" value="1" data-grund="Falsch — die Browser waren der schnelle Teil; langsamer waren die Umgebungen, die ihre Vertrauensbasis mit dem eigenen Release-Zyklus nachziehen."> Die Browser haben die Sperre verschwiegen</label>
+      <label><input type="checkbox" name="sa-01-q18" value="2" data-grund="Falsch — die Schlüssel waren von Anfang an schwach erzeugt; es geht um die Auslieferung der Sperre, nicht um deren Entdeckung."> Die Schlüssel wurden erst Wochen später entdeckt</label>
+      <label><input type="checkbox" name="sa-01-q18" value="3" data-grund="Falsch — die Sperre braucht keine Netzverbindung, sondern eine aktualisierte Kopie der Vertrauensliste; genau die kam verspätet."> Ohne Netzverbindung kann man keine Sperre laden</label>
+    </div>
+  </fieldset>
+</div>
+
+<h2>Gegenmaßnahmen: prüfen statt vertrauen</h2>
+<p>Alle fünf Fälle lassen sich auf dieselbe Frage zurückführen: An welcher
+Stelle wurde vertraut, statt zu prüfen? Daraus ergibt sich die Checkliste —
+je Zeile ein Fall, je Spalte die Gegenmittel:</p>
+<table>
+  <tr>
+    <th>Ebene</th>
+    <th>Vertrauen, das schiefging</th>
+    <th>Prüfung, die es ersetzt</th>
+  </tr>
+  <tr>
+    <td>Code &amp; Abhängigkeiten</td>
+    <td>Skript von fremdem Host, <code>latest</code>, kein Hash</td>
+    <td>Exakte Version pinnen, SRI, Vendoring, Lockfiles, Signaturen</td>
+  </tr>
+  <tr>
+    <td>Mensch &amp; Software</td>
+    <td>Installer aus Anzeige, „Testprogramm" aus dem Interview</td>
+    <td>Quelle direkt eintippen, Prüfsummen, isolierte VM, melden statt ausführen</td>
+  </tr>
+  <tr>
+    <td>Rechte &amp; Abläufe</td>
+    <td>Ein Laptop mit Deploy-Token, keine zweite Freigabe</td>
+    <td>Least Privilege, kurzlebige Tokens, 4-Augen-Prinzip, keine Geheimnisse auf Arbeitsgeräten</td>
+  </tr>
+  <tr>
+    <td>Geräte</td>
+    <td>Wallet auf dem Versandweg manipuliert</td>
+    <td>Direkt beim Hersteller kaufen, selbst initialisieren, Adresse am Gerät gegenprüfen</td>
+  </tr>
+  <tr>
+    <td>Kryptographie</td>
+    <td>Schlüsselerzeugung ohne Entropie</td>
+    <td>Erzeugung prüfen (HSM, Ceremonies), Revocation beobachten, Truststores im Blick</td>
+  </tr>
+  <tr>
+    <td>KI-Werkzeuge</td>
+    <td>Agent mit Rechten als unkontrollierter Stellvertreter</td>
+    <td>Rechtegrenzen für Agents, keine Geheimnisse in Sitzungen, Ausgaben prüfen</td>
+  </tr>
+</table>
+<div class="callout">
+  <span class="label">Merke</span>
+  <p>Die gemeinsame Idee heißt nicht „mehr Passwörter". Sie heißt:
+  <strong>Vertrauen durch Prüfung ersetzen</strong> und <strong>Rechte klein
+  halten</strong>. Jede Zeile der Tabelle ist eine Instanz davon.</p>
+</div>
+
+<div class="quiz" data-titel="Quiz: gegenmassnahmen">
+  <fieldset class="frage">
+    <legend class="frage-text">Du bindest eine Bibliothek per CDN ein. Welche Kombination ist sinnvoll?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q19" value="0" data-richtig data-grund="Richtig — fixierte Version, SRI-Hash und crossorigin sind die Standardhärtung gegen genau den Polymarket-Angriffstyp."> Exakte Version + SRI + crossorigin</label>
+      <label><input type="checkbox" name="sa-01-q19" value="1" data-grund="Falsch — „latest" ohne Hash ist die unveränderte Wiederholung des Angriffs: Der Host entscheidet über deine Auslieferung."> „latest" ohne Hash</label>
+      <label><input type="checkbox" name="sa-01-q19" value="2" data-richtig data-grund="Richtig — die Datei ins eigene Repo legen (Vendoring) baut die fremde Auslieferung ganz aus; alternativ zu SRI, nicht zusätzlich nötig."> Self-Hosting/Vendoring als Alternative</label>
+      <label><input type="checkbox" name="sa-01-q19" value="3" data-grund="Falsch — HTTPS war im Polymarket-Fall intakt; allein reicht es nicht, weil es die Herkunft der Bytes nicht prüft."> Nur HTTPS</label>
+    </div>
+  </fieldset>
+  <fieldset class="frage">
+    <legend class="frage-text">Ein Kollege schickt dir ein „Testprogramm". Was ist die richtige Reaktion?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q20" value="0" data-richtig data-grund="Richtig — der Arbeitslaptop ist der high-value-Rechner; genau dort dürfte das Programm bei Binance laufen."> Es nicht auf dem Arbeitsgerät ausführen</label>
+      <label><input type="checkbox" name="sa-01-q20" value="1" data-richtig data-grund="Richtig — wenn es wirklich geprüft werden muss, dann in einer Umgebung, die man wegwerfen kann und die nichts zu verlieren hat."> Wenn überhaupt: in einer isolierten VM testen</label>
+      <label><input type="checkbox" name="sa-01-q20" value="2" data-richtig data-grund="Richtig — zweiter Kanal zur Identitätsprüfung und Meldung sind die Schritte, die bei Binance fehlten; „schnell selbst regeln" war die Falle."> Melden und die Identität über einen zweiten Kanal prüfen</label>
+      <label><input type="checkbox" name="sa-01-q20" value="3" data-grund="Falsch — Höflichkeit ist keine Sicherheitsgrenze; ein seriöses Verfahren akzeptiert die Verweigerung ohne Druck."> Schnell ausführen, um höflich zu sein</label>
+    </div>
+  </fieldset>
+  <fieldset class="frage">
+    <legend class="frage-text">Was ist die gemeinsame Idee aller Maßnahmen?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q21" value="0" data-richtig data-grund="Richtig — jede Maßnahme ersetzt an einer Stelle stillschweigendes Vertrauen durch einen expliziten Prüfschritt."> Vertrauen durch Prüfung ersetzen</label>
+      <label><input type="checkbox" name="sa-01-q21" value="1" data-grund="Falsch — mehr Passwörter hätten keinen der fünf Fälle verhindert; die Angriffe kamen ohne Passwort aus."> Mehr Passwörter</label>
+      <label><input type="checkbox" name="sa-01-q21" value="2" data-grund="Falsch — weniger Nutzer würde das Muster nicht brechen; es geht um Kontrollen an Vertrauensstellen, nicht um Personalabbau."> Weniger Nutzer</label>
+      <label><input type="checkbox" name="sa-01-q21" value="3" data-richtig data-grund="Richtig — Least Privilege plus Bestätigung großer Aktionen (4-Augen) sind die strukturelle Hälfte der Antwort."> Rechte klein halten und große Aktionen bestätigen lassen</label>
+    </div>
+  </fieldset>
+</div>
+
+<h2>Jetzt du!</h2>
+<p><em>Erst vorhersagen, dann prüfen.</em></p>
+<ol>
+  <li><strong>Vorhersage:</strong> Du hast <code>hallo.js</code> in den Cache
+  gelegt und den SRI-Hash im script-Tag stehen. Ein Kollege ändert in der
+  Datei <code>"hallo, welt"</code> zu <code>"hallo welt!"</code> und lädt sie
+  hoch. Was passiert im Browser — und welche Fehlermeldung suchst du in der
+  Konsole?</li>
+  <li><strong>Vorhersage + Ausführen:</strong> Schreibe ein Deno-Skript, das
+  <code>Deno.readTextFile("aufgabe.md")</code> aufruft. Führe es dreimal aus:
+  ohne Flag, mit <code>--allow-read</code>, mit <code>--allow-all</code>.
+  Notiere bei jedem Lauf, was passiert — und erkläre, warum
+  <code>--allow-all</code> die protective Grenze wegnimmt.</li>
+  <li><strong>Code lesen:</strong> Vier Varianten, ein fremdes Skript zu
+  laden — CDN ohne Hash, CDN mit SRI und fixierter Version, Inline-Skript im
+  HTML, Skript aus einem eigenen Ordner im Repo. Ordne jede Variante der
+  Spalte „verwundbar/gehärtet" zu und begründe mit dem roten Faden.</li>
+</ol>
+
+<h2>Typische Fehler</h2>
+<table>
+  <tr>
+    <th>Fehler</th>
+    <th>Was wirklich passiert</th>
+  </tr>
+  <tr>
+    <td>„HTTPS reicht."</td>
+    <td>HTTPS schützt den Transport, nicht die Herkunft. Bei Polymarket war
+    die TLS-Kette intakt — und trotzdem kam fremder Code an. Herkunft prüfen
+    heißt Pinning + SRI + Vendoring.</td>
+  </tr>
+  <tr>
+    <td>„Ein Hash ist eine Verschlüsselung."</td>
+    <td>Ein Hash ist ein Fingerabdruck: Einweg, keine Entschlüsselung. Er
+    verrät nicht den Inhalt, er identifiziert die exakten Bytes.</td>
+  </tr>
+  <tr>
+    <td>„Hardware-Wallet kann nicht gehackt werden."</td>
+    <td>Die Kryptographie im Chip war in Ordnung — der Weg zum Kunden war es
+    nicht. Vertrauensgrenzen liegen oft außerhalb des beworbenen Bauteils.</td>
+  </tr>
+  <tr>
+    <td>„Ein Token auf dem Laptop ist harmlos."</td>
+    <td>Ein Deployment-Token ist eine Schreibrechte-Karte für Produktion,
+    meist ohne zweiten Faktor. Genau damit lief Schritt 5 der Binance-Kette.</td>
+  </tr>
+  <tr>
+    <td>„Ein Zertifikat ist ein Vertrauensbeweis."</td>
+    <td>Ein Zertifikat bindet einen Namen an einen Schlüssel — die Aussage
+    gilt nur, wenn die Erzeugung des Schlüssels sauber war. „4" hat auch ein
+    Zertifikat bekommen.</td>
+  </tr>
+</table>
+
+<div class="quiz" data-titel="Quiz: fehlbilder">
+  <fieldset class="frage">
+    <legend class="frage-text">Welche Aussagen stimmen?</legend>
+    <div class="optionen">
+      <label><input type="checkbox" name="sa-01-q22" value="0" data-grund="Falsch — der Ledger-Angriff lief über die Lieferkette der Hardware; das Gerät selbst war der Erfolgsfall seiner eigenen Kryptographie, nicht des Weges."> Hardware-Wallets sind gegen Manipulation grundsätzlich immun</label>
+      <label><input type="checkbox" name="sa-01-q22" value="1" data-grund="Falsch — ein Zertifikat bindet einen Namen an einen Schlüssel; über die Seriosität des Betreibers sagt es nichts aus, wie eMudhra zeigt."> Ein Zertifikat beweist, dass der Betreiber seriös ist</label>
+      <label><input type="checkbox" name="sa-01-q22" value="2" data-grund="Falsch — HTTPS garantiert nur den Transport zum Server, nicht die Ehrlichkeit des Servers; Polymarket hatte HTTPS."> HTTPS macht eine Seite vertrauenswürdig</label>
+      <label><input type="checkbox" name="sa-01-q22" value="3" data-grund="Falsch — ein Hash ist ein einseitiger Fingerabdruck; er verschlüsselt nichts und kann nichts entschlüsseln."> Ein Hash ist eine Form der Verschlüsselung</label>
+    </div>
+  </fieldset>
+</div>
+
+<h2>Zusammenfassung</h2>
+<table>
+  <tr>
+    <th>Konzept</th>
+    <th>In einem Satz</th>
+  </tr>
+  <tr>
+    <td>Supply-Chain-Angriff</td>
+    <td>Der Schaden kommt über einen Baustein, den man selbst eingeladen hat — Skript, Installer, Paket oder Gerät.</td>
+  </tr>
+  <tr>
+    <td>SRI &amp; Pinning</td>
+    <td>Exakte Version laden und ihre Bytes per Hash prüfen; der Browser blockt Abweichungen.</td>
+  </tr>
+  <tr>
+    <td>Ausführungsrechte</td>
+    <td>Ein Programm erbt deine Rechte; Deno dreht das um und startet ohne jede Erlaubnis.</td>
+  </tr>
+  <tr>
+    <td>Token &amp; 4-Augen</td>
+    <td>Ein Token ist eine Fähigkeit; große Aktionen brauchen eine zweite Freigabe.</td>
+  </tr>
+  <tr>
+    <td>Vertrauenskette</td>
+    <td>Vertrauen steckt in Lieferwegen, Truststores und KI-Werkzeugen — an jeder Stelle braucht es einen Prüfschritt.</td>
+  </tr>
+</table>
+<p><strong>Ausblick:</strong> Das Thema kommt im Lehrplan wieder — in KM9
+(5HWII) behandeln wir Sicherheitsaspekte von Webservices systematisch:
+Authentifizierung/Autorisierung (AuthN/AuthZ) und die OWASP Top 10. Was du
+heute als Fälle gesehen hast, ist dort der Rahmen.</p>
+
+<h2>Aufgabe</h2>
+<p>Drei Beispiele stehen in <a href="aufgabe.md"><code>aufgabe.md</code></a>:
+(1) eine HTML-Seite mit CDN-Skript härtet du mit Pinning und SRI und prüfst
+den Block, (2) ein Selbsttest im Wissensüberprüfungs-Format mit
+Musterlösung, (3) die Rekonstruktion einer neuen Angriffskette samt
+Maßnahmenliste. Abgabe nach Vorgabe deiner Lehrperson.</p>
+
+<details class="lehrplan">
+  <summary>Lehrplan &amp; Einordnung</summary>
+  <ul>
+    <li><strong>Lehrplan:</strong> SWP (HWII), Jg III — schulautonome
+    Einheit (Security Awareness); keine KM-Zuordnung im Jg III, Themenlinie
+    „Sicherheitsaspekte" setzt sich in KM9 (5HWII) fort: AuthN/AuthZ,
+    OWASP Top 10.</li>
+    <li><strong>Quelle:</strong> Video „HAHAHA (You deserve it)" (The
+    PrimeTime, 9.11.2026, 15:21 min); Zahlen mit „laut Video" markiert;
+    eMudhra-Hintergrund aus den Begleitnotizen zum Knowledge-Check
+    3ahwii.</li>
+    <li><strong>Runtime:</strong> Shell (curl, openssl), Deno/TypeScript
+    (Permissions), HTML/SRI.</li>
+  </ul>
+</details>
+
+<footer class="lesson-foot">
+  <p>Nächste Lektion: <a href="../KM6-06-schichtentrennung-applikation/lesson.html">KM6-06 — Schichtentrennung in einer Applikation</a>
+  · Provenienz: schulautonome Einheit (SA-01)</p>
+</footer>
+
+</body>
+</html>
