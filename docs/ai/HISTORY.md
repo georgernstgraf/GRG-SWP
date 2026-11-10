@@ -1,3 +1,12 @@
+---
+type: History Archive
+title: History (GRG-SWP)
+description: Append-only-Archiv supersedierter Entscheidungen und Einträge.
+tags: [grg-swp, history]
+generated: { by: opencode/knowledge-persistence, at: 2026-11-10T07:18:53Z }
+status: stable
+---
+
 # History
 
 Chronological archive of superseded decisions and pruned entries.
@@ -24,3 +33,9 @@ Entries here are no longer active truth. Never delete from this file.
 - **Tradeoff**: Zweites Layout neben den UE-Ordnern; Bewirtschaftung (Learning-Records) diszipliniert nötig.
 - **Superseded by**: ADR 2026-10-05 — Prepared Lessons unter `unterricht/`, teach-Workspace aufgelöst.
 - **Note**: Der Lern-Record und die Domänen-Steckbriefe dieses Workspaces sind nur noch über die Git-History erreichbar.
+
+## 2026-11-10 (SUPERSEDED 2026-11-10, origin: docs/ai/CONVENTIONS.md, reason: #14): Lesson-Ablage hausaufgabe.md + Tages-README-Vorlage
+- **Alt**: Prepared Lesson = `lesson.html` + `hausaufgabe.md` + Tages-README-Vorlage `<PREFIX>-<NN>-<slug>.md` flach unter `unterricht/`; Kohorten-Übernahme inkl. Tages-README aus der Vorlage.
+- **Neu**: `lesson.html` + `aufgabe.md` (drei abzugebende Beispiele); keine Tages-README-Vorlage mehr — die Lehrperson pflegt das Kohorten-README selbst (create-lesson-Skill).
+- **Origin**: docs/ai/CONVENTIONS.md (Prepared Lessons & Kohorten-Übernahme)
+- **Reason**: Issue #14 — Konvention an den create-lesson-Skill angeglichen; die bestehenden KM5-Ordner tragen ihre `hausaufgabe.md`-Dateien unverändert weiter.

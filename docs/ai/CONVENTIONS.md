@@ -1,3 +1,16 @@
+---
+type: Conventions
+title: Conventions (GRG-SWP)
+description: Verbindliche Konventionen des Unterrichts-Repos (Ablage, Lessons, Code, Lehrplan).
+tags: [grg-swp, conventions]
+generated: { by: opencode/knowledge-persistence, at: 2026-11-10T07:18:53Z }
+status: stable
+sources:
+  - id: issue-14
+    resource: https://github.com/georgernstgraf/GRG-SWP/issues/14
+    title: 3AHWII: Prepared Lesson SA-01 — Security Awareness (Video-Fallstudien)
+---
+
 # Conventions
 
 Coding patterns, naming rules, and style agreements for this project.

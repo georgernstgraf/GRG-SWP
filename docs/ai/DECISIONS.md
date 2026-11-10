@@ -1,7 +1,26 @@
+---
+type: Decisions
+title: Decisions (GRG-SWP)
+description: Aktive technische und didaktische Entscheidungen des Unterrichts-Repos.
+tags: [grg-swp, decisions]
+generated: { by: opencode/knowledge-persistence, at: 2026-11-10T07:18:53Z }
+status: stable
+sources:
+  - id: issue-14
+    resource: https://github.com/georgernstgraf/GRG-SWP/issues/14
+    title: 3AHWII: Prepared Lesson SA-01 — Security Awareness (Video-Fallstudien)
+---
+
 # Decisions
 
 Active architectural and technical decisions still in force.
 Superseded decisions are relocated to HISTORY.md.
+
+## 2026-11-10: Lernquiz Format 2.1 in GRG-SWP (#14)
+- **Choice**: `assets/quiz.js` auf den PMM-Stand gehoben (dual mode): Lernquiz mit Checkboxen, Lösungsmenge per `data-richtig` an der Option (0–4 richtig), Begründung je Option per `data-grund`, „Überprüfen"/„Nochmal versuchen" je Frage, Infokugeln, Fisher-Yates-Shuffle; `.quiz--lern`-Styles in `assets/lesson.css` portiert (`--ok-bg`/`--err-bg` ergänzt). Lesson-Ablage konsequent `aufgabe.md` (statt `hausaufgabe.md` + Tages-README-Vorlage).
+- **Reason**: create-lesson-Skill schreibt Format 2.1 als Quiz-Vertrag vor; PMM lief die getestete Implementierung schon. Altmodus (Radio, `data-loesung`) bleibt, damit die KM5-01…03-Lessons unverändert laufen.
+- **Considered**: GRG-SWP-Quiz.js weiterentwickeln statt Portieren; ganzes PMM-lesson.css übernehmen.
+- **Tradeoff**: Zwei Quiz-Modi leben parallel im Asset; das PMM-lesson.css wurde nicht übernommen (eigene Palette/Klassen von GRG-SWP), nur der Quiz-Block.
 
 ## 2026-07-26: 2+2-Lehrer-Split ab Jahrgang III
 - **Choice**: Von 4 SWP-Wochenstunden (Jg V: 6) unterrichtet Georg 2 h (Bereiche OOP + Web + UML-Klassendiagramm), ein Kollege 2 h (Bereich PRE/Projektmanagement + übrige Modellierung).

@@ -1,34 +1,46 @@
+---
+type: State
+title: Project State (GRG-SWP)
+description: Kurzstatus des Unterrichts-Repos — Fokus, abgeschlossene und offene Lessons.
+tags: [grg-swp, unterricht, lessons]
+generated: { by: opencode/knowledge-persistence, at: 2026-11-10T07:18:53Z }
+status: stable
+sources:
+  - id: issue-14
+    resource: https://github.com/georgernstgraf/GRG-SWP/issues/14
+    title: 3AHWII: Prepared Lesson SA-01 — Security Awareness (Video-Fallstudien)
+---
+
 # Project State
 
-Current status as of 2026-10-06.
+Current status as of 2026-11-10.
 
 ## Current Focus
-**3AHWII Architektur (#12):** Mit
-`unterricht/KM6-06-schichtentrennung-applikation/` liegt die erste **KM6**-Prepared
-Lesson (Schichtentrennung: View/Endpoint/Controller/Service/Repository, Dependency
-Rule, Atomarität). Die Lesson ist **Lektion = Präsentation** (beamer-taugliche
-Einzel-HTML, zentrale `assets/`), Endpoint-Framework **Hono**; der Beispielcode ist
-mit Deno 2.9.7 verifiziert (5 Tests + Integrationstest 200/409/404). Die Lesson-Nummer
-`KM6-06` ist an die **UE 6** des Semesterplans gekoppelt (Konvention siehe
-`docs/ai/CONVENTIONS.md`).
+**3AHWII Security Awareness (#14):** Mit
+`unterricht/SA-01-security-awareness/` liegt die erste **SA**-Prepared Lesson
+vor (schulautonom; kein KM des Jg III deckt Security Awareness ab, Themenlinie
+setzt sich in KM9 fort). Grundlage: Video „HAHAHA (You deserve it)"
+(The PrimeTime, 2026-11-09, youtube.com/watch?v=KMOyP_ArDMo), das als
+Knowledge-Check-Grundlage in 3ahwii diente. Die Lesson erklärt die Technik:
+CDN/DNS-Supply-Chain + SRI/Pinning, Malvertising + `curl | bash`, Social
+Engineering + Ausführungsrechte (Deno-Permissions als Kontrast),
+Deploy-Token + 4-Augen-Prinzip, Hardware-Wallet-Lieferkette, X.509-Entropie +
+Revocation. 9 Lernquizze (Format 2.1, 22 Fragen) sind über die Lesson verzahnt.
+Mit demselben Commit wurde `assets/quiz.js` auf Format 2.1 gehoben (Port aus
+GRG-PMM, Radio-Altmodus bleibt) und `.quiz--lern` in `assets/lesson.css`
+ergänzt — Vorlage für künftige Lessons.
 
 ## Completed (this cycle)
-- [x] 2026-10-12 — Homework-Discovery 3ahwii (SWP1x): `3ahwii/2026-10-06/Aufgabe.md`
-      erzeugt (Folie Interfaces + KM5-Hausübungen 1–3, Links auf
-      `unterricht/KM5-0N-*/hausaufgabe.md`); README `## Aufgaben` als erste
-      Sektion mit 3 Evidenz-Einträgen (HÜ 22.9. Fahrzeug-Invarianten, HÜ 29.9.
-      Produkt/Versendbar, HÜ 6.10. — Textquellen: Tages-READMEs `## HÜ`).
-      Generierte Aufgabe-Dateien bewusst **uncommitted** zur Review.
-- [x] #12 — Prepared Lesson `unterricht/KM6-06-schichtentrennung-applikation/`
-      (`lesson.html` + `hausaufgabe.md` + Tages-README-Vorlage), Root-`index.html`
-      (neuer KM6-Block), `GLOSSAR.md` (Architektur-Begriffe: Schicht, Dependency Rule,
-      Repository/Service/Controller/Endpoint/View, Composition Root, Transaktion)
-- [x] Erstes KM6-Material des Repos; Code-Blöcke per Deno verifiziert (kein
-      lauffähiger Projektcode unter `unterricht/`)
-- [x] #11 CLOSED 2026-10-05 — `assets/quiz.js` startet jetzt auch bei asynchroner
-      Injektion durch `loader.js` (`document.readyState`-Guard)
-- [x] #10 CLOSED 2026-10-05 — Prepared Lessons `KM5-01…03` (kohortenagnostisch,
-      Lektion = Präsentation) + `3ahwii/teach/` aufgelöst + Schema/Ordner + docs/ai
+- [x] #14 CLOSED 2026-11-10 — Prepared Lesson `unterricht/SA-01-security-awareness/`
+      (`lesson.html` + `aufgabe.md`, Beispiel 1–3 je ≥ 2 Teilaufgaben),
+      Navigator-Block „Jg III · SA" im Root-`index.html`, 14 Glossar-Begriffe
+      (SA-01), `docs/ai/CONVENTIONS.md` auf `aufgabe.md` korrigiert;
+      SRI-Beispiel mit real berechnetem Hash (openssl, `hallo.js`, 28 Bytes);
+      Quiz-Init per Headless-Chrome gegen `./serve.sh` verifiziert
+      (9 Quiz-Blöcke, 22 Überprüfen-Buttons, Infokugeln, Badge)
+- [x] #12 CLOSED 2026-10-06 — Prepared Lesson KM6-06 (Schichtentrennung)
+- [x] #11 CLOSED 2026-10-05 — `assets/quiz.js` readyState-Guard
+- [x] #10 CLOSED 2026-10-05 — Prepared Lessons KM5-01…03
 - [x] #9 CLOSED 2026-10-05 — Lernplattform-Infrastruktur
 
 ## Pending

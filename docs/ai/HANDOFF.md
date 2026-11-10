@@ -1,7 +1,16 @@
+---
+type: Handoff
+title: Übergabe (GRG-SWP)
+description: Offene Aufgaben für die nächste Sitzung in GRG-SWP.
+tags: [grg-swp, handoff]
+generated: { by: opencode/knowledge-persistence, at: 2026-11-10T07:18:53Z }
+status: stable
+---
+
 # HANDOFF
 
-Branch: `main` (GRG-SWP) · **#12 CLOSED 2026-10-06** (Prepared Lesson KM6-06
-Schichtentrennung); offen: UE 4+ (KM5) / restliches KM6 / Domänen-Rework
+Branch: `main` (GRG-SWP) · **#14 CLOSED 2026-11-10** (Prepared Lesson SA-01
+Security Awareness); offen: UE 4+ (KM5) / restliches KM6 / Domänen-Rework
 
 ## Offene Tasks
 
@@ -26,6 +35,13 @@ Schichtentrennung); offen: UE 4+ (KM5) / restliches KM6 / Domänen-Rework
 
 ## Kontext für den nächsten Agenten
 
+- **SA-01 (2026-11-10):** `unterricht/SA-01-security-awareness/` — erste
+  SA-Lesson (schulautonom), Grundlage Video „HAHAHA (You deserve it)" (The
+  PrimeTime, 2026-11-09). `assets/quiz.js` ist jetzt **Format 2.1** (Port aus
+  GRG-PMM: Checkboxen, `data-richtig`, Infokugeln); die älteren Lessons
+  KM5-01…03 bleiben über den Radio-Altmodus lauffähig. `.quiz--lern`-Styles
+  liegen in `assets/lesson.css`. Neue Lessons bauen auf Format 2.1
+  (create-lesson-Skill), Ablage `aufgabe.md` (siehe CONVENTIONS).
 - **KM6-06 (2026-10-06):** `unterricht/KM6-06-schichtentrennung-applikation/` — die erste
   KM6-Prepared-Lesson. Durchgehendes Beispiel `Konto` (KM5) über die Schichten
   View → Endpoint → Controller → Service → Repository/DB. **Endpoint-Framework: Hono**
@@ -41,6 +57,8 @@ Schichtentrennung); offen: UE 4+ (KM5) / restliches KM6 / Domänen-Rework
   (eine beamer-taugliche HTML, create-lesson-Skill; opencode-helpers#104). Je Ordner
   `lesson.html` + `hausaufgabe.md`; Tages-README-Vorlagen flach unter `unterricht/`.
   Zentrale `assets/`, Root-Navigator verlinkt. OO-Fachbegriffe: Root-`GLOSSAR.md`.
+  (Ablage seither #14: neue Lessons nutzen `aufgabe.md`; die KM5-Ordner tragen
+  weiter ihre alten `hausaufgabe.md`-Dateien.)
 - **teach-Workspace aufgelöst (2026-10-05):** `3ahwii/teach/` entfernt; UE-READMEs und
   `semesterplan-ws.md` zeigen auf die Prepared Lessons.
 - **Abgrenzung:** `unterricht/HWII-SWP/` bleibt generisches Planungsgerüst (ADR 2026-09-14).
