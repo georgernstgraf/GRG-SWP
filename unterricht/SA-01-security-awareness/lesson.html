@@ -187,7 +187,7 @@ Genau diese Meldung hättest du bei Polymarket am Tag des Angriffs gesehen.</p>
   <fieldset class="frage">
     <legend class="frage-text">Welche Zeile ist gegen einen CDN-Tausch gehärtet?</legend>
     <div class="optionen">
-      <label><input type="checkbox" name="sa-01-q4" value="0" data-grund="Falsch — „latest" heißt: der Host entscheidet täglich neu, was dein Browser morgen bekommt; einen Hash gegen den es zu prüfen gäbe, gibt es nicht.">&lt;script src="https://cdn.example.com/lib/latest.js"&gt;&lt;/script&gt;</label>
+      <label><input type="checkbox" name="sa-01-q4" value="0" data-grund="Falsch — „latest“ heißt: der Host entscheidet täglich neu, was dein Browser morgen bekommt; ein Hash, gegen den geprüft werden könnte, fehlt hier ganz.">&lt;script src="https://cdn.example.com/lib/latest.js"&gt;&lt;/script&gt;</label>
       <label><input type="checkbox" name="sa-01-q4" value="1" data-richtig data-grund="Richtig — fixierte Version plus Hash: Ändert sich ein Byte der Datei, verweigert der Browser die Ausführung."> &lt;script src="https://cdn.example.com/lib-1.4.2.min.js" integrity="sha384-…" crossorigin="anonymous"&gt;&lt;/script&gt;</label>
       <label><input type="checkbox" name="sa-01-q4" value="2" data-grund="Falsch — protocol-relative URL und kein Hash: gleicher Angriffsweg wie bei Polymarket, nur ohne SRI-Schutz.">&lt;script src="//cdn.example.com/lib.js"&gt;&lt;/script&gt;</label>
       <label><input type="checkbox" name="sa-01-q4" value="3" data-grund="Falsch — ob das Skript per JS-String oder direkt im HTML steht, ändert nichts an der Prüfung: Es wird ohne Hash geladen.">&lt;script&gt;document.write("&lt;script src='https://cdn.example.com/lib.js'&gt;")&lt;/script&gt;</label>
@@ -240,9 +240,9 @@ bestätigt.</p>
   <fieldset class="frage">
     <legend class="frage-text">Warum ist eine gesponserte Suchanzeige ein guter Angriffsweg?</legend>
     <div class="optionen">
-      <label><input type="checkbox" name="sa-01-q6" value="0" data-richtig data-grund="Richtig — Anzeigen stehen über den organischen Treffern und tragen ein „Anzeige"-Label, das viele überlesen; wer nach „homebrew install" sucht, will schnell zum Ziel."> Sie steht über dem organischen Treffer und sieht wie das Ziel aus</label>
-      <label><input type="checkbox" name="sa-01-q6" value="1" data-grund="Falsch — Anzeigenplätze werden bezahlt, nicht technisch geprüft; genau deshalb sind Scam-Ads (laut Video ein relevanter Anteil der Anzeigenumsätze) ein dauerhaftes Problem."> Wer eine Anzeige schaltet, wird vorher technisch geprüft</label>
-      <label><input type="checkbox" name="sa-01-q6" value="2" data-richtig data-grund="Richtig — eine Domain wie „brewinstall.example" sieht auf den ersten Blick wie das Original aus; die Ähnlichkeit ist der eigentliche Köder."> Die Domain kann dem Original täuschend ähnlich sein</label>
+      <label><input type="checkbox" name="sa-01-q6" value="0" data-richtig data-grund="Richtig — die Anzeige stand über dem organischen Treffer und führte auf eine Seite, die der offiziellen täuschend ähnlich sah; wer schnell zum Ziel will, klickt."> Sie steht über dem organischen Treffer und sieht wie das Ziel aus</label>
+      <label><input type="checkbox" name="sa-01-q6" value="1" data-grund="Falsch — der Anzeigenplatz wird bezahlt, nicht geprüft; „offiziell aussehend“ ist kein Beweis, sondern eine Verkaufsbehauptung."> Wer eine Anzeige schaltet, wird vorher technisch geprüft</label>
+      <label><input type="checkbox" name="sa-01-q6" value="2" data-richtig data-grund="Richtig — eine Domain wie „brewinstall.example“ sieht auf den ersten Blick wie das Original aus; die Ähnlichkeit ist der eigentliche Köder."> Die Domain kann dem Original täuschend ähnlich sein</label>
       <label><input type="checkbox" name="sa-01-q6" value="3" data-grund="Falsch — Suchmaschinen garantieren nicht, dass eine Anzeige zur Marke gehört, die sie imitiert; das ist gerade der Angriff."> Suchmaschinen garantieren, dass Anzeigen zur echten Marke gehören</label>
     </div>
   </fieldset>
@@ -293,7 +293,7 @@ Container auf einem Gerät, das nichts zu verlieren hat.</p>
     <div class="optionen">
       <label><input type="checkbox" name="sa-01-q7" value="0" data-richtig data-grund="Richtig — ein Programm erbt die Rechte seines Benutzers: Dateien, Netzwerkverbindungen, offene Sitzungen; nichts davon braucht ein Admin-Passwort."> Ein Programm erbt die Rechte des Benutzers: Dateien, Netz, Sitzungen</label>
       <label><input type="checkbox" name="sa-01-q7" value="1" data-grund="Falsch — ein Admin-Passwort schützt nur Einstellungen auf Systemebene; der normale Benutzerraum enthält bereits alles, was ein Angreifer braucht."> Ohne Admin-Passwort kann es nichts tun</label>
-      <label><input type="checkbox" name="sa-01-q7" value="2" data-richtig data-grund="Richtig — Software kann Pakete und Module nachziehen (pip/npm, Installskripte), Persistenz anlegen und sich Werkzeuge beschaffen, die ihre Rechte ausweiten."> Es kann weitere Pakete nachladen und sich verankern</label>
+      <label><input type="checkbox" name="sa-01-q7" value="2" data-richtig data-grund="Richtig — es kann weitere Software nachladen (pip/npm samt Install-Skripten) und so Teile der Umgebung umschreiben, um sich zu verankern."> Es kann weitere Pakete nachladen und sich verankern</label>
       <label><input type="checkbox" name="sa-01-q7" value="3" data-grund="Falsch — Rechnen ist keine Sicherheitsgrenze; ein Programm mit Benutzierrechten tut im Benutzerraum, was es will."> Es kann nur rechnen, solange kein Admin bestätigt</label>
     </div>
   </fieldset>
@@ -301,7 +301,7 @@ Container auf einem Gerät, das nichts zu verlieren hat.</p>
     <legend class="frage-text">Was macht <code>npm install</code> / <code>pip install</code> zusätzlich gefährlich?</legend>
     <div class="optionen">
       <label><input type="checkbox" name="sa-01-q8" value="0" data-richtig data-grund="Richtig — Lifecycle-Skripte wie postinstall laufen beim Installieren, also bevor du das Paket überhaupt einmal benutzt hast; der Code startet unter deinem Konto."> Installations-Skripte (z. B. postinstall) führen Code aus</label>
-      <label><input type="checkbox" name="sa-01-q8" value="1" data-grund="Falsch — Pakete werden in der Regel nicht vom Autor kryptographisch signiert geprüft; Registry-Metadaten zu prüfen ist nicht dasselbe."> Alle Pakete werden vom Autor signiert und geprüft</label>
+      <label><input type="checkbox" name="sa-01-q8" value="1" data-grund="Falsch — beim Installieren prüft niemand etwas: postinstall-Skripte starten beliebigen Code, bevor du das Paket überhaupt benutzt hast."> Alle Pakete werden vom Autor signiert und geprüft</label>
       <label><input type="checkbox" name="sa-01-q8" value="2" data-richtig data-grund="Richtig — Abhängigkeiten haben Abhängigkeiten; jede Stufe ist ein eigener Angriffspunkt, den du nicht einzeln gelesen hast."> Abhängigkeiten können weitere Abhängigkeiten nachziehen</label>
       <label><input type="checkbox" name="sa-01-q8" value="3" data-grund="Falsch — die Installation läuft im normalen Benutzerraum; eine Sandbox müsste ausdrücklich gebaut werden (Container, VM), sie ist nicht Teil des Paketmanagers."> Die Installation läuft in einer Sandbox</label>
     </div>
@@ -405,7 +405,7 @@ das Einfrieren wirksam wurde — und die Spuren über einen Mixer
   <fieldset class="frage">
     <legend class="frage-text">Warum war das Zeitfenster 17:15–20:00 günstig für den Angreifer?</legend>
     <div class="optionen">
-      <label><input type="checkbox" name="sa-01-q11" value="0" data-richtig data-grund="Richtig — nach Arbeitsschluss sitzen weniger Menschen an Dashboards und Alerts; die Reaktionszeit verlängert sich, ohne dass dafür ein Angriff nötig wäre."> Nach Arbeitsschluss schauen weniger Menschen auf Dashboards</label>
+      <label><input type="checkbox" name="sa-01-q11" value="0" data-richtig data-grund="Richtig — die Kette lief laut Tabelle ohne Überwachung, die den Abfluss vor dem Freeze bemerkt hätte; niemand schaute nach, während das Skript lief."> Nach Arbeitsschluss schauen weniger Menschen auf Dashboards</label>
       <label><input type="checkbox" name="sa-01-q11" value="1" data-grund="Falsch — Sicherheitssysteme laufen rund um die Uhr; das Zeitfenster ist eine Frage der Wachsamkeit von Menschen, nicht einer Abschaltung."> In dieser Zeit sind die Sicherheitssysteme abgeschaltet</label>
       <label><input type="checkbox" name="sa-01-q11" value="2" data-richtig data-grund="Richtig — der ganze Ablauf (Zugriff, Deploy, Skript) lief in einem Zug; je kürzer das Fenster zwischen Aktion und Entdeckung, desto weniger Eingriffsmöglichkeiten."> Der Angriff konnte in einem Zug durchlaufen, bevor jemand eingreift</label>
       <label><input type="checkbox" name="sa-01-q11" value="3" data-grund="Falsch — Bandbreite spielt in der Größenordnung keine Rolle; relevant ist die menschliche Reaktionszeit, nicht die Leitung."> Nachts ist das Internet schneller</label>
@@ -469,7 +469,7 @@ Video rund 86 Millionen US-Dollar ab.</p>
       <label><input type="checkbox" name="sa-01-q15" value="0" data-richtig data-grund="Richtig — der direkte Weg zum Hersteller verkürzt die Lieferkette, und eine geöffnete Verpackung ist ein Warnsignal, das man ernst nehmen kann."> Beim Hersteller direkt kaufen und die Verpackung prüfen</label>
       <label><input type="checkbox" name="sa-01-q15" value="1" data-richtig data-grund="Richtig — nur wenn das Gerät selbst die Phrase erzeugt, kann die Zusatzhardware sie nicht vorab kennen; eine vorgegebene Phrase ist ein rotes Flag."> Den Seed vom Gerät selbst erzeugen lassen</label>
       <label><input type="checkbox" name="sa-01-q15" value="2" data-grund="Falsch — genau das ist der Angriff: Eine Phrase, die du in ein Gerät tippst, das du nicht selbst initialisiert hast, hat das Gerät (oder seine Zusatzhardware) gelesen."> Einen vorhandenen Seed in ein gebrauchtes Gerät tippen</label>
-      <label><input type="checkbox" name="sa-01-q15" value="3" data-richtig data-grund="Richtig — die Anzeige des Geräts ist der einzige Bildschirm, den die Zusatzhardware des Rechners nicht fälschen kann; Adresse gegenprüfen gehört zur Routine."> Die Empfangsadresse am Bildschirm des Geräts gegenprüfen</label>
+      <label><input type="checkbox" name="sa-01-q15" value="3" data-richtig data-grund="Richtig — die Gegenmaßnahmen-Tabelle nennt genau das: die Empfangsadresse am Gerät gegenprüfen, statt dem Rechner zu glauben."> Die Empfangsadresse am Bildschirm des Geräts gegenprüfen</label>
     </div>
   </fieldset>
 </div>
@@ -519,7 +519,7 @@ Zertifikaten statt Skripten.</p>
     <div class="optionen">
       <label><input type="checkbox" name="sa-01-q16" value="0" data-richtig data-grund="Richtig — er erzeugt die Signaturen, die der öffentliche Schlüssel bestätigt; solange er geheim ist, kann niemand in seinem Namen unterschreiben."> Das Geheimnis, mit dem Signaturen erzeugt werden</label>
       <label><input type="checkbox" name="sa-01-q16" value="1" data-grund="Falsch — öffentlich ist der <em>öffentliche</em> Schlüssel; der private muss geheim bleiben, sonst kann jeder in deinem Namen signieren."> Er ist öffentlich, damit jeder ihn prüfen kann</label>
-      <label><input type="checkbox" name="sa-01-q16" value="2" data-richtig data-grund="Richtig — kleine Entropie heißt kleine Anzahl möglicher Schlüssel; Ausprobieren wird rechnerisch möglich, wie der Fall „4" zeigt."> Bei kleiner Entropie ist er durch Ausprobieren ableitbar</label>
+      <label><input type="checkbox" name="sa-01-q16" value="2" data-richtig data-grund="Richtig — kleine Entropie heißt kleine Anzahl möglicher Schlüssel; Ausprobieren wird rechnerisch möglich, wie der Fall „4“ zeigt."> Bei kleiner Entropie ist er durch Ausprobieren ableitbar</label>
       <label><input type="checkbox" name="sa-01-q16" value="3" data-grund="Falsch — ein privater Schlüssel ist das Geheimnis schlechthin; teilen macht jede Signatur wertlos, die darauf verweist."> Eine Datei, die man gefahrlos teilen kann</label>
     </div>
   </fieldset>
@@ -596,8 +596,8 @@ je Zeile ein Fall, je Spalte die Gegenmittel:</p>
     <legend class="frage-text">Du bindest eine Bibliothek per CDN ein. Welche Kombination ist sinnvoll?</legend>
     <div class="optionen">
       <label><input type="checkbox" name="sa-01-q19" value="0" data-richtig data-grund="Richtig — fixierte Version, SRI-Hash und crossorigin sind die Standardhärtung gegen genau den Polymarket-Angriffstyp."> Exakte Version + SRI + crossorigin</label>
-      <label><input type="checkbox" name="sa-01-q19" value="1" data-grund="Falsch — „latest" ohne Hash ist die unveränderte Wiederholung des Angriffs: Der Host entscheidet über deine Auslieferung."> „latest" ohne Hash</label>
-      <label><input type="checkbox" name="sa-01-q19" value="2" data-richtig data-grund="Richtig — die Datei ins eigene Repo legen (Vendoring) baut die fremde Auslieferung ganz aus; alternativ zu SRI, nicht zusätzlich nötig."> Self-Hosting/Vendoring als Alternative</label>
+      <label><input type="checkbox" name="sa-01-q19" value="1" data-grund="Falsch — „latest“ ohne Hash ist die unveränderte Wiederholung des Angriffs: Der Host entscheidet über deine Auslieferung."> „latest" ohne Hash</label>
+      <label><input type="checkbox" name="sa-01-q19" value="2" data-richtig data-grund="Richtig — die Datei ins eigene Repo legen (Vendoring) nimmt die fremde Auslieferung ganz aus dem Spiel; laut Lektion eine eigene Schicht neben SRI, kein Ersatz dafür."> Self-Hosting/Vendoring als Alternative</label>
       <label><input type="checkbox" name="sa-01-q19" value="3" data-grund="Falsch — HTTPS war im Polymarket-Fall intakt; allein reicht es nicht, weil es die Herkunft der Bytes nicht prüft."> Nur HTTPS</label>
     </div>
   </fieldset>
@@ -606,7 +606,7 @@ je Zeile ein Fall, je Spalte die Gegenmittel:</p>
     <div class="optionen">
       <label><input type="checkbox" name="sa-01-q20" value="0" data-richtig data-grund="Richtig — der Arbeitslaptop ist der high-value-Rechner; genau dort dürfte das Programm bei Binance laufen."> Es nicht auf dem Arbeitsgerät ausführen</label>
       <label><input type="checkbox" name="sa-01-q20" value="1" data-richtig data-grund="Richtig — wenn es wirklich geprüft werden muss, dann in einer Umgebung, die man wegwerfen kann und die nichts zu verlieren hat."> Wenn überhaupt: in einer isolierten VM testen</label>
-      <label><input type="checkbox" name="sa-01-q20" value="2" data-richtig data-grund="Richtig — zweiter Kanal zur Identitätsprüfung und Meldung sind die Schritte, die bei Binance fehlten; „schnell selbst regeln" war die Falle."> Melden und die Identität über einen zweiten Kanal prüfen</label>
+      <label><input type="checkbox" name="sa-01-q20" value="2" data-richtig data-grund="Richtig — „melden statt ausführen“ steht in der Gegenmaßnahmen-Tabelle; wer drängt, fremde Software sofort zu starten, hat sich damit schon verraten."> Melden und die Identität über einen zweiten Kanal prüfen</label>
       <label><input type="checkbox" name="sa-01-q20" value="3" data-grund="Falsch — Höflichkeit ist keine Sicherheitsgrenze; ein seriöses Verfahren akzeptiert die Verweigerung ohne Druck."> Schnell ausführen, um höflich zu sein</label>
     </div>
   </fieldset>
